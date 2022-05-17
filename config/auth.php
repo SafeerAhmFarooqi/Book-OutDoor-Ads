@@ -108,4 +108,38 @@ return [
 
     'password_timeout' => 10800,
 
+    /*
+    |--------------------------------------------------------------------------
+    | Email Verification
+    |--------------------------------------------------------------------------
+    |
+    | This value decide if new user must verify his/her Email before login.
+    | If its set to true Users cannot login until they verify their Email
+    | address by clicking the link in the verification Email.
+    |
+    */
+    'user_must_verify_email' => false,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Admin Approval
+    |--------------------------------------------------------------------------
+    |
+    | This value decide if new user must be approved by Admin before login.
+    | If its set to true Users cannot login until they are approved by admin
+    |
+    */
+    'admin_must_approve_user' => false,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Can Password Expire
+    |--------------------------------------------------------------------------
+    |
+    | This value decide when user password Expires.
+    | user has to change his password after x Days define as value
+    |
+    */
+    'can_password_expire' => 0,
+
 ];
