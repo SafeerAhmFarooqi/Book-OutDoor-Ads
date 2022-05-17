@@ -1,0 +1,619 @@
+@extends('layouts.led-theme')
+
+@section('content')
+<div class="site-blocks-cover overlay" style="background-image: url(assets/Led-Theme/images/hero_2.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
+    <div class="container">
+      <div class="row align-items-center justify-content-center text-center">
+
+        <div class="col-md-12">
+          
+          
+          <div class="row justify-content-center mb-4">
+            <div class="col-md-8 text-center">
+              <h1 class="" data-aos="fade-up">Largest LED Classifieds In  World</h1>
+              <p data-aos="fade-up" data-aos-delay="100">You can buy, sell anything you want.</p>
+            </div>
+          </div>
+
+          <div class="form-search-wrap" data-aos="fade-up" data-aos-delay="200">
+            <form method="post" action="https://led-werbeflaechen.de/newled/search.php">
+              <div class="row align-items-center">
+                <div class="col-sm-5">
+                  <input type="text" class="form-control rounded" placeholder="What are you looking for?" name="str_con">
+                </div>
+                <div class="col-sm-5">
+                  <div class="wrap-icon">
+                    <span class="icon icon-room"></span>
+                    <input type="text" class="form-control rounded" placeholder="Location" id="googleLocation" name="googleLocation">
+                    <input type="hidden" class="hide" name="lati" id="lati" />
+                    <input type="hidden" class="hide" name="longi" id="longi" />
+                  </div>
+                </div>
+                <div class="col-lg-12 col-xl-2 ml-auto text-right">
+                  <input type="submit" class="btn btn-primary btn-block rounded" value="Search">
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+
+  <div class="site-section bg-light">
+    <div class="container">
+      
+      <div class="overlap-category mb-5">
+        <div class="row align-items-stretch no-gutters">
+          <div class="col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
+            <a href="#" class="popular-category h-100">
+              <span class="icon"><span class="flaticon-house"></span></span>
+              <span class="caption mb-2 d-block">Koblenz</span>
+              <span class="number">3,921</span>
+            </a>
+          </div>
+          <div class="col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
+            <a href="#" class="popular-category h-100">
+              <span class="icon"><span class="flaticon-books"></span></span>
+              <span class="caption mb-2 d-block">BoBurlin</span>
+              <span class="number">398</span>
+            </a>
+          </div>
+                 </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-12">
+          <h2 class="h5 mb-4 text-black">Featured Ads</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12  block-13">
+          <div class="owl-carousel nonloop-block-13">
+       
+
+
+            
+            <div class="d-block d-md-flex listing vertical">
+              <a href="ledd708.html?id=3" class="img d-block" style="background-image: url('user/ledgallery/733441119-1.jpg')"></a>
+              <div class="lh-content">
+                <span class="category">Cars &amp; Vehicles</span>
+                <a href="#" class="bookmark"><span class="icon-heart"></span></a>
+                <h3><a href="ledd708.html?id=3" style="font-size:12px">LED-BRANCHENFENSTER 12</a></h3>
+                <address>location1</address>
+                <p class="mb-0">  
+                  <span class="review" style="font-weight:bold">€ 0 / day</span>
+                </p>
+              </div>
+            </div>
+            
+            <div class="d-block d-md-flex listing vertical">
+              <a href="leddcfd.html?id=4" class="img d-block" style="background-image: url('user/ledgallery/351464822-6.jpg')"></a>
+              <div class="lh-content">
+                <span class="category">Cars &amp; Vehicles</span>
+                <a href="#" class="bookmark"><span class="icon-heart"></span></a>
+                <h3><a href="leddcfd.html?id=4" style="font-size:12px">LED-BRANCHENFENSTER</a></h3>
+                <address>location2</address>
+                <p class="mb-0">  
+                  <span class="review" style="font-weight:bold">€ 99 / day</span>
+                </p>
+              </div>
+            </div>
+            
+            <div class="d-block d-md-flex listing vertical">
+              <a href="ledd61c.html?id=5" class="img d-block" style="background-image: url('user/ledgallery/866439319-6.jpg')"></a>
+              <div class="lh-content">
+                <span class="category">Cars &amp; Vehicles</span>
+                <a href="#" class="bookmark"><span class="icon-heart"></span></a>
+                <h3><a href="ledd61c.html?id=5" style="font-size:12px">LED-BRANCHENFENSTER</a></h3>
+                <address>location3</address>
+                <p class="mb-0">  
+                  <span class="review" style="font-weight:bold">€ 543 / day</span>
+                </p>
+              </div>
+            </div>
+      
+
+           
+
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+  
+  <div class="site-section" data-aos="fade">
+    <div class="container">
+      <div class="row justify-content-center mb-5">
+        <div class="col-md-7 text-center border-primary">
+          <h2 class="font-weight-light text-primary">Popular LED's</h2>
+          <p class="color-black-opacity-5">Most Top Rated LED's</p>
+        </div>
+      </div>
+
+      <div class="row">
+
+
+          
+        <div class="col-md-6 mb-4 mb-lg-4 col-lg-4">
+          
+          <div class="listing-item">
+            <div class="listing-image">
+              <img src="user/ledgallery/733441119-1.jpg" alt="Image" class="img-fluid">
+            </div>
+            <div class="listing-item-content">
+              <a href="ledd708.html?id=3" class="bookmark" data-toggle="tooltip" data-placement="left" title="Bookmark"><span class="icon-heart"></span></a>
+              <a class="px-3 mb-3 category" href="#">Car &amp; Vehicles</a>
+              <h2 class="mb-1"><a href="ledd708.html?id=3" style="font-size:12px">LED-BRANCHENFENSTER 12</a></h2>
+              <span class="address">location1</span>
+            </div>
+          </div>
+
+        </div>
+          
+        <div class="col-md-6 mb-4 mb-lg-4 col-lg-4">
+          
+          <div class="listing-item">
+            <div class="listing-image">
+              <img src="user/ledgallery/351464822-6.jpg" alt="Image" class="img-fluid">
+            </div>
+            <div class="listing-item-content">
+              <a href="leddcfd.html?id=4" class="bookmark" data-toggle="tooltip" data-placement="left" title="Bookmark"><span class="icon-heart"></span></a>
+              <a class="px-3 mb-3 category" href="#">Car &amp; Vehicles</a>
+              <h2 class="mb-1"><a href="leddcfd.html?id=4" style="font-size:12px">LED-BRANCHENFENSTER</a></h2>
+              <span class="address">location2</span>
+            </div>
+          </div>
+
+        </div>
+          
+        <div class="col-md-6 mb-4 mb-lg-4 col-lg-4">
+          
+          <div class="listing-item">
+            <div class="listing-image">
+              <img src="user/ledgallery/866439319-6.jpg" alt="Image" class="img-fluid">
+            </div>
+            <div class="listing-item-content">
+              <a href="ledd61c.html?id=5" class="bookmark" data-toggle="tooltip" data-placement="left" title="Bookmark"><span class="icon-heart"></span></a>
+              <a class="px-3 mb-3 category" href="#">Car &amp; Vehicles</a>
+              <h2 class="mb-1"><a href="ledd61c.html?id=5" style="font-size:12px">LED-BRANCHENFENSTER</a></h2>
+              <span class="address">location3</span>
+            </div>
+          </div>
+
+        </div>
+        
+   
+
+
+ 
+        <div class="col-md-6 mb-4 mb-lg-4 col-lg-6">
+          
+          <div class="listing-item">
+            <div class="listing-image">
+              <img src="user/ledgallery/733441119-1.jpg" alt="Image" class="img-fluid">
+            </div>
+            <div class="listing-item-content">
+              <a href="#" class="bookmark" data-toggle="tooltip" data-placement="left" title="Bookmark"><span class="icon-heart"></span></a>
+              <a class="px-3 mb-3 category" href="#">Electronics</a>
+              <h2 class="mb-1"><a href="ledd708.html?id=3" style="font-size:16px">LED-BRANCHENFENSTER 12</a></h2>
+              <span class="address">location1</span>
+            </div>
+          </div>
+
+        </div>
+ 
+        <div class="col-md-6 mb-4 mb-lg-4 col-lg-6">
+          
+          <div class="listing-item">
+            <div class="listing-image">
+              <img src="user/ledgallery/351464822-6.jpg" alt="Image" class="img-fluid">
+            </div>
+            <div class="listing-item-content">
+              <a href="#" class="bookmark" data-toggle="tooltip" data-placement="left" title="Bookmark"><span class="icon-heart"></span></a>
+              <a class="px-3 mb-3 category" href="#">Electronics</a>
+              <h2 class="mb-1"><a href="leddcfd.html?id=4" style="font-size:16px">LED-BRANCHENFENSTER</a></h2>
+              <span class="address">location2</span>
+            </div>
+          </div>
+
+        </div>
+        
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="site-section bg-light">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-md-7 text-left border-primary">
+          <h2 class="font-weight-light text-primary">Trending Today</h2>
+        </div>
+      </div>
+      <div class="row mt-5">
+        <div class="col-lg-6">
+
+
+
+          <div class="d-block d-md-flex listing">
+            <a href="ledd708.html?id=3" class="img d-block" style="background-image: url('user/ledgallery/733441119-1.jpg')"></a>
+            <div class="lh-content">
+              <span class="category">Real Estate</span>
+              <a href="#" class="bookmark"><span class="icon-heart"></span></a>
+              <h3><a href="ledd708.html?id=3">LED-BRANCHENFENSTER 12</a></h3>
+              <address>location1</address>
+              <p class="mb-0"> 
+                <span class="review">0</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="d-block d-md-flex listing">
+            <a href="leddcfd.html?id=4" class="img d-block" style="background-image: url('user/ledgallery/351464822-6.jpg')"></a>
+            <div class="lh-content">
+              <span class="category">Real Estate</span>
+              <a href="#" class="bookmark"><span class="icon-heart"></span></a>
+              <h3><a href="leddcfd.html?id=4">LED-BRANCHENFENSTER</a></h3>
+              <address>location2</address>
+              <p class="mb-0"> 
+                <span class="review">99</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="d-block d-md-flex listing">
+            <a href="ledd61c.html?id=5" class="img d-block" style="background-image: url('user/ledgallery/866439319-6.jpg')"></a>
+            <div class="lh-content">
+              <span class="category">Real Estate</span>
+              <a href="#" class="bookmark"><span class="icon-heart"></span></a>
+              <h3><a href="ledd61c.html?id=5">LED-BRANCHENFENSTER</a></h3>
+              <address>location3</address>
+              <p class="mb-0"> 
+                <span class="review">543</span>
+              </p>
+            </div>
+          </div>
+
+          
+
+           
+
+        </div>
+        <div class="col-lg-6">
+
+ 
+
+
+          <div class="d-block d-md-flex listing">
+            <a href="listings-single.html" class="img d-block" style="background-image: url('user/ledgallery/733441119-1.jpg')"></a>
+            <div class="lh-content">
+              <span class="category">Real Estate</span>
+              <a href="#" class="bookmark"><span class="icon-heart"></span></a>
+              <h3><a href="listings-single.html">LED-BRANCHENFENSTER 12</a></h3>
+              <address>location1</address>
+              <p class="mb-0"> 
+                <span class="review">0</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="d-block d-md-flex listing">
+            <a href="listings-single.html" class="img d-block" style="background-image: url('user/ledgallery/351464822-6.jpg')"></a>
+            <div class="lh-content">
+              <span class="category">Real Estate</span>
+              <a href="#" class="bookmark"><span class="icon-heart"></span></a>
+              <h3><a href="listings-single.html">LED-BRANCHENFENSTER</a></h3>
+              <address>location2</address>
+              <p class="mb-0"> 
+                <span class="review">99</span>
+              </p>
+            </div>
+          </div>
+
+          <div class="d-block d-md-flex listing">
+            <a href="listings-single.html" class="img d-block" style="background-image: url('user/ledgallery/866439319-6.jpg')"></a>
+            <div class="lh-content">
+              <span class="category">Real Estate</span>
+              <a href="#" class="bookmark"><span class="icon-heart"></span></a>
+              <h3><a href="listings-single.html">LED-BRANCHENFENSTER</a></h3>
+              <address>location3</address>
+              <p class="mb-0"> 
+                <span class="review">543</span>
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<div class="home-page-welcome">
+      <div class="container">
+          <div class="row">
+              <div class="col-12 col-lg-6 order-2 order-lg-1">
+                  <div class="welcome-content">
+                      <header class="entry-header">
+                          <h2 class="entry-title">Willkommen im LED-WERBEFLÄCHEN MAGAZIN!
+
+</h2>
+                      </header><!-- .entry-header -->
+
+                      <div class="entry-content mt-5">
+                          <p>Als unser Werbepartner  haben Sie die Möglichkeit exklusiv im LED-Werbeflächen MAGAZIN mit Ihrem Unternehmen platziert zu werden. Sprechen Sie uns gerne  auf unser MAGAZIN an und erhalten Sie einen Überblick über  die Partnerunternehmen der LED-Werbeflächen.</p>
+                      </div><!-- .entry-content -->
+
+
+                  </div><!-- .welcome-content -->
+              </div><!-- .col -->
+
+              <div class="col-12 col-lg-6 mt-4 order-1 order-lg-2">
+                  <img src="../../www.led-werbeflaechen.de/images/slide1.jpg" alt="welcome">
+              </div><!-- .col -->
+          </div><!-- .row -->
+      </div><!-- .container -->
+  </div>
+
+
+
+  <div class="site-section bg-white">
+    <div class="container">
+
+      <div class="row justify-content-center mb-5">
+        <div class="col-md-7 text-center border-primary">
+          <h2 class="font-weight-light text-primary">Testimonials</h2>
+        </div>
+      </div>
+
+      <div class="slide-one-item home-slider owl-carousel">
+        <div>
+          <div class="testimonial">
+            <figure class="mb-4">
+              <img src="images/person_3.jpg" alt="Image" class="img-fluid mb-3">
+              <p>John Smith</p>
+            </figure>
+            <blockquote>
+              <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur unde reprehenderit aperiam quaerat fugiat repudiandae explicabo animi minima fuga beatae illum eligendi incidunt consequatur. Amet dolores excepturi earum unde iusto.&rdquo;</p>
+            </blockquote>
+          </div>
+        </div>
+        <div>
+          <div class="testimonial">
+            <figure class="mb-4">
+              <img src="images/person_2.jpg" alt="Image" class="img-fluid mb-3">
+              <p>Christine Aguilar</p>
+            </figure>
+            <blockquote>
+              <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur unde reprehenderit aperiam quaerat fugiat repudiandae explicabo animi minima fuga beatae illum eligendi incidunt consequatur. Amet dolores excepturi earum unde iusto.&rdquo;</p>
+            </blockquote>
+          </div>
+        </div>
+
+        <div>
+          <div class="testimonial">
+            <figure class="mb-4">
+              <img src="images/person_4.jpg" alt="Image" class="img-fluid mb-3">
+              <p>Robert Spears</p>
+            </figure>
+            <blockquote>
+              <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur unde reprehenderit aperiam quaerat fugiat repudiandae explicabo animi minima fuga beatae illum eligendi incidunt consequatur. Amet dolores excepturi earum unde iusto.&rdquo;</p>
+            </blockquote>
+          </div>
+        </div>
+
+        <div>
+          <div class="testimonial">
+            <figure class="mb-4">
+              <img src="images/person_5.jpg" alt="Image" class="img-fluid mb-3">
+              <p>Bruce Rogers</p>
+            </figure>
+            <blockquote>
+              <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur unde reprehenderit aperiam quaerat fugiat repudiandae explicabo animi minima fuga beatae illum eligendi incidunt consequatur. Amet dolores excepturi earum unde iusto.&rdquo;</p>
+            </blockquote>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+<div class="home-page-limestone" style="padding:0">
+      <div class="container">
+        <div class="text-center">
+          <h2 class="font-weight-light text-primary" style="padding-bottom:50px;font-weight:bold !important">Our Partners </h2>
+        </div>
+
+
+          <div class="row">
+              <div class="coL-12 col-lg-6">
+                  <div class="section-heading" style="padding-top:60px">
+                      <h3 class="entry-title" style="font-size:18px">DAS LED-BRANCHENFENSTER. IHR BLICKPUNKT.</h3>
+<h4 style="font-size:19px">SIE WÜNSCHEN WEITERE INFORMATIONEN? <br> WIR SIND GERNE FÜR SIE DA.
+</h4><br>
+
+<ul class="contact-info p-0">
+                          <li><i class="fa fa-phone"></i><span>  0261 - 200 695 68  <i class="fa fa-mobile" style="margin:0"></i>0176 - 808 507 25</span></li><br>
+                          <li><i class="fa fa-envelope"></i><span>hochhalter@led-werbeflächen.de</span></li><br>
+                         
+
+<li><i class="fa fa-map-marker"></i><span>Löhrstraße 87A/B 56068 Koblenz
+
+</span></li>
+                      </ul>
+
+     
+                  </div><!-- .section-heading -->
+              </div><!-- .col -->
+
+
+              <div class="col-12 col-lg-6">
+                  <div class="milestones d-flex flex-wrap justify-content-between">
+                          <div class="container">
+      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="../../www.led-werbeflaechen.de/images/ourclients/1.jpg" style="width:100%"></div>
+      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="../../www.led-werbeflaechen.de/images/ourclients/2.jpg" style="width:100%"></div>
+      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="../../www.led-werbeflaechen.de/images/ourclients/3.jpg" style="width:100%"></div>
+      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="../../www.led-werbeflaechen.de/images/ourclients/4.jpg" style="width:100%"></div>
+      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="../../www.led-werbeflaechen.de/images/ourclients/5.jpg" style="width:100%"></div> 
+      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="../../www.led-werbeflaechen.de/images/ourclients/6.jpg" style="width:100%"></div>
+      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="../../www.led-werbeflaechen.de/images/ourclients/7.jpg" style="width:100%"></div>
+      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="../../www.led-werbeflaechen.de/images/ourclients/8.jpg" style="width:100%"></div> 
+      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="../../www.led-werbeflaechen.de/images/ourclients/9.jpg" style="width:100%"></div>
+      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="../../www.led-werbeflaechen.de/images/ourclients/10.jpg" style="width:100%"></div>
+      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="../../www.led-werbeflaechen.de/images/ourclients/11.jpg" style="width:100%"></div> 
+      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="../../www.led-werbeflaechen.de/images/ourclients/12.jpg" style="width:100%"></div>
+      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="../../www.led-werbeflaechen.de/images/ourclients/13.jpg" style="width:100%"></div>
+      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="../../www.led-werbeflaechen.de/images/ourclients/14.jpg" style="width:100%"></div> 
+      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="../../www.led-werbeflaechen.de/images/ourclients/15.jpg" style="width:100%"></div>
+      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="../../www.led-werbeflaechen.de/images/ourclients/16.jpg" style="width:100%"></div> 
+      
+  </div>
+                  </div><!-- .milestones -->
+              </div><!-- .col -->
+          </div><!-- .row -->
+      </div><!-- .container -->
+  </div>
+
+    
+@endsection
+
+@section('Styles')
+<style>
+    /*
+    # Welcome
+    --------------------------------*/
+    .home-page-welcome {
+        position: relative;
+        padding: 96px 0;
+        background: url("assets/Led-Theme/images/slide1.jpg") no-repeat center;
+        background-size: cover;
+        z-index: 99;
+    }
+    
+    .home-page-welcome::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        background: rgba(21,21,21,.9);
+    }
+    
+    .welcome-content .entry-title {
+        position: relative;
+        padding-bottom: 24px;
+        font-size: 36px;
+        font-weight: 600;
+        color: #fff;
+    }
+    
+    .welcome-content .entry-title::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 64px;
+        height: 4px;
+        border-radius: 2px;
+        background: #2c35da;
+    }
+    
+    .welcome-content .entry-content {
+        font-size: 14px;
+        line-height: 2;
+        color: #b7b7b7;
+    }
+    
+    .home-page-welcome img {
+        display: block;
+        width: 100%;
+    }
+    
+    @media screen and (max-width: 992px){
+        .home-page-welcome img {
+            margin-bottom: 60px;
+        }
+    }
+    
+    /*
+    
+    /*
+    # Home Milestone
+    --------------------------------*/
+    .home-page-limestone {
+        padding: 96px 0;
+    }
+    
+    .home-page-limestone .section-heading .entry-title {
+        padding-bottom: 36px;
+        line-height: 1.6;
+    }
+    
+    .home-page-limestone .section-heading p {
+        font-size: 14px;
+        color: #595858;
+    }
+    .site-footer::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        height: 101%;
+        background: rgba(22,22,22,.92);
+    }
+    .footeruiclass li a
+    {
+      color: #fff;
+      font-size: 15px;
+    }
+    .footeruiclass
+    {
+        padding-top: 15px;
+    }
+    </style>
+@endsection
+
+
+@section('modals')
+<div class="modal" id="showLedCalanderModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Heading</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body" id="showLedCalander">
+          <!--<input type="text" name="daterange" id="demoDate" class="demo">-->
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+@endsection
+
+@section('pageScripts')
+<script src="{{asset('assets/Led-Theme/js/jquery-ui.js')}}"></script>
+<script src="{{asset('assets/Led-Theme/js/popper.min.js')}}"></script>
+<script src="{{asset('assets/Led-Theme/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('assets/Led-Theme/js/owl.carousel.min.js')}}"></script>
+<script src="{{asset('assets/Led-Theme/js/jquery.stellar.min.js')}}"></script>
+<script src="{{asset('assets/Led-Theme/js/jquery.countdown.min.js')}}"></script>
+<script src="{{asset('assets/Led-Theme/js/jquery.magnific-popup.min.js')}}"></script>
+ <script src="{{asset('assets/Led-Theme/js/aos.js')}}"></script>
+
+<script src="{{asset('assets/Led-Theme/js/main.js')}}"></script>
+@endsection
