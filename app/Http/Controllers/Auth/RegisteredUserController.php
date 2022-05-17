@@ -20,7 +20,14 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return view('auth.register');
+        View()->share( 'headTitle', 'User Register' );
+        return view('auth.user-auth.register');
+    }
+
+    public function createClient()
+    {
+        View()->share( 'headTitle', 'Client Register' );
+        return view('auth.client-auth.register');
     }
 
     /**
