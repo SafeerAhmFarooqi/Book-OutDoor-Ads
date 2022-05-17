@@ -14,5 +14,6 @@ class DashboardController extends AdminController
    public function home()
    {
        return view('landingpage');
+      // return view('test');
    }
 }
