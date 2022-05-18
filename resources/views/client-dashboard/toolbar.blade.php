@@ -1,4 +1,4 @@
-<div class="toolbar" id="kt_toolbar">
+{{-- <div class="toolbar" id="kt_toolbar">
     <!--begin::Container-->
     <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
         <!--begin::Page title-->
@@ -20,4 +20,4 @@
         <!--end::Actions-->
     </div>
     <!--end::Container-->
-</div>
+</div> --}}
