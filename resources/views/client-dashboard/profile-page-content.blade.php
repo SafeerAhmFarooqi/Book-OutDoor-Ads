@@ -8,7 +8,7 @@
             </div>
             <!--end::Card title-->
             <!--begin::Action-->
-            <a href="../../demo1/dist/account/settings.html" class="btn btn-primary align-self-center">Edit Profile</a>
+            <a href="{{route('client.profile.edit')}}" class="btn btn-primary align-self-center">Edit Profile</a>
             <!--end::Action-->
         </div>
         <!--begin::Card header-->

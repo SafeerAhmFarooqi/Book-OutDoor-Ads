@@ -21,6 +21,8 @@ Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['
 
 Route::group(['middleware' => ['role:Client']], function () {
     Route::get('/client-profile', [ClientProfileController::class,'show'])->name('client.profile.show');
+    Route::get('/client-profile-edit', [ClientProfileController::class,'edit'])->name('client.profile.edit');
+    Route::post('/client-profile-edit', [ClientProfileController::class,'update'])->name('client.profile.update');
 });
 
 require __DIR__.'/auth.php';
