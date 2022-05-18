@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Client\ClientProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,5 +18,9 @@ use App\Http\Controllers\DashboardController;
 Route::get('/', [DashboardController::class,'home']);
 
 Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['auth'])->name('dashboard');
+
+Route::group(['middleware' => ['role:Client']], function () {
+    Route::get('/client-profile', [ClientProfileController::class,'show'])->name('client.profile.show');
+});
 
 require __DIR__.'/auth.php';

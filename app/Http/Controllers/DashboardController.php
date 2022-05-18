@@ -21,7 +21,7 @@ class DashboardController extends AdminController
    {
       if(Auth::user()->hasRole('Client'))
       {
-         return view('client-dashboard.home');
+         return view('client-dashboard.home-page');
       }
       // return view('landingpage');
       // return view('test');
