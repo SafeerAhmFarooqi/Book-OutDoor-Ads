@@ -9,7 +9,7 @@
         <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse" data-bs-target="#kt_account_profile_details" aria-expanded="true" aria-controls="kt_account_profile_details">
             <!--begin::Card title-->
             <div class="card-title m-0">
-                <h3 class="fw-bolder m-0">Profile Details</h3>
+                <h3 class="fw-bolder m-0">Edit Profile</h3>
             </div>
             <!--end::Card title-->
         </div>
@@ -662,6 +662,7 @@
                 <!--end::Card body-->
                 <!--begin::Actions-->
                 <div class="card-footer d-flex justify-content-end py-6 px-9">
+                    <a href="{{route('client.profile.show')}}" class="btn btn-light btn-active-light-primary me-2">Back</a>
                     <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button>
                     <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Save Changes</button>
                 </div>

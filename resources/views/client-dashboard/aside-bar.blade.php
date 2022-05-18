@@ -30,7 +30,7 @@
                   
                     
                         <div class="menu-item">
-                            <a class="menu-link" href="../../demo1/dist/index.html">
+                            <a class="menu-link" href="{{route('dashboard')}}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -39,7 +39,7 @@
                         </div>
 
                         <div class="menu-item">
-                            <a class="menu-link" href="../../demo1/dist/index.html">
+                            <a class="menu-link" href="{{route('client.led.add')}}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
