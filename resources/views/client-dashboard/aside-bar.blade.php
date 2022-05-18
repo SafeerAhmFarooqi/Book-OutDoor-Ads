@@ -3,11 +3,11 @@
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
         <!--begin::Logo-->
         <a href="../../demo1/dist/index.html">
-            <img alt="Logo" src="assets/media/logos/logo-1-dark.svg" class="h-25px logo" />
+            <img alt="LED" src="assets/media/logos/logo-1-dark.svg" class="h-25px logo" />
         </a>
         <!--end::Logo-->
         <!--begin::Aside toggler-->
-        <div id="kt_aside_toggle" class="btn btn-icon w-auto px-0 btn-active-color-primary aside-toggle" data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body" data-kt-toggle-name="aside-minimize">
+        {{-- <div id="kt_aside_toggle" class="btn btn-icon w-auto px-0 btn-active-color-primary aside-toggle" data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body" data-kt-toggle-name="aside-minimize">
             <!--begin::Svg Icon | path: icons/duotune/arrows/arr079.svg-->
             <span class="svg-icon svg-icon-1 rotate-180">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -16,7 +16,7 @@
                 </svg>
             </span>
             <!--end::Svg Icon-->
-        </div>
+        </div> --}}
         <!--end::Aside toggler-->
     </div>
     <!--end::Brand-->
