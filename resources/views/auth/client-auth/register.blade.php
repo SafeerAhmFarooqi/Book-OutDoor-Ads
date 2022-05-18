@@ -13,11 +13,13 @@
             <!--begin::Wrapper-->
             <div class="w-lg-600px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
                 <!--begin::Form-->
-                <form class="form w-100" novalidate="novalidate" id="kt_sign_up_form">
+                <form class="form w-100" novalidate="novalidate" id="kt_sign_up_form" method="POST" action="{{ route('register') }}">
+                    @csrf
                     <!--begin::Heading-->
                     <div class="mb-10 text-center">
                         <!--begin::Title-->
                         <h1 class="text-dark mb-3">Create an Account</h1>
+                       
                         <!--end::Title-->
                         <!--begin::Link-->
                         <div class="text-gray-400 fw-bold fs-4">Already have an client account?
@@ -26,8 +28,8 @@
                     </div>
                     <!--end::Heading-->
                     <!--begin::Action-->
-                    <button type="button" class="btn btn-light-primary fw-bolder w-100 mb-10">
-                    <img alt="Logo" src="assets/Metronic-Theme/media/svg/brand-logos/google-icon.svg" class="h-20px me-3" />Sign in with Google</button>
+                    {{-- <button type="button" class="btn btn-light-primary fw-bolder w-100 mb-10">
+                    <img alt="Logo" src="assets/Metronic-Theme/media/svg/brand-logos/google-icon.svg" class="h-20px me-3" />Sign in with Google</button> --}}
                     <!--end::Action-->
                     <!--begin::Separator-->
                     <div class="d-flex align-items-center mb-10">
@@ -35,19 +37,28 @@
                         <span class="fw-bold text-gray-400 fs-7 mx-2">OR</span>
                         <div class="border-bottom border-gray-300 mw-50 w-100"></div>
                     </div>
+                    @if ($errors->any())
+                    @foreach ($errors->all() as $error)
+                    <div class="alert alert-danger" role="alert">
+                        {{$error}}
+                    </div> 
+                    @endforeach
+                    @endif
                     <!--end::Separator-->
                     <!--begin::Input group-->
                     <div class="row fv-row mb-7">
                         <!--begin::Col-->
                         <div class="col-xl-6">
                             <label class="form-label fw-bolder text-dark fs-6">First Name</label>
-                            <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="first-name" autocomplete="off" />
+                            <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="firstname" value="{{old('firstname')}}" autocomplete="off" />
+                            
                         </div>
+                        
                         <!--end::Col-->
                         <!--begin::Col-->
                         <div class="col-xl-6">
                             <label class="form-label fw-bolder text-dark fs-6">Last Name</label>
-                            <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="last-name" autocomplete="off" />
+                            <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="lastname" value="{{old('lastname')}}" autocomplete="off" />
                         </div>
                         <!--end::Col-->
                     </div>
@@ -55,7 +66,7 @@
                     <!--begin::Input group-->
                     <div class="fv-row mb-7">
                         <label class="form-label fw-bolder text-dark fs-6">Email</label>
-                        <input class="form-control form-control-lg form-control-solid" type="email" placeholder="" name="email" autocomplete="off" />
+                        <input class="form-control form-control-lg form-control-solid" type="email" placeholder="" name="email" value="{{old('email')}}" autocomplete="off" />
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->
@@ -92,21 +103,23 @@
                     <!--begin::Input group-->
                     <div class="fv-row mb-5">
                         <label class="form-label fw-bolder text-dark fs-6">Confirm Password</label>
-                        <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="confirm-password" autocomplete="off" />
+                        <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="password_confirmation" autocomplete="off" />
                     </div>
+
+                    <input type="hidden" name="role" value="client">
                     <!--end::Input group-->
                     <!--begin::Input group-->
-                    <div class="fv-row mb-10">
+                    {{-- <div class="fv-row mb-10">
                         <label class="form-check form-check-custom form-check-solid form-check-inline">
                             <input class="form-check-input" type="checkbox" name="toc" value="1" />
                             <span class="form-check-label fw-bold text-gray-700 fs-6">I Agree
                             <a href="#" class="ms-1 link-primary">Terms and conditions</a>.</span>
                         </label>
-                    </div>
+                    </div> --}}
                     <!--end::Input group-->
                     <!--begin::Actions-->
                     <div class="text-center">
-                        <button type="button" id="kt_sign_up_submit" class="btn btn-lg btn-primary">
+                        <button type="submit" id="kt_sign_up_submit" class="btn btn-lg btn-primary">
                             <span class="indicator-label">Submit</span>
                             <span class="indicator-progress">Please wait...
                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -136,5 +149,5 @@
 @endsection
 
 @section('pageScripts')
-<script src="{{ asset('assets/Metronic-Theme/js/custom/authentication/sign-up/general.js') }}"></script>
+{{-- <script src="{{ asset('assets/Metronic-Theme/js/custom/authentication/sign-up/general.js') }}"></script> --}}
 @endsection

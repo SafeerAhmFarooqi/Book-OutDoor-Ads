@@ -16,4 +16,14 @@ class DashboardController extends AdminController
        return view('landingpage');
       // return view('test');
    }
+
+   public function dashboard()
+   {
+      if(Auth::user()->hasRole('Client'))
+      {
+         return view('client-dashboard.home');
+      }
+      // return view('landingpage');
+      // return view('test');
+   }
 }
