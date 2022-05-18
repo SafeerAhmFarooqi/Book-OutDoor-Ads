@@ -16,8 +16,6 @@ use App\Http\Controllers\DashboardController;
 
 Route::get('/', [DashboardController::class,'home']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';

@@ -14,7 +14,8 @@
             <!--begin::Wrapper-->
             <div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
                 <!--begin::Form-->
-                <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" data-kt-redirect-url="../../demo1/dist/index.html" action="#">
+                <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form"  method="POST" action="{{ route('login') }}">
+                    @csrf
                     <!--begin::Heading-->
                     <div class="text-center mb-10">
                         <!--begin::Title-->
@@ -61,7 +62,7 @@
                             <span class="indicator-progress">Please wait...
                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                         </button>
-                        <!--end::Submit button-->
+                        {{-- <!--end::Submit button-->
                         <!--begin::Separator-->
                         <div class="text-center text-muted text-uppercase fw-bolder mb-5">or</div>
                         <!--end::Separator-->
@@ -75,7 +76,7 @@
                         <!--end::Google link-->
                         <!--begin::Google link-->
                         <a href="#" class="btn btn-flex flex-center btn-light btn-lg w-100">
-                        <img alt="Logo" src="assets/Metronic-Theme/media/svg/brand-logos/apple-black.svg" class="h-20px me-3" />Continue with Apple</a>
+                        <img alt="Logo" src="assets/Metronic-Theme/media/svg/brand-logos/apple-black.svg" class="h-20px me-3" />Continue with Apple</a> --}}
                         <!--end::Google link-->
                     </div>
                     <!--end::Actions-->
@@ -102,5 +103,5 @@
 @endsection
 
 @section('pageScripts')
-<script src="{{ asset('assets/Metronic-Theme/js/custom/authentication/sign-in/general.js') }}"></script>
+{{-- <script src="{{ asset('assets/Metronic-Theme/js/custom/authentication/sign-in/general.js') }}"></script> --}}
 @endsection
