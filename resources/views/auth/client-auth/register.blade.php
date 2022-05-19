@@ -37,36 +37,90 @@
                         <span class="fw-bold text-gray-400 fs-7 mx-2">OR</span>
                         <div class="border-bottom border-gray-300 mw-50 w-100"></div>
                     </div>
-                    @if ($errors->any())
+                    {{-- @if ($errors->any())
                     @foreach ($errors->all() as $error)
                     <div class="alert alert-danger" role="alert">
                         {{$error}}
                     </div> 
                     @endforeach
-                    @endif
+                    @endif --}}
                     <!--end::Separator-->
                     <!--begin::Input group-->
                     <div class="row fv-row mb-7">
                         <!--begin::Col-->
                         <div class="col-xl-6">
-                            <label class="form-label fw-bolder text-dark fs-6">First Name</label>
+                            <label class="form-label fw-bolder required text-dark fs-6">First Name</label>
                             <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="firstname" value="{{old('firstname')}}" autocomplete="off" />
-                            
+                            @error('firstname')
+                                <div class="alert alert-danger">
+                                        {{$message}}
+                                </div>
+                                @enderror
                         </div>
                         
                         <!--end::Col-->
                         <!--begin::Col-->
                         <div class="col-xl-6">
-                            <label class="form-label fw-bolder text-dark fs-6">Last Name</label>
+                            <label class="form-label fw-bolder required text-dark fs-6">Last Name</label>
                             <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="lastname" value="{{old('lastname')}}" autocomplete="off" />
+                            @error('lastname')
+                            <div class="alert alert-danger">
+                                    {{$message}}
+                            </div>
+                            @enderror
                         </div>
                         <!--end::Col-->
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->
                     <div class="fv-row mb-7">
-                        <label class="form-label fw-bolder text-dark fs-6">Email</label>
+                        <label class="form-label fw-bolder required text-dark fs-6">Email</label>
                         <input class="form-control form-control-lg form-control-solid" type="email" placeholder="" name="email" value="{{old('email')}}" autocomplete="off" />
+                        @error('email')
+                            <div class="alert alert-danger">
+                                    {{$message}}
+                            </div>
+                            @enderror
+                    </div>
+
+                    <div class="fv-row mb-7">
+                        <label class="form-label fw-bolder required text-dark fs-6">Company</label>
+                        <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="company" value="{{old('company')}}" autocomplete="off" />
+                        @error('company')
+                        <div class="alert alert-danger">
+                                {{$message}}
+                        </div>
+                        @enderror
+                    </div>
+
+                    <div class="fv-row mb-7">
+                        <label class="form-label fw-bolder required text-dark fs-6">Address</label>
+                        <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="address" value="{{old('address')}}" autocomplete="off" id="myAddress"/>
+                        @error('address')
+                        <div class="alert alert-danger">
+                                {{$message}}
+                        </div>
+                        @enderror
+                    </div>
+
+                    <div class="fv-row mb-7">
+                        <label class="form-label fw-bolder required text-dark fs-6">Phone</label>
+                        <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="phone" value="{{old('phone')}}" autocomplete="off" />
+                        @error('phone')
+                        <div class="alert alert-danger">
+                                {{$message}}
+                        </div>
+                        @enderror
+                    </div>
+
+                    <div class="fv-row mb-7">
+                        <label class="form-label fw-bolder required text-dark fs-6">Postal Code</label>
+                        <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="postal_code" value="{{old('postal_code')}}" autocomplete="off" />
+                        @error('postal_code')
+                        <div class="alert alert-danger">
+                                {{$message}}
+                        </div>
+                        @enderror
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->
@@ -104,6 +158,16 @@
                     <div class="fv-row mb-5">
                         <label class="form-label fw-bolder text-dark fs-6">Confirm Password</label>
                         <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="password_confirmation" autocomplete="off" />
+                        @error('password')
+                        <div class="alert alert-danger">
+                                {{$message}}
+                        </div>
+                        @enderror
+                        @error('password_confirmation')
+                        <div class="alert alert-danger">
+                                {{$message}}
+                        </div>
+                        @enderror
                     </div>
 
                     <input type="hidden" name="role" value="client">
@@ -150,4 +214,20 @@
 
 @section('pageScripts')
 {{-- <script src="{{ asset('assets/Metronic-Theme/js/custom/authentication/sign-up/general.js') }}"></script> --}}
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyAIeDyz_v1KkoU3ZTRqK5e-9Ax1lNjSIEI"></script>
+<script type="text/javascript">
+    var searchInput = 'myAddress';
+    
+        $(document).ready(function () {
+            var autocomplete;
+            autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+                types: ['geocode']
+               
+            });
+        
+            google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                var near_place = autocomplete.getPlace();
+            });
+        });
+</script>
 @endsection

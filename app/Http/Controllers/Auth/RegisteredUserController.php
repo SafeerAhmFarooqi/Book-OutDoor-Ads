@@ -44,20 +44,31 @@ class RegisteredUserController extends Controller
         {
             return back();
         }
-        $request->validate([
-            'firstname' => ['required', 'string', 'max:255'],
-            'lastname' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'confirmed', Rules\Password::defaults()],
-        ]);
+        if($request->role=='client')
+        {
+            $request->validate([
+                'firstname' => ['required', 'string', 'max:255'],
+                'lastname' => ['required', 'string', 'max:255'],
+                'company' => ['required', 'string', 'max:255'],
+                'address' => ['required', 'string', 'max:255'],
+                'phone' => ['required', 'string', 'max:255'],
+                'postal_code' => ['required', 'string', 'max:255'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            ]);    
 
-        $user = User::create([
-            'firstname' => $request->firstname,
-            'lastname' => $request->lastname,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
+            $user = User::create([
+                'firstname' => $request->firstname,
+                'lastname' => $request->lastname,
+                'company' => $request->company,
+                'address' => $request->address,
+                'phone' => $request->phone,
+                'postal_code' => $request->postal_code,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+            ]);
+        }
+        
         event(new Registered($user));
 
         //User assign role goes here
