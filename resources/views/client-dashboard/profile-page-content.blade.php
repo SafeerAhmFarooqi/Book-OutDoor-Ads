@@ -49,6 +49,50 @@
                 </div>
                 <!--end::Col-->
             </div>
+
+            <div class="row mb-7">
+                <!--begin::Label-->
+                <label class="col-lg-4 fw-bold text-muted">Company</label>
+                <!--end::Label-->
+                <!--begin::Col-->
+                <div class="col-lg-8 fv-row">
+                    <span class="fw-bold text-gray-800 fs-6">{{Auth::user()->company}}</span>
+                </div>
+                <!--end::Col-->
+            </div>
+
+            <div class="row mb-7">
+                <!--begin::Label-->
+                <label class="col-lg-4 fw-bold text-muted">Address</label>
+                <!--end::Label-->
+                <!--begin::Col-->
+                <div class="col-lg-8 fv-row">
+                    <span class="fw-bold text-gray-800 fs-6">{{Auth::user()->address}}</span>
+                </div>
+                <!--end::Col-->
+            </div>
+
+            <div class="row mb-7">
+                <!--begin::Label-->
+                <label class="col-lg-4 fw-bold text-muted">Phone</label>
+                <!--end::Label-->
+                <!--begin::Col-->
+                <div class="col-lg-8 fv-row">
+                    <span class="fw-bold text-gray-800 fs-6">{{Auth::user()->phone}}</span>
+                </div>
+                <!--end::Col-->
+            </div>
+
+            <div class="row mb-7">
+                <!--begin::Label-->
+                <label class="col-lg-4 fw-bold text-muted">Postal Code</label>
+                <!--end::Label-->
+                <!--begin::Col-->
+                <div class="col-lg-8 fv-row">
+                    <span class="fw-bold text-gray-800 fs-6">{{Auth::user()->postal_code}}</span>
+                </div>
+                <!--end::Col-->
+            </div>
             <!--end::Input group-->
             
             <!--end::Notice-->

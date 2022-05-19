@@ -97,24 +97,68 @@
                         </div>
                         <!--end::Col-->
                     </div>
+
+                   
                     <!--end::Input group-->
                     <!--begin::Input group-->
-                    {{-- <div class="row mb-6">
+                     <div class="row mb-6">
                         <!--begin::Label-->
                         <label class="col-lg-4 col-form-label fw-bold fs-6">
-                            <span class="required">Contact Phone</span>
-                            <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Phone number must be active"></i>
+                            <span class="required">Company</span>
+                            {{-- <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Phone number must be active"></i> --}}
                         </label>
                         <!--end::Label-->
                         <!--begin::Col-->
                         <div class="col-lg-8 fv-row">
-                            <input type="tel" name="phone" class="form-control form-control-lg form-control-solid" placeholder="Phone number" value="044 3276 454 935" />
+                            <input type="text" name="company" class="form-control form-control-lg form-control-solid" placeholder="Company" value="{{old('company')??Auth::user()->company}}" />
+                        </div>
+                        <!--end::Col-->
+                    </div>
+
+                    <div class="row mb-6">
+                        <!--begin::Label-->
+                        <label class="col-lg-4 col-form-label fw-bold fs-6">
+                            <span class="required">Address</span>
+                            {{-- <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Phone number must be active"></i> --}}
+                        </label>
+                        <!--end::Label-->
+                        <!--begin::Col-->
+                        <div class="col-lg-8 fv-row">
+                            <input type="text" name="address" class="form-control form-control-lg form-control-solid" placeholder="Address" value="{{old('address')??Auth::user()->address}}" id="myAddress"/>
+                        </div>
+                        <!--end::Col-->
+                    </div>
+
+                    <div class="row mb-6">
+                        <!--begin::Label-->
+                        <label class="col-lg-4 col-form-label fw-bold fs-6">
+                            <span class="required">Phone</span>
+                            {{-- <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Phone number must be active"></i> --}}
+                        </label>
+                        <!--end::Label-->
+                        <!--begin::Col-->
+                        <div class="col-lg-8 fv-row">
+                            <input type="text" name="phone" class="form-control form-control-lg form-control-solid" placeholder="Phone" value="{{old('phone')??Auth::user()->phone}}" />
+                        </div>
+                        <!--end::Col-->
+                    </div>
+
+                    <div class="row mb-6">
+                        <!--begin::Label-->
+                        <label class="col-lg-4 col-form-label fw-bold fs-6">
+                            <span class="required">Postal Code</span>
+                            {{-- <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Phone number must be active"></i> --}}
+                        </label>
+                        <!--end::Label-->
+                        <!--begin::Col-->
+                        <div class="col-lg-8 fv-row">
+                            <input type="text" name="postal_code" class="form-control form-control-lg form-control-solid" placeholder="Postal Code" value="{{old('postal_code')??Auth::user()->postal_code}}" />
                         </div>
                         <!--end::Col-->
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->
-                    <div class="row mb-6">
+                   {{-- <div class="row mb-6">
                         <!--begin::Label-->
                         <label class="col-lg-4 col-form-label fw-bold fs-6">Company Site</label>
                         <!--end::Label-->
@@ -673,3 +717,21 @@
         <!--end::Content-->
     </div>
 </div>
+@section('pageScripts')
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyAIeDyz_v1KkoU3ZTRqK5e-9Ax1lNjSIEI"></script>
+<script type="text/javascript">
+    var searchInput = 'myAddress';
+    
+        $(document).ready(function () {
+            var autocomplete;
+            autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+                types: ['geocode']
+               
+            });
+        
+            google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                var near_place = autocomplete.getPlace();
+            });
+        });
+</script>
+@endsection
