@@ -24,7 +24,7 @@
             <!--begin::Content-->
             <div id="kt_account_settings_profile_details" class="collapse show">
                 <!--begin::Form-->
-                <form id="kt_account_profile_details_form" class="form" method="POST" action="{{route('client.led.store')}}">
+                <form id="kt_account_profile_details_form" class="form" method="POST" action="{{route('client.led.store')}}" enctype="multipart/form-data">
                     @csrf
                     <!--begin::Card body-->
                     <div class="card-body border-top p-9">
@@ -52,7 +52,8 @@
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
-                                <input type="text" name="description" class="form-control form-control-lg form-control-solid" placeholder="Description" value="{{old('description')}}" />
+                                {{-- <input type="text"  class="form-control form-control-lg form-control-solid"   /> --}}
+                                <textarea class="form-control form-control-lg form-control-solid" name="description" value="{{old('description')}}" placeholder="Description">{{old('description')}}</textarea>
                                 @error('description')
                                 <div class="alert alert-danger">
                                         {{$message}}
@@ -67,7 +68,7 @@
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
-                                <input type="text" name="location" class="form-control form-control-lg form-control-solid" placeholder="Location" value="{{old('location')}}" />
+                                <input type="text" name="location" class="form-control form-control-lg form-control-solid" placeholder="Location" value="{{old('location')}}" id="myAddress"/>
                                 @error('location')
                                 <div class="alert alert-danger">
                                         {{$message}}
@@ -103,6 +104,26 @@
                                         {{$message}}
                                 </div>
                                 @enderror
+                            </div>
+                            <!--end::Col-->
+                        </div>
+
+                        <div class="row mb-6">
+                            <!--begin::Label-->
+                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Led Images</label>
+                            <!--end::Label-->
+                            <!--begin::Col-->
+                            <div class="col-lg-8 fv-row">
+                                <input type="file" name="images[]" class="form-control form-control-lg form-control-solid" multiple/> 
+                                @if (count($errors) > 0)
+                                    @foreach ($errors->all() as $error)
+                                    @if (str_contains($error, 'images'))
+                                    <div class="alert alert-danger">
+                                        {{$error}}
+                                    </div>
+                                    @endif   
+                                    @endforeach
+                                @endif
                             </div>
                             <!--end::Col-->
                         </div>
@@ -759,3 +780,21 @@
         </div>
     </div>
 </div>
+@section('pageScripts')
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyAIeDyz_v1KkoU3ZTRqK5e-9Ax1lNjSIEI"></script>
+<script type="text/javascript">
+    var searchInput = 'myAddress';
+    
+        $(document).ready(function () {
+            var autocomplete;
+            autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+                types: ['geocode']
+               
+            });
+        
+            google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                var near_place = autocomplete.getPlace();
+            });
+        });
+</script>
+@endsection

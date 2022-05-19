@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('title')->nullable();
             $table->string('description')->nullable();
             $table->string('location')->nullable();
+            $table->string('city')->nullable();
             $table->double('price')->nullable();
             $table->double('tax')->nullable();
             $table->timestamps();
