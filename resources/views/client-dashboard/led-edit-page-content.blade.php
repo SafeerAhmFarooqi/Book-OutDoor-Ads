@@ -16,7 +16,7 @@
             <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse" data-bs-target="#kt_account_profile_details" aria-expanded="true" aria-controls="kt_account_profile_details">
                 <!--begin::Card title-->
                 <div class="card-title m-0">
-                    <h3 class="fw-bolder m-0">Edit Led {{count($led->images)}}</h3>
+                    <h3 class="fw-bolder m-0">Edit Led</h3>
                 </div>
                 <!--end::Card title-->
             </div>
@@ -791,7 +791,7 @@
                     <div class="card-header align-items-center border-0 mt-4">
                         <h3 class="card-title align-items-start flex-column">
                             <span class="fw-bolder text-dark">Led Images</span>
-                            <span class="text-muted mt-1 fw-bold fs-7">Total Number of Images : </span>
+                            <span class="text-muted mt-1 fw-bold fs-7">Total Number of Images : {{count($led->images)}}</span>
                         </h3>
                         {{-- <div class="card-toolbar">
                             <!--begin::Menu-->
@@ -892,77 +892,33 @@
                     <!--begin::Body-->
                     <div class="card-body pt-3">
                         <!--begin::Item-->
-                        <div class="d-flex align-items-sm-center mb-7">
-                            <!--begin::Symbol-->
-                            <div class="symbol symbol-60px symbol-2by3 me-4">
-                                <div class="symbol-label" style="background-image: url('assets/media/stock/600x400/img-20.jpg')"></div>
-                            </div>
-                            <!--end::Symbol-->
-                            <!--begin::Title-->
-                            <div class="d-flex flex-row-fluid flex-wrap align-items-center">
-                                <div class="flex-grow-1 me-2">
-                                    <a href="#" class="text-gray-800 fw-bolder text-hover-primary fs-6">Cup &amp; Green</a>
-                                    <span class="text-muted fw-bold d-block pt-1">Size: 87KB</span>
+                        @if (count($led->images)>0)
+                            @foreach ($led->images as $image)
+                            <div class="d-flex align-items-sm-center mb-7">
+                                <!--begin::Symbol-->
+                                <div class="symbol symbol-60px symbol-2by3 me-4">
+                                    <div class="symbol-label" style="background-image:url({{asset('storage/'.($image)->path)}});"></div>
+                                    
+                                    
+                                    {{-- style="background-image:url({{'storage/'.($led->images->first())->path}});" --}}
                                 </div>
-                                <span class="badge badge-light-success fs-8 fw-bolder my-2">Approved</span>
-                            </div>
-                            <!--end::Title-->
-                        </div>
-                        <!--end::Item-->
-                        <!--begin::Item-->
-                        <div class="d-flex align-items-sm-center mb-7">
-                            <!--begin::Symbol-->
-                            <div class="symbol symbol-60px symbol-2by3 me-4">
-                                <div class="symbol-label" style="background-image: url('assets/media/stock/600x400/img-19.jpg')"></div>
-                            </div>
-                            <!--end::Symbol-->
-                            <!--begin::Title-->
-                            <div class="d-flex flex-row-fluid flex-wrap align-items-center">
-                                <div class="flex-grow-1 me-2">
-                                    <a href="#" class="text-gray-800 fw-bolder text-hover-primary fs-6">Yellow Background</a>
-                                    <span class="text-muted fw-bold d-block pt-1">Size: 1.2MB</span>
+                                <!--end::Symbol-->
+                                <!--begin::Title-->
+                                <div class="d-flex flex-row-fluid flex-wrap align-items-center">
+                                    <div class="flex-grow-1 me-2">
+                                        <a href="#" class="text-gray-800 fw-bolder text-hover-primary fs-6">View Image</a>
+                                        <span class="text-muted fw-bold d-block pt-1">Size: 87KB</span>
+                                    </div>
+                                    <span class="badge badge-light-success fs-8 fw-bolder my-2"><button type="submit" class="btn btn-sm btn-danger" data-kt-menu-dismiss="true">Delete</button></span>
                                 </div>
-                                <span class="badge badge-light-warning fs-8 fw-bolder my-2">In Progress</span>
+                                <!--end::Title-->
                             </div>
-                            <!--end::Title-->
-                        </div>
-                        <!--end::Item-->
-                        <!--begin::Item-->
-                        <div class="d-flex align-items-sm-center mb-7">
-                            <!--begin::Symbol-->
-                            <div class="symbol symbol-60px symbol-2by3 me-4">
-                                <div class="symbol-label" style="background-image: url('assets/media/stock/600x400/img-25.jpg')"></div>
-                            </div>
-                            <!--end::Symbol-->
-                            <!--begin::Title-->
-                            <div class="d-flex flex-row-fluid flex-wrap align-items-center">
-                                <div class="flex-grow-1 me-2">
-                                    <a href="#" class="text-gray-800 fw-bolder text-hover-primary fs-6">Nike &amp; Blue</a>
-                                    <span class="text-muted fw-bold d-block pt-1">Size: 87KB</span>
-                                </div>
-                                <span class="badge badge-light-success fs-8 fw-bolder my-2">Success</span>
-                            </div>
-                            <!--end::Title-->
-                        </div>
-                        <!--end::Item-->
-                        <!--begin::Item-->
-                        <div class="d-flex align-items-sm-center">
-                            <!--begin::Symbol-->
-                            <div class="symbol symbol-60px symbol-2by3 me-4">
-                                <div class="symbol-label" style="background-image: url('assets/media/stock/600x400/img-24.jpg')"></div>
-                            </div>
-                            <!--end::Symbol-->
-                            <!--begin::Title-->
-                            <div class="d-flex flex-row-fluid flex-wrap align-items-center">
-                                <div class="flex-grow-1 me-2">
-                                    <a href="#" class="text-gray-800 fw-bolder text-hover-primary fs-6">Red Boots</a>
-                                    <span class="text-muted fw-bold d-block pt-1">Size: 345KB</span>
-                                </div>
-                                <span class="badge badge-light-danger fs-8 fw-bolder my-2">Rejected</span>
-                            </div>
-                            <!--end::Title-->
-                        </div>
-                        <!--end::Item-->
+                            @endforeach
+                        @else
+                            <h1>No Image Found</h1>
+                        @endif
+                       
+
                     </div>
                     <!--end::Body-->
                 </div>
