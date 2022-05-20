@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Led;
 use App\Models\LedImages;
+use Illuminate\Support\Facades\Storage;
 
 class ClientLedController extends BaseClientController
 {
@@ -52,6 +53,21 @@ class ClientLedController extends BaseClientController
         {
             return back()->with('message', 'Unable to create New Led' );
         }
+    }
+
+    public function viewLed()
+    {
+        $leds=Led::with('images')->where('user_id',Auth::user()->id)->get();
+        //return count($leds);
+        return view('client-dashboard.led-view-page',['leds' => $leds,'srNo'=>0]);
+    }
+
+    public function ledDelete(Request $request)
+    {
+        Led::find($request->led_id)->delete();
+        LedImages::where('led_id',$request->led_id)->delete();
+        Storage::deleteDirectory('public/led-images/'.Auth::user()->id.'/'.$request->led_id);
+        return back()->with('success', 'Led Deleted Successfully');
     }
    
 }
