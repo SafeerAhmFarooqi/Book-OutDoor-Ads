@@ -69,6 +69,46 @@ class ClientLedController extends BaseClientController
         Storage::deleteDirectory('public/led-images/'.Auth::user()->id.'/'.$request->led_id);
         return back()->with('success', 'Led Deleted Successfully');
     }
+
+    public function editLed($id)
+    {
+        $led=Led::find($id);
+        if(!$led || $led->user_id!=Auth::user()->id)
+        {
+            return redirect()->route('client.led.view');
+        }
+        if($led)
+        {
+            $led=Led::with('images')->where('id',$id)->first();
+        }
+        return view('client-dashboard.led-edit-page',['led' => $led]);
+    }
+
+    public function updateLed(Request $request,$id)
+    {
+        $led=Led::find($id);
+        if(!$led || $led->user_id!=Auth::user()->id)
+        {
+            return redirect()->route('client.led.view');
+        }
+        $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'description' => ['required', 'string', 'max:500'],
+            'location' => ['required', 'string', 'max:500'],
+            'price' => ['required', 'numeric'],
+            'tax' => ['required', 'numeric'],
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,bmp|max:2048'
+        ]);
+        $led->update($request->all());
+        foreach($request->file('images') as $image)
+        {
+            $image->store('led-images/'.Auth::user()->id.'/'.$led->id,'public');
+            $filePath = 'led-images/'.Auth::user()->id.'/'.$led->id .'/'. $image->hashName();
+            $images = new LedImages(['path' => $filePath, 'name' => $image->getClientOriginalName()]);
+            $led->images()->save($images);
+        }
+        return back()->with('message', 'Led Updated Successfully' );
+    }
    
 }
 
