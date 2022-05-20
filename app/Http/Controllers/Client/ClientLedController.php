@@ -100,13 +100,17 @@ class ClientLedController extends BaseClientController
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,bmp|max:2048'
         ]);
         $led->update($request->all());
-        foreach($request->file('images') as $image)
+        if($request->file('images'))
         {
-            $image->store('led-images/'.Auth::user()->id.'/'.$led->id,'public');
-            $filePath = 'led-images/'.Auth::user()->id.'/'.$led->id .'/'. $image->hashName();
-            $images = new LedImages(['path' => $filePath, 'name' => $image->getClientOriginalName()]);
-            $led->images()->save($images);
+            foreach($request->file('images') as $image)
+            {
+                $image->store('led-images/'.Auth::user()->id.'/'.$led->id,'public');
+                $filePath = 'led-images/'.Auth::user()->id.'/'.$led->id .'/'. $image->hashName();
+                $images = new LedImages(['path' => $filePath, 'name' => $image->getClientOriginalName()]);
+                $led->images()->save($images);
+            }
         }
+        
         return back()->with('message', 'Led Updated Successfully' );
     }
    
