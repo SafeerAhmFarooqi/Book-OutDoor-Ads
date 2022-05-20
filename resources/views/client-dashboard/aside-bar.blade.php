@@ -46,6 +46,15 @@
                                 <span class="menu-title">Add New Led</span>
                             </a>
                         </div>
+
+                        <div class="menu-item">
+                            <a class="menu-link" href="{{route('client.led.view')}}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">View Leds</span>
+                            </a>
+                        </div>
             
             
             </div>
