@@ -716,6 +716,7 @@
         </div>
         <!--end::Content-->
     </div>
+    
 </div>
 @section('pageScripts')
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyAIeDyz_v1KkoU3ZTRqK5e-9Ax1lNjSIEI"></script>

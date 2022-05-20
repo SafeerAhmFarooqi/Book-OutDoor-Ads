@@ -91,13 +91,13 @@
                             <td>
                                 <div class="d-flex align-items-center">
                                     <!--begin::Thumbnail-->
-                                    <a href="../../demo1/dist/apps/ecommerce/catalog/edit-product.html" class="symbol symbol-50px">
+                                    <a href="{{route('client.led.edit',$led->id)}}" class="symbol symbol-50px">
                                         <span class="symbol-label" style="background-image:url({{'storage/'.($led->images->first())->path}});"></span>
                                     </a>
                                     <!--end::Thumbnail-->
                                     <div class="ms-5">
                                         <!--begin::Title-->
-                                        <a href="../../demo1/dist/apps/ecommerce/catalog/edit-product.html" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$led->title}}</a>
+                                        <a href="{{route('client.led.edit',$led->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$led->title}}</a>
                                         <!--end::Title-->
                                     </div>
                                 </div>
@@ -128,7 +128,7 @@
                                 <span class="fw-bolder text-dark">{{$led->tax}}</span>
                             </td>
                             
-                            <td class="text-end">
+                            <td class="text-end pe-0">
                                 <span class="fw-bolder">{{$led->created_at->format('F d, Y')}}</span>
                             </td>
                             <!--end::Status=-->
@@ -146,7 +146,7 @@
                                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4" data-kt-menu="true">
                                     <!--begin::Menu item-->
                                     <div class="menu-item px-3">
-                                        <a href="../../demo1/dist/apps/ecommerce/catalog/edit-product.html" class="menu-link px-3">Edit</a>
+                                        <a href="{{route('client.led.edit',$led->id)}}" class="menu-link px-3">Edit</a>
                                     </div>
                                     <!--end::Menu item-->
                                     <!--begin::Menu item-->
@@ -201,4 +201,5 @@
 
 @section('pageScripts')
 <script src="{{asset('assets/Metronic-Theme/js/custom/apps/ecommerce/catalog/products.js')}}"></script>
+
 @endsection
