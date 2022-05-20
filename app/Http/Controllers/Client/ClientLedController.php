@@ -113,6 +113,20 @@ class ClientLedController extends BaseClientController
         
         return back()->with('message', 'Led Updated Successfully' );
     }
+
+    public function deleteLedImage(Request $request)
+    {
+       $image=LedImages::find($request->imageId);
+       Storage::delete('public/'.$image->path);
+       $image->delete();
+       return back()->with('message', 'Image Deleted Successfully' );
+        //return 'image : '.$request->imageId.' : led Id : '.$ledId;
+
+    }
+
+
+
+    
    
 }
 
