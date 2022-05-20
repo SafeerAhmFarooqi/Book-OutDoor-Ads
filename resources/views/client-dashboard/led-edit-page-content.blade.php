@@ -906,13 +906,39 @@
                                 <!--begin::Title-->
                                 <div class="d-flex flex-row-fluid flex-wrap align-items-center">
                                     <div class="flex-grow-1 me-2">
-                                        <a href="#" class="text-gray-800 fw-bolder text-hover-primary fs-6">View Image</a>
+                                        <a href="#" class="text-gray-800 fw-bolder text-hover-primary fs-6" data-bs-toggle="modal" data-bs-target="#kt_modal_{{$image->id}}">View Image</a>
                                         <span class="text-muted fw-bold d-block pt-1">Size: 87KB</span>
                                     </div>
-                                    <span class="badge badge-light-success fs-8 fw-bolder my-2"><button type="submit" class="btn btn-sm btn-danger" data-kt-menu-dismiss="true">Delete</button></span>
+                                    <span class="badge badge-light-success fs-8 fw-bolder my-2"><form action="{{route('client.led.delete.image')}}" method="post">@csrf<button type="submit" class="btn btn-sm btn-danger" name="imageId" value="{{$image->id}}">Delete</button></form></span>
                                 </div>
                                 <!--end::Title-->
                             </div>
+
+                            <div class="modal bg-white fade" tabindex="-1" id="kt_modal_{{$image->id}}">
+    <div class="modal-dialog modal-fullscreen">
+        <div class="modal-content shadow-none">
+            <div class="modal-header">
+                <h5 class="modal-title">Image Preview</h5>
+
+                <!--begin::Close-->
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <span class="svg-icon svg-icon-2x"></span>
+                </div>
+                <!--end::Close-->
+            </div>
+
+            <div class="modal-body">
+                <div class="container">
+                        <img src="{{asset('storage/'.($image)->path)}}" style="width: 100%;" alt="">
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
                             @endforeach
                         @else
                             <h1>No Image Found</h1>

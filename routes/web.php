@@ -30,6 +30,7 @@ Route::group(['middleware' => ['role:Client','auth']], function () {
     Route::post('/client-led-view-delete', [ClientLedController::class,'ledDelete'])->name('client.led.view.delete');
     Route::get('/client-led-edit/{id}', [ClientLedController::class,'editLed'])->name('client.led.edit');
     Route::post('/client-led-edit-update/{id}', [ClientLedController::class,'updateLed'])->name('client.led.edit.store');
+    Route::post('/client-led-image-delete', [ClientLedController::class,'deleteLedImage'])->name('client.led.delete.image');
 });
 
 require __DIR__.'/auth.php';
