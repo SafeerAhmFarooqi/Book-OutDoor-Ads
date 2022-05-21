@@ -17,6 +17,7 @@ use App\Http\Controllers\Client\ClientLedController;
 */
 
 Route::get('/', [DashboardController::class,'home'])->name('home');
+Route::get('/led-detail/{id}', [DashboardController::class,'ledDetail'])->name('app.led.detail');
 
 Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['auth'])->name('dashboard');
 
