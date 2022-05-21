@@ -1,7 +1,7 @@
 @extends('layouts.led-theme')
 
 @section('content')
-<div class="site-blocks-cover overlay" style="background-image: url(assets/Led-Theme/images/hero_2.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
+<div class="site-blocks-cover overlay" style="background-image: url({{asset('assets/Led-Theme/images/hero_2.jpg')}});" data-aos="fade" data-stellar-background-ratio="0.5">
     <div class="container">
       <div class="row align-items-center justify-content-center text-center">
 
@@ -72,46 +72,31 @@
           <div class="owl-carousel nonloop-block-13">
        
 
-
+            @foreach ($leds as $led)
             
             <div class="d-block d-md-flex listing vertical">
-              <a href="ledd708.html?id=3" class="img d-block" style="background-image: url('user/ledgallery/733441119-1.jpg')"></a>
+              <a href="{{route('app.led.detail',$led->id)}}" class="img d-block" style="background-image: url({{asset('storage/'.($led->images->first())->path)}});"></a>
               <div class="lh-content">
-                <span class="category">Cars &amp; Vehicles</span>
+                <span class="category">Led</span>
                 <a href="#" class="bookmark"><span class="icon-heart"></span></a>
-                <h3><a href="ledd708.html?id=3" style="font-size:12px">LED-BRANCHENFENSTER 12</a></h3>
-                <address>location1</address>
+                <h3><a href="{{route('app.led.detail',$led->id)}}" style="font-size:12px">{{$led->title}}</a></h3>
+                <address>{{substr($led->location,0,15)}}
+                @if (strlen($led->location)>15)
+                    .....
+                @endif
+                </address>
                 <p class="mb-0">  
-                  <span class="review" style="font-weight:bold">€ 0 / day</span>
+                  <span class="review" style="font-weight:bold">€ {{$led->price}} / day</span>
                 </p>
               </div>
-            </div>
+            </div>    
+            @endforeach
             
-            <div class="d-block d-md-flex listing vertical">
-              <a href="leddcfd.html?id=4" class="img d-block" style="background-image: url('user/ledgallery/351464822-6.jpg')"></a>
-              <div class="lh-content">
-                <span class="category">Cars &amp; Vehicles</span>
-                <a href="#" class="bookmark"><span class="icon-heart"></span></a>
-                <h3><a href="leddcfd.html?id=4" style="font-size:12px">LED-BRANCHENFENSTER</a></h3>
-                <address>location2</address>
-                <p class="mb-0">  
-                  <span class="review" style="font-weight:bold">€ 99 / day</span>
-                </p>
-              </div>
-            </div>
             
-            <div class="d-block d-md-flex listing vertical">
-              <a href="ledd61c.html?id=5" class="img d-block" style="background-image: url('user/ledgallery/866439319-6.jpg')"></a>
-              <div class="lh-content">
-                <span class="category">Cars &amp; Vehicles</span>
-                <a href="#" class="bookmark"><span class="icon-heart"></span></a>
-                <h3><a href="ledd61c.html?id=5" style="font-size:12px">LED-BRANCHENFENSTER</a></h3>
-                <address>location3</address>
-                <p class="mb-0">  
-                  <span class="review" style="font-weight:bold">€ 543 / day</span>
-                </p>
-              </div>
-            </div>
+            
+           
+            
+            
       
 
            
@@ -483,6 +468,20 @@
 @endsection
 
 @section('Styles')
+<link rel="stylesheet" href="{{asset('assets/Led-Theme/css/magnific-popup.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/jquery-ui.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/owl.theme.default.min.css')}}">
+
+ 
+    <link rel="stylesheet" href="{{asset('assets/Led-Theme/fonts/flaticon/font/flaticon.css')}}">
+
+    <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/aos.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/rangeslider.css')}}">
+
+    <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/style.css')}}">
+
+  <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/bootstrap.min.css')}}">
 <style>
     /*
     # Welcome
@@ -606,6 +605,8 @@
 @endsection
 
 @section('pageScripts')
+<script src="{{asset('assets/Led-Theme/js/jquery-3.3.1.min.js')}}"></script>
+  <script src="{{asset('assets/Led-Theme/js/bootstrap.min.js')}}"></script>
 <script src="{{asset('assets/Led-Theme/js/jquery-ui.js')}}"></script>
 <script src="{{asset('assets/Led-Theme/js/popper.min.js')}}"></script>
 <script src="{{asset('assets/Led-Theme/js/bootstrap.min.js')}}"></script>
