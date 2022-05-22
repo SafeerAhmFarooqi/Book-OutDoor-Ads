@@ -33,6 +33,10 @@ class DashboardController extends AdminController
       {
          return view('client-dashboard.home-page');
       }
+      if(Auth::user()->hasRole('Admin'))
+      {
+         return view('admin-dashboard.home-page');
+      }
       // return view('landingpage');
       // return view('test');
    }

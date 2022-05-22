@@ -32,6 +32,12 @@ class AuthenticatedSessionController extends Controller
         return view('auth.client-auth.login');
     }
 
+    public function createAdmin()
+    {
+        View()->share( 'headTitle', 'Admin Login' );
+        return view('auth.admin-auth.login');
+    }
+
     /**
      * Handle an incoming authentication request.
      *
