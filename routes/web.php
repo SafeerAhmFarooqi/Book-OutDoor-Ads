@@ -34,4 +34,8 @@ Route::group(['middleware' => ['role:Client','auth']], function () {
     Route::post('/client-led-image-delete', [ClientLedController::class,'deleteLedImage'])->name('client.led.delete.image');
 });
 
+Route::group(['middleware' => ['role:Admin','auth']], function () {
+
+});
+
 require __DIR__.'/auth.php';

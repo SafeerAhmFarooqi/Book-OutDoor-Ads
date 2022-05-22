@@ -16,6 +16,7 @@
               <li class="ml-xl-3 login"><a href="{{route('login')}}"><span class="border-left pl-xl-4"></span>Log In</a></li>
               <li><a href="user/register.html">Register</a></li>
               <li><a href="{{route('client.login')}}" class="cta"><span class="bg-primary text-white rounded" style="background-color:#30e3ca!important;">Client Login</span></a></li>
+              <li><a href="{{route('admin.login')}}" class="cta"><span class="bg-primary text-white rounded" style="background-color:#30e3ca!important;">Admin Login</span></a></li>
         
 
 
