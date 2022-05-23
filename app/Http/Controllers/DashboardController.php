@@ -35,7 +35,16 @@ class DashboardController extends AdminController
       }
       if(Auth::user()->hasRole('Admin'))
       {
-         return view('admin-dashboard.home-page');
+         $usersCount=User::role('User')->count();
+         $clientCount=User::role('Client')->count();
+         $ledCount=Led::all()->count();
+         $ledImagesCount=LedImages::all()->count();
+         return view('admin-dashboard.home-page',[
+            'usersCount'=>$usersCount,
+            'clientCount'=>$clientCount,
+            'ledCount'=>$ledCount,
+            'ledImagesCount'=>$ledImagesCount,
+         ]);
       }
       // return view('landingpage');
       // return view('test');
