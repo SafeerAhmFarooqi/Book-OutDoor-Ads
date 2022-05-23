@@ -15,7 +15,7 @@ class AdminUsersController extends BaseAdminController
  public function usersList()
  {
     // return view('test');
-    $users = User::role('Client')->get();
+    $users = User::role('User')->get();
     return view('admin-dashboard.users-list-page',['users'=>$users,'srNo'=>0]);
  }    
 
