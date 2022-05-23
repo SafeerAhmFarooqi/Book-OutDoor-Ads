@@ -16,7 +16,15 @@ class AdminUsersController extends BaseAdminController
  {
     // return view('test');
     $users = User::role('Client')->get();
-    return view('admin-dashboard.users-list-page',['users'=>$users]);
+    return view('admin-dashboard.users-list-page',['users'=>$users,'srNo'=>0]);
+ }    
+
+ public function deleteUser(Request $request)
+ {
+    User::find($request->user_id)->delete();
+    Led::with('images')->where('user_id',$request->user_id)->delete();
+    Storage::deleteDirectory('public/led-images/'.$request->user_id);
+    return back()->with('success', 'User Deleted Successfully');
  }    
 }
 

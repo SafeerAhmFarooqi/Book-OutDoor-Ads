@@ -37,6 +37,7 @@ Route::group(['middleware' => ['role:Client','auth']], function () {
 
 Route::group(['middleware' => ['role:Admin','auth']], function () {
     Route::get('/admin-users-list', [AdminUsersController::class,'usersList'])->name('admin.users.list');
+    Route::post('/admin-users-list-delete', [AdminUsersController::class,'deleteUser'])->name('admin.users.list.delete');
 });
 
 require __DIR__.'/auth.php';

@@ -1,6 +1,11 @@
 <div class="post d-flex flex-column-fluid" id="kt_post">
     <!--begin::Container-->
     <div id="kt_content_container" class="container-xxl">
+        @if(session()->has('success'))
+        <div class="alert alert-success">
+            {{ session()->get('success') }}
+        </div>
+       @endif
         <!--begin::Products-->
         <div class="card card-flush">
             <!--begin::Card header-->
@@ -28,10 +33,10 @@
                 <!--begin::Card toolbar-->
                 <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                     <!--begin::Daterangepicker-->
-                    <input class="form-control form-control-solid w-100 mw-250px" placeholder="Pick date range" id="kt_ecommerce_report_views_daterangepicker" />
+                    {{-- <input class="form-control form-control-solid w-100 mw-250px" placeholder="Pick date range" id="kt_ecommerce_report_views_daterangepicker" /> --}}
                     <!--end::Daterangepicker-->
                     <!--begin::Filter-->
-                    <div class="w-150px">
+                    {{-- <div class="w-150px">
                         <!--begin::Select2-->
                         <select class="form-select form-select-solid" data-control="select2" data-hide-search="true" data-placeholder="Rating" data-kt-ecommerce-order-filter="rating">
                             <option></option>
@@ -43,7 +48,13 @@
                             <option value="rating-1">1 Stars</option>
                         </select>
                         <!--end::Select2-->
-                    </div>
+                    </div> --}}
+
+                    {{-- <div class="w-150px">
+                        <!--begin::Select2-->
+                        <a href="{{route('client.led.add')}}" class="btn btn-primary">Add New Led</a>
+                        <!--end::Select2-->
+                    </div> --}}
                     <!--end::Filter-->
                     <!--begin::Export dropdown-->
                     <button type="button" class="btn btn-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
@@ -93,13 +104,16 @@
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                            <th class="min-w-150px">Product</th>
-                            <th class="text-end min-w-100px">SKU</th>
-                            <th class="text-end min-w-100px">Rating</th>
-                            <th class="text-end min-w-100px">Price saf</th>
-                            <th class="text-end min-w-70px">Viewed</th>
-                            <th class="text-end min-w-100px">Percent</th>
-                            <th class="text-end min-w-100px">Actions</th>
+                            <th class="min-w-150px">Sr No.</th>
+                            <th class="min-w-150px">Name</th>
+                            <th class="text-start min-w-100px">Id</th>
+                            <th class="text-start min-w-100px">Email</th>
+                            <th class="text-start min-w-100px">Company</th>
+                            <th class="text-start min-w-70px">Address</th>
+                            <th class="text-start min-w-100px">Phone</th>
+                            <th class="text-start min-w-100px">Postal Code</th>
+                            <th class="text-start min-w-100px">Date Created</th>
+                            <th class="text-start min-w-100px">Actions</th>
                         </tr>
                         <!--end::Table row-->
                     </thead>
@@ -107,94 +121,71 @@
                     <!--begin::Table body-->
                     <tbody class="fw-bold text-gray-600">
                         <!--begin::Table row-->
+                        @foreach ($users as $led)
                         <tr>
                             <!--begin::Product=-->
+                            <td class="text-start">
+                                <span class="fw-bolder">{{++$srNo}}</span>
+                            </td>
                             <td>
                                 <div class="d-flex align-items-center">
                                     <!--begin::Thumbnail-->
-                                    <a href="../../demo1/dist/apps/ecommerce/catalog/edit-product.html" class="symbol symbol-50px">
-                                        <span class="symbol-label" style="background-image:url(assets/media//stock/ecommerce/43.gif);"></span>
+                                    <a href="{{route('client.led.edit',$led->id)}}" class="symbol symbol-50px">
+                                        <span class="symbol-label" style="background-image:url();"></span>
                                     </a>
                                     <!--end::Thumbnail-->
                                     <div class="ms-5">
                                         <!--begin::Title-->
-                                        <a href="../../demo1/dist/apps/ecommerce/catalog/edit-product.html" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">Product 43</a>
+                                        <a href="{{route('client.led.edit',$led->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$led->firstname.' '.$led->lastname}}</a>
                                         <!--end::Title-->
                                     </div>
                                 </div>
                             </td>
                             <!--end::Product=-->
                             <!--begin::SKU=-->
-                            <td class="text-end pe-0">
-                                <span class="fw-bolder">01403002</span>
+                            <td class="text-start pe-0">
+                                <span class="fw-bolder">{{$led->id}}</span>
                             </td>
                             <!--end::SKU=-->
                             <!--begin::Rating-->
                             <td class="text-end pe-0" data-order="rating-5" data-filter="rating-5">
-                                <div class="rating justify-content-end">
-                                    <div class="rating-label checked">
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen029.svg-->
-                                        <span class="svg-icon svg-icon-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                <path d="M11.1359 4.48359C11.5216 3.82132 12.4784 3.82132 12.8641 4.48359L15.011 8.16962C15.1523 8.41222 15.3891 8.58425 15.6635 8.64367L19.8326 9.54646C20.5816 9.70867 20.8773 10.6186 20.3666 11.1901L17.5244 14.371C17.3374 14.5803 17.2469 14.8587 17.2752 15.138L17.7049 19.382C17.7821 20.1445 17.0081 20.7069 16.3067 20.3978L12.4032 18.6777C12.1463 18.5645 11.8537 18.5645 11.5968 18.6777L7.69326 20.3978C6.99192 20.7069 6.21789 20.1445 6.2951 19.382L6.7248 15.138C6.75308 14.8587 6.66264 14.5803 6.47558 14.371L3.63339 11.1901C3.12273 10.6186 3.41838 9.70867 4.16744 9.54646L8.3365 8.64367C8.61089 8.58425 8.84767 8.41222 8.98897 8.16962L11.1359 4.48359Z" fill="black" />
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                    </div>
-                                    <div class="rating-label checked">
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen029.svg-->
-                                        <span class="svg-icon svg-icon-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                <path d="M11.1359 4.48359C11.5216 3.82132 12.4784 3.82132 12.8641 4.48359L15.011 8.16962C15.1523 8.41222 15.3891 8.58425 15.6635 8.64367L19.8326 9.54646C20.5816 9.70867 20.8773 10.6186 20.3666 11.1901L17.5244 14.371C17.3374 14.5803 17.2469 14.8587 17.2752 15.138L17.7049 19.382C17.7821 20.1445 17.0081 20.7069 16.3067 20.3978L12.4032 18.6777C12.1463 18.5645 11.8537 18.5645 11.5968 18.6777L7.69326 20.3978C6.99192 20.7069 6.21789 20.1445 6.2951 19.382L6.7248 15.138C6.75308 14.8587 6.66264 14.5803 6.47558 14.371L3.63339 11.1901C3.12273 10.6186 3.41838 9.70867 4.16744 9.54646L8.3365 8.64367C8.61089 8.58425 8.84767 8.41222 8.98897 8.16962L11.1359 4.48359Z" fill="black" />
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                    </div>
-                                    <div class="rating-label checked">
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen029.svg-->
-                                        <span class="svg-icon svg-icon-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                <path d="M11.1359 4.48359C11.5216 3.82132 12.4784 3.82132 12.8641 4.48359L15.011 8.16962C15.1523 8.41222 15.3891 8.58425 15.6635 8.64367L19.8326 9.54646C20.5816 9.70867 20.8773 10.6186 20.3666 11.1901L17.5244 14.371C17.3374 14.5803 17.2469 14.8587 17.2752 15.138L17.7049 19.382C17.7821 20.1445 17.0081 20.7069 16.3067 20.3978L12.4032 18.6777C12.1463 18.5645 11.8537 18.5645 11.5968 18.6777L7.69326 20.3978C6.99192 20.7069 6.21789 20.1445 6.2951 19.382L6.7248 15.138C6.75308 14.8587 6.66264 14.5803 6.47558 14.371L3.63339 11.1901C3.12273 10.6186 3.41838 9.70867 4.16744 9.54646L8.3365 8.64367C8.61089 8.58425 8.84767 8.41222 8.98897 8.16962L11.1359 4.48359Z" fill="black" />
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                    </div>
-                                    <div class="rating-label checked">
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen029.svg-->
-                                        <span class="svg-icon svg-icon-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                <path d="M11.1359 4.48359C11.5216 3.82132 12.4784 3.82132 12.8641 4.48359L15.011 8.16962C15.1523 8.41222 15.3891 8.58425 15.6635 8.64367L19.8326 9.54646C20.5816 9.70867 20.8773 10.6186 20.3666 11.1901L17.5244 14.371C17.3374 14.5803 17.2469 14.8587 17.2752 15.138L17.7049 19.382C17.7821 20.1445 17.0081 20.7069 16.3067 20.3978L12.4032 18.6777C12.1463 18.5645 11.8537 18.5645 11.5968 18.6777L7.69326 20.3978C6.99192 20.7069 6.21789 20.1445 6.2951 19.382L6.7248 15.138C6.75308 14.8587 6.66264 14.5803 6.47558 14.371L3.63339 11.1901C3.12273 10.6186 3.41838 9.70867 4.16744 9.54646L8.3365 8.64367C8.61089 8.58425 8.84767 8.41222 8.98897 8.16962L11.1359 4.48359Z" fill="black" />
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                    </div>
-                                    <div class="rating-label checked">
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen029.svg-->
-                                        <span class="svg-icon svg-icon-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                <path d="M11.1359 4.48359C11.5216 3.82132 12.4784 3.82132 12.8641 4.48359L15.011 8.16962C15.1523 8.41222 15.3891 8.58425 15.6635 8.64367L19.8326 9.54646C20.5816 9.70867 20.8773 10.6186 20.3666 11.1901L17.5244 14.371C17.3374 14.5803 17.2469 14.8587 17.2752 15.138L17.7049 19.382C17.7821 20.1445 17.0081 20.7069 16.3067 20.3978L12.4032 18.6777C12.1463 18.5645 11.8537 18.5645 11.5968 18.6777L7.69326 20.3978C6.99192 20.7069 6.21789 20.1445 6.2951 19.382L6.7248 15.138C6.75308 14.8587 6.66264 14.5803 6.47558 14.371L3.63339 11.1901C3.12273 10.6186 3.41838 9.70867 4.16744 9.54646L8.3365 8.64367C8.61089 8.58425 8.84767 8.41222 8.98897 8.16962L11.1359 4.48359Z" fill="black" />
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                    </div>
+                                <div class="rating justify-content-start">
+                                    
+                                    <span class="fw-bolder">{{$led->email}}</span>
+                                    
                                 </div>
                             </td>
                             <!--end::Rating-->
                             <!--begin::Price=-->
-                            <td class="text-end pe-0">
-                                <span>$63.00</span>
+                            <td class="text-start pe-0">
+                                <span>{{$led->company}}</span>
                             </td>
                             <!--end::Price=-->
                             <!--begin::Viewed=-->
-                            <td class="text-end pe-0">
-                                <span>227200</span>
+                            <td class="text-start pe-0">
+                                <span>{{$led->address}}</span>
                             </td>
                             <!--end::Viewed=-->
                             <!--begin::Percent=-->
-                            <td class="text-end pe-0">22.72%</td>
-                            <td class="text-end pe-0"><button class="btn btn-primary">Edit</button></td>
+                            <td class="text-start pe-0">{{$led->phone}}</td>
+                            <td class="text-start pe-0">{{$led->postal_code}}</td>
+                            <td class="text-start pe-0">
+                                <span>{{$led->created_at->format('F d, Y')}}</span>
+                            </td>
+                            <td class="text-end pe-0">
+                                <div class="rating justify-content-end">
+                                    {{-- <a class="btn btn-primary" href="{{route('client.led.edit',$led->id)}}">Edit</a> --}}
+                                <form action="{{route('admin.users.list.delete')}}" method="post">
+                                    @csrf
+                                  <button type="submit" class="btn btn-danger" name="user_id" value="{{$led->id}}">Delete</button>
+                                </form>
+                                </div>
+                                
+                            </td>
                             <!--end::Percent=-->
                         </tr>
+                        @endforeach
+                        
                         <!--end::Table row-->
                         <!--begin::Table row-->
                         
