@@ -121,7 +121,7 @@
                     <!--begin::Table body-->
                     <tbody class="fw-bold text-gray-600">
                         <!--begin::Table row-->
-                        @foreach ($users as $user)
+                        @foreach ($clients as $client)
                         <tr>
                             <!--begin::Product=-->
                             <td class="text-start">
@@ -130,13 +130,13 @@
                             <td>
                                 <div class="d-flex align-items-center">
                                     <!--begin::Thumbnail-->
-                                    <a href="{{route('client.led.edit',$user->id)}}" class="symbol symbol-50px">
+                                    <a href="{{route('client.led.edit',$client->id)}}" class="symbol symbol-50px">
                                         <span class="symbol-label" style="background-image:url();"></span>
                                     </a>
                                     <!--end::Thumbnail-->
                                     <div class="ms-5">
                                         <!--begin::Title-->
-                                        <a href="{{route('client.led.edit',$user->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$user->firstname.' '.$user->lastname}}</a>
+                                        <a href="{{route('client.led.edit',$client->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$client->firstname.' '.$client->lastname}}</a>
                                         <!--end::Title-->
                                     </div>
                                 </div>
@@ -144,40 +144,40 @@
                             <!--end::Product=-->
                             <!--begin::SKU=-->
                             <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$user->id}}</span>
+                                <span class="fw-bolder">{{$client->id}}</span>
                             </td>
                             <!--end::SKU=-->
                             <!--begin::Rating-->
                             <td class="text-end pe-0" data-order="rating-5" data-filter="rating-5">
                                 <div class="rating justify-content-start">
                                     
-                                    <span class="fw-bolder">{{$user->email}}</span>
+                                    <span class="fw-bolder">{{$client->email}}</span>
                                     
                                 </div>
                             </td>
                             <!--end::Rating-->
                             <!--begin::Price=-->
                             <td class="text-start pe-0">
-                                <span>{{$user->company}}</span>
+                                <span>{{$client->company}}</span>
                             </td>
                             <!--end::Price=-->
                             <!--begin::Viewed=-->
                             <td class="text-start pe-0">
-                                <span>{{$user->address}}</span>
+                                <span>{{$client->address}}</span>
                             </td>
                             <!--end::Viewed=-->
                             <!--begin::Percent=-->
-                            <td class="text-start pe-0">{{$user->phone}}</td>
-                            <td class="text-start pe-0">{{$user->postal_code}}</td>
+                            <td class="text-start pe-0">{{$client->phone}}</td>
+                            <td class="text-start pe-0">{{$client->postal_code}}</td>
                             <td class="text-start pe-0">
-                                <span>{{$user->created_at->format('F d, Y')}}</span>
+                                <span>{{$client->created_at->format('F d, Y')}}</span>
                             </td>
                             <td class="text-end pe-0">
                                 <div class="rating justify-content-end">
-                                    {{-- <a class="btn btn-primary" href="{{route('client.led.edit',$user->id)}}">Edit</a> --}}
-                                <form action="{{route('admin.users.list.delete')}}" method="post">
+                                    {{-- <a class="btn btn-primary" href="{{route('client.led.edit',$client->id)}}">Edit</a> --}}
+                                <form action="{{route('admin.client.list.delete')}}" method="post">
                                     @csrf
-                                  <button type="submit" class="btn btn-danger" name="user_id" value="{{$user->id}}">Delete</button>
+                                  <button type="submit" class="btn btn-danger" name="client_id" value="{{$client->id}}">Delete</button>
                                 </form>
                                 </div>
                                 
