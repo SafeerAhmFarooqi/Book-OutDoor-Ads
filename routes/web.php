@@ -6,6 +6,7 @@ use App\Http\Controllers\Client\ClientProfileController;
 use App\Http\Controllers\Client\ClientLedController;
 use App\Http\Controllers\Admin\AdminUsersController;
 use App\Http\Controllers\Admin\AdminClientController;
+use App\Http\Controllers\Admin\AdminLedController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,8 @@ Route::group(['middleware' => ['role:Admin','auth']], function () {
     Route::post('/admin-users-list-delete', [AdminUsersController::class,'deleteUser'])->name('admin.users.list.delete');
     Route::get('/admin-client-list', [AdminClientController::class,'clientList'])->name('admin.client.list');
     Route::post('/admin-client-list-delete', [AdminClientController::class,'deleteClient'])->name('admin.client.list.delete');
+    Route::get('/admin-led-list', [AdminLedController::class,'ledList'])->name('admin.led.list');
+    Route::post('/admin-led-list-delete', [AdminLedController::class,'deleteLed'])->name('admin.led.list.delete');
 });
 
 require __DIR__.'/auth.php';
