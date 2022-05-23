@@ -28,6 +28,7 @@ class AuthenticatedSessionController extends Controller
      */
     public function createClient()
     {
+        
         View()->share( 'headTitle', 'Client Login' );
         return view('auth.client-auth.login');
     }
