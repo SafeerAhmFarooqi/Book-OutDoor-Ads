@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Client\ClientProfileController;
 use App\Http\Controllers\Client\ClientLedController;
+use App\Http\Controllers\Admin\AdminUsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,7 +36,7 @@ Route::group(['middleware' => ['role:Client','auth']], function () {
 });
 
 Route::group(['middleware' => ['role:Admin','auth']], function () {
-
+    Route::get('/admin-users-list', [AdminUsersController::class,'usersList'])->name('admin.users.list');
 });
 
 require __DIR__.'/auth.php';

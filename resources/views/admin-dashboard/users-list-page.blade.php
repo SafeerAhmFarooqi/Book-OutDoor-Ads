@@ -15,7 +15,7 @@
 
     <div class="post d-flex flex-column-fluid" id="kt_post">
 
-                    @include('admin-dashboard.home-page-content')
+                    @include('admin-dashboard.users-list-page-content')
 
     </div>
     </div>
