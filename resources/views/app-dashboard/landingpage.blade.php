@@ -75,11 +75,13 @@
             @foreach ($leds as $led)
             
             <div class="d-block d-md-flex listing vertical">
-              <a href="{{route('app.led.detail',$led->id)}}" class="img d-block" style="background-image: url({{asset('storage/'.isset($led->images->first()->path)??$led->images->first()->path)}});"></a>
+              <a href="{{route('app.led.detail',$led->id)}}" class="img d-block" style="background-image: url('{{asset('storage/'.($led->images->first())->path)}}');"></a>
+              
               <div class="lh-content">
                 <span class="category">Led</span>
                 <a href="#" class="bookmark"><span class="icon-heart"></span></a>
                 <h3><a href="{{route('app.led.detail',$led->id)}}" style="font-size:12px">{{$led->title}}</a></h3>
+                
                 <address>{{substr($led->location,0,15)}}
                 @if (strlen($led->location)>15)
                     .....
