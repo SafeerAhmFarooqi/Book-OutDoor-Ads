@@ -65,6 +65,15 @@
                             </a>
                         </div>
 
+                        <div class="menu-item">
+                            <a class="menu-link" href="{{route('admin.city.list')}}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">City List</span>
+                            </a>
+                        </div>
+
                         
             
             
