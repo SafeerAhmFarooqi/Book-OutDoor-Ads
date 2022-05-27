@@ -8,13 +8,17 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Led;
 use App\Models\LedImages;
 use Illuminate\Support\Facades\Storage;
+use App\Models\City;
 
 class ClientLedController extends BaseClientController
 {
 
     public function addLed()
     {
-        return view('client-dashboard.led-add-page');
+        $cities=City::all();
+        return view('client-dashboard.led-add-page',[
+            'cities'=>$cities,
+        ]);
     }
 
     public function storeLed(Request $request)
@@ -23,6 +27,7 @@ class ClientLedController extends BaseClientController
             'title' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string', 'max:500'],
             'location' => ['required', 'string', 'max:500'],
+            'city' => ['required', 'string', 'max:500'],
             'price' => ['required', 'numeric'],
             'tax' => ['required', 'numeric'],
             'images' => 'required',
@@ -33,6 +38,7 @@ class ClientLedController extends BaseClientController
             'title' => $request->title,
             'description' => $request->description,
             'location' => $request->location,
+            'city_id' => $request->city,
             'price' => $request->price,
             'tax' => $request->tax,
         ]);

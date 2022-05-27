@@ -45,20 +45,24 @@
       
       <div class="overlap-category mb-5">
         <div class="row align-items-stretch no-gutters">
+          
+          
+          
+          @foreach ($cities as $city)
           <div class="col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
             <a href="#" class="popular-category h-100">
               <span class="icon"><span class="flaticon-house"></span></span>
-              <span class="caption mb-2 d-block">Koblenz</span>
-              <span class="number">3,921</span>
+              <span class="caption mb-2 d-block">{{$city->city}}</span>
+              <span class="number">{{$city->led->count()}}</span>
             </a>
-          </div>
-          <div class="col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-            <a href="#" class="popular-category h-100">
-              <span class="icon"><span class="flaticon-books"></span></span>
-              <span class="caption mb-2 d-block">BoBurlin</span>
-              <span class="number">398</span>
-            </a>
-          </div>
+          </div>    
+          @endforeach
+          
+          
+
+
+
+
                  </div>
       </div>
       
