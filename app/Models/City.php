@@ -11,4 +11,9 @@ class City extends Model
 
     protected $table = 'city';
     protected $fillable = ['city','icon'];
+
+    public function led()
+    {
+        return $this->hasMany(Led::class, 'city_id');
+    }
 }

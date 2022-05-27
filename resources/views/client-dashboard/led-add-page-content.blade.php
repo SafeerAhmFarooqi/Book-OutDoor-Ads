@@ -77,6 +77,41 @@
                             </div>
                             <!--end::Col-->
                         </div>
+
+                        <div class="row mb-6">
+                            <!--begin::Label-->
+                            <label class="col-lg-4 col-form-label fw-bold fs-6">
+                                <span class="required">City</span>
+                                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Location of Led"></i>
+                            </label>
+                            <!--end::Label-->
+                            <!--begin::Col-->
+                            <div class="col-lg-8 fv-row">
+                                <select name="city" aria-label="Select a City" data-control="select2" data-placeholder="Select a City..." class="form-select form-select-solid form-select-lg fw-bold">
+                                    <option value="">Select a City...</option>
+                                    @foreach ($cities as $city)
+                                    <option data-kt-flag="flags/afghanistan.svg" value="{{$city->id}}">{{$city->city}}</option>                                        
+                                    @endforeach
+
+                                    {{-- <option data-kt-flag="flags/aland-islands.svg" value="AX">Aland Islands</option> --}}
+                                </select>
+                                @error('city')
+                                <div class="alert alert-danger">
+                                        {{$message}}
+                                </div>
+                                @enderror
+                            </div>
+                            <!--end::Col-->
+                        </div>
+
+                        <div class="d-flex flex-column mb-5 fv-row">
+                            <!--begin::Label-->
+                           
+                            <!--end::Label-->
+                            <!--begin::Select-->
+                           
+                            <!--end::Select-->
+                        </div>
                         <div class="row mb-6">
                             <!--begin::Label-->
                             <label class="col-lg-4 col-form-label required fw-bold fs-6">Price</label>

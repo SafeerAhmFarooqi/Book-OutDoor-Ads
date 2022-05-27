@@ -10,13 +10,18 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 use App\Models\Led;
 use App\Models\LedImages;
+use App\Models\City;
 
 class DashboardController extends AdminController
 {
    public function home()
    {
       $leds=Led::with('images')->latest()->take(4)->get();
-       return view('app-dashboard.landingpage',['leds'=>$leds]);
+      $cities=City::with('led')->get();
+       return view('app-dashboard.landingpage',[
+          'leds'=>$leds,
+          'cities'=>$cities,
+         ]);
       // return view('test');
    }
 

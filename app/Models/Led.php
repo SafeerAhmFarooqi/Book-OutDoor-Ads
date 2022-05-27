@@ -12,7 +12,7 @@ class Led extends Model
 
     protected $table = 'led';
 
-    protected $fillable = ['user_id', 'title', 'description', 'location', 'price', 'tax', 'city'];
+    protected $fillable = ['user_id','city_id', 'title', 'description', 'location', 'price', 'tax', 'city'];
 
     protected static function booted()
     {

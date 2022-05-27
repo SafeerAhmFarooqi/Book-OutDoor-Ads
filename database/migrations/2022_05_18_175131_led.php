@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('led', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('city_id');
             $table->string('title')->nullable();
             $table->string('description')->nullable();
             $table->string('location')->nullable();
-            $table->string('city')->nullable();
             $table->double('price')->nullable();
             $table->double('tax')->nullable();
             $table->timestamps();
