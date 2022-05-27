@@ -18,10 +18,22 @@
               <li><a href="{{route('client.login')}}" class="cta"><span class="bg-primary text-white rounded" style="background-color:#30e3ca!important;">Client Login</span></a></li>
               <li><a href="{{route('admin.login')}}" class="cta"><span class="bg-primary text-white rounded" style="background-color:#30e3ca!important;">Admin Login</span></a></li>
         
-
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Cart(0)
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </li>
 
               
             </ul>
+            <ul class="navbar-nav me-right mb-2 mb-lg-0">
+             
+          </ul>
           </nav>
         </div>
 
