@@ -474,20 +474,10 @@
 @endsection
 
 @section('Styles')
-<link rel="stylesheet" href="{{asset('assets/Led-Theme/css/magnific-popup.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/jquery-ui.css')}}">
     <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/owl.carousel.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/owl.theme.default.min.css')}}">
-
- 
     <link rel="stylesheet" href="{{asset('assets/Led-Theme/fonts/flaticon/font/flaticon.css')}}">
-
-    <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/aos.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/rangeslider.css')}}">
-
     <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/style.css')}}">
-
-  <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/Bootstrap-4-1/bootstrap.min.css')}}">
 <style>
     /*
     # Welcome
@@ -612,15 +602,17 @@
 
 @section('pageScripts')
 <script src="{{asset('assets/Led-Theme/js/jquery-3.3.1.min.js')}}"></script>
-  <script src="{{asset('assets/Led-Theme/js/bootstrap.min.js')}}"></script>
-<script src="{{asset('assets/Led-Theme/js/jquery-ui.js')}}"></script>
-<script src="{{asset('assets/Led-Theme/js/popper.min.js')}}"></script>
-<script src="{{asset('assets/Led-Theme/js/bootstrap.min.js')}}"></script>
+  
+
+
 <script src="{{asset('assets/Led-Theme/js/owl.carousel.min.js')}}"></script>
-<script src="{{asset('assets/Led-Theme/js/jquery.stellar.min.js')}}"></script>
-<script src="{{asset('assets/Led-Theme/js/jquery.countdown.min.js')}}"></script>
+
+
 <script src="{{asset('assets/Led-Theme/js/jquery.magnific-popup.min.js')}}"></script>
  <script src="{{asset('assets/Led-Theme/js/aos.js')}}"></script>
 
 <script src="{{asset('assets/Led-Theme/js/main.js')}}"></script>
+
+<script src="{{asset('assets/Bootstrap-4-1/popper.min.js')}}"></script>
+<script src="{{asset('assets/Bootstrap-4-1/bootstrap.min.js')}}"></script>
 @endsection

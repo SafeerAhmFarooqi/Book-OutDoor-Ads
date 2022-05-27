@@ -184,7 +184,7 @@
                               </table>
 
     <button class="buttonsubmit btn btn-default" style="font-size:15px">
-Buchungszeitraum hinzufügen                                </button>
+Add to Cart                            </button>
 <br><hr>
 <p id="underactionbutton" style="font-size:12px;text-align: center"> Geben Sie Ihren Buchungszeitraum ein, um den Gesamtpreis pro Tag zu sehen. </p>
                                </form>
