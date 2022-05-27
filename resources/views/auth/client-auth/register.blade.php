@@ -50,7 +50,7 @@
                         <!--begin::Col-->
                         <div class="col-xl-6">
                             <label class="form-label fw-bolder required text-dark fs-6">First Name</label>
-                            <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="firstname" value="{{old('firstname')}}" autocomplete="off" />
+                            <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="firstname" value="{{old('firstname')}}" />
                             @error('firstname')
                                 <div class="alert alert-danger">
                                         {{$message}}
@@ -62,7 +62,7 @@
                         <!--begin::Col-->
                         <div class="col-xl-6">
                             <label class="form-label fw-bolder required text-dark fs-6">Last Name</label>
-                            <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="lastname" value="{{old('lastname')}}" autocomplete="off" />
+                            <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="lastname" value="{{old('lastname')}}" />
                             @error('lastname')
                             <div class="alert alert-danger">
                                     {{$message}}
@@ -75,7 +75,7 @@
                     <!--begin::Input group-->
                     <div class="fv-row mb-7">
                         <label class="form-label fw-bolder required text-dark fs-6">Email</label>
-                        <input class="form-control form-control-lg form-control-solid" type="email" placeholder="" name="email" value="{{old('email')}}" autocomplete="off" />
+                        <input class="form-control form-control-lg form-control-solid" type="email" placeholder="" name="email" value="{{old('email')}}" />
                         @error('email')
                             <div class="alert alert-danger">
                                     {{$message}}
@@ -85,7 +85,7 @@
 
                     <div class="fv-row mb-7">
                         <label class="form-label fw-bolder required text-dark fs-6">Company</label>
-                        <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="company" value="{{old('company')}}" autocomplete="off" />
+                        <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="company" value="{{old('company')}}" />
                         @error('company')
                         <div class="alert alert-danger">
                                 {{$message}}
@@ -95,7 +95,7 @@
 
                     <div class="fv-row mb-7">
                         <label class="form-label fw-bolder required text-dark fs-6">Address</label>
-                        <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="address" value="{{old('address')}}" autocomplete="off" id="myAddress"/>
+                        <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="address" value="{{old('address')}}"  id="myAddress"/>
                         @error('address')
                         <div class="alert alert-danger">
                                 {{$message}}
@@ -105,7 +105,7 @@
 
                     <div class="fv-row mb-7">
                         <label class="form-label fw-bolder required text-dark fs-6">Phone</label>
-                        <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="phone" value="{{old('phone')}}" autocomplete="off" />
+                        <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="phone" value="{{old('phone')}}" />
                         @error('phone')
                         <div class="alert alert-danger">
                                 {{$message}}
@@ -115,7 +115,7 @@
 
                     <div class="fv-row mb-7">
                         <label class="form-label fw-bolder required text-dark fs-6">Postal Code</label>
-                        <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="postal_code" value="{{old('postal_code')}}" autocomplete="off" />
+                        <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="postal_code" value="{{old('postal_code')}}" />
                         @error('postal_code')
                         <div class="alert alert-danger">
                                 {{$message}}
@@ -132,7 +132,7 @@
                             <!--end::Label-->
                             <!--begin::Input wrapper-->
                             <div class="position-relative mb-3">
-                                <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="password" autocomplete="off" />
+                                <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="password" />
                                 <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
                                     <i class="bi bi-eye-slash fs-2"></i>
                                     <i class="bi bi-eye fs-2 d-none"></i>
@@ -157,7 +157,7 @@
                     <!--begin::Input group-->
                     <div class="fv-row mb-5">
                         <label class="form-label fw-bolder text-dark fs-6">Confirm Password</label>
-                        <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="password_confirmation" autocomplete="off" />
+                        <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="password_confirmation" />
                         @error('password')
                         <div class="alert alert-danger">
                                 {{$message}}

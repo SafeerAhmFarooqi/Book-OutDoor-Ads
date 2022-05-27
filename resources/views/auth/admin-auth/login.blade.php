@@ -32,7 +32,7 @@
                         <label class="form-label fs-6 fw-bolder text-dark">Email</label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <input class="form-control form-control-lg form-control-solid" type="text" name="email" autocomplete="off" />
+                        <input class="form-control form-control-lg form-control-solid" type="text" name="email" />
                         <!--end::Input-->
                     </div>
                     <!--end::Input group-->
@@ -46,7 +46,7 @@
                         </div>
                         <!--end::Wrapper-->
                         <!--begin::Input-->
-                        <input class="form-control form-control-lg form-control-solid" type="password" name="password" autocomplete="off" />
+                        <input class="form-control form-control-lg form-control-solid" type="password" name="password" />
                         <!--end::Input-->
                     </div>
                     <!--end::Input group-->
