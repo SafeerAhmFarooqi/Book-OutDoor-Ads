@@ -10,7 +10,7 @@
           <nav class="site-navigation position-relative text-right" role="navigation">
 
             <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-              <li class="active"><a href="index.html">Home</a></li>
+              <li class="active"><a href="/">Home</a></li>
               <li><a href="impressum.html">Impressum</a></li> 
                <li><a href="contact.html">kontakt</a></li> 
               <li class="ml-xl-3 login"><a href="{{route('login')}}"><span class="border-left pl-xl-4"></span>Log In</a></li>
@@ -20,12 +20,52 @@
         
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Cart(0)
+                  Cart({{count($cartItems)}})
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
+                  
+                  <div class="dropdown-item">
+                    {{-- <span style="float: left;">
+                      <img src="{{asset('storage/'.($item->images->first())->path)}}" alt=""  style="width: 40px;height: 40px;">
+                    </span>
+                    <div style="display: block;">
+                      <span style="float: left;">{{$item->title}}</span> <span style="float: right;"><a  href="#" style="float: right;margin-bottom: 20%;" title="delete item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                      </svg></a></span>  
+                    </div> --}}
+                    <ul class="list-group">
+                      @foreach ($cartItems as $item)
+                      <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <span style="float: left;">
+                          <img src="{{asset('storage/'.($item->images->first())->path)}}" alt=""  style="width: 40px;height: 40px;">
+                        </span>
+                        <p class="d-inline-block text-truncate" style="width: 100px;">{{$item->title}}</p>
+                        <span style="float: right;">
+                          <form action="{{route('cart.led.delete')}}" method="post">
+                            @csrf
+                          <button style="padding: 0;
+                          border: none;
+                          background: none;cursor: pointer;" type="submit" name="led_id" value="{{$item->id}}" title="delete item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                          <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                        </svg></button>
+                      </form>
+                      </span>
+                      </li>    
+                      @endforeach
+                      
+                  @if (count($cartItems))
+                  <li class="list-group-item d-flex justify-content-between align-items-start">
+                    <a class="dropdown-item" href="#">Check Out</a> 
+                  </li>    
+                     
+                  @endif
+                    </ul>
+                  </div>
+                  
+                     
+                  
+                 
+
                 </div>
               </li>
 
@@ -46,3 +86,9 @@
     <!-- </div> -->
     
   </header>
+
+  @section('Styles')
+  <style>
+
+  </style>      
+  @endsection

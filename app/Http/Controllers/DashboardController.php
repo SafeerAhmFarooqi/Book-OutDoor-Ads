@@ -14,22 +14,64 @@ use App\Models\City;
 
 class DashboardController extends AdminController
 {
-   public function home()
+   public function home(Request $request)
    {
       $leds=Led::with('images')->latest()->take(4)->get();
       $cities=City::with('led')->get();
+      $cartItems=[];
+      if (session()->has('cart.items')) {
+         foreach (session()->get('cart.items') as $value) {
+            array_push($cartItems,Led::find($value));
+         }
+      }
        return view('app-dashboard.landingpage',[
           'leds'=>$leds,
           'cities'=>$cities,
+          'cartItems'=>$cartItems,
          ]);
       // return view('test');
+   }
+
+   public function addLedToCart(Request $request)
+   {
+      $request->session()->push('cart.items', $request->led_id);
+      return back()->with('message', 'Item Added to Cart Successfully' );
+   }
+
+   public function deleteLedFromCart(Request $request)
+   {
+      $index=0;
+      if (session()->has('cart.items')) {
+         foreach (session()->get('cart.items') as $value) {
+            
+            if ($value==$request->led_id) {
+               break;
+            }
+            $index++;
+         }
+         $cartArray = $request->session()->get('cart.items');
+         unset($cartArray[$index]);
+         $cartArray=array_values($cartArray);
+         $request->session()->put('cart.items',$cartArray);
+         return back()->with('message', 'Item Deleted from Cart Successfully' );
+      }
+      return back();
    }
 
    public function ledDetail($id)
    {
       $led=Led::with('images')->where('id',$id)->first();
-       return view('app-dashboard.detail-page',['led'=>$led,'increment'=>0]);
-      // return view('test');
+      $cartItems=[];
+      if (session()->has('cart.items')) {
+         foreach (session()->get('cart.items') as $value) {
+            array_push($cartItems,Led::find($value));
+         }
+      }
+      return view('app-dashboard.detail-page',[
+          'led'=>$led,
+          'increment'=>0,
+          'cartItems'=>$cartItems,
+         ]);
    }
 
    public function dashboard()
