@@ -22,6 +22,8 @@ use App\Http\Controllers\Admin\AdminCityController;
 
 Route::get('/', [DashboardController::class,'home'])->name('home');
 Route::get('/led-detail/{id}', [DashboardController::class,'ledDetail'])->name('app.led.detail');
+Route::post('/cart-led-add', [DashboardController::class,'addLedToCart'])->name('cart.led.add');
+Route::post('/cart-led-delete', [DashboardController::class,'deleteLedFromCart'])->name('cart.led.delete');
 
 Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['auth'])->name('dashboard');
 

@@ -10,7 +10,8 @@
           
           <div class="row justify-content-center mb-4">
             <div class="col-md-8 text-center">
-              <h1 class="" data-aos="fade-up">Largest LED Classifieds In  World</h1>
+              <h1 class="" data-aos="fade-up">Largest LED Classifieds In  World
+              </h1>
               <p data-aos="fade-up" data-aos-delay="100">You can buy, sell anything you want.</p>
             </div>
           </div>
@@ -478,10 +479,17 @@
     <link rel="stylesheet" href="{{asset('assets/Led-Theme/fonts/flaticon/font/flaticon.css')}}">
     <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/Bootstrap-4-1/bootstrap.min.css')}}">
+    
+
+    
 <style>
     /*
     # Welcome
     --------------------------------*/
+    
+    .symbol.symbol-50px>img{width:50px;height:50px}
+    .symbol-label{display:flex;align-items:center;justify-content:center;font-weight:500;color:#3f4254;background-color:#f5f8fa;background-repeat:no-repeat;background-position:center center;background-size:cover;border-radius:.475rem}
+
     .home-page-welcome {
         position: relative;
         padding: 96px 0;

@@ -23,12 +23,19 @@
   </div>  
 
 
-      
+  
  <div class="site-section">
+   
     <div class="container">
+      
       <div class="row">
+        
         <div class="col-lg-8">
-          
+          @if(session()->has('message'))
+    <div class="alert alert-success" role="alert">
+        {{ session()->get('message') }}
+    </div>
+   @endif
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                   <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -133,7 +140,7 @@
                       <div class="box">
                           <p class="topbookingform">Wählen Sie Ihren Buchungszeitraum aus, damit wir Ihnen den Preis anzeigen können.</p>
                           <div class="order-body">
-                              <form id="booking_form" autocomplete="off" action="https://led-werbeflaechen.de/newled/payment.php" method="post">
+                              
                               <div class="form-group">
 
                   <input required="" name="product_id" type="hidden" value="3" class="form-control" id="product_id">
@@ -182,12 +189,15 @@
                                       </tr>
                                   </tbody>
                               </table>
-
-    <button class="buttonsubmit btn btn-default" style="font-size:15px">
+<form action="{{route('cart.led.add')}}" method="post">
+  @csrf
+ <button type="submit" class="buttonsubmit btn btn-default" name="led_id" value="{{$led->id}}" style="font-size:15px">
 Add to Cart                            </button>
-<br><hr>
+</form>
+   
+<hr>
 <p id="underactionbutton" style="font-size:12px;text-align: center"> Geben Sie Ihren Buchungszeitraum ein, um den Gesamtpreis pro Tag zu sehen. </p>
-                               </form>
+                               
                           </div>
 
                       </div>
