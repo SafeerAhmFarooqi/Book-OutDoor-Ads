@@ -147,7 +147,7 @@
                   <input required="" name="price" type="hidden" class="form-control" id="price">
                  <input required="" name="selected_date_array" value="" type="hidden" class="form-control" id="selected_date_array">
                   <input type="hidden" value="booking2" name="redirectFile">
-                                  <label for="booking-daterange">Ihre Auswahl</label>
+                                  <label for="booking-daterange">Booking Dates</label>
 
 
 
@@ -161,8 +161,12 @@
 ">
                                           </span> -->
                                       </div>
-                                      <input required="" type="text" name="range_date" class="form-control booking-daterange" id="range_date">
+                                      <form action="{{route('cart.led.add')}}" method="post">
+                                        @csrf
+                                      <input type="text" name="book_dates" value="{{\Carbon\Carbon::now()}}" />
                                   </div>
+                                  
+
                               </div>
 
 
@@ -189,8 +193,7 @@
                                       </tr>
                                   </tbody>
                               </table>
-<form action="{{route('cart.led.add')}}" method="post">
-  @csrf
+
  <button type="submit" class="buttonsubmit btn btn-default" name="led_id" value="{{$led->id}}" style="font-size:15px">
 Add to Cart                            </button>
 </form>
@@ -500,4 +503,17 @@ width: 640px;
 <script src="{{asset('assets/Bootstrap-4-1/jquery-3.3.1.slim.min.js')}}"></script>
 <script src="{{asset('assets/Bootstrap-4-1/popper.min.js')}}"></script>
 <script src="{{asset('assets/Bootstrap-4-1/bootstrap.min.js')}}"></script>
+{{-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> --}}
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<script>
+  $(function() {
+    $('input[name="book_dates"]').daterangepicker({
+      opens: 'left'
+    }, function(start, end, label) {
+      console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
+    });
+  });
+  </script>
 @endsection

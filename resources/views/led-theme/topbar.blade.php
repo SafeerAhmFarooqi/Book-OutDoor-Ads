@@ -34,6 +34,7 @@
                       </svg></a></span>  
                     </div> --}}
                     <ul class="list-group">
+                      @if (count($cartItems)>0)
                       @foreach ($cartItems as $item)
                       <li class="list-group-item d-flex justify-content-between align-items-start">
                         <span style="float: left;">
@@ -51,11 +52,19 @@
                       </form>
                       </span>
                       </li>    
-                      @endforeach
+                      @endforeach    
+                      @else
+                          Cart Is Empty
+                      @endif
+                      
                       
                   @if (count($cartItems))
                   <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <a class="dropdown-item" href="#">Check Out</a> 
+                    <form action="{{route('cart.list.items')}}" method="post">
+                      @csrf
+                      <button type="submit" class="dropdown-item" name="cartItems" value="{{json_encode($cartItems)}}" style="cursor: pointer;">Go to Cart</button>
+                    </form>
+                     
                   </li>    
                      
                   @endif
