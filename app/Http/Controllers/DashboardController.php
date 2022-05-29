@@ -21,7 +21,7 @@ class DashboardController extends AdminController
       $cartItems=[];
       if (session()->has('cart.items')) {
          foreach (session()->get('cart.items') as $value) {
-            array_push($cartItems,Led::find($value));
+            array_push($cartItems,Led::find(strtok($value,'*')));
          }
       }
        return view('app-dashboard.landingpage',[
@@ -34,7 +34,8 @@ class DashboardController extends AdminController
 
    public function addLedToCart(Request $request)
    {
-      $request->session()->push('cart.items', $request->led_id);
+      //return  strtok($request->led_id.'*'.$request->book_dates,'*');
+      $request->session()->push('cart.items', $request->led_id.'*'.$request->book_dates);
       return back()->with('message', 'Item Added to Cart Successfully' );
    }
 
@@ -44,7 +45,7 @@ class DashboardController extends AdminController
       if (session()->has('cart.items')) {
          foreach (session()->get('cart.items') as $value) {
             
-            if ($value==$request->led_id) {
+            if (strtok($value,'*')==$request->led_id) {
                break;
             }
             $index++;
@@ -64,7 +65,7 @@ class DashboardController extends AdminController
       $cartItems=[];
       if (session()->has('cart.items')) {
          foreach (session()->get('cart.items') as $value) {
-            array_push($cartItems,Led::find($value));
+            array_push($cartItems,Led::find(strtok($value,'*')));
          }
       }
       return view('app-dashboard.detail-page',[
@@ -95,5 +96,16 @@ class DashboardController extends AdminController
       }
       // return view('landingpage');
       // return view('test');
+   }
+
+   public function listCartItems(Request $request)
+   {
+      $cartItems=json_decode($request->cartItems);
+      foreach ($cartItems as $key => $value) {
+         echo $value->title;
+      }  
+      //return  strtok($request->led_id.'*'.$request->book_dates,'*');
+      $request->session()->push('cart.items', $request->led_id.'*'.$request->book_dates);
+      return back()->with('message', 'Item Added to Cart Successfully' );
    }
 }
