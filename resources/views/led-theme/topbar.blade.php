@@ -52,22 +52,20 @@
                       </form>
                       </span>
                       </li>    
-                      @endforeach    
+                      @endforeach
+                      <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <form action="{{route('cart.list.items')}}" method="post">
+                          @csrf
+                          <button type="submit" class="dropdown-item" name="cartItems" value="{{json_encode($cartItems)}}" style="cursor: pointer;">Go to Cart</button>
+                        </form>
+                         
+                      </li>        
                       @else
                           Cart Is Empty
                       @endif
                       
                       
-                  @if (count($cartItems))
-                  <li class="list-group-item d-flex justify-content-between align-items-start">
-                    <form action="{{route('cart.list.items')}}" method="post">
-                      @csrf
-                      <button type="submit" class="dropdown-item" name="cartItems" value="{{json_encode($cartItems)}}" style="cursor: pointer;">Go to Cart</button>
-                    </form>
-                     
-                  </li>    
-                     
-                  @endif
+                 
                     </ul>
                   </div>
                   

@@ -25,6 +25,7 @@ Route::get('/led-detail/{id}', [DashboardController::class,'ledDetail'])->name('
 Route::post('/cart-led-add', [DashboardController::class,'addLedToCart'])->name('cart.led.add');
 Route::post('/cart-led-delete', [DashboardController::class,'deleteLedFromCart'])->name('cart.led.delete');
 Route::post('/cart-list-items', [DashboardController::class,'listCartItems'])->name('cart.list.items');
+Route::post('/cart-list-items-delete', [DashboardController::class,'deleteLedFromCartList'])->name('cart.list.led.delete');
 
 Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['auth'])->name('dashboard');
 

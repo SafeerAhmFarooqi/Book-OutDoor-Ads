@@ -26,4 +26,13 @@ class Led extends Model
         return $this->hasMany(LedImages::class, 'led_id');
     }
 
+    public function setStartAndEndDate($value)
+    {
+        strtok($value,'*');
+        $stratDate=strtok('-');
+        $endDate=strtok('');
+        $this->attributes['startDate'] = $stratDate;
+        $this->attributes['endDate'] = $endDate;
+    }
+
 }

@@ -100,12 +100,73 @@ class DashboardController extends AdminController
 
    public function listCartItems(Request $request)
    {
-      $cartItems=json_decode($request->cartItems);
-      foreach ($cartItems as $key => $value) {
-         echo $value->title;
-      }  
-      //return  strtok($request->led_id.'*'.$request->book_dates,'*');
-      $request->session()->push('cart.items', $request->led_id.'*'.$request->book_dates);
-      return back()->with('message', 'Item Added to Cart Successfully' );
+      $cartItems=[];
+      // foreach (json_decode($request->cartItems) as $value) {
+      //    array_push($cartItems,Led::with('images')->where('id',$value->id)->first());
+      // }
+      if (session()->has('cart.items')&&session()->get('cart.items')) {
+         foreach (session()->get('cart.items') as $value) {
+            $led=Led::with('images')->where('id',strtok($value,'*'))->first();
+            $led->setStartAndEndDate($value);
+            array_push($cartItems,$led);
+         }
+         $totalPrice=0;
+         $totalTax=0;
+         foreach ($cartItems as $value) {
+            $totalPrice+=$value->price;
+            $totalTax+=$value->tax;
+         }
+         return view('app-dashboard.cart-items',[
+            'cartItems'=>$cartItems,
+            'totalPrice'=>$totalPrice,
+            'totalTax'=>$totalTax,
+         ]);
+      } else {
+         return redirect()->route('home');
+      }
+      
+     
+   }
+
+   public function deleteLedFromCartList(Request $request)
+   {
+      $index=0;
+      if (session()->has('cart.items')) {
+         foreach (session()->get('cart.items') as $value) {
+            
+            if (strtok($value,'*')==$request->led_id) {
+               break;
+            }
+            $index++;
+         }
+         $cartArray = $request->session()->get('cart.items');
+         unset($cartArray[$index]);
+         $cartArray=array_values($cartArray);
+         $request->session()->put('cart.items',$cartArray);
+         $cartItems=[];
+         if (session()->has('cart.items')&&session()->get('cart.items')) {
+            foreach (session()->get('cart.items') as $value) {
+               $led=Led::with('images')->where('id',strtok($value,'*'))->first();
+               $led->setStartAndEndDate($value);
+               array_push($cartItems,$led);
+            }
+            $totalPrice=0;
+            $totalTax=0;
+            foreach ($cartItems as $value) {
+               $totalPrice+=$value->price;
+               $totalTax+=$value->tax;
+            }
+            return view('app-dashboard.cart-items',[
+               'cartItems'=>$cartItems,
+               'totalPrice'=>$totalPrice,
+               'totalTax'=>$totalTax,
+            ]);
+         } else {
+            return redirect()->route('home');
+         }
+         
+         
+      }
+      return redirect()->route('home');
    }
 }
