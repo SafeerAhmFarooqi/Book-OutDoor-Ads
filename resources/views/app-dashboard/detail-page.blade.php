@@ -171,7 +171,7 @@
 
 
 <ul class="list-group" style="padding:2px;font-size:13px;">
-<li class="list-group-item listordertaking" style="background:none;border:none;padding:0;padding-top:10px"> <span id="per_booking_cost" style="font-weight:bold;color:#333"> 25 </span> <span id="id_x" style="font-weight:bold;color:#333"> €  </span> <span id="total_days"> pro Tag</span> <span id="days_id"></span> <span class=" pull-right" id="total_cost">  </span></li>
+<li class="list-group-item listordertaking" style="background:none;border:none;padding:0;padding-top:10px"> <span id="per_booking_cost" style="font-weight:bold;color:#333"> € </span> <span id="id_x" style="font-weight:bold;color:#333"> {{$led->price}} </span><span style="font-weight:bold;color:#333" id="multiply_show"></span> <span style="font-weight:bold;color:#333" id="total_days"></span><span id="days_show"></span> <span id="days_id"></span> <span class=" pull-right" id="total_cost">  </span></li>
 <!--   <li class="list-group-item listordertaking"> 25 &euro; x  <span class="badge pull-right" >12</span></li>
 --> </ul>
 
@@ -187,9 +187,8 @@
 
 
                                       <tr>
-                                          <th style="text-align: left;"> <span style="line-height: 45px;color:#333;font-weight:bold"> Gesamtbetrag </span></th>
-                                          <td style="text-align: right;"><strong id="total_price">
-0.00                                            </strong><b>€</b> </td>
+                                          <th style="text-align: left;"> <span style="line-height: 45px;color:#333;font-weight:bold"> Total Price </span></th>
+                                          <td style="text-align: right;"><strong id="total_price">                                        </strong><b>€</b> </td>
                                       </tr>
                                   </tbody>
                               </table>
@@ -507,7 +506,7 @@ width: 640px;
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-<script>
+{{-- <script>
   $(function() {
     $('input[name="book_dates"]').daterangepicker({
       opens: 'left'
@@ -515,5 +514,22 @@ width: 640px;
       console.log("A new date selection was made: " + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD'));
     });
   });
-  </script>
+  </script> --}}
+  <script>
+    $(function() {
+      $('input[name="book_dates"]').daterangepicker({
+        opens: 'left'
+      }, function(start, end, label) {
+        var date1 = new Date(start);
+var date2 = new Date(end);
+var Difference_In_Time = date2.getTime() - date1.getTime();
+var Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24));
+        document.getElementById("total_days").innerHTML = Difference_In_Days;
+        document.getElementById("multiply_show").innerHTML =  'X';
+        document.getElementById("days_show").innerHTML =  ' Days';
+        document.getElementById("total_price").innerHTML =  Difference_In_Days*{{$led->price}};
+       // alert(start.format('YYYY-MM-DD'));
+      });
+    });
+    </script>
 @endsection
