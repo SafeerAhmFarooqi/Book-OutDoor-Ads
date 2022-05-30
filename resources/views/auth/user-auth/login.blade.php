@@ -18,11 +18,11 @@
                     <!--begin::Heading-->
                     <div class="text-center mb-10">
                         <!--begin::Title-->
-                        <h1 class="text-dark mb-3">Sign In to LED</h1>
+                        <h1 class="text-dark mb-3">Sign In to User Account for LED</h1>
                         <!--end::Title-->
                         <!--begin::Link-->
                         <div class="text-gray-400 fw-bold fs-4">New Here?
-                        <a href="{{route('register')}}" class="link-primary fw-bolder">Create an Account</a></div>
+                        <a href="{{route('user.register')}}" class="link-primary fw-bolder">Create an Account</a></div>
                         <!--end::Link-->
                     </div>
                     <!--begin::Heading-->

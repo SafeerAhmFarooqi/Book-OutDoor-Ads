@@ -33,6 +33,13 @@ class AuthenticatedSessionController extends Controller
         return view('auth.client-auth.login');
     }
 
+    public function createUser()
+    {
+        
+        View()->share( 'headTitle', 'User Login' );
+        return view('auth.user-auth.login');
+    }
+
     public function createAdmin()
     {
         View()->share( 'headTitle', 'Admin Login' );

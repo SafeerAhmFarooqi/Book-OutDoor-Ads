@@ -81,6 +81,13 @@ class DashboardController extends AdminController
       {
          return view('client-dashboard.home-page');
       }
+
+      if(Auth::user()->hasRole('User'))
+      {
+         return "User Dashboard";
+         return view('client-dashboard.home-page');
+      }
+
       if(Auth::user()->hasRole('Admin'))
       {
          $usersCount=User::role('User')->count();
@@ -125,9 +132,7 @@ class DashboardController extends AdminController
          ]);
       } else {
          return redirect()->route('home');
-      }
-      
-     
+      } 
    }
 
    public function deleteLedFromCartList(Request $request)
@@ -152,22 +157,22 @@ class DashboardController extends AdminController
                $led->setStartAndEndDate($value);
                array_push($cartItems,$led);
             }
-            $totalPrice=0;
-            $totalTax=0;
+            $price=0;
+         $totalTax=0;
             foreach ($cartItems as $value) {
-               $totalPrice+=$value->price;
-               $totalTax+=$value->tax;
+               $price+=$value->price*$value->noOfDays;
+            $totalTax+=$value->tax*$value->noOfDays;
             }
+            $totalPrice=$price+$totalTax;
             return view('app-dashboard.cart-items',[
                'cartItems'=>$cartItems,
-               'totalPrice'=>$totalPrice,
+               'price'=>$price,
                'totalTax'=>$totalTax,
+               'totalPrice'=>$totalPrice,
             ]);
          } else {
             return redirect()->route('home');
-         }
-         
-         
+         }  
       }
       return redirect()->route('home');
    }
