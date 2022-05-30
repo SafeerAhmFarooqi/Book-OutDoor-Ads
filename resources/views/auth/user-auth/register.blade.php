@@ -13,15 +13,16 @@
             <!--begin::Wrapper-->
             <div class="w-lg-600px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
                 <!--begin::Form-->
-                <form class="form w-100" novalidate="novalidate" id="kt_sign_up_form">
+                <form class="form w-100" novalidate="novalidate" id="kt_sign_up_form"  method="POST" action="{{ route('register') }}">
+                    @csrf
                     <!--begin::Heading-->
                     <div class="mb-10 text-center">
                         <!--begin::Title-->
-                        <h1 class="text-dark mb-3">Create an Account</h1>
+                        <h1 class="text-dark mb-3">Create a User Account for Led</h1>
                         <!--end::Title-->
                         <!--begin::Link-->
                         <div class="text-gray-400 fw-bold fs-4">Already have an account?
-                        <a href="{{route('login')}}" class="link-primary fw-bolder">Sign in here</a></div>
+                        <a href="{{route('user.login')}}" class="link-primary fw-bolder">Sign in here</a></div>
                         <!--end::Link-->
                     </div>
                     <!--end::Heading-->
@@ -41,13 +42,23 @@
                         <!--begin::Col-->
                         <div class="col-xl-6">
                             <label class="form-label fw-bolder text-dark fs-6">First Name</label>
-                            <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="first-name" autocomplete="off" />
+                            <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="firstname" value="{{old('firstname')}}" />
+                            @error('firstname')
+                            <div class="alert alert-danger">
+                                    {{$message}}
+                            </div>
+                            @enderror
                         </div>
                         <!--end::Col-->
                         <!--begin::Col-->
                         <div class="col-xl-6">
                             <label class="form-label fw-bolder text-dark fs-6">Last Name</label>
-                            <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="last-name" autocomplete="off" />
+                            <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="lastname" value="{{old('lastname')}}" />
+                            @error('lastname')
+                            <div class="alert alert-danger">
+                                    {{$message}}
+                            </div>
+                            @enderror
                         </div>
                         <!--end::Col-->
                     </div>
@@ -55,7 +66,12 @@
                     <!--begin::Input group-->
                     <div class="fv-row mb-7">
                         <label class="form-label fw-bolder text-dark fs-6">Email</label>
-                        <input class="form-control form-control-lg form-control-solid" type="email" placeholder="" name="email" autocomplete="off" />
+                        <input class="form-control form-control-lg form-control-solid" type="email" placeholder="" name="email" value="{{old('email')}}" />
+                        @error('email')
+                        <div class="alert alert-danger">
+                                {{$message}}
+                        </div>
+                        @enderror
                     </div>
                     <!--end::Input group-->
                     <!--begin::Input group-->
@@ -67,7 +83,12 @@
                             <!--end::Label-->
                             <!--begin::Input wrapper-->
                             <div class="position-relative mb-3">
-                                <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="password" autocomplete="off" />
+                                <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="password"/>
+                                @error('password')
+                                <div class="alert alert-danger">
+                                        {{$message}}
+                                </div>
+                                @enderror
                                 <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
                                     <i class="bi bi-eye-slash fs-2"></i>
                                     <i class="bi bi-eye fs-2 d-none"></i>
@@ -92,21 +113,30 @@
                     <!--begin::Input group-->
                     <div class="fv-row mb-5">
                         <label class="form-label fw-bolder text-dark fs-6">Confirm Password</label>
-                        <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="confirm-password" autocomplete="off" />
+                        <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="password_confirmation"/>
+                        @error('password_confirmation')
+                        <div class="alert alert-danger">
+                                {{$message}}
+                        </div>
+                        @enderror
                     </div>
+
+                    <input type="hidden" name="role" value="user">
+
+
                     <!--end::Input group-->
                     <!--begin::Input group-->
-                    <div class="fv-row mb-10">
+                    {{-- <div class="fv-row mb-10">
                         <label class="form-check form-check-custom form-check-solid form-check-inline">
                             <input class="form-check-input" type="checkbox" name="toc" value="1" />
                             <span class="form-check-label fw-bold text-gray-700 fs-6">I Agree
                             <a href="#" class="ms-1 link-primary">Terms and conditions</a>.</span>
                         </label>
-                    </div>
+                    </div> --}}
                     <!--end::Input group-->
                     <!--begin::Actions-->
                     <div class="text-center">
-                        <button type="button" id="kt_sign_up_submit" class="btn btn-lg btn-primary">
+                        <button type="submit" id="kt_sign_up_submit" class="btn btn-lg btn-primary">
                             <span class="indicator-label">Submit</span>
                             <span class="indicator-progress">Please wait...
                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -136,5 +166,5 @@
 @endsection
 
 @section('pageScripts')
-<script src="{{ asset('assets/Metronic-Theme/js/custom/authentication/sign-up/general.js') }}"></script>
+{{-- <script src="{{ asset('assets/Metronic-Theme/js/custom/authentication/sign-up/general.js') }}"></script> --}}
 @endsection
