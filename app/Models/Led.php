@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Carbon;
 
 class Led extends Model
 {
@@ -29,10 +30,12 @@ class Led extends Model
     public function setStartAndEndDate($value)
     {
         strtok($value,'*');
-        $stratDate=strtok('-');
+        $startDate=strtok('-');
         $endDate=strtok('');
-        $this->attributes['startDate'] = $stratDate;
+        $this->attributes['startDate'] = $startDate;
         $this->attributes['endDate'] = $endDate;
+        $this->attributes['noOfDays'] = Carbon::parse($startDate)->diffInDays(Carbon::parse($endDate))+1;
+        
     }
 
 }

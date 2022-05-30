@@ -19,8 +19,13 @@
                         <div class="row">{{$item->description}}</div>
                     </div>
                     <div class="col">
+                        <div class="row text-muted">Tax</div>
+                        <div class="row">&euro; {{$item->tax}}</div>
+                    </div>
+                    <div class="col">
                         <div class="row text-muted">From : {{\Carbon\Carbon::parse($item->startDate)->format('F d, Y') }}</div>
                         <div class="row text-muted">To : {{\Carbon\Carbon::parse($item->endDate)->format('F d, Y')}}</div>
+                        <div class="row text-muted">Total Days : {{\Carbon\Carbon::parse($item->startDate)->diffInDays(Carbon\Carbon::parse($item->endDate))+1}}</div>
                     </div>
                     
                     
@@ -50,7 +55,6 @@
             <hr>
             <div class="row">
                 <div class="col" style="padding-left:0;">ITEMS {{count($cartItems)}}</div>
-                <div class="col text-right">&euro; {{$totalPrice}}</div>
             </div>
             {{-- <form>
                 <p>SHIPPING</p>
@@ -59,12 +63,16 @@
                 <input id="code" placeholder="Enter your code">
             </form> --}}
             <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
-                <div class="col">TOTAL Tax</div>
+                <div class="col">Tax</div>
                 <div class="col text-right">&euro; {{$totalTax}}</div>
             </div>
             <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
-                <div class="col">TOTAL PRICE</div>
-                <div class="col text-right">&euro; {{$totalTax+$totalPrice}}</div>
+                <div class="col"> PRICE</div>
+                <div class="col text-right">&euro; {{$price}}</div>
+            </div>
+            <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+                <div class="col"> TOTAL PRICE</div>
+                <div class="col text-right">&euro; {{$totalPrice}}</div>
             </div>
             <button class="btn">CHECKOUT</button>
         </div>
