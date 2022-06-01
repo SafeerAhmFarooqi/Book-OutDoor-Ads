@@ -65,7 +65,7 @@
                     <!--end::Input group-->
                     <!--begin::Input group-->
                     <div class="fv-row mb-7">
-                        <label class="form-label fw-bolder text-dark fs-6">Email</label>
+                        <label class="form-label fw-bolder text-dark fs-6">Email : {{$checkout?'true' : 'false'}}</label>
                         <input class="form-control form-control-lg form-control-solid" type="email" placeholder="" name="email" value="{{old('email')}}" />
                         @error('email')
                         <div class="alert alert-danger">
@@ -122,7 +122,7 @@
                     </div>
 
                     <input type="hidden" name="role" value="user">
-
+                    <input type="hidden" name="checkout" value="{{$checkout}}">
 
                     <!--end::Input group-->
                     <!--begin::Input group-->
@@ -143,6 +143,7 @@
                         </button>
                     </div>
                     <!--end::Actions-->
+               
                 </form>
                 <!--end::Form-->
             </div>

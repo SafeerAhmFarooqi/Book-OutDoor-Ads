@@ -14,7 +14,8 @@
             <!--begin::Wrapper-->
             <div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
                 <!--begin::Form-->
-                <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" data-kt-redirect-url="../../demo1/dist/index.html" action="#">
+                <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form"  method="POST" action="{{ route('login') }}">
+                   @csrf
                     <!--begin::Heading-->
                     <div class="text-center mb-10">
                         <!--begin::Title-->
@@ -22,17 +23,17 @@
                         <!--end::Title-->
                         <!--begin::Link-->
                         <div class="text-gray-400 fw-bold fs-4">New Here?
-                        <a href="{{route('user.register')}}" class="link-primary fw-bolder">Create an Account</a></div>
+                        <a href="{{route('user.register',$checkout)}}" class="link-primary fw-bolder">Create an Account</a></div>
                         <!--end::Link-->
                     </div>
                     <!--begin::Heading-->
                     <!--begin::Input group-->
                     <div class="fv-row mb-10">
                         <!--begin::Label-->
-                        <label class="form-label fs-6 fw-bolder text-dark">Email</label>
+                        <label class="form-label fs-6 fw-bolder text-dark">Email : {{$checkout?'true' : 'false'}}</label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <input class="form-control form-control-lg form-control-solid" type="text" name="email" autocomplete="off" />
+                        <input class="form-control form-control-lg form-control-solid" type="text" name="email" />
                         <!--end::Input-->
                     </div>
                     <!--end::Input group-->
@@ -49,9 +50,11 @@
                         </div>
                         <!--end::Wrapper-->
                         <!--begin::Input-->
-                        <input class="form-control form-control-lg form-control-solid" type="password" name="password" autocomplete="off" />
+                        <input class="form-control form-control-lg form-control-solid" type="password" name="password" />
                         <!--end::Input-->
                     </div>
+
+                    <input type="hidden" name="checkout" value="{{$checkout}}">
                     <!--end::Input group-->
                     <!--begin::Actions-->
                     <div class="text-center">
@@ -102,5 +105,5 @@
 @endsection
 
 @section('pageScripts')
-<script src="{{ asset('assets/Metronic-Theme/js/custom/authentication/sign-in/general.js') }}"></script>
+{{-- <script src="{{ asset('assets/Metronic-Theme/js/custom/authentication/sign-in/general.js') }}"></script> --}}
 @endsection

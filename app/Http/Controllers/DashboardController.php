@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Response;
 use App\Models\Led;
 use App\Models\LedImages;
 use App\Models\City;
+use App\Models\Orders;
+use App\Models\SubOrders;
 
 class DashboardController extends AdminController
 {
@@ -84,8 +86,7 @@ class DashboardController extends AdminController
 
       if(Auth::user()->hasRole('User'))
       {
-         return "User Dashboard";
-         return view('client-dashboard.home-page');
+         return redirect('/');
       }
 
       if(Auth::user()->hasRole('Admin'))
@@ -105,12 +106,9 @@ class DashboardController extends AdminController
       // return view('test');
    }
 
-   public function listCartItems(Request $request)
+   public function listCartItems()
    {
       $cartItems=[];
-      // foreach (json_decode($request->cartItems) as $value) {
-      //    array_push($cartItems,Led::with('images')->where('id',$value->id)->first());
-      // }
       if (session()->has('cart.items')&&session()->get('cart.items')) {
          foreach (session()->get('cart.items') as $value) {
             $led=Led::with('images')->where('id',strtok($value,'*'))->first();
@@ -133,6 +131,63 @@ class DashboardController extends AdminController
       } else {
          return redirect()->route('home');
       } 
+   }
+
+   public function checkout()
+   {
+      if(Auth::check()&&!Auth::user()->hasRole('Admin')&&!Auth::user()->hasRole('Client'))
+      {
+         $cartItems=[];
+         if (session()->has('cart.items')&&session()->get('cart.items')) {
+            foreach (session()->get('cart.items') as $value) {
+               $led=Led::with('images')->where('id',strtok($value,'*'))->first();
+               $led->setStartAndEndDate($value);
+               array_push($cartItems,$led);
+            }
+            $price=0;
+            $totalTax=0;
+            foreach ($cartItems as $value) {
+               $price+=$value->price*$value->noOfDays;
+               $totalTax+=$value->tax*$value->noOfDays;
+            }
+            $totalPrice=$price+$totalTax;
+            // return view('app-dashboard.cart-items',[
+            //    'cartItems'=>$cartItems,
+            //    'price'=>$price,
+            //    'totalTax'=>$totalTax,
+            //    'totalPrice'=>$totalPrice,
+            // ]);
+
+            $order = Orders::create([
+               'total_price' => $totalPrice,
+               'total_tax' => $totalTax,
+           ]);
+
+           foreach ($cartItems as $value) {
+            SubOrders::create([
+               'led_id' => $value->id,
+               'order_id' => $order->id,
+               'price' => $value->price*$value->noOfDays,
+               'no_of_days' => $value->noOfDays,
+               'tax' => $value->tax*$value->noOfDays,
+               'startDate' => $value->startDate,
+               'endDate' => $value->endDate,
+               'order_id' => $order->id,
+           ]);
+           }
+
+           return view('app-dashboard.payment-page',[
+              'order'=>$order,
+           ]);
+
+         } else {
+            return redirect()->route('home');
+         } 
+      }
+      else
+      {
+         return redirect()->route('user.login',true);
+      }
    }
 
    public function deleteLedFromCartList(Request $request)
@@ -176,4 +231,18 @@ class DashboardController extends AdminController
       }
       return redirect()->route('home');
    }
+
+   public function payment(Request $request)
+   {
+            $order=Orders::find($request->order_id);
+            $order->payment_status=true;
+            $order->save();
+            $request->session()->forget('cart.items');
+            return view('app-dashboard.order-complete',[
+               'order'=>$order,
+            ]);
+            
+   }
 }
+
+
