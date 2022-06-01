@@ -13,8 +13,17 @@
               <li class="active"><a href="/">Home</a></li>
               <li><a href="impressum.html">Impressum</a></li> 
                <li><a href="contact.html">kontakt</a></li> 
-              <li class="ml-xl-3 login"><a href="{{route('user.login')}}"><span class="border-left pl-xl-4"></span>Log In</a></li>
-              <li><a href="user/register.html">Register</a></li>
+               @if (Auth::check()&&Auth::user()->hasRole('User'))
+               <form action="{{route('logout')}}" method="post" style="display: inline;">
+                @csrf
+                <li><button type="submit" style="border: none; display: inline;background-color: Transparent;cursor: pointer;">Log Out</button></li>
+              </form>
+                    
+               @else
+               <li class="ml-xl-3 login"><a href="{{route('user.login')}}"><span class="border-left pl-xl-4"></span>Log In</a></li>
+               <li><a href="{{route('user.register')}}">Register</a></li>     
+               @endif
+              
               <li><a href="{{route('client.login')}}" class="cta"><span class="bg-primary text-white rounded" style="background-color:#30e3ca!important;">Client Login</span></a></li>
               <li><a href="{{route('admin.login')}}" class="cta"><span class="bg-primary text-white rounded" style="background-color:#30e3ca!important;">Admin Login</span></a></li>
         
@@ -54,10 +63,7 @@
                       </li>    
                       @endforeach
                       <li class="list-group-item d-flex justify-content-between align-items-start">
-                        <form action="{{route('cart.list.items')}}" method="post">
-                          @csrf
-                          <button type="submit" class="dropdown-item" name="cartItems" value="{{json_encode($cartItems)}}" style="cursor: pointer;">Go to Cart</button>
-                        </form>
+                          <a href="{{route('cart.list.items')}}" class="dropdown-item"  style="cursor: pointer;">Go to Cart</a>
                          
                       </li>        
                       @else

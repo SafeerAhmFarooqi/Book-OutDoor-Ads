@@ -30,10 +30,12 @@ class RegisteredUserController extends Controller
         return view('auth.client-auth.register');
     }
     
-    public function createUser()
+    public function createUser($checkout=null)
     {
         View()->share( 'headTitle', 'User Register' );
-        return view('auth.user-auth.register');
+        return view('auth.user-auth.register',[
+            'checkout'=>$checkout??false,
+        ]);
     }
 
     /**
@@ -118,6 +120,10 @@ class RegisteredUserController extends Controller
 
 
         Auth::login($user);
+
+        if ($request->checkout) {
+            return redirect()->route('cart.list.items');
+        }
 
         return redirect(RouteServiceProvider::HOME);
     }

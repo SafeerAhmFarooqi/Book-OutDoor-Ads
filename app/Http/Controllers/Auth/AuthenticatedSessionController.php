@@ -33,11 +33,12 @@ class AuthenticatedSessionController extends Controller
         return view('auth.client-auth.login');
     }
 
-    public function createUser()
+    public function createUser($checkout=null)
     {
-        
         View()->share( 'headTitle', 'User Login' );
-        return view('auth.user-auth.login');
+        return view('auth.user-auth.login',[
+            'checkout'=>$checkout??false,
+        ]);
     }
 
     public function createAdmin()
@@ -57,6 +58,10 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+
+        if ($request->checkout) {
+            return redirect()->route('cart.list.items');
+        }
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }
