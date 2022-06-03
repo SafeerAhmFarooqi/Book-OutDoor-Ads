@@ -20,8 +20,7 @@ class LedSearchResults extends Component
             return $query->where('city_id', $this->selectedCity);
         }) 
         ->when($this->find, function($query) {
-            return $query->where('title', 'like', '%'.$this->find.'%')
-                         ->orWhere('description', 'like', '%'.$this->find.'%');
+            return $query->where('title', 'like', '%'.$this->find.'%');
         })   
         ->when($this->location, function($query) {
             return $query->where('location', 'like', '%'.$this->location.'%');
