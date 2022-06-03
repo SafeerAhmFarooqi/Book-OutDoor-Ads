@@ -365,7 +365,7 @@
               </div><!-- .col -->
 
               <div class="col-12 col-lg-6 mt-4 order-1 order-lg-2">
-                  <img src="../../www.led-werbeflaechen.de/images/slide1.jpg" alt="welcome">
+                  <img src="{{asset('assets/Led-Theme/images/slide1.jpg')}}" alt="welcome">
               </div><!-- .col -->
           </div><!-- .row -->
       </div><!-- .container -->
@@ -386,7 +386,7 @@
         <div>
           <div class="testimonial">
             <figure class="mb-4">
-              <img src="images/person_3.jpg" alt="Image" class="img-fluid mb-3">
+              <img src="{{asset('assets/Led-Theme/images/person_3.jpg')}}" alt="Image" class="img-fluid mb-3">
               <p>John Smith</p>
             </figure>
             <blockquote>
@@ -397,7 +397,7 @@
         <div>
           <div class="testimonial">
             <figure class="mb-4">
-              <img src="images/person_2.jpg" alt="Image" class="img-fluid mb-3">
+              <img src="{{asset('assets/Led-Theme/images/person_2.jpg')}}" alt="Image" class="img-fluid mb-3">
               <p>Christine Aguilar</p>
             </figure>
             <blockquote>
@@ -409,7 +409,7 @@
         <div>
           <div class="testimonial">
             <figure class="mb-4">
-              <img src="images/person_4.jpg" alt="Image" class="img-fluid mb-3">
+              <img src="{{asset('assets/Led-Theme/images/person_4.jpg')}}" alt="Image" class="img-fluid mb-3">
               <p>Robert Spears</p>
             </figure>
             <blockquote>
@@ -421,7 +421,7 @@
         <div>
           <div class="testimonial">
             <figure class="mb-4">
-              <img src="images/person_5.jpg" alt="Image" class="img-fluid mb-3">
+              <img src="{{asset('assets/Led-Theme/images/person_5.jpg')}}" alt="Image" class="img-fluid mb-3">
               <p>Bruce Rogers</p>
             </figure>
             <blockquote>
@@ -467,22 +467,22 @@
               <div class="col-12 col-lg-6">
                   <div class="milestones d-flex flex-wrap justify-content-between">
                           <div class="container">
-      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="../../www.led-werbeflaechen.de/images/ourclients/1.jpg" style="width:100%"></div>
-      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="../../www.led-werbeflaechen.de/images/ourclients/2.jpg" style="width:100%"></div>
-      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="../../www.led-werbeflaechen.de/images/ourclients/3.jpg" style="width:100%"></div>
-      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="../../www.led-werbeflaechen.de/images/ourclients/4.jpg" style="width:100%"></div>
-      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="../../www.led-werbeflaechen.de/images/ourclients/5.jpg" style="width:100%"></div> 
-      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="../../www.led-werbeflaechen.de/images/ourclients/6.jpg" style="width:100%"></div>
-      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="../../www.led-werbeflaechen.de/images/ourclients/7.jpg" style="width:100%"></div>
-      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="../../www.led-werbeflaechen.de/images/ourclients/8.jpg" style="width:100%"></div> 
-      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="../../www.led-werbeflaechen.de/images/ourclients/9.jpg" style="width:100%"></div>
-      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="../../www.led-werbeflaechen.de/images/ourclients/10.jpg" style="width:100%"></div>
-      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="../../www.led-werbeflaechen.de/images/ourclients/11.jpg" style="width:100%"></div> 
-      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="../../www.led-werbeflaechen.de/images/ourclients/12.jpg" style="width:100%"></div>
-      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="../../www.led-werbeflaechen.de/images/ourclients/13.jpg" style="width:100%"></div>
-      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="../../www.led-werbeflaechen.de/images/ourclients/14.jpg" style="width:100%"></div> 
-      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="../../www.led-werbeflaechen.de/images/ourclients/15.jpg" style="width:100%"></div>
-      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="../../www.led-werbeflaechen.de/images/ourclients/16.jpg" style="width:100%"></div> 
+      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="{{asset('assets/Led-Theme/images/partner/1.jpg')}}" style="width:100%"></div>
+      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="{{asset('assets/Led-Theme/images/partner/2.jpg')}}" style="width:100%"></div>
+      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="{{asset('assets/Led-Theme/images/partner/3.jpg')}}" style="width:100%"></div>
+      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="{{asset('assets/Led-Theme/images/partner/4.jpg')}}" style="width:100%"></div>
+      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="{{asset('assets/Led-Theme/images/partner/5.jpg')}}" style="width:100%"></div> 
+      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="{{asset('assets/Led-Theme/images/partner/6.jpg')}}" style="width:100%"></div>
+      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="{{asset('assets/Led-Theme/images/partner/7.jpg')}}" style="width:100%"></div>
+      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="{{asset('assets/Led-Theme/images/partner/8.jpg')}}" style="width:100%"></div> 
+      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="{{asset('assets/Led-Theme/images/partner/9.jpg')}}" style="width:100%"></div>
+      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="{{asset('assets/Led-Theme/images/partner/10.jpg')}}" style="width:100%"></div>
+      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="{{asset('assets/Led-Theme/images/partner/11.jpg')}}" style="width:100%"></div> 
+      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="{{asset('assets/Led-Theme/images/partner/12.jpg')}}" style="width:100%"></div>
+      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="{{asset('assets/Led-Theme/images/partner/13.jpg')}}" style="width:100%"></div>
+      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="{{asset('assets/Led-Theme/images/partner/14.jpg')}}" style="width:100%"></div> 
+      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="{{asset('assets/Led-Theme/images/partner/15.jpg')}}" style="width:100%"></div>
+      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="{{asset('assets/Led-Theme/images/partner/16.jpg')}}" style="width:100%"></div> 
       
   </div>
                   </div><!-- .milestones -->
