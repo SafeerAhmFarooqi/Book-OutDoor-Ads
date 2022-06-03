@@ -270,7 +270,8 @@ class DashboardController extends AdminController
    public function searchLed(Request $request)
    {
       return view('app-dashboard.led-search-results',[
-         
+         'location'=>$request->location,
+         'find'=>$request->find,
       ]);
            
             

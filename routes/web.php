@@ -28,7 +28,7 @@ Route::get('/cart-list-items', [DashboardController::class,'listCartItems'])->na
 Route::post('/cart-list-items-delete', [DashboardController::class,'deleteLedFromCartList'])->name('cart.list.led.delete');
 Route::get('/checkout', [DashboardController::class,'checkout'])->name('led.checkout');
 Route::post('/payment', [DashboardController::class,'payment'])->name('led.order.payment');
-Route::post('/search-led', [DashboardController::class,'searchLed'])->name('find.led');
+Route::get('/search-led', [DashboardController::class,'searchLed'])->name('find.led');
 
 Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['auth'])->name('dashboard');
 
