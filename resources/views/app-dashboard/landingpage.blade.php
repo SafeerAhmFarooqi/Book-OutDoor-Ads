@@ -36,18 +36,18 @@
               </div>
             </form> --}}
 
-            <form method="post" action="{{route('find.led')}}">
-              @csrf
+            <form method="get" action="{{route('find.led')}}">
+              {{-- @csrf --}}
               <div class="row align-items-center">
                 <div class="col-sm-5">
-                  <input type="text" class="form-control rounded" placeholder="What are you looking for?" name="str_con">
+                  <input type="text" class="form-control rounded" placeholder="What are you looking for?" name="find">
                 </div>
                 <div class="col-sm-5">
                   <div class="wrap-icon">
                     <span class="icon icon-room"></span>
-                    <input type="text" class="form-control rounded" placeholder="Location" id="googleLocation" name="googleLocation">
-                    <input type="hidden" class="hide" name="lati" id="lati" />
-                    <input type="hidden" class="hide" name="longi" id="longi" />
+                    <input type="text" class="form-control rounded" placeholder="Location" id="googleLocation" name="location">
+                    {{-- <input type="hidden" class="hide" name="lati" id="lati" />
+                    <input type="hidden" class="hide" name="longi" id="longi" /> --}}
                   </div>
                 </div>
                 <div class="col-lg-12 col-xl-2 ml-auto text-right">
