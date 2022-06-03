@@ -17,7 +17,27 @@
           </div>
 
           <div class="form-search-wrap" data-aos="fade-up" data-aos-delay="200">
-            <form method="post" action="https://led-werbeflaechen.de/newled/search.php">
+            {{-- <form method="post" action="https://led-werbeflaechen.de/newled/search.php">
+              <div class="row align-items-center">
+                <div class="col-sm-5">
+                  <input type="text" class="form-control rounded" placeholder="What are you looking for?" name="str_con">
+                </div>
+                <div class="col-sm-5">
+                  <div class="wrap-icon">
+                    <span class="icon icon-room"></span>
+                    <input type="text" class="form-control rounded" placeholder="Location" id="googleLocation" name="googleLocation">
+                    <input type="hidden" class="hide" name="lati" id="lati" />
+                    <input type="hidden" class="hide" name="longi" id="longi" />
+                  </div>
+                </div>
+                <div class="col-lg-12 col-xl-2 ml-auto text-right">
+                  <input type="submit" class="btn btn-primary btn-block rounded" value="Search">
+                </div>
+              </div>
+            </form> --}}
+
+            <form method="post" action="{{route('find.led')}}">
+              @csrf
               <div class="row align-items-center">
                 <div class="col-sm-5">
                   <input type="text" class="form-control rounded" placeholder="What are you looking for?" name="str_con">
