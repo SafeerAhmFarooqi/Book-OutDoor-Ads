@@ -11,8 +11,8 @@
 
             <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
               <li class="active"><a href="/">Home</a></li>
-              <li><a href="impressum.html">Impressum</a></li> 
-               <li><a href="contact.html">kontakt</a></li> 
+              <li><a href="{{route('show.imprint')}}">Impressum</a></li> 
+               <li><a href="{{route('show.contact')}}">kontakt</a></li> 
                @if (Auth::check()&&Auth::user()->hasRole('User'))
                <form action="{{route('logout')}}" method="post" style="display: inline;">
                 @csrf
