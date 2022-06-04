@@ -1,168 +1,198 @@
-@extends('layouts.get-theme')
+@extends('layouts.led-theme')
+
 @section('content')
-<div class="site-wrap">
-    
-    <div class="site-mobile-menu">
-        <div class="site-mobile-menu-header">
-          <div class="site-mobile-menu-close mt-3">
-            <span class="icon-close2 js-menu-toggle"></span>
+<div class="site-blocks-cover overlay" style="background-image: url({{asset('assets/Led-Theme/images/hero_2.jpg')}});" data-aos="fade" data-stellar-background-ratio="0.5">
+    <div class="container">
+      <div class="row align-items-center justify-content-center text-center">
+
+        <div class="col-md-12">
+          
+          
+          <div class="row justify-content-center mb-4">
+            <div class="col-md-8 text-center">
+              <h1 class="" data-aos="fade-up">Largest LED Classifieds In  World
+              </h1>
+              <p data-aos="fade-up" data-aos-delay="100">You can buy, sell anything you want.</p>
+            </div>
           </div>
+
+         
         </div>
-        <div class="site-mobile-menu-body"></div>
       </div>
-
-      <header class="site-navbar container py-0 bg-white" role="banner">
-
-        <!-- <div class="container"> -->
-          <div class="row align-items-center">
-            
-            <div class="col-6 col-xl-2">
-              <h1 class="mb-0 site-logo"><a href="index.html" class="text-black mb-0">Classy<span class="text-primary">Ads</span>  </a></h1>
-            </div>
-            <div class="col-12 col-md-10 d-none d-xl-block">
-              <nav class="site-navigation position-relative text-right" role="navigation">
-  
-                <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-                  <li><a href="/">Home</a></li>
-                  <li class="active"><a href="listings.html">Ads</a></li>
-                  <li class="has-children">
-                    <a href="about.html">About</a>
-                    <ul class="dropdown">
-                      <li><a href="#">The Company</a></li>
-                      <li><a href="#">The Leadership</a></li>
-                      <li><a href="#">Philosophy</a></li>
-                      <li><a href="#">Careers</a></li>
-                    </ul>
-                  </li>
-                  <li><a href="blog.html">Blog</a></li>
-                  <li><a href="contact.html">Contact</a></li>
-  
-                  <li class="ml-xl-3 login"><a href="login.html"><span class="border-left pl-xl-4"></span>Log In</a></li>
-                  <li><a href="register.html">Register</a></li>
-  
-                  <li><a href="#" class="cta"><span class="bg-primary text-white rounded">+ Post an Ad</span></a></li>
-                </ul>
-              </nav>
-            </div>
-  
-  
-            <div class="d-inline-block d-xl-none ml-auto py-3 col-6 text-right" style="position: relative; top: 3px;">
-              <a href="#" class="site-menu-toggle js-menu-toggle text-black"><span class="icon-menu h3"></span></a>
-            </div>
-  
-          </div>
-        <!-- </div> -->
-        
-      </header>
-
-      <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url('{{asset('assets/Led-Theme/images/hero_1.jpg')}}')"  data-stellar-background-ratio="0.5">
-        <div class="container">
-          <div class="row align-items-center justify-content-center text-center">
-  
-            <div class="col-md-10" data-aos="fade-up" data-aos-delay="400">
-              
-              
-              <div class="row justify-content-center mt-5">
-                <div class="col-md-8 text-center">
-                  
-                </div>
-              </div>
-  
-              
-            </div>
-          </div>
-        </div>
-      </div>  
-    <div class="site-section">
-        <livewire:led-search-results :find="$find" :location="$location" />
     </div>
+  </div>  
 
-    <footer class="site-footer">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-9">
-              <div class="row">
-                <div class="col-md-6">
-                  <h2 class="footer-heading mb-4">About</h2>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Provident rerum unde possimus molestias dolorem fuga, illo quis fugiat!</p>
-                </div>
-                
-                <div class="col-md-3">
-                  <h2 class="footer-heading mb-4">Navigations</h2>
-                  <ul class="list-unstyled">
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Services</a></li>
-                    <li><a href="#">Testimonials</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                  </ul>
-                </div>
-                <div class="col-md-3">
-                  <h2 class="footer-heading mb-4">Follow Us</h2>
-                  <a href="#" class="pl-0 pr-3"><span class="icon-facebook"></span></a>
-                  <a href="#" class="pl-3 pr-3"><span class="icon-twitter"></span></a>
-                  <a href="#" class="pl-3 pr-3"><span class="icon-instagram"></span></a>
-                  <a href="#" class="pl-3 pr-3"><span class="icon-linkedin"></span></a>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-3">
-              <form action="#" method="post">
-                <div class="input-group mb-3">
-                  <input type="text" class="form-control border-secondary text-white bg-transparent" placeholder="Search products..." aria-label="Enter Email" aria-describedby="button-addon2">
-                  <div class="input-group-append">
-                    <button class="btn btn-primary text-white" type="button" id="button-addon2">Search</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </div>
-          <div class="row pt-5 mt-5 text-center">
-            <div class="col-md-12">
-              <div class="border-top pt-5">
-              <p>
-              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-              Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
-              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-              </p>
-              </div>
-            </div>
-            
-          </div>
-        </div>
-      </footer>
-  </div>
+  <div class="site-section">
+    <livewire:led-search-results :find="$find" :location="$location" />
+</div>
+
+    
 @endsection
 
 @section('Styles')
-
-<link rel="stylesheet" href="{{asset('assets/Bootstrap-4-1/bootstrap.min.css')}}">
-
-<link rel="stylesheet" href="{{asset('assets/Led-Theme/fonts/icomoon/style.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/Led-Theme/fonts/flaticon/font/flaticon.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/Bootstrap-4-1/bootstrap.min.css')}}">
+    
 
     
-    <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/magnific-popup.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/jquery-ui.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/owl.carousel.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/owl.theme.default.min.css')}}">
+<style>
+    /*
+    # Welcome
+    --------------------------------*/
+    
+    .symbol.symbol-50px>img{width:50px;height:50px}
+    .symbol-label{display:flex;align-items:center;justify-content:center;font-weight:500;color:#3f4254;background-color:#f5f8fa;background-repeat:no-repeat;background-position:center center;background-size:cover;border-radius:.475rem}
 
-    <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/bootstrap-datepicker.css')}}">
+    .home-page-welcome {
+        position: relative;
+        padding: 96px 0;
+        background: url("assets/Led-Theme/images/slide1.jpg") no-repeat center;
+        background-size: cover;
+        z-index: 99;
+    }
+    
+    .home-page-welcome::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        background: rgba(21,21,21,.9);
+    }
+    
+    .welcome-content .entry-title {
+        position: relative;
+        padding-bottom: 24px;
+        font-size: 36px;
+        font-weight: 600;
+        color: #fff;
+    }
+    
+    .welcome-content .entry-title::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 64px;
+        height: 4px;
+        border-radius: 2px;
+        background: #2c35da;
+    }
+    
+    .welcome-content .entry-content {
+        font-size: 14px;
+        line-height: 2;
+        color: #b7b7b7;
+    }
+    
+    .home-page-welcome img {
+        display: block;
+        width: 100%;
+    }
+    
+    @media screen and (max-width: 992px){
+        .home-page-welcome img {
+            margin-bottom: 60px;
+        }
+    }
+    
+    /*
+    
+    /*
+    # Home Milestone
+    --------------------------------*/
+    .home-page-limestone {
+        padding: 96px 0;
+    }
+    
+    .home-page-limestone .section-heading .entry-title {
+        padding-bottom: 36px;
+        line-height: 1.6;
+    }
+    
+    .home-page-limestone .section-heading p {
+        font-size: 14px;
+        color: #595858;
+    }
+    .site-footer::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        width: 100%;
+        height: 101%;
+        background: rgba(22,22,22,.92);
+    }
+    .footeruiclass li a
+    {
+      color: #fff;
+      font-size: 15px;
+    }
+    .footeruiclass
+    {
+        padding-top: 15px;
+    }
+    </style>
+@endsection
 
-    <link rel="stylesheet" href="{{asset('assets/Led-Theme/fonts/flaticon/font/flaticon.css')}}">
 
-    <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/aos.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/rangeslider.css')}}">
-
-    <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/style.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/ion.rangeSlider.min.css')}}"/>
-<!------ Include the above in your HEAD tag ---------->
-@livewireStyles
+@section('modals')
+<div class="modal" id="showLedCalanderModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Heading</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body" id="showLedCalander">
+          <!--<input type="text" name="daterange" id="demoDate" class="demo">-->
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 @endsection
 
 @section('pageScripts')
-<script src="{{asset('assets/Bootstrap-4-1/jquery-3.3.1.slim.min.js')}}"></script>
+<script src="{{asset('assets/Led-Theme/js/jquery-3.3.1.min.js')}}"></script>
+  
+
+
+<script src="{{asset('assets/Led-Theme/js/owl.carousel.min.js')}}"></script>
+
+
+<script src="{{asset('assets/Led-Theme/js/jquery.magnific-popup.min.js')}}"></script>
+ <script src="{{asset('assets/Led-Theme/js/aos.js')}}"></script>
+
+<script src="{{asset('assets/Led-Theme/js/main.js')}}"></script>
+
 <script src="{{asset('assets/Bootstrap-4-1/popper.min.js')}}"></script>
 <script src="{{asset('assets/Bootstrap-4-1/bootstrap.min.js')}}"></script>
-<script src="{{asset('assets/Led-Theme/js/ion.rangeSlider.min.js')}}"></script>
-<script src="{{asset('assets/Led-Theme/js/aos.js')}}"></script>
-@livewireScripts
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyAIeDyz_v1KkoU3ZTRqK5e-9Ax1lNjSIEI"></script>
+<script type="text/javascript">
+    var searchInput = 'googleLocation';
+    
+        $(document).ready(function () {
+            var autocomplete;
+            autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+                types: ['geocode']
+               
+            });
+        
+            google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                var near_place = autocomplete.getPlace();
+            });
+        });
+</script>
 @endsection

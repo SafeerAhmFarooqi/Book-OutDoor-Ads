@@ -5,6 +5,7 @@
     @section('head')
         @include('led-theme.head')
     @show
+    @livewireStyles
 </head>
 <body>
     
@@ -42,5 +43,6 @@
      @section('scripts')
          @include('led-theme.scripts')
      @show
+     @livewireScripts
 </body>
 </html>
