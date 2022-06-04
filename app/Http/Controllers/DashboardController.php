@@ -276,6 +276,20 @@ class DashboardController extends AdminController
            
             
    }
+
+   public function showImprint()
+   {
+      return view('app-dashboard.imprint');
+           
+            
+   }
+
+   public function showContact()
+   {
+      return view('app-dashboard.contact');
+           
+            
+   }
 }
 
 
