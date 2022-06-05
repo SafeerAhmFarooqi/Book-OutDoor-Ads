@@ -207,6 +207,29 @@ class DashboardController extends AdminController
         
          // return redirect()->route('user.login',true);
       }
+      if(!Auth::check())
+      {
+         $cartItems=[];
+         if (session()->has('cart.items')&&session()->get('cart.items')) {
+            foreach (session()->get('cart.items') as $value) {
+               array_push($cartItems,$value);
+            }
+               $request->session()->forget('cart.items');
+               Auth::guard('web')->logout();
+               $request->session()->invalidate();
+               $request->session()->regenerateToken();
+            foreach ($cartItems as $value) {
+               $request->session()->push('cart.items', $value);       
+            }
+            return redirect()->route('user.login',true);
+         } else {
+            return redirect()->route('home');
+         }
+         
+        
+        
+         // return redirect()->route('user.login',true);
+      }
       else
       {
          return redirect()->route('home');
