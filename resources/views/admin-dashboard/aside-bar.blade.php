@@ -83,6 +83,15 @@
                             </a>
                         </div>
 
+                        <div class="menu-item">
+                            <a class="menu-link" href="{{route('admin.led.trending')}}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Trending Leds List</span>
+                            </a>
+                        </div>
+
                         
             
             

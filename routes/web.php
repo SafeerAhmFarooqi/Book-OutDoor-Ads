@@ -61,6 +61,9 @@ Route::group(['middleware' => ['role:Admin','auth']], function () {
     Route::get('/admin-popular-leds', [AdminLedController::class,'popularLeds'])->name('admin.led.popular');
     Route::post('/admin-led-add-popular', [AdminLedController::class,'addLedPopular'])->name('admin.led.add.popular');
     Route::post('/admin-led-remove-popular', [AdminLedController::class,'removeLedPopular'])->name('admin.led.remove.popular');
+    Route::get('/admin-trending-leds', [AdminLedController::class,'trendingLeds'])->name('admin.led.trending');
+    Route::post('/admin-led-add-trending', [AdminLedController::class,'addLedTrending'])->name('admin.led.add.trending');
+    Route::post('/admin-led-remove-trending', [AdminLedController::class,'removeLedTrending'])->name('admin.led.remove.trending');
 });
 
 require __DIR__.'/auth.php';

@@ -54,6 +54,34 @@ class AdminLedController extends BaseAdminController
     $led->save();
     return back()->with('success', 'Led Removed from Popular List Successfully');
  }    
+
+ public function trendingLeds()
+ {
+    // return view('test');
+    $leds = Led::all();
+    $trendingLeds = Led::where('trending',true)->get();
+    return view('admin-dashboard.led-trending-page',[
+       'leds'=>$leds,
+       'trendingLeds'=>$trendingLeds,
+       'srNo'=>0,
+      ]);
+ }    
+
+ public function addLedTrending(Request $request)
+ {
+    $led=Led::find($request->led_id);
+    $led->trending=true;
+    $led->save();
+    return back()->with('success', 'Led Added to Trending List Successfully');
+ }    
+
+ public function removeLedTrending(Request $request)
+ {
+    $led=Led::find($request->led_id);
+    $led->trending=false;
+    $led->save();
+    return back()->with('success', 'Led Removed from Trending List Successfully');
+ }    
 }
 
 
