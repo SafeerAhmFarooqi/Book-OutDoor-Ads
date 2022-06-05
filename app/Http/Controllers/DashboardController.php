@@ -19,6 +19,7 @@ class DashboardController extends AdminController
    public function home(Request $request)
    {
       $leds=Led::with('images')->latest()->take(4)->get();
+      $popularLeds=Led::with(['images','city'])->where('popular',true)->get();
       $cities=City::with('led')->get();
       $cartItems=[];
       if (session()->has('cart.items')) {
@@ -28,6 +29,7 @@ class DashboardController extends AdminController
       }
        return view('app-dashboard.landingpage',[
           'leds'=>$leds,
+          'popularLeds'=>$popularLeds,
           'cities'=>$cities,
           'cartItems'=>$cartItems,
          ]);

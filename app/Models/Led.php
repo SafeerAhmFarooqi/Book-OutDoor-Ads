@@ -32,6 +32,11 @@ class Led extends Model
         return $this->hasMany(SubOrders::class, 'led_id');
     }
 
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'city_id');
+    }
+
     public function setStartAndEndDate($value)
     {
         strtok($value,'*');
