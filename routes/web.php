@@ -58,6 +58,9 @@ Route::group(['middleware' => ['role:Admin','auth']], function () {
     Route::get('/admin-city-list', [AdminCityController::class,'cityList'])->name('admin.city.list');
     Route::post('/admin-city-add', [AdminCityController::class,'cityStore'])->name('admin.city.add');
     Route::post('/admin-city-list-delete', [AdminCityController::class,'cityDelete'])->name('admin.city.list.delete');
+    Route::get('/admin-popular-leds', [AdminLedController::class,'popularLeds'])->name('admin.led.popular');
+    Route::post('/admin-led-add-popular', [AdminLedController::class,'addLedPopular'])->name('admin.led.add.popular');
+    Route::post('/admin-led-remove-popular', [AdminLedController::class,'removeLedPopular'])->name('admin.led.remove.popular');
 });
 
 require __DIR__.'/auth.php';

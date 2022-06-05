@@ -106,6 +106,7 @@
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                             <th class="min-w-150px">Sr No.</th>
                             <th class="min-w-150px">Title</th>
+                            <th class="text-start min-w-100px">Id</th>
                             <th class="text-start min-w-100px">Description</th>
                             <th class="text-start min-w-100px">Location</th>
                             <th class="text-start min-w-100px">Price</th>
@@ -129,7 +130,7 @@
                                 <div class="d-flex align-items-center">
                                     <!--begin::Thumbnail-->
                                     <a href="{{route('client.led.edit',$led->id)}}" class="symbol symbol-50px">
-                                        <span class="symbol-label" style="background-image:url();"></span>
+                                        <span class="symbol-label" style="background-image:url('{{asset('storage/'.($led->images->first())->path)}}');"></span>
                                     </a>
                                     <!--end::Thumbnail-->
                                     <div class="ms-5">
