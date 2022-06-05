@@ -31,6 +31,7 @@ Route::post('/payment', [DashboardController::class,'payment'])->name('led.order
 Route::get('/search-led', [DashboardController::class,'searchLed'])->name('find.led');
 Route::get('/imprint', [DashboardController::class,'showImprint'])->name('show.imprint');
 Route::get('/contact', [DashboardController::class,'showContact'])->name('show.contact');
+Route::get('/list-leds-in-cities/{id?}', [DashboardController::class,'listCitiesLeds'])->name('list.cities.led');
 
 Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['auth'])->name('dashboard');
 

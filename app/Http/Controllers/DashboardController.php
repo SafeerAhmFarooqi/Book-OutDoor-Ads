@@ -279,16 +279,24 @@ class DashboardController extends AdminController
 
    public function showImprint()
    {
-      return view('app-dashboard.imprint');
-           
-            
+      return view('app-dashboard.imprint');        
    }
 
    public function showContact()
    {
-      return view('app-dashboard.contact');
-           
-            
+      return view('app-dashboard.contact');       
+   }
+
+   public function listCitiesLeds($id=false)
+   {
+      if($id)
+      {
+         $city=City::find($id);
+         $city??$id=false;
+      }
+      return view('app-dashboard.list-cities-leds',[
+         'id'=>$id,
+      ]);       
    }
 }
 
