@@ -178,99 +178,26 @@
         </div>
       </div>
       <div class="row mt-5">
+        @foreach ($trendingLeds as $led)
         <div class="col-lg-6">
-
-
-
           <div class="d-block d-md-flex listing">
-            <a href="ledd708.html?id=3" class="img d-block" style="background-image: url('user/ledgallery/733441119-1.jpg')"></a>
+            <a href="{{route('app.led.detail',$led->id)}}" class="img d-block" style="background-image: url('{{asset('storage/'.($led->images->first())->path)}}')"></a>
             <div class="lh-content">
-              <span class="category">Real Estate</span>
-              <a href="#" class="bookmark"><span class="icon-heart"></span></a>
-              <h3><a href="ledd708.html?id=3">LED-BRANCHENFENSTER 12</a></h3>
-              <address>location1</address>
+              <span class="category">{{$led->title}}</span>
+              {{-- <a href="#" class="bookmark"><span class="icon-heart"></span></a> --}}
+              <h3><a href="{{route('app.led.detail',$led->id)}}">Price : {{$led->price}}/day</a></h3>
+              <span class="address">City : {{$led->city->city}}</span><br>
+              <address>Location : {{$led->location}}</address>
               <p class="mb-0"> 
-                <span class="review">0</span>
+                <span class="review"></span>
               </p>
             </div>
           </div>
-
-          <div class="d-block d-md-flex listing">
-            <a href="leddcfd.html?id=4" class="img d-block" style="background-image: url('user/ledgallery/351464822-6.jpg')"></a>
-            <div class="lh-content">
-              <span class="category">Real Estate</span>
-              <a href="#" class="bookmark"><span class="icon-heart"></span></a>
-              <h3><a href="leddcfd.html?id=4">LED-BRANCHENFENSTER</a></h3>
-              <address>location2</address>
-              <p class="mb-0"> 
-                <span class="review">99</span>
-              </p>
-            </div>
-          </div>
-
-          <div class="d-block d-md-flex listing">
-            <a href="ledd61c.html?id=5" class="img d-block" style="background-image: url('user/ledgallery/866439319-6.jpg')"></a>
-            <div class="lh-content">
-              <span class="category">Real Estate</span>
-              <a href="#" class="bookmark"><span class="icon-heart"></span></a>
-              <h3><a href="ledd61c.html?id=5">LED-BRANCHENFENSTER</a></h3>
-              <address>location3</address>
-              <p class="mb-0"> 
-                <span class="review">543</span>
-              </p>
-            </div>
-          </div>
-
-          
-
-           
-
-        </div>
-        <div class="col-lg-6">
-
- 
-
-
-          <div class="d-block d-md-flex listing">
-            <a href="listings-single.html" class="img d-block" style="background-image: url('user/ledgallery/733441119-1.jpg')"></a>
-            <div class="lh-content">
-              <span class="category">Real Estate</span>
-              <a href="#" class="bookmark"><span class="icon-heart"></span></a>
-              <h3><a href="listings-single.html">LED-BRANCHENFENSTER 12</a></h3>
-              <address>location1</address>
-              <p class="mb-0"> 
-                <span class="review">0</span>
-              </p>
-            </div>
-          </div>
-
-          <div class="d-block d-md-flex listing">
-            <a href="listings-single.html" class="img d-block" style="background-image: url('user/ledgallery/351464822-6.jpg')"></a>
-            <div class="lh-content">
-              <span class="category">Real Estate</span>
-              <a href="#" class="bookmark"><span class="icon-heart"></span></a>
-              <h3><a href="listings-single.html">LED-BRANCHENFENSTER</a></h3>
-              <address>location2</address>
-              <p class="mb-0"> 
-                <span class="review">99</span>
-              </p>
-            </div>
-          </div>
-
-          <div class="d-block d-md-flex listing">
-            <a href="listings-single.html" class="img d-block" style="background-image: url('user/ledgallery/866439319-6.jpg')"></a>
-            <div class="lh-content">
-              <span class="category">Real Estate</span>
-              <a href="#" class="bookmark"><span class="icon-heart"></span></a>
-              <h3><a href="listings-single.html">LED-BRANCHENFENSTER</a></h3>
-              <address>location3</address>
-              <p class="mb-0"> 
-                <span class="review">543</span>
-              </p>
-            </div>
-          </div>
-
-        </div>
+        </div>    
+        @endforeach
+        
+        
+        
       </div>
     </div>
   </div>
