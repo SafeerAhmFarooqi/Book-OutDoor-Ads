@@ -74,6 +74,15 @@
                             </a>
                         </div>
 
+                        <div class="menu-item">
+                            <a class="menu-link" href="{{route('admin.led.popular')}}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Popular Leds List</span>
+                            </a>
+                        </div>
+
                         
             
             

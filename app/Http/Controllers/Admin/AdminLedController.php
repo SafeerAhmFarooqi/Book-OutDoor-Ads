@@ -26,6 +26,34 @@ class AdminLedController extends BaseAdminController
     Storage::deleteDirectory('public/led-images/'.$userId.'/'.$request->led_id);
     return back()->with('success', 'Led Deleted Successfully');
  }    
+
+ public function popularLeds()
+ {
+    // return view('test');
+    $leds = Led::all();
+    $popularLeds = Led::where('popular',true)->get();
+    return view('admin-dashboard.led-popular-page',[
+       'leds'=>$leds,
+       'popularLeds'=>$popularLeds,
+       'srNo'=>0,
+      ]);
+ }    
+
+ public function addLedPopular(Request $request)
+ {
+    $led=Led::find($request->led_id);
+    $led->popular=true;
+    $led->save();
+    return back()->with('success', 'Led Added to Popular List Successfully');
+ }    
+
+ public function removeLedPopular(Request $request)
+ {
+    $led=Led::find($request->led_id);
+    $led->popular=false;
+    $led->save();
+    return back()->with('success', 'Led Removed from Popular List Successfully');
+ }    
 }
 
 
