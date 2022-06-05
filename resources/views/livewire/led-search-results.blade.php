@@ -29,6 +29,14 @@
                     <input type="text" placeholder="Location" class="form-control" wire:model='location'>
                   </div>
                 </div>
+
+                <div class="form-group">
+                  <!-- select-wrap, .wrap-icon -->
+                  <div class="wrap-icon">
+                    <span class="icon icon-room"></span>
+                    <input type="text" name="book_dates" class="form-control"/>
+                  </div>
+                </div>
               </form>
             </div>   
           </div>
@@ -41,7 +49,7 @@
                       <div class="lh-content">
                         <span class="category">{{($cities->where('id',$led->city_id)->first())->city}}</span>
                         {{-- <a href="#" class="bookmark"><span class="icon-heart"></span></a> --}}
-                        <h3><a href="{{route('app.led.detail',$led->id)}}">{{$led->title}}</a></h3>
+                        <h3><a href="{{route('app.led.detail',$led->id)}}">{{$led->title}}</a></h3>   
                         <address>{{$led->location}}</address>
                         {{-- <p class="mb-0">
                           <span class="icon-star text-warning"></span>
@@ -63,3 +71,28 @@
         </div>
       </div>
 </div>
+
+@section('scripts')
+@parent
+<script>
+  $(function() {
+    $('input[name="book_dates"]').daterangepicker({
+      opens: 'left',
+    }, function(start, end, label) {
+      var date1 = new Date(start);
+var date2 = new Date(end);
+      @this.set('selectedStartDate', date1.getFullYear()+'/'+(date1.getMonth()+1)+'/'+date1.getDate());
+      @this.set('selectedEndDate', date2.getFullYear()+'/'+(date2.getMonth()+1)+'/'+date2.getDate());
+      @this.set('selectedDateRange', (date1.getMonth()+1)+'/'+date1.getDate()+'/'+date1.getFullYear()+' - '+(date2.getMonth()+1)+'/'+date2.getDate()+'/'+date2.getFullYear());
+      // alert(start.format('YYYY-MM-DD'));
+    });
+
+    $('input[name="book_dates"]').on('cancel.daterangepicker', function(ev, picker) {
+  //do something, like clearing an input
+  @this.set('selectedDateRange', '');
+  $('input[name="book_dates"]').val('Select Date Range');
+});
+  });
+  </script>
+    
+@endsection

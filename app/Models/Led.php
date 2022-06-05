@@ -27,6 +27,11 @@ class Led extends Model
         return $this->hasMany(LedImages::class, 'led_id');
     }
 
+    public function subOrders()
+    {
+        return $this->hasMany(SubOrders::class, 'led_id');
+    }
+
     public function setStartAndEndDate($value)
     {
         strtok($value,'*');
