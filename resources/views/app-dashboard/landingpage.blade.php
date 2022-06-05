@@ -147,93 +147,24 @@
 
       <div class="row">
 
-
-          
+        @foreach ($popularLeds as $led)
         <div class="col-md-6 mb-4 mb-lg-4 col-lg-4">
           
           <div class="listing-item">
             <div class="listing-image">
-              <img src="user/ledgallery/733441119-1.jpg" alt="Image" class="img-fluid">
+              <img src="{{asset('storage/'.($led->images->first())->path)}}" alt="Image" class="img-fluid">
             </div>
             <div class="listing-item-content">
-              <a href="ledd708.html?id=3" class="bookmark" data-toggle="tooltip" data-placement="left" title="Bookmark"><span class="icon-heart"></span></a>
-              <a class="px-3 mb-3 category" href="#">Car &amp; Vehicles</a>
-              <h2 class="mb-1"><a href="ledd708.html?id=3" style="font-size:12px">LED-BRANCHENFENSTER 12</a></h2>
-              <span class="address">location1</span>
+              {{-- <a href="ledd708.html?id=3" class="bookmark" data-toggle="tooltip" data-placement="left" title="Bookmark"><span class="icon-heart"></span></a> --}}
+              <a class="px-3 mb-3 category" href="{{route('app.led.detail',$led->id)}}">{{$led->title}}</a>
+              <h2 class="mb-1"><a href="{{route('app.led.detail',$led->id)}}" style="font-size:12px">Price : {{$led->price}}</a></h2>
+              <span class="address">City : {{$led->city->city}}</span><br>
+              <span class="address">Location : {{$led->location}}</span>
             </div>
           </div>
 
         </div>
-          
-        <div class="col-md-6 mb-4 mb-lg-4 col-lg-4">
-          
-          <div class="listing-item">
-            <div class="listing-image">
-              <img src="user/ledgallery/351464822-6.jpg" alt="Image" class="img-fluid">
-            </div>
-            <div class="listing-item-content">
-              <a href="leddcfd.html?id=4" class="bookmark" data-toggle="tooltip" data-placement="left" title="Bookmark"><span class="icon-heart"></span></a>
-              <a class="px-3 mb-3 category" href="#">Car &amp; Vehicles</a>
-              <h2 class="mb-1"><a href="leddcfd.html?id=4" style="font-size:12px">LED-BRANCHENFENSTER</a></h2>
-              <span class="address">location2</span>
-            </div>
-          </div>
-
-        </div>
-          
-        <div class="col-md-6 mb-4 mb-lg-4 col-lg-4">
-          
-          <div class="listing-item">
-            <div class="listing-image">
-              <img src="user/ledgallery/866439319-6.jpg" alt="Image" class="img-fluid">
-            </div>
-            <div class="listing-item-content">
-              <a href="ledd61c.html?id=5" class="bookmark" data-toggle="tooltip" data-placement="left" title="Bookmark"><span class="icon-heart"></span></a>
-              <a class="px-3 mb-3 category" href="#">Car &amp; Vehicles</a>
-              <h2 class="mb-1"><a href="ledd61c.html?id=5" style="font-size:12px">LED-BRANCHENFENSTER</a></h2>
-              <span class="address">location3</span>
-            </div>
-          </div>
-
-        </div>
-        
-   
-
-
- 
-        <div class="col-md-6 mb-4 mb-lg-4 col-lg-6">
-          
-          <div class="listing-item">
-            <div class="listing-image">
-              <img src="user/ledgallery/733441119-1.jpg" alt="Image" class="img-fluid">
-            </div>
-            <div class="listing-item-content">
-              <a href="#" class="bookmark" data-toggle="tooltip" data-placement="left" title="Bookmark"><span class="icon-heart"></span></a>
-              <a class="px-3 mb-3 category" href="#">Electronics</a>
-              <h2 class="mb-1"><a href="ledd708.html?id=3" style="font-size:16px">LED-BRANCHENFENSTER 12</a></h2>
-              <span class="address">location1</span>
-            </div>
-          </div>
-
-        </div>
- 
-        <div class="col-md-6 mb-4 mb-lg-4 col-lg-6">
-          
-          <div class="listing-item">
-            <div class="listing-image">
-              <img src="user/ledgallery/351464822-6.jpg" alt="Image" class="img-fluid">
-            </div>
-            <div class="listing-item-content">
-              <a href="#" class="bookmark" data-toggle="tooltip" data-placement="left" title="Bookmark"><span class="icon-heart"></span></a>
-              <a class="px-3 mb-3 category" href="#">Electronics</a>
-              <h2 class="mb-1"><a href="leddcfd.html?id=4" style="font-size:16px">LED-BRANCHENFENSTER</a></h2>
-              <span class="address">location2</span>
-            </div>
-          </div>
-
-        </div>
-        
-
+        @endforeach
       </div>
     </div>
   </div>
