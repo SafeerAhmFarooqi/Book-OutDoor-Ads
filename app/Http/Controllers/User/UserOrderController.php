@@ -20,7 +20,7 @@ class UserOrderController extends BaseUserController
 
    public function subOrdersList(Request $request)
    {
-        $order=Orders::wiht('subOrders')->where('id',$request->order_id)->first();
+        $order=Orders::with('subOrders')->where('id',$request->order_id)->first();
        return view('user-dashboard.sub-order-page',[
            'order'=>$order,
            'srNo'=>0,

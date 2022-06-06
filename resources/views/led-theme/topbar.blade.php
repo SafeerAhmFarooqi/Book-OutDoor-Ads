@@ -22,8 +22,8 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{{route('dashboard')}}">Dashboard</a>
-                <a class="dropdown-item" href="#">My Profile</a>
-                <a class="dropdown-item" href="#">My Orders</a>
+                <a class="dropdown-item" href="{{route('user.profile.show')}}">My Profile</a>
+                <a class="dropdown-item" href="{{route('user.orders.list')}}">My Orders</a>
                 <div class="dropdown-divider"></div>
                 <form action="{{route('logout')}}" method="post" style="display: inline;">
                   @csrf
