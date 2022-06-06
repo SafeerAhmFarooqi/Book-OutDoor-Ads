@@ -74,10 +74,14 @@ class DashboardController extends AdminController
             array_push($cartItems,Led::find(strtok($value,'*')));
          }
       }
+      $disableDates=SubOrders::where('led_id',$id)
+      ->where('startDate','>=',Carbon::now()->format('Y-m-d'))
+      ->get();
       return view('app-dashboard.detail-page',[
           'led'=>$led,
           'increment'=>0,
           'cartItems'=>$cartItems,
+          'disableDates'=>$disableDates,
          ]);
    }
 
