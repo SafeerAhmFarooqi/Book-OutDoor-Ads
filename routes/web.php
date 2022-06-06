@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Client\ClientProfileController;
 use App\Http\Controllers\Client\ClientLedController;
+use App\Http\Controllers\User\UserProfileController;
+use App\Http\Controllers\User\UserOrderController;
 use App\Http\Controllers\Admin\AdminUsersController;
 use App\Http\Controllers\Admin\AdminClientController;
 use App\Http\Controllers\Admin\AdminLedController;
@@ -34,6 +36,15 @@ Route::get('/contact', [DashboardController::class,'showContact'])->name('show.c
 Route::get('/list-leds-in-cities/{id?}', [DashboardController::class,'listCitiesLeds'])->name('list.cities.led');
 
 Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['auth'])->name('dashboard');
+
+Route::group(['middleware' => ['role:User','auth']], function () {
+    Route::get('/user-profile', [UserProfileController::class,'show'])->name('user.profile.show');
+    Route::get('/user-profile-edit', [UserProfileController::class,'edit'])->name('user.profile.edit');
+    Route::post('/user-profile-edit', [UserProfileController::class,'update'])->name('user.profile.update');
+    Route::get('/user-orders-list', [UserOrderController::class,'show'])->name('user.orders.list');
+    Route::post('/user-suborders-list', [UserOrderController::class,'subOrdersList'])->name('user.sub-orders.view');
+    
+});
 
 Route::group(['middleware' => ['role:Client','auth']], function () {
     Route::get('/client-profile', [ClientProfileController::class,'show'])->name('client.profile.show');
