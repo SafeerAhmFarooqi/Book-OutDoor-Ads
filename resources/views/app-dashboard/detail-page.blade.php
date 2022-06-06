@@ -66,7 +66,7 @@
    
 
 
-  <h1 style="box-sizing: border-box; margin: 0px 0px 20px; font-weight: 500; line-height: 1.2; font-size: 2.5rem; color: rgb(44, 53, 218); font-family: cbold; text-transform: uppercase; background-color: rgb(255, 255, 255);"><span style="color: rgb(38, 38, 38); font-family: cblack; font-size: 24px;">{{$led->title}}</span></h1>
+  <h1 style="box-sizing: border-box; margin: 0px 0px 20px; font-weight: 500; line-height: 1.2; font-size: 2.5rem; color: rgb(44, 53, 218); font-family: cbold; text-transform: uppercase; background-color: rgb(255, 255, 255);"><span style="color: rgb(38, 38, 38); font-family: cblack; font-size: 24px;">{{$led->title}} : {{$disableDates->count()}}</span></h1>
   <div class="card" style="width: 18rem;">
     <div class="card-body">
       <h5 class="card-title">Description</h5>
@@ -516,9 +516,51 @@ width: 640px;
   });
   </script> --}}
   <script>
+jQuery(function($) {
+    $("#daterange").daterangepicker({
+        isInvalidDate: function(date) {
+            var dateRanges = [
+                { 'start': moment('2017-10-10'), 'end': moment('2017-10-15') },
+                { 'start': moment('2017-10-25'), 'end': moment('2017-10-30') },
+                { 'start': moment('2017-11-10'), 'end': moment('2017-11-15') },
+                { 'start': moment('2017-11-25'), 'end': moment('2017-11-30') },
+                { 'start': moment('2017-12-10'), 'end': moment('2017-12-15') },
+                { 'start': moment('2017-12-25'), 'end': moment('2017-12-30') },
+                { 'start': moment('2018-01-10'), 'end': moment('2018-01-15') },
+                { 'start': moment('2018-01-25'), 'end': moment('2018-01-30') },
+                { 'start': moment('2018-02-10'), 'end': moment('2018-02-15') },
+                { 'start': moment('2018-02-25'), 'end': moment('2018-02-30') }
+            ];
+            return dateRanges.reduce(function(bool, range) {
+                return bool || (date >= range.start && date <= range.end);
+            }, false);
+        }
+    });
+});
+
+
     $(function() {
+      var a = moment("2022-06-10");
+    var b = moment("2022-06-12");
+    var x = moment("2022-07-20");
+    var y = moment("2022-07-25");
+    var dates=@json($disableDates);
+    var dateRanges=@json($disableDates);
       $('input[name="book_dates"]').daterangepicker({
-        opens: 'left'
+        opens: 'left',
+        isInvalidDate: function(date) {
+          // var dateRanges = [
+          //       { 'start': moment('2022-06-10'), 'end': moment('2022-06-12') },
+          //       { 'start': moment('2022-07-20'), 'end': moment('2022-07-25') },
+          //   ];
+            return dateRanges.reduce(function(bool, range) {
+                startDateObject=new Date(range.startDate);
+                startDate=startDateObject.getFullYear()+'-'+(startDateObject.getMonth() + 1)+'-'+startDateObject.getDate();
+                endDateObject=new Date(range.endDate);
+                endDate=endDateObject.getFullYear()+'-'+(endDateObject.getMonth() + 1)+'-'+endDateObject.getDate();
+                return bool || (date >= moment(startDate) && date <= moment(endDate));
+            }, false);
+        }
       }, function(start, end, label) {
         var date1 = new Date(start);
 var date2 = new Date(end);
