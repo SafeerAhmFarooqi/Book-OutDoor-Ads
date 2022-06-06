@@ -90,7 +90,7 @@ class DashboardController extends AdminController
 
       if(Auth::user()->hasRole('User'))
       {
-         return redirect('/');
+         return view('user-dashboard.home-page');
       }
 
       if(Auth::user()->hasRole('Admin'))

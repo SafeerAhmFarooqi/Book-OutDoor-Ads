@@ -21,7 +21,7 @@
                 {{Auth::user()->firstname.' '.Auth::user()->lastname}}
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Dashboard</a>
+                <a class="dropdown-item" href="{{route('dashboard')}}">Dashboard</a>
                 <a class="dropdown-item" href="#">My Profile</a>
                 <a class="dropdown-item" href="#">My Orders</a>
                 <div class="dropdown-divider"></div>
