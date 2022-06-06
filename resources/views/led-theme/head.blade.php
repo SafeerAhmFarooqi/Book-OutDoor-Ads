@@ -16,5 +16,10 @@
     
   
 
-
-@yield('Styles')
+@section('Styles')
+<link rel="stylesheet" href="{{asset('assets/Led-Theme/css/owl.carousel.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/Led-Theme/fonts/flaticon/font/flaticon.css')}}">
+<link rel="stylesheet" href="{{asset('assets/Led-Theme/css/style.css')}}">
+<link rel="stylesheet" href="{{asset('assets/Bootstrap-4-1/bootstrap.min.css')}}">
+<link rel="stylesheet" href="{{asset('assets/Led-Theme/fonts/icomoon/style.css')}}">
+    @show
