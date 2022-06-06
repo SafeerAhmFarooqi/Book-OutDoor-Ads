@@ -216,10 +216,11 @@ Add to Cart                            </button>
 @endsection
 
 @section('Styles')
-    <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/style.css')}}">
+@parent
+    {{-- <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/style.css')}}"> --}}
 
   {{-- <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/bootstrap.min.css')}}"> --}}
-  <link rel="stylesheet" href="{{asset('assets/Bootstrap-4-1/bootstrap.min.css')}}">
+  {{-- <link rel="stylesheet" href="{{asset('assets/Bootstrap-4-1/bootstrap.min.css')}}"> --}}
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
   
   <style>
@@ -500,9 +501,7 @@ width: 640px;
 @endsection
 
 @section('pageScripts')
-<script src="{{asset('assets/Bootstrap-4-1/jquery-3.3.1.slim.min.js')}}"></script>
-<script src="{{asset('assets/Bootstrap-4-1/popper.min.js')}}"></script>
-<script src="{{asset('assets/Bootstrap-4-1/bootstrap.min.js')}}"></script>
+
 {{-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> --}}
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>

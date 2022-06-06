@@ -30,6 +30,7 @@
 @endsection
 
 @section('Styles')
+@parent
     <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/owl.carousel.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/Led-Theme/fonts/flaticon/font/flaticon.css')}}">
     <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/style.css')}}">
@@ -163,17 +164,7 @@
 @endsection
 
 @section('pageScripts')
-<script src="{{asset('assets/Led-Theme/js/jquery-3.3.1.min.js')}}"></script>
-  
 
-
-<script src="{{asset('assets/Led-Theme/js/owl.carousel.min.js')}}"></script>
-
-
-<script src="{{asset('assets/Led-Theme/js/jquery.magnific-popup.min.js')}}"></script>
- <script src="{{asset('assets/Led-Theme/js/aos.js')}}"></script>
-
-<script src="{{asset('assets/Led-Theme/js/main.js')}}"></script>
 
 <script src="{{asset('assets/Bootstrap-4-1/popper.min.js')}}"></script>
 <script src="{{asset('assets/Bootstrap-4-1/bootstrap.min.js')}}"></script>
