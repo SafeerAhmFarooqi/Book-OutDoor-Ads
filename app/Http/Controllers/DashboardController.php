@@ -303,11 +303,13 @@ class DashboardController extends AdminController
       return view('app-dashboard.led-search-results',[
          'location'=>$request->location,
          'find'=>$request->find,
-      ]);
-           
-            
+      ]);       
    }
 
+   public function searchMapLed()
+   {
+      return view('app-dashboard.led-map-search-results');       
+   }
    public function showImprint()
    {
       return view('app-dashboard.imprint');        

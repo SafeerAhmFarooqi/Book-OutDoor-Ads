@@ -16,32 +16,26 @@
             </div>
           </div>
 
-          
+         
         </div>
       </div>
     </div>
   </div>  
 
-  
-  
-  <div class="site-section" data-aos="fade">
-    <div class="container">
-      <div class="row justify-content-center mb-5">
-        <div class="col-md-7 text-center border-primary">
-          <h2 class="font-weight-light text-primary">Content Main Heading Goes Here</h2>
-          <p class="color-black-opacity-5">Content Sub Heading Goes Here</p>
-        </div>
-      </div>
-      <div class="row">
-        <h1>Your content Goes Here</h1>
-      </div>
-    </div>
-  </div>   
+  <div class="site-section">
+    <livewire:map-led-search-results />
+</div>
+
+    
 @endsection
 
 @section('Styles')
-    @parent
-
+@parent
+    <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/Led-Theme/fonts/flaticon/font/flaticon.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/style.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/Bootstrap-4-1/bootstrap.min.css')}}">  
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
     
 <style>
     /*
@@ -172,6 +166,11 @@
 @section('pageScripts')
 
 
+<script src="{{asset('assets/Bootstrap-4-1/popper.min.js')}}"></script>
+<script src="{{asset('assets/Bootstrap-4-1/bootstrap.min.js')}}"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyAIeDyz_v1KkoU3ZTRqK5e-9Ax1lNjSIEI"></script>
 <script type="text/javascript">
     var searchInput = 'googleLocation';
@@ -188,4 +187,5 @@
             });
         });
 </script>
+
 @endsection

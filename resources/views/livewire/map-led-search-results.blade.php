@@ -6,9 +6,6 @@
             <div class="mb-5">
                <form action="#" method="post">
                 <div class="form-group">
-                  <a href="{{route('find.map.led')}}" class="btn btn-primary">Show Leds in Map</a>
-                </div>
-                <div class="form-group">
                   <input type="text" placeholder="What are you looking for?" class="form-control" wire:model='find'>
                 </div>
                 <div class="form-group">
