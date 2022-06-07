@@ -18,6 +18,58 @@ class MapLedSearchResults extends Component
     public $selectedDateRange='';
     public $selectedStartDate='';
     public $selectedEndDate='';
+    public $coordinates=[];
+    public $count = 0;
+ 
+    public function increment()
+    {
+        $this->count++;
+    }
+
+    function geoLocate($address)
+    {
+        try {
+            $lat = 0;
+            $lng = 0;
+    
+            $data_location = "https://maps.google.com/maps/api/geocode/json?key=AIzaSyAIeDyz_v1KkoU3ZTRqK5e-9Ax1lNjSIEI&address=".str_replace(" ", "+", $address)."&sensor=false";
+            $data = file_get_contents($data_location);
+            usleep(200000);
+            // turn this on to see if we are being blocked
+            // echo $data;
+            $data = json_decode($data);
+            if ($data->status=="OK") {
+                $lat = $data->results[0]->geometry->location->lat;
+                $lng = $data->results[0]->geometry->location->lng;
+    
+                if($lat && $lng) {
+                    return array(
+                        'status' => true,
+                        'lat' => $lat, 
+                        'long' => $lng, 
+                        'google_place_id' => $data->results[0]->place_id
+                    );
+                }
+            }
+            if($data->status == 'OVER_QUERY_LIMIT') {
+                return array(
+                    'status' => false, 
+                    'message' => 'Google Amp API OVER_QUERY_LIMIT, Please update your google map api key or try tomorrow'
+                );
+            }
+    
+        } catch (Exception $e) {
+    
+        }
+    
+        return array('lat' => null, 'long' => null, 'status' => false);
+    }
+
+    public function dehydrate()
+    {
+       // $this->dispatchBrowserEvent('getLocation');
+        $this->dispatchBrowserEvent('getLocation',['name'=>$this->coordinates] );
+    }
 
     public function render()
     {
@@ -59,10 +111,15 @@ class MapLedSearchResults extends Component
   
             }
         }
+        $this->coordinates=[];
+        foreach ($this->selectedDateRange?$finalLeds :$leds as $value) {
+            array_push($this->coordinates,$this->geoLocate($value->location)); 
+        }
         return view('livewire.map-led-search-results',[
             'cities'=>$cities,
             'leds'=>$this->selectedDateRange?$finalLeds :$leds ,
             'loop1'=>$loop1,
+            'coordinates'=>json_encode($this->coordinates),
             // 'selectedStartDate'=>$selectedStartDate,
             // 'selectedEndDate'=>$selectedEndDate,
         ]);
