@@ -4,7 +4,10 @@
         <div class="row">
             <div class="col-lg-3  ">
             <div class="mb-5">
+                
                <form action="#" method="post">
+                   
+                  
                 <div class="form-group">
                   <input type="text" placeholder="What are you looking for?" class="form-control" wire:model='find'>
                 </div>
@@ -42,27 +45,7 @@
           </div>
           <div class="col-lg-8">
             <div class="row">
-                @foreach ($leds as $led)
-                <div class="col-lg-6">  
-                    <div class="d-block d-md-flex listing vertical">
-                      <a href="{{route('app.led.detail',$led->id)}}" class="img d-block" style="background-image: url('{{asset('storage/'.($led->images->first())->path)}}')"></a>
-                      <div class="lh-content">
-                        <span class="category">{{($cities->where('id',$led->city_id)->first())->city}}</span>
-                        {{-- <a href="#" class="bookmark"><span class="icon-heart"></span></a> --}}
-                        <h3><a href="{{route('app.led.detail',$led->id)}}">{{$led->title}}</a></h3>   
-                        <address>{{$led->location}}</address>
-                        {{-- <p class="mb-0">
-                          <span class="icon-star text-warning"></span>
-                          <span class="icon-star text-warning"></span>
-                          <span class="icon-star text-warning"></span>
-                          <span class="icon-star text-warning"></span>
-                          <span class="icon-star text-secondary"></span>
-                          <span class="review">(3 Reviews)</span>
-                        </p> --}}
-                      </div>
-                    </div>
-                  </div>      
-                @endforeach
+                <div id="mymap"></div>
               
               
               
@@ -74,6 +57,7 @@
 
 @section('scripts')
 @parent
+
 <script>
   $(function() {
     $('input[name="book_dates"]').daterangepicker({
@@ -94,5 +78,87 @@ var date2 = new Date(end);
 });
   });
   </script>
+     <script type="text/javascript">
+
+
+         var locations = @json($coordinates);
     
+        // var increment=0;
+        // var increment_2=0;
+
+        var mymap = new GMaps({
+          el: '#mymap',
+          lat: 50.3569,
+      lng: 7.5890,
+      zoom:6
+        });
+    
+    
+        $.each( locations, function( index, value ){
+            // increment_2++;
+            mymap.addMarker({
+            //   lat: value.lat,
+            //   lng: value.lng,
+            lat: value.lat,
+          lng: value.long,
+              title: value.title,
+            //   click: function(e) {
+            //     alert('This is '+value.status+' : '+increment_2+', gujarat from India.');
+            //   }
+            });
+       });
+    
+    
+      </script>
+
+      <script>
+        
+
+      
+
+
+     window.addEventListener('getLocation', event => {
+        //  alert(JSON.stringify(event.detail.name));
+        //   alert("Hello! I am an alert box!");
+        
+          var locations = event.detail.name;
+    // alert('check 1');
+    // var increment=0;
+    // var increment_2=0;
+
+    // var mymap = new GMaps({
+    //   el: '#mymap',
+    //   lat: 21.170240,
+    //   lng: 72.831061,
+    //   zoom:6
+    // });
+
+        var mymap = new GMaps({
+      el: '#mymap',
+      lat: 50.3569,
+      lng: 7.5890,
+      zoom:6
+    });
+    
+    
+
+
+
+    $.each( locations, function( index, value ){
+        // alert((value.status));
+        // increment_2++;
+        mymap.addMarker({
+        //   lat: value.lat,
+        //   lng: value.lng,
+        
+          lat: value.lat,
+          lng: value.long,
+          title: value.title,
+        //   click: function(e) {
+        //     alert('This is '+value.status+' : '+increment_2+', gujarat from India.');
+        //   }
+        });
+   });
+})
+</script>  
 @endsection

@@ -41,7 +41,11 @@
     /*
     # Welcome
     --------------------------------*/
-    
+    #mymap {
+      		border:1px solid red;
+      		width: 800px;
+      		height: 500px;
+    	}
     .symbol.symbol-50px>img{width:50px;height:50px}
     .symbol-label{display:flex;align-items:center;justify-content:center;font-weight:500;color:#3f4254;background-color:#f5f8fa;background-repeat:no-repeat;background-position:center center;background-size:cover;border-radius:.475rem}
 
@@ -164,8 +168,9 @@
 @endsection
 
 @section('pageScripts')
-
-
+<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script src="http://maps.google.com/maps/api/js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
 <script src="{{asset('assets/Bootstrap-4-1/popper.min.js')}}"></script>
 <script src="{{asset('assets/Bootstrap-4-1/bootstrap.min.js')}}"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
