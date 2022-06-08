@@ -7,7 +7,7 @@
         <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
             <!--begin::Logo-->
             <a href="/" class="mb-12">
-                <img alt="Logo" src="assets/Metronic-Theme/media/logos/logo-1.svg" class="h-40px" />
+              <!--   <img alt="Logo" src="assets/Metronic-Theme/media/logos/logo-1.svg" class="h-40px" /> -->
             </a>
             <!--end::Logo-->
             <!--begin::Wrapper-->
@@ -197,15 +197,7 @@
         </div>
         <!--end::Content-->
         <!--begin::Footer-->
-        <div class="d-flex flex-center flex-column-auto p-10">
-            <!--begin::Links-->
-            <div class="d-flex align-items-center fw-bold fs-6">
-                <a href="https://keenthemes.com" class="text-muted text-hover-primary px-2">About</a>
-                <a href="mailto:support@keenthemes.com" class="text-muted text-hover-primary px-2">Contact</a>
-                <a href="https://1.envato.market/EA4JP" class="text-muted text-hover-primary px-2">Contact Us</a>
-            </div>
-            <!--end::Links-->
-        </div>
+   
         <!--end::Footer-->
     </div>
     <!--end::Authentication - Sign-up-->

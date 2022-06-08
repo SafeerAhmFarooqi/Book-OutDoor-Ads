@@ -7,7 +7,7 @@
         <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
             <!--begin::Logo-->
             <a href="/" class="mb-12">
-                <img alt="Logo" src="assets/Metronic-Theme/media/logos/logo-1.svg" class="h-40px" />
+               <!--  <img alt="Logo" src="assets/Metronic-Theme/media/logos/logo-1.svg" class="h-40px" /> -->
             </a>
             <!--end::Logo-->
             <!--begin::Wrapper-->
@@ -27,15 +27,10 @@
                     </div>
                     <!--end::Heading-->
                     <!--begin::Action-->
-                    <button type="button" class="btn btn-light-primary fw-bolder w-100 mb-10">
-                    <img alt="Logo" src="assets/Metronic-Theme/media/svg/brand-logos/google-icon.svg" class="h-20px me-3" />Sign in with Google</button>
+               
                     <!--end::Action-->
                     <!--begin::Separator-->
-                    <div class="d-flex align-items-center mb-10">
-                        <div class="border-bottom border-gray-300 mw-50 w-100"></div>
-                        <span class="fw-bold text-gray-400 fs-7 mx-2">OR</span>
-                        <div class="border-bottom border-gray-300 mw-50 w-100"></div>
-                    </div>
+                 
                     <!--end::Separator-->
                     <!--begin::Input group-->
                     <div class="row fv-row mb-7">
@@ -65,7 +60,7 @@
                     <!--end::Input group-->
                     <!--begin::Input group-->
                     <div class="fv-row mb-7">
-                        <label class="form-label fw-bolder text-dark fs-6">Email : {{$checkout?'true' : 'false'}}</label>
+                        <label class="form-label fw-bolder text-dark fs-6">Email</label>
                         <input class="form-control form-control-lg form-control-solid" type="email" placeholder="" name="email" value="{{old('email')}}" />
                         @error('email')
                         <div class="alert alert-danger">
@@ -151,15 +146,7 @@
         </div>
         <!--end::Content-->
         <!--begin::Footer-->
-        <div class="d-flex flex-center flex-column-auto p-10">
-            <!--begin::Links-->
-            <div class="d-flex align-items-center fw-bold fs-6">
-                <a href="https://keenthemes.com" class="text-muted text-hover-primary px-2">About</a>
-                <a href="mailto:support@keenthemes.com" class="text-muted text-hover-primary px-2">Contact</a>
-                <a href="https://1.envato.market/EA4JP" class="text-muted text-hover-primary px-2">Contact Us</a>
-            </div>
-            <!--end::Links-->
-        </div>
+         
         <!--end::Footer-->
     </div>
     <!--end::Authentication - Sign-up-->
