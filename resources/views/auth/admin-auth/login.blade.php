@@ -8,7 +8,7 @@
             <!--begin::Logo-->
             <a href="/" class="mb-12">
                 {{-- <h4>Home</h4> --}}
-                <img alt="Logo" src="assets/Metronic-Theme/media/logos/logo-1.svg" class="h-40px" />
+               <!--  <img alt="Logo" src="assets/Metronic-Theme/media/logos/logo-1.svg" class="h-40px" /> -->
             </a>
             <!--end::Logo-->
             <!--begin::Wrapper-->
@@ -58,21 +58,7 @@
                             <span class="indicator-progress">Please wait...
                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                         </button>
-                        <!--end::Submit button-->
-                        {{-- <!--begin::Separator-->
-                        <div class="text-center text-muted text-uppercase fw-bolder mb-5">or</div>
-                        <!--end::Separator-->
-                        <!--begin::Google link-->
-                        <a href="#" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
-                        <img alt="Logo" src="assets/Metronic-Theme/media/svg/brand-logos/google-icon.svg" class="h-20px me-3" />Continue with Google</a>
-                        <!--end::Google link-->
-                        <!--begin::Google link-->
-                        <a href="#" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
-                        <img alt="Logo" src="assets/Metronic-Theme/media/svg/brand-logos/facebook-4.svg" class="h-20px me-3" />Continue with Facebook</a>
-                        <!--end::Google link-->
-                        <!--begin::Google link-->
-                        <a href="#" class="btn btn-flex flex-center btn-light btn-lg w-100">
-                        <img alt="Logo" src="assets/Metronic-Theme/media/svg/brand-logos/apple-black.svg" class="h-20px me-3" />Continue with Apple</a> --}}
+                        
                         <!--end::Google link-->
                     </div>
                     <!--end::Actions-->
@@ -83,15 +69,7 @@
         </div>
         <!--end::Content-->
         <!--begin::Footer-->
-        <div class="d-flex flex-center flex-column-auto p-10">
-            <!--begin::Links-->
-            <div class="d-flex align-items-center fw-bold fs-6">
-                <a href="https://keenthemes.com" class="text-muted text-hover-primary px-2">About</a>
-                <a href="mailto:support@keenthemes.com" class="text-muted text-hover-primary px-2">Contact</a>
-                <a href="https://1.envato.market/EA4JP" class="text-muted text-hover-primary px-2">Contact Us</a>
-            </div>
-            <!--end::Links-->
-        </div>
+      
         <!--end::Footer-->
     </div>
     <!--end::Authentication - Sign-in-->
