@@ -18,6 +18,8 @@ class LedSearchResults extends Component
     public $selectedDateRange='';
     public $selectedStartDate='';
     public $selectedEndDate='';
+    public $minPriceRange;
+    public $maxPriceRange;
 
     public function render()
     {
@@ -26,6 +28,7 @@ class LedSearchResults extends Component
         $finalLeds = collect();
         $cities=City::all();
         $leds=Led::with('subOrders')
+        ->whereBetween('price', [$this->minPriceRange, $this->maxPriceRange])
         ->when($this->selectedCity, function($query) {
             return $query->where('city_id', $this->selectedCity);
         }) 
