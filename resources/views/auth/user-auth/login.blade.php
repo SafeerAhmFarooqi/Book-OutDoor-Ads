@@ -23,7 +23,7 @@
                         <!--end::Title-->
                         <!--begin::Link-->
                         <div class="text-gray-400 fw-bold fs-4">New Here?
-                        <a href="{{route('user.register',$checkout)}}" class="link-primary fw-bolder">Create an Account</a></div>
+                        <a href="{{route('user.register',isset($checkout)?$checkout : false)}}" class="link-primary fw-bolder">Create an Account</a></div>
                         <!--end::Link-->
                     </div>
                     <!--begin::Heading-->
@@ -45,7 +45,7 @@
                             <label class="form-label fw-bolder text-dark fs-6 mb-0">Password</label>
                             <!--end::Label-->
                             <!--begin::Link-->
-                            <a href="../../demo1/dist/authentication/layouts/basic/password-reset.html" class="link-primary fs-6 fw-bolder">Forgot Password ?</a>
+                            <a href="{{route('password.request')}}" class="link-primary fs-6 fw-bolder">Forgot Password ?</a>
                             <!--end::Link-->
                         </div>
                         <!--end::Wrapper-->
@@ -54,7 +54,7 @@
                         <!--end::Input-->
                     </div>
 
-                    <input type="hidden" name="checkout" value="{{$checkout}}">
+                    <input type="hidden" name="checkout" value="{{isset($checkout)?$checkout : false}}">
                     <!--end::Input group-->
                     <!--begin::Actions-->
                     <div class="text-center">

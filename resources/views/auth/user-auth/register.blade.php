@@ -117,7 +117,7 @@
                     </div>
 
                     <input type="hidden" name="role" value="user">
-                    <input type="hidden" name="checkout" value="{{$checkout}}">
+                    <input type="hidden" name="checkout" value="{{isset($checkout)?$checkout : false}}">
 
                     <!--end::Input group-->
                     <!--begin::Input group-->
