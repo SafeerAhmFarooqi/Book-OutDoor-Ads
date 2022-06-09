@@ -271,12 +271,12 @@ var date2 = new Date(end);
             lat: value.lat,
           lng: value.long,
               title: value.title,
-            //   click: function(e) {
-            //     alert('This is '+value.status+' : '+increment_2+', gujarat from India.');
-            //   }
+              click: function(e) {
+                alert('This is '+value.status+', gujarat from India.');
+                //window.open("https://www.w3schools.com",'_self');
+              },
             });
        });
-    
     
       </script>
 
@@ -314,18 +314,16 @@ var date2 = new Date(end);
 
 
     $.each( locations, function( index, value ){
-        // alert((value.status));
-        // increment_2++;
-        mymap.addMarker({
-        //   lat: value.lat,
-        //   lng: value.lng,
         
+        mymap.addMarker({
+       
           lat: value.lat,
           lng: value.long,
           title: value.title,
-        //   click: function(e) {
-        //     alert('This is '+value.status+' : '+increment_2+', gujarat from India.');
-        //   }
+          click: function(e) {
+            alert('This is '+value.status+', gujarat from India.');
+           // window.open("https://www.w3schools.com",'_self');
+          }
         });
    });
 })
