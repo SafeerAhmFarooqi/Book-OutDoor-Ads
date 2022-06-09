@@ -70,6 +70,7 @@
                       <a href="{{route('app.led.detail',$led->id)}}" class="img d-block" style="background-image: url('{{asset('storage/'.($led->images->first())->path)}}')"></a>
                       <div class="lh-content">
                         <span class="category">{{($cities->where('id',$led->city_id)->first())->city}}</span>
+                        <span class="category">Price : €{{$led->price}}/day</span>
                         {{-- <a href="#" class="bookmark"><span class="icon-heart"></span></a> --}}
                         <h3><a href="{{route('app.led.detail',$led->id)}}">{{$led->title}}</a></h3>   
                         <address>{{$led->location}}</address>
