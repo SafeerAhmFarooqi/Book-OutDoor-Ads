@@ -30,11 +30,11 @@ z-index: 99;margin-top:50px">
           <div class="col-md-4">
             <h2 class="footer-heading mb-4" style="font-size:18px;font-weight: bold">Links</h2>
             <ul class="list-unstyled footeruiclass">
-              <li><a href="policy.html">Datenschutz</a></li>
-              <li><a href="agb.html">AGB</a></li>
+              <li><a href="{{route('show.policy')}}">Datenschutz</a></li>
+              <li><a href="{{route('show.agb')}}">AGB</a></li>
               <li><a href="impressum.html">Impressum</a></li>
               <li><a href="user/login.html">Login/Register</a></li>
-              <li><a href="contact.html">Kontakt</a></li>
+              <li><a href="{{route('show.contact')}}">Kontakt</a></li>
               <li><a href="partner/login.html">Partner Login </a></li>
             </ul>
           </div>

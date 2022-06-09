@@ -320,6 +320,16 @@ class DashboardController extends AdminController
       return view('app-dashboard.contact');       
    }
 
+   public function showAgb()
+   {
+      return view('app-dashboard.agb');       
+   }
+
+   public function showPolicy()
+   {
+      return view('app-dashboard.policy');       
+   }
+
    public function listCitiesLeds($id=false)
    {
       if($id)
