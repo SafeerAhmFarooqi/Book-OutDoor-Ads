@@ -272,8 +272,9 @@ var date2 = new Date(end);
           lng: value.long,
               title: value.title,
               click: function(e) {
-                alert('This is '+value.status+', gujarat from India.');
-                //window.open("https://www.w3schools.com",'_self');
+                let url = "{{ route('app.led.detail', ':value.id') }}";
+                url = url.replace(':value.id', value.id);
+                document.location.href=url;
               },
             });
        });
@@ -321,7 +322,11 @@ var date2 = new Date(end);
           lng: value.long,
           title: value.title,
           click: function(e) {
-            alert('This is '+value.status+', gujarat from India.');
+           // alert('This is second '+value.id+', gujarat from India.');
+            let url = "{{ route('app.led.detail', ':value.id') }}";
+                url = url.replace(':value.id', value.id);
+                document.location.href=url;
+               // window.open(url,'_self');
            // window.open("https://www.w3schools.com",'_self');
           }
         });
