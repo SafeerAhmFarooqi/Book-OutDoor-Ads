@@ -34,6 +34,8 @@ Route::get('/search-led', [DashboardController::class,'searchLed'])->name('find.
 Route::get('/search-map-led', [DashboardController::class,'searchMapLed'])->name('find.map.led');
 Route::get('/imprint', [DashboardController::class,'showImprint'])->name('show.imprint');
 Route::get('/contact', [DashboardController::class,'showContact'])->name('show.contact');
+Route::get('/agb', [DashboardController::class,'showAgb'])->name('show.agb');
+Route::get('/policy', [DashboardController::class,'showPolicy'])->name('show.policy');
 Route::get('/list-leds-in-cities/{id?}', [DashboardController::class,'listCitiesLeds'])->name('list.cities.led');
 
 Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['auth'])->name('dashboard');
