@@ -22,4 +22,13 @@
 <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/style.css')}}">
 <link rel="stylesheet" href="{{asset('assets/Bootstrap-4-1/bootstrap.min.css')}}">
 <link rel="stylesheet" href="{{asset('assets/Led-Theme/fonts/icomoon/style.css')}}">
+<style>
+    .popular-category{
+        text-decoration: none !important;
+    }
+   
+    .daterangepicker td.disabled, .daterangepicker option.disabled{
+        color: red !important;
+    }
+</style>
     @show

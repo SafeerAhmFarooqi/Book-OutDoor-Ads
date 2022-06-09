@@ -32,10 +32,8 @@ z-index: 99;margin-top:50px">
             <ul class="list-unstyled footeruiclass">
               <li><a href="{{route('show.policy')}}">Datenschutz</a></li>
               <li><a href="{{route('show.agb')}}">AGB</a></li>
-              <li><a href="impressum.html">Impressum</a></li>
-              <li><a href="user/login.html">Login/Register</a></li>
+              <li><a href="impressum.html">Impressum</a></li>   
               <li><a href="{{route('show.contact')}}">Kontakt</a></li>
-              <li><a href="partner/login.html">Partner Login </a></li>
             </ul>
           </div>
 
@@ -49,6 +47,8 @@ z-index: 99;margin-top:50px">
               <li><a href="#">0176 - 808 507 25</a></li>
               <li><a href="#">hochhalter@led-werbeflaechen.de</a></li>
               <li><a href="#">Löhrstraße 87A/B | 56068 Koblenz</a></li>
+              <li><a href="{{route('client.login')}}" class="btn btn-warning"> Partner Login </a></li>
+              <li><a href="{{route('admin.login')}}" class="btn btn-warning"> Admin Login</a></li> 
             </ul>
           </div>
         </div>

@@ -54,9 +54,6 @@
              <li><a href="{{route('user.register')}}">Register</a></li>     
              @endif
             
-            <li><a href="{{route('client.login')}}" class="cta"><span class="bg-primary text-white rounded" style="background-color:#30e3ca!important;">Client Login</span></a></li>
-            <li><a href="{{route('admin.login')}}" class="cta"><span class="bg-primary text-white rounded" style="background-color:#30e3ca!important;">Admin Login</span></a></li>
-      
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Cart({{count($cartItems??$cartItems=[])}})
