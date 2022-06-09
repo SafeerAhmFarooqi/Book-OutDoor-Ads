@@ -28,7 +28,7 @@ class MapLedSearchResults extends Component
         $this->count++;
     }
 
-    function geoLocate($address)
+    function geoLocate($address,$id=null)
     {
         try {
             $lat = 0;
@@ -48,7 +48,8 @@ class MapLedSearchResults extends Component
                     return array(
                         'status' => true,
                         'lat' => $lat, 
-                        'long' => $lng, 
+                        'long' => $lng,
+                        'id'=>$id, 
                         'google_place_id' => $data->results[0]->place_id
                     );
                 }
@@ -116,7 +117,7 @@ class MapLedSearchResults extends Component
         }
         $this->coordinates=[];
         foreach ($this->selectedDateRange?$finalLeds :$leds as $value) {
-            array_push($this->coordinates,$this->geoLocate($value->location)); 
+            array_push($this->coordinates,$this->geoLocate($value->location,$value->id)); 
         }
         return view('livewire.map-led-search-results',[
             'cities'=>$cities,
