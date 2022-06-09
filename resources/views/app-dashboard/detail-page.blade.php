@@ -66,7 +66,7 @@
    
 
 
-  <h1 style="box-sizing: border-box; margin: 0px 0px 20px; font-weight: 500; line-height: 1.2; font-size: 2.5rem; color: rgb(44, 53, 218); font-family: cbold; text-transform: uppercase; background-color: rgb(255, 255, 255);"><span style="color: rgb(38, 38, 38); font-family: cblack; font-size: 24px;">{{$led->title}} : {{$disableDates->count()}}</span></h1>
+  <h1 style="box-sizing: border-box; margin: 0px 0px 20px; font-weight: 500; line-height: 1.2; font-size: 2.5rem; color: rgb(44, 53, 218); font-family: cbold; text-transform: uppercase; background-color: rgb(255, 255, 255);"><span style="color: rgb(38, 38, 38); font-family: cblack; font-size: 24px;">{{$led->title}}</span></h1>
   <div class="card" style="width: 18rem;">
     <div class="card-body">
       <h5 class="card-title">Description</h5>
@@ -117,7 +117,9 @@
           <div id='map'></div>
       </div>
   </div> --}}
-
+  <div class="row">
+    <div id="mymap"></div>
+</div>
 
 <div class="row">
 <form action="#" method="post" style="width:100%;padding:20px">
@@ -227,6 +229,13 @@ Add to Cart                            </button>
     /*
     # Welcome
     --------------------------------*/
+
+    #mymap {
+      		border:1px solid red;
+      		width: 800px;
+      		height: 500px;
+          margin-top: 2%;
+    	}
     .home-page-welcome {
         position: relative;
         padding: 96px 0;
@@ -502,7 +511,29 @@ width: 640px;
 
 @section('pageScripts')
 
+<script src="http://maps.google.com/maps/api/js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyAIeDyz_v1KkoU3ZTRqK5e-9Ax1lNjSIEI"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {{-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> --}}
+
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
@@ -515,6 +546,52 @@ width: 640px;
     });
   });
   </script> --}}
+  <script type="text/javascript">
+
+
+    // var locations = @json($coordinates);
+    var coordinates=JSON.parse(@json($coordinates));
+//alert(co.lat);
+   // var increment=0;
+   // var increment_2=0;
+
+   var mymap = new GMaps({
+     el: '#mymap',
+     lat: coordinates.lat,
+ lng: coordinates.long,
+ zoom:6
+   });
+   mymap.addMarker({
+       //   lat: value.lat,
+       //   lng: value.lng,
+       lat: coordinates.lat,
+     lng: coordinates.long,
+        //  title: value.title,
+       //   click: function(e) {
+       //     alert('This is '+value.status+' : '+increment_2+', gujarat from India.');
+       //   }
+       });
+
+
+  //  $.each( locations, function( index, value ){
+  //      // increment_2++;
+  //      mymap.addMarker({
+  //      //   lat: value.lat,
+  //      //   lng: value.lng,
+  //      lat: value.lat,
+  //    lng: value.long,
+  //        title: value.title,
+  //      //   click: function(e) {
+  //      //     alert('This is '+value.status+' : '+increment_2+', gujarat from India.');
+  //      //   }
+  //      });
+  // });
+
+
+ </script>
+
+
+
   <script>
 jQuery(function($) {
     $("#daterange").daterangepicker({

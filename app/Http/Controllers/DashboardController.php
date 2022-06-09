@@ -16,6 +16,45 @@ use App\Models\SubOrders;
 
 class DashboardController extends AdminController
 {
+   public function geoLocate($address)
+    {
+        try {
+            $lat = 0;
+            $lng = 0;
+    
+            $data_location = "https://maps.google.com/maps/api/geocode/json?key=AIzaSyAIeDyz_v1KkoU3ZTRqK5e-9Ax1lNjSIEI&address=".str_replace(" ", "+", $address)."&sensor=false";
+            $data = file_get_contents($data_location);
+            usleep(200000);
+            // turn this on to see if we are being blocked
+            // echo $data;
+            $data = json_decode($data);
+            if ($data->status=="OK") {
+                $lat = $data->results[0]->geometry->location->lat;
+                $lng = $data->results[0]->geometry->location->lng;
+    
+                if($lat && $lng) {
+                    return array(
+                        'status' => true,
+                        'lat' => $lat, 
+                        'long' => $lng, 
+                        'google_place_id' => $data->results[0]->place_id
+                    );
+                }
+            }
+            if($data->status == 'OVER_QUERY_LIMIT') {
+                return array(
+                    'status' => false, 
+                    'message' => 'Google Amp API OVER_QUERY_LIMIT, Please update your google map api key or try tomorrow'
+                );
+            }
+    
+        } catch (Exception $e) {
+    
+        }
+    
+        return array('lat' => null, 'long' => null, 'status' => false);
+    }
+
    public function home(Request $request)
    {
       $leds=Led::with('images')->latest()->take(4)->get();
@@ -68,6 +107,7 @@ class DashboardController extends AdminController
    public function ledDetail($id)
    {
       $led=Led::with('images')->where('id',$id)->first();
+
       $cartItems=[];
       if (session()->has('cart.items')) {
          foreach (session()->get('cart.items') as $value) {
@@ -82,6 +122,7 @@ class DashboardController extends AdminController
           'increment'=>0,
           'cartItems'=>$cartItems,
           'disableDates'=>$disableDates,
+          'coordinates'=>json_encode($this->geoLocate($led->location)),
          ]);
    }
 
