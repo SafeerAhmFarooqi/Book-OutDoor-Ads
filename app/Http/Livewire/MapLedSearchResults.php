@@ -19,6 +19,8 @@ class MapLedSearchResults extends Component
     public $selectedStartDate='';
     public $selectedEndDate='';
     public $coordinates=[];
+    public $minPriceRange;
+    public $maxPriceRange;
     public $count = 0;
  
     public function increment()
@@ -78,6 +80,7 @@ class MapLedSearchResults extends Component
         $finalLeds = collect();
         $cities=City::all();
         $leds=Led::with('subOrders')
+        ->whereBetween('price', [$this->minPriceRange, $this->maxPriceRange])
         ->when($this->selectedCity, function($query) {
             return $query->where('city_id', $this->selectedCity);
         }) 
