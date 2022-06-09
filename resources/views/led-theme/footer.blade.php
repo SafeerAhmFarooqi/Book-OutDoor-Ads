@@ -32,7 +32,7 @@ z-index: 99;margin-top:50px">
             <ul class="list-unstyled footeruiclass">
               <li><a href="{{route('show.policy')}}">Datenschutz</a></li>
               <li><a href="{{route('show.agb')}}">AGB</a></li>
-              <li><a href="impressum.html">Impressum</a></li>   
+              <li><a href="{{route('show.imprint')}}">Impressum</a></li>   
               <li><a href="{{route('show.contact')}}">Kontakt</a></li>
             </ul>
           </div>
