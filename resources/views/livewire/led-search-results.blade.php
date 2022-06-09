@@ -5,9 +5,7 @@
             <div class="col-lg-3  ">
             <div class="mb-5">
                <form action="#" method="post">
-                <div class="form-group">
-                  <a href="{{route('find.map.led')}}" class="btn btn-primary">Show Leds in Map</a>
-                </div>
+                
                 <div class="form-group">
                   <input type="text" placeholder="What are you looking for?" class="form-control" wire:model='find'>
                 </div>
@@ -54,11 +52,10 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-sm-12">
-      <form>
-        <input type="hidden" name="min-value" value="">
-        <input type="hidden" name="max-value" value="">
-      </form>
+    <div class="col-sm-10">
+        <a href="{{route('find.map.led')}}">
+          <img src="https://www.reviewgeek.com/p/uploads/2020/04/fadc14dd.jpg?height=200p&trim=2,2,2,2" style="width:100%;margin-top:50px">
+        </a>
     </div>
   </div>
                 </div>
