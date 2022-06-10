@@ -25,7 +25,7 @@ class ClientLedController extends BaseClientController
     {
         $request->validate([
             'title' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string', 'max:500'],
+            'description' => ['required'],
             'location' => ['required', 'string', 'max:500'],
             'city' => ['required', 'string', 'max:500'],
             'price' => ['required', 'numeric'],
