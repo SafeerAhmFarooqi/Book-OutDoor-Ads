@@ -135,7 +135,24 @@ class DashboardController extends AdminController
 
       if(Auth::user()->hasRole('User'))
       {
-         return view('user-dashboard.home-page');
+         $subOrdersCount=0;
+         $completedSubOrdersCount=0;
+         $orders=Orders::with('subOrders')
+         ->where('user_id',Auth::user()->id)
+         ->where('payment_status',true)
+         ->get();
+         foreach ($orders as $order) {
+            $subOrdersCount+=$order->subOrders->count();
+            $completedSubOrdersCount+=$order->subOrders->where('endDate','<',Carbon::now()->format('Y-m-d'))->count();
+         }
+         // $completedOrdersCount=Orders::where('user_id',Auth::user()->id)
+         // ->where('payment_status',true)
+         // ->where('')
+         // ->count();
+         return view('user-dashboard.home-page',[
+            'subOrdersCount'=>$subOrdersCount,
+            'completedSubOrdersCount'=>$completedSubOrdersCount,
+         ]);
       }
 
       if(Auth::user()->hasRole('Admin'))
