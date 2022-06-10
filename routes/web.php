@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Client\ClientProfileController;
 use App\Http\Controllers\Client\ClientLedController;
+use App\Http\Controllers\Client\ClientOrderController;
 use App\Http\Controllers\User\UserProfileController;
 use App\Http\Controllers\User\UserOrderController;
 use App\Http\Controllers\Admin\AdminUsersController;
@@ -60,6 +61,7 @@ Route::group(['middleware' => ['role:Client','auth']], function () {
     Route::get('/client-led-edit/{id}', [ClientLedController::class,'editLed'])->name('client.led.edit');
     Route::post('/client-led-edit-update/{id}', [ClientLedController::class,'updateLed'])->name('client.led.edit.store');
     Route::post('/client-led-image-delete', [ClientLedController::class,'deleteLedImage'])->name('client.led.delete.image');
+    Route::get('/client-order-view', [ClientOrderController::class,'viewOrder'])->name('client.order.view');
 });
 
 Route::group(['middleware' => ['role:Admin','auth']], function () {
