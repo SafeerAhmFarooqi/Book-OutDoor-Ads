@@ -55,6 +55,15 @@
                                 <span class="menu-title">View Leds</span>
                             </a>
                         </div>
+
+                        <div class="menu-item">
+                            <a class="menu-link" href="{{route('client.order.view')}}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">View Orders</span>
+                            </a>
+                        </div>
             
             
             </div>
