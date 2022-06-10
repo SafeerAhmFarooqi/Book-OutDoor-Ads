@@ -100,14 +100,16 @@
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                            <th class="min-w-150px">Sr No.</th>
-                            <th class="text-start min-w-100px">Sub Order Id</th>
-                            <th class="text-end min-w-100px">Price</th>
-                            <th class="text-end min-w-100px">For Days</th>
-                            <th class="text-end min-w-70px">Tax</th>
+                            <th class="min-w-150px">No</th>
+                            <th class="text-start min-w-100px">Order Id</th>
                             <th class="text-end min-w-70px">Start Date</th>
                             <th class="text-end min-w-70px">End Date</th>
-                            <th class="text-end min-w-100px">Order Date</th>
+                            <th class="text-end min-w-100px">Days</th>
+                            <th class="text-end min-w-70px">Tax</th>
+                            <th class="text-end min-w-100px">Price</th>                            
+
+                            
+                            {{-- <th class="text-end min-w-100px">Order Date</th> --}}
                         </tr>
                         <!--end::Table row-->
                     </thead>
@@ -125,22 +127,6 @@
                             <td class="text-start">
                                 <span class="fw-bolder">{{$order->id}}</span>
                             </td>
-                            <!--end::Product=-->
-                            <!--begin::SKU=-->
-                            <td class="text-end pe-0">
-                                <span class="fw-bolder">{{$order->price}}</span>
-                            </td>
-                            <!--end::SKU=-->
-                            <!--begin::Rating-->
-                            <td class="text-end pe-0">
-                                <span class="fw-bolder">{{$order->no_of_days}}</span>
-                            </td>
-                            <!--end::Rating-->
-                            <!--begin::Price=-->
-                            <td class="text-end pe-0">
-                                <span class="fw-bolder">{{$order->tax}}</span>
-                            </td>
-
                             <td class="text-end pe-0">
                                 <span>{{$order->startDate->format('F d, Y')}}</span>
                             </td>
@@ -148,11 +134,30 @@
                             <td class="text-end pe-0">
                                 <span>{{$order->endDate->format('F d, Y')}}</span>
                             </td>
+                            <!--end::Product=-->
+                            <!--begin::SKU=-->
+                            <td class="text-end pe-0">
+                                <span class="fw-bolder">{{$order->no_of_days}}</span>
+                            </td>
+                            <td class="text-end pe-0">
+                                <span class="fw-bolder">€ {{$order->tax}}</span>
+                            </td>
+                            <td class="text-end pe-0">
+                                <span class="fw-bolder">€ {{$order->price}}</span>
+                            </td>
+                            <!--end::SKU=-->
+                            <!--begin::Rating-->
+                            
+                            <!--end::Rating-->
+                            <!--begin::Price=-->
+                           
+
+                            
                             <!--end::Price=-->
                             <!--begin::Viewed=-->
-                            <td class="text-end pe-0">
+                            {{-- <td class="text-end pe-0">
                                 <span>{{$order->created_at->format('F d, Y')}}</span>
-                            </td>
+                            </td> --}}
                             <!--end::Viewed=-->
                             <!--begin::Percent=-->
                             
