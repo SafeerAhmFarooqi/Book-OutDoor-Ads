@@ -104,14 +104,18 @@
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                            <th class="min-w-150px">Sr No.</th>
-                            <th class="min-w-150px">Led Title</th>
-                            <th class="text-end min-w-100px">Id</th>
-                            <th class="text-end min-w-100px">Description</th>
-                            <th class="text-end min-w-100px">Price</th>
+                            <th class="min-w-150px">No</th>
+                            <th class="text-start min-w-100px">Date</th>
+                            <th class="min-w-150px">Title</th>
                             <th class="text-end min-w-70px">Location</th>
                             <th class="text-end min-w-100px">Tax</th>
-                            <th class="text-end min-w-100px">Added Date</th>
+                            <th class="text-end min-w-100px">Price</th>
+                            {{-- <th class="text-end min-w-100px">Id</th> --}}
+                            <th class="text-end min-w-100px">Description</th>
+                            
+                            
+                            
+                            
                             <th class="text-end min-w-100px">Actions</th>
                         </tr>
                         <!--end::Table row-->
@@ -125,6 +129,9 @@
                             <!--begin::Product=-->
                             <td class="text-start">
                                 <span class="fw-bolder">{{++$srNo}}</span>
+                            </td>
+                            <td class="text-start pe-0">
+                                <span>{{$led->created_at->format('F d, Y')}}</span>
                             </td>
                             <td>
                                 <div class="d-flex align-items-center">
@@ -140,36 +147,38 @@
                                     </div>
                                 </div>
                             </td>
-                            <!--end::Product=-->
-                            <!--begin::SKU=-->
-                            <td class="text-end pe-0">
-                                <span class="fw-bolder">{{$led->id}}</span>
-                            </td>
-                            <!--end::SKU=-->
-                            <!--begin::Rating-->
-                            <td class="text-end pe-0" data-order="rating-5" data-filter="rating-5">
-                                <div class="rating justify-content-end">
-                                    
-                                    <span class="fw-bolder">{{substr(strip_tags($led->description),0,20)}}</span>
-                                    
-                                </div>
-                            </td>
-                            <!--end::Rating-->
-                            <!--begin::Price=-->
-                            <td class="text-end pe-0">
-                                <span>{{$led->price}}</span>
-                            </td>
-                            <!--end::Price=-->
-                            <!--begin::Viewed=-->
                             <td class="text-end pe-0">
                                 <span>{{$led->location}}</span>
                             </td>
-                            <!--end::Viewed=-->
-                            <!--begin::Percent=-->
                             <td class="text-end pe-0">{{$led->tax}}</td>
                             <td class="text-end pe-0">
-                                <span>{{$led->created_at->format('F d, Y')}}</span>
+                                <span>{{$led->price}}</span>
                             </td>
+                            <td class="text-end pe-0" data-order="rating-5" data-filter="rating-5">
+                                <div class="rating justify-content-end">
+                                    
+                                    <span class="fw-bolder">{{substr(strip_tags($led->description),0,20)}}...</span>
+                                    
+                                </div>
+                            </td>
+                            <!--end::Product=-->
+                            <!--begin::SKU=-->
+                            {{-- <td class="text-end pe-0">
+                                <span class="fw-bolder">{{$led->id}}</span>
+                            </td> --}}
+                            <!--end::SKU=-->
+                            <!--begin::Rating-->
+                            
+                            <!--end::Rating-->
+                            <!--begin::Price=-->
+                            
+                            <!--end::Price=-->
+                            <!--begin::Viewed=-->
+                            
+                            <!--end::Viewed=-->
+                            <!--begin::Percent=-->
+                            
+                            
                             <td class="text-end pe-0">
                                 <div class="rating justify-content-end">
                                     <a class="btn btn-primary" href="{{route('client.led.edit',$led->id)}}">Edit</a>
