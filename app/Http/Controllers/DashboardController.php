@@ -130,7 +130,24 @@ class DashboardController extends AdminController
    {
       if(Auth::user()->hasRole('Client'))
       {
-         return view('client-dashboard.home-page');
+         $ordersCount=0;
+         $totalIncome=0;
+         $ledCount=Led::where('user_id',Auth::user()->id)->count();
+         $leds=Led::where('user_id',Auth::user()->id)->get();
+         foreach ($leds as $led) {
+            foreach ($led->SubOrders as $subOrder) {
+               if($subOrder->order->payment_status==true)
+               {
+                  $totalIncome+=$subOrder->order->total_price;
+                  $ordersCount++;
+               }  
+            }
+         }
+         return view('client-dashboard.home-page',[
+            'ledCount'=>$ledCount,
+            'ordersCount'=>$ordersCount,
+            'totalIncome'=>$totalIncome,
+         ]);
       }
 
       if(Auth::user()->hasRole('User'))
@@ -145,10 +162,6 @@ class DashboardController extends AdminController
             $subOrdersCount+=$order->subOrders->count();
             $completedSubOrdersCount+=$order->subOrders->where('endDate','<',Carbon::now()->format('Y-m-d'))->count();
          }
-         // $completedOrdersCount=Orders::where('user_id',Auth::user()->id)
-         // ->where('payment_status',true)
-         // ->where('')
-         // ->count();
          return view('user-dashboard.home-page',[
             'subOrdersCount'=>$subOrdersCount,
             'completedSubOrdersCount'=>$completedSubOrdersCount,
