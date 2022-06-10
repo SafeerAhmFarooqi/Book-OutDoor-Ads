@@ -100,13 +100,13 @@
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                            <th class="min-w-150px">Sr No.</th>
-                            <th class="text-start min-w-100px">Order Id</th>
-                            <th class="text-end min-w-100px">Total Price</th>
-                            <th class="text-end min-w-100px">Total Tax</th>
-                            <th class="text-end min-w-70px">Payment Status</th>
+                            <th class="min-w-70px">No</th>
+                            {{-- <th class="text-start min-w-100px">Order Id</th> --}}
+                            <th class="text-start min-w-100px">Total Price</th>
+                            {{-- <th class="text-end min-w-100px">Total Tax</th> --}}
+                            <th class="text-end min-w-70px">Status</th>
                             <th class="text-end min-w-100px">Order Date</th>
-                            <th class="text-end min-w-100px">No of Sub Orders</th>
+                            {{-- <th class="text-end min-w-100px">No of Sub Orders</th> --}}
                             <th class="text-end min-w-100px">Actions</th>
                         </tr>
                         <!--end::Table row-->
@@ -122,19 +122,19 @@
                                 <span class="fw-bolder">{{++$srNo}}</span>
                             </td>
                             <!--begin::Product=-->
-                            <td class="text-start">
+                            {{-- <td class="text-start">
                                 <span class="fw-bolder">{{$order->id}}</span>
-                            </td>
+                            </td> --}}
                             <!--end::Product=-->
                             <!--begin::SKU=-->
-                            <td class="text-end pe-0">
-                                <span class="fw-bolder">{{$order->total_price}}</span>
+                            <td class="text-start pe-0">
+                                <span class="fw-bolder">€ {{$order->total_price}}</span>
                             </td>
                             <!--end::SKU=-->
                             <!--begin::Rating-->
-                            <td class="text-end pe-0">
+                            {{-- <td class="text-end pe-0">
                                 <span class="fw-bolder">{{$order->total_tax}}</span>
-                            </td>
+                            </td> --}}
                             <!--end::Rating-->
                             <!--begin::Price=-->
                             <td class="text-end pe-0">
@@ -147,16 +147,16 @@
                             </td>
                             <!--end::Viewed=-->
                             <!--begin::Percent=-->
-                            <td class="text-end pe-0">
+                            {{-- <td class="text-end pe-0">
                                 <span class="fw-bolder">{{$order->subOrders->count()}}</span>
-                            </td>
+                            </td> --}}
                            
                             <td class="text-end pe-0">
                                 <div class="rating justify-content-end">
                                     
                                 <form action="{{route('user.sub-orders.view')}}" method="post">
                                     @csrf
-                                  <button type="submit" class="btn btn-primary btn-sm" name="order_id" value="{{$order->id}}">Sub Orders</button>
+                                  <button type="submit" class="btn btn-primary btn-sm" name="order_id" value="{{$order->id}}">Details</button>
                                 </form>
                                 </div>
                                 

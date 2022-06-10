@@ -2,9 +2,9 @@
     <!--begin::Brand-->
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
         <!--begin::Logo-->
-        <a href="../../demo1/dist/index.html">
+        {{-- <a href="../../demo1/dist/index.html">
             <img alt="LED" src="assets/media/logos/logo-1-dark.svg" class="h-25px logo" />
-        </a>
+        </a> --}}
         <!--end::Logo-->
         <!--begin::Aside toggler-->
         {{-- <div id="kt_aside_toggle" class="btn btn-icon w-auto px-0 btn-active-color-primary aside-toggle" data-kt-toggle="true" data-kt-toggle-state="active" data-kt-toggle-target="body" data-kt-toggle-name="aside-minimize">
