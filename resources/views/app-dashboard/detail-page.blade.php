@@ -30,7 +30,7 @@
       
       <div class="row">
         
-        <div class="col-lg-8">
+        <div class="col-md-8">
           @if(session()->has('message'))
     <div class="alert alert-success" role="alert">
         {{ session()->get('message') }}
@@ -64,77 +64,6 @@
 <div class="clearfix"> </div>
 <br><br>          
    
-
-
-  <h1 style="box-sizing: border-box; margin: 0px 0px 20px; font-weight: 500; line-height: 1.2; font-size: 2.5rem; color: rgb(44, 53, 218); font-family: cbold; text-transform: uppercase; background-color: rgb(255, 255, 255);"><span style="color: rgb(38, 38, 38); font-family: cblack; font-size: 24px;">{{$led->title}}</span></h1>
-  <div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">Description</h5>
-      <h6 class="card-subtitle mb-2 text-muted">{{$led->title}}</h6>
-      <p class="card-text">{{$led->description}}</p>
-      
-    </div>
-  </div>
-  <div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">Location</h5>
-      <h6 class="card-subtitle mb-2 text-muted">{{$led->location}}</h6> 
-      <h5 class="card-title">Price</h5>
-      <h6 class="card-subtitle mb-2 text-muted">{{$led->price}}</h6>
-      <h5 class="card-title">Tax</h5>
-      <h6 class="card-subtitle mb-2 text-muted">{{$led->tax}}</h6>
-    </div>
-  </div>
-  {{-- <h5 style="box-sizing: border-box; margin-top: 0px; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; font-size: 1.25rem; color: rgb(38, 38, 38); font-family: Montserrat, sans-serif; background-color: rgb(255, 255, 255);">Ab&nbsp;<span style="box-sizing: border-box; font-weight: bolder; font-family: cmd; color: rgb(44, 53, 218); font-size: 24px;">25&nbsp;<small style="box-sizing: border-box; font-size: 19.2px; font-weight: 400;">�</small>&nbsp;</span>pro Tag</h5><div class="description" style="box-sizing: border-box; padding: 15px 0px; margin-bottom: 20px; color: rgb(38, 38, 38); font-family: Montserrat, sans-serif; font-size: 16px; background-color: rgb(255, 255, 255);"><p style="box-sizing: border-box; margin-bottom: 0px; color: rgb(102, 102, 102); font-size: 15px;"><img src="../../www.led-werbeflaechen.de/newassets/bluetick.png" style="box-sizing: border-box; vertical-align: baseline; border-style: none; width: 20px; margin-left: 15px; margin-right: 5px;">&nbsp;�ber 35.000 Kontakte am Tag</p><p style="box-sizing: border-box; margin-bottom: 0px; color: rgb(102, 102, 102); font-size: 15px;"><img src="../../www.led-werbeflaechen.de/newassets/bluetick.png" style="box-sizing: border-box; vertical-align: baseline; border-style: none; width: 20px; margin-left: 15px; margin-right: 5px;">&nbsp;ca. 5 m� LED</p><p style="box-sizing: border-box; margin-bottom: 0px; color: rgb(102, 102, 102); font-size: 15px;"><img src="../../www.led-werbeflaechen.de/newassets/bluetick.png" style="box-sizing: border-box; vertical-align: baseline; border-style: none; width: 20px; margin-left: 15px; margin-right: 5px;">&nbsp;ab einer Ausstrahlungswoche buchbar</p><p style="box-sizing: border-box; margin-bottom: 0px; color: rgb(102, 102, 102); font-size: 15px;"><img src="../../www.led-werbeflaechen.de/newassets/bluetick.png" style="box-sizing: border-box; vertical-align: baseline; border-style: none; width: 20px; margin-left: 15px; margin-right: 5px;">&nbsp;offizieller Partner der Rhein-Zeitung, EVM, L�hr Center, Saturn &amp; Sparkasse</p><p style="box-sizing: border-box; margin-bottom: 0px; color: rgb(102, 102, 102); font-size: 15px;"><img src="../../www.led-werbeflaechen.de/newassets/bluetick.png" style="box-sizing: border-box; vertical-align: baseline; border-style: none; width: 20px; margin-left: 15px; margin-right: 5px;">&nbsp;wechselndes Standbild ca. 5 m� zur Moselbr�cke</p></div><div class="col-sm-6 socialmediapackages" style="box-sizing: border-box; position: relative; width: 365px; padding-right: 15px; padding-left: 15px; flex: 0 0 50%; max-width: 50%; padding-bottom: 50px; color: rgb(38, 38, 38); font-family: Montserrat, sans-serif; font-size: 16px; background-color: rgb(255, 255, 255);"><h3 style="box-sizing: border-box; margin-top: 0px; margin-bottom: 0.5rem; font-weight: 500; line-height: 1.2; font-size: 1.75rem;">Social Media Paket</h3><ul class="list-group" style="box-sizing: border-box; margin: 20px 0px 0px; padding: 0px; display: flex; flex-direction: column;"><li class="list-group-item " style="box-sizing: border-box; padding: 0.75rem 1.25rem; display: block; list-style-type: none; position: relative; margin-bottom: -1px; border: 1px solid rgba(0, 0, 0, 0.125); border-top-left-radius: 0.25rem; border-top-right-radius: 0.25rem; font-size: 15px;">Werbefoto<span class=" pull-right" style="box-sizing: border-box; float: right;"><del style="box-sizing: border-box;">99 �</del></span></li><li class="list-group-item " style="box-sizing: border-box; padding: 0.75rem 1.25rem; display: block; list-style-type: none; position: relative; margin-bottom: -1px; border: 1px solid rgba(0, 0, 0, 0.125); font-size: 15px;">Social Media Beitrag<span class=" pull-right" style="box-sizing: border-box; float: right;"><del style="box-sizing: border-box;">99 �</del></span></li><li class="list-group-item " style="box-sizing: border-box; padding: 0.75rem 1.25rem; display: block; list-style-type: none; position: relative; margin-bottom: 0px; border: 1px solid rgba(0, 0, 0, 0.125); border-bottom-right-radius: 0.25rem; border-bottom-left-radius: 0.25rem; font-size: 15px;">Facebook &amp; Instagram Post<span class=" pull-right" style="box-sizing: border-box; float: right;"><del style="box-sizing: border-box;">199 �</del></span></li></ul></div><h1 class="bookingcalanderheading" style="box-sizing: border-box; margin: 0px 0px 20px; font-weight: 500; line-height: 1.2; font-size: 2.5rem; color: rgb(44, 53, 218); font-family: cbold; text-transform: uppercase; background-color: rgb(255, 255, 255);">W�HLEN SIE IHREN BUCHUNGSZEITRAUM.</h1>  --}}
-                       
-
-
-
-<div class="clearfix"> </div>
-           
-   {{-- <div class="row leftsidecalander" >
-                          <div class="col-12">
-                              <div class="date-picker-table">
-                                  
-                                   <div class="form-group display-picker" style="float:left">
-                                      <div class="input-group">
-                                          <div class="input-group-prepend">
-                                              <span class="input-group-text" style="display:none">
-                                                  <i class="fal fa-calendar-alt"></i>
-                                              </span>
-                                          </div>
-                                          <input type="text" class="form-control testdate" id="range_date2"/>
-                                      </div>
-                                  </div>
-                              </div>
-
-                          </div>
-                      </div> --}}
-<div class="clearfix"> </div>
-           
-  {{-- <div class="row leftsidecalander" style="margin-top:300px">
-      <div class="col-12">
-          <div id='map'></div>
-      </div>
-  </div> --}}
-  <div class="row">
-    <div id="mymap"></div>
-</div>
-
-<div class="row">
-<form action="#" method="post" style="width:100%;padding:20px">
-
-<div class="form-group">
-<label for="comment"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Comment:</font></font></label>
-<textarea class="form-control" rows="5" name="commenttext"></textarea>
-</div>
-<font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><input type="submit" class="form-control" name="submitcomment" value="Send" style="width:100px"></font></font>
-
-                </form>
-
-                <!-- end new post comment here -->
-</div>
-
         </div>
         <div class="col-lg-4 ml-auto">
 
@@ -211,6 +140,51 @@ Add to Cart                            </button>
         </div>
 
       </div>
+      <h1 style="box-sizing: border-box; margin: 0px 0px 20px; font-weight: 500; line-height: 1.2; font-size: 2.5rem; color: rgb(44, 53, 218); font-family: cbold; text-transform: uppercase; background-color: rgb(255, 255, 255);"><span style="color: rgb(38, 38, 38); font-family: cblack; font-size: 24px;">{{$led->title}}</span></h1>
+      <div class="row">
+       
+        <div class="col-md-5">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Location</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{$led->location}}</h6> 
+              <h5 class="card-title">Price</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{$led->price}}</h6>
+              <h5 class="card-title">Tax</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{$led->tax}}</h6>
+            </div>
+          </div>
+          <div class="card mt-5">
+            <div class="card-body">
+              <h5 class="card-title">Description</h5>
+              <h6 class="card-subtitle mb-2 text-muted">{{$led->title}}</h6>
+              
+              <div>
+                <textarea id="kt_docs_tinymce_basic" placeholder="Description">{{$led->description}}</textarea>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="row">
+            <div id="mymap"></div>
+        </div>
+        </div>
+      </div>
+      <div class="row">
+        <form action="#" method="post" style="width:100%;padding:20px">
+        
+        <div class="form-group">
+        <label for="comment"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Comment:</font></font></label>
+        <textarea class="form-control" rows="5" name="commenttext"></textarea>
+        </div>
+        <font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><input type="submit" class="form-control" name="submitcomment" value="Send" style="width:100px"></font></font>
+        
+                        </form>
+        
+                        <!-- end new post comment here -->
+        </div>
     </div>
   </div>
 
@@ -219,6 +193,8 @@ Add to Cart                            </button>
 
 @section('Styles')
 @parent
+<link href="{{ asset('assets/Metronic-Theme/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
+<link href="{{ asset('assets/Metronic-Theme/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     {{-- <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/style.css')}}"> --}}
 
   {{-- <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/bootstrap.min.css')}}"> --}}
@@ -510,7 +486,30 @@ width: 640px;
 @endsection
 
 @section('pageScripts')
-
+<script src="{{ asset('assets/Metronic-Theme/plugins/global/plugins.bundle.js') }}"></script>
+<script src="{{ asset('assets/Metronic-Theme/js/scripts.bundle.js') }}"></script>
+<script src="{{asset('assets/Metronic-Theme/plugins/custom/tinymce/tinymce.bundle.js')}}"></script>
+<script>
+  //     var options = {selector: "#kt_docs_tinymce_basic",
+  //   menubar: false,
+  //   statusbar: false,
+  //   toolbar: false,
+  //   readonly: 1,
+  //                     };
+  var options = {selector: "#kt_docs_tinymce_basic",
+  statusbar: false,
+  menubar: false,
+  toolbar: false,
+  readonly: 1,
+                      };
+  
+  if (KTApp.isDarkMode()) {
+      options["skin"] = "oxide-dark";
+      options["content_css"] = "dark";
+  }
+  
+  tinymce.init(options);
+  </script>
 <script src="http://maps.google.com/maps/api/js"></script>
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
 
