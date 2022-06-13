@@ -173,12 +173,25 @@ class DashboardController extends AdminController
          $usersCount=User::role('User')->count();
          $clientCount=User::role('Client')->count();
          $ledCount=Led::all()->count();
-         $ledImagesCount=LedImages::all()->count();
+         $subOrders=SubOrders::all();
+         $orderCount=0;
+         foreach ($subOrders as $subOrder) {
+            if($subOrder->order->payment_status==true)
+            {
+               $orderCount++;
+            }
+         }
+         $cityCount=City::all()->count();
+         $popularLedCount=Led::where('popular',true)->count();
+         $trendingLedCount=Led::where('trending',true)->count();
          return view('admin-dashboard.home-page',[
             'usersCount'=>$usersCount,
             'clientCount'=>$clientCount,
             'ledCount'=>$ledCount,
-            'ledImagesCount'=>$ledImagesCount,
+            'orderCount'=>$orderCount,
+            'cityCount'=>$cityCount,
+            'popularLedCount'=>$popularLedCount,
+            'trendingLedCount'=>$trendingLedCount,
          ]);
       }
       // return view('landingpage');
