@@ -26,11 +26,21 @@ class AdminClientController extends BaseAdminController
     Storage::deleteDirectory('public/led-images/'.$request->client_id);
     return back()->with('success', 'Client Deleted Successfully');
  }    
+
+ public function showClientLeds(Request $request)
+ {
+    $leds=Led::where('user_id',$request->client_id)->get();
+    $client=User::find($request->client_id);
+    return view('admin-dashboard.client-led-list-page',[
+       'client'=>$client,
+       'leds'=>$leds,
+       'srNo'=>0,
+      ]);
 }
 
 
 
-
+}
 
 
 

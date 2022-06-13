@@ -25,6 +25,17 @@ class AdminLedController extends BaseAdminController
     Led::with('images')->where('id',$request->led_id)->delete();
     Storage::deleteDirectory('public/led-images/'.$userId.'/'.$request->led_id);
     return back()->with('success', 'Led Deleted Successfully');
+ }   
+ 
+ public function showLedOrders(Request $request)
+ {
+     $led=Led::find($request->led_id);
+     $subOrders=$led->subOrders;
+     return view('admin-dashboard.led-list-order-page',[
+        'led'=>$led,
+        'subOrders'=>$subOrders,
+        'srNo'=>0,
+      ]);
  }    
 
  public function popularLeds()

@@ -31,7 +31,11 @@
                 </div>
                 <!--end::Card title-->
                 <!--begin::Card toolbar-->
+                <div class="card-toolbar flex-row-fluid justify-content-start gap-5">
+                    <h6>Led Title : {{$led->title}}</h6>
+                </div>
                 <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+                    
                     <!--begin::Daterangepicker-->
                     {{-- <input class="form-control form-control-solid w-100 mw-250px" placeholder="Pick date range" id="kt_ecommerce_report_views_daterangepicker" /> --}}
                     <!--end::Daterangepicker-->
@@ -104,15 +108,14 @@
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                            <th class="min-w-150px">Sr No.</th>
-                            <th class="min-w-150px">Name</th>
-                            <th class="text-start min-w-100px">Id</th>
-                            <th class="text-start min-w-100px">Email</th>
-                            <th class="text-start min-w-100px">Company</th>
-                            <th class="text-start min-w-70px">Address</th>
-                            <th class="text-start min-w-100px">Phone</th>
-                            <th class="text-start min-w-100px">Postal Code</th>
-                            <th class="text-start min-w-100px">Date Created</th>
+                            <th class="text-start min-w-100px">Sub Id</th>
+                            <th class="min-w-150px">Led Title</th>
+                            <th class="text-start min-w-100px">Order Id</th>
+                            <th class="text-start min-w-100px">Price</th>
+                            <th class="text-start min-w-70px">Days</th>
+                            <th class="text-start min-w-100px">Start Date</th>
+                            <th class="text-start min-w-100px">End Date</th>
+                            <th class="text-start min-w-100px">Order Date</th>
                             <th class="text-start min-w-100px">Actions</th>
                         </tr>
                         <!--end::Table row-->
@@ -121,73 +124,85 @@
                     <!--begin::Table body-->
                     <tbody class="fw-bold text-gray-600">
                         <!--begin::Table row-->
-                        @foreach ($clients as $client)
+                        @foreach ($subOrders as $subOrder)
+                        @if ($subOrder->order->payment_status==true)
                         <tr>
                             <!--begin::Product=-->
-                            <td class="text-start">
-                                <span class="fw-bolder">{{++$srNo}}</span>
+                            <td class="text-start pe-0">
+                                <span class="fw-bolder">{{$subOrder->id}}</span>
                             </td>
                             <td>
                                 <div class="d-flex align-items-center">
                                     <!--begin::Thumbnail-->
-                                    <a href="{{route('client.led.edit',$client->id)}}" class="symbol symbol-50px">
-                                        <span class="symbol-label" style="background-image:url();"></span>
+                                    <a class="symbol symbol-50px">
+                                        <span class="symbol-label" style="background-image:url('{{asset('storage/'.($subOrder->led->images->first())->path)}}');"></span>
                                     </a>
+                                        
+                                        
                                     <!--end::Thumbnail-->
                                     <div class="ms-5">
                                         <!--begin::Title-->
-                                        <a href="{{route('client.led.edit',$client->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$client->firstname.' '.$client->lastname}}</a>
+                                        <a href="{{route('client.led.edit',$subOrder->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$subOrder->led->title}}</a>
                                         <!--end::Title-->
                                     </div>
                                 </div>
                             </td>
                             <!--end::Product=-->
                             <!--begin::SKU=-->
-                            <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$client->id}}</span>
-                            </td>
+                           
                             <!--end::SKU=-->
                             <!--begin::Rating-->
                             <td class="text-end pe-0" data-order="rating-5" data-filter="rating-5">
                                 <div class="rating justify-content-start">
                                     
-                                    <span class="fw-bolder">{{$client->email}}</span>
+                                    <span class="fw-bolder">{{$subOrder->order->id}}</span>
                                     
                                 </div>
                             </td>
                             <!--end::Rating-->
                             <!--begin::Price=-->
-                            <td class="text-start pe-0">
-                                <span>{{$client->company}}</span>
-                            </td>
+                            
                             <!--end::Price=-->
                             <!--begin::Viewed=-->
                             <td class="text-start pe-0">
-                                <span>{{$client->address}}</span>
+                                <span>{{$subOrder->price}}</span>
+                            </td>
+
+                            <td class="text-start pe-0">
+                                <span>{{$subOrder->no_of_days}}</span>
+                            </td>
+
+                            <td class="text-start pe-0">
+                                <span>{{$subOrder->startDate->format('F d, Y')}}</span>
+                            </td>
+
+                            <td class="text-start pe-0">
+                                <span>{{$subOrder->endDate->format('F d, Y')}}</span>
                             </td>
                             <!--end::Viewed=-->
                             <!--begin::Percent=-->
-                            <td class="text-start pe-0">{{$client->phone}}</td>
-                            <td class="text-start pe-0">{{$client->postal_code}}</td>
+                            
+                            
                             <td class="text-start pe-0">
-                                <span>{{$client->created_at->format('F d, Y')}}</span>
+                                <span>{{$subOrder->created_at->format('F d, Y')}}</span>
                             </td>
                             <td class="text-end pe-0">
                                 <div class="rating justify-content-end">
-                                    {{-- <a class="btn btn-primary" href="{{route('client.led.edit',$client->id)}}">Edit</a> --}}
-                                <form action="{{route('admin.client.list.delete')}}" method="post">
+                                    {{-- <a class="btn btn-primary" href="{{route('client.led.edit',$user->id)}}">Edit</a> --}}
+                                {{-- <form action="{{route('admin.users.list.delete')}}" method="post">
                                     @csrf
-                                  <button type="submit" class="btn btn-danger" name="client_id" value="{{$client->id}}">Delete</button>
+                                  <button type="submit" class="btn btn-danger" name="user_id" value="{{$user->id}}">Delete</button>
                                 </form>
-                                <form action="{{route('admin.client.list.led')}}" method="post">
+                                <form action="{{route('admin.users.list.order')}}" method="post">
                                     @csrf
-                                  <button type="submit" class="btn btn-primary" name="client_id" value="{{$client->id}}">Leds</button>
-                                </form>
+                                  <button type="submit" class="btn btn-primary" name="user_id" value="{{$user->id}}">Orders</button>
+                                </form> --}}
                                 </div>
                                 
                             </td>
                             <!--end::Percent=-->
                         </tr>
+                        @endif
                         @endforeach
                         
                         <!--end::Table row-->

@@ -70,8 +70,10 @@ Route::group(['middleware' => ['role:Admin','auth']], function () {
     Route::post('/admin-users-list-orders', [AdminUsersController::class,'showUserOrders'])->name('admin.users.list.order');
     Route::get('/admin-client-list', [AdminClientController::class,'clientList'])->name('admin.client.list');
     Route::post('/admin-client-list-delete', [AdminClientController::class,'deleteClient'])->name('admin.client.list.delete');
+    Route::post('/admin-client-list-leds', [AdminClientController::class,'showClientLeds'])->name('admin.client.list.led');
     Route::get('/admin-led-list', [AdminLedController::class,'ledList'])->name('admin.led.list');
     Route::post('/admin-led-list-delete', [AdminLedController::class,'deleteLed'])->name('admin.led.list.delete');
+    Route::post('/admin-led-list-orders', [AdminLedController::class,'showLedOrders'])->name('admin.led.list.order');
     Route::get('/admin-city-list', [AdminCityController::class,'cityList'])->name('admin.city.list');
     Route::post('/admin-city-add', [AdminCityController::class,'cityStore'])->name('admin.city.add');
     Route::post('/admin-city-list-delete', [AdminCityController::class,'cityDelete'])->name('admin.city.list.delete');
