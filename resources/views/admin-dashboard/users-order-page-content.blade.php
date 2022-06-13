@@ -31,7 +31,11 @@
                 </div>
                 <!--end::Card title-->
                 <!--begin::Card toolbar-->
+                <div class="card-toolbar flex-row-fluid justify-content-start gap-5">
+                    <h6>User Email : {{$user->email}}</h6>
+                </div>
                 <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+                    
                     <!--begin::Daterangepicker-->
                     {{-- <input class="form-control form-control-solid w-100 mw-250px" placeholder="Pick date range" id="kt_ecommerce_report_views_daterangepicker" /> --}}
                     <!--end::Daterangepicker-->
@@ -104,12 +108,14 @@
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                            <th class="text-start min-w-100px">Record Id</th>
-                            <th class="min-w-150px">Name</th>
-                            <th class="text-start min-w-100px">Email</th>
-                            <th class="text-start min-w-70px">Address</th>
-                            <th class="text-start min-w-100px">Phone</th>
-                            <th class="text-start min-w-100px">Date</th>
+                            <th class="text-start min-w-100px">Sub Id</th>
+                            <th class="min-w-150px">Led Title</th>
+                            <th class="text-start min-w-100px">Order Id</th>
+                            <th class="text-start min-w-100px">Price</th>
+                            <th class="text-start min-w-70px">Days</th>
+                            <th class="text-start min-w-100px">Start Date</th>
+                            <th class="text-start min-w-100px">End Date</th>
+                            <th class="text-start min-w-100px">Order Date</th>
                             <th class="text-start min-w-100px">Actions</th>
                         </tr>
                         <!--end::Table row-->
@@ -118,22 +124,25 @@
                     <!--begin::Table body-->
                     <tbody class="fw-bold text-gray-600">
                         <!--begin::Table row-->
-                        @foreach ($users as $user)
+                        @foreach ($orders as $order)
+                        @foreach ($order->subOrders as $subOrder)
                         <tr>
                             <!--begin::Product=-->
                             <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$user->id}}</span>
+                                <span class="fw-bolder">{{$subOrder->id}}</span>
                             </td>
                             <td>
                                 <div class="d-flex align-items-center">
                                     <!--begin::Thumbnail-->
-                                    <a href="{{route('client.led.edit',$user->id)}}" class="symbol symbol-50px">
-                                        <span class="symbol-label" style="background-image:url();"></span>
+                                    <a class="symbol symbol-50px">
+                                        <span class="symbol-label" style="background-image:url('{{asset('storage/'.($subOrder->led->images->first())->path)}}');"></span>
                                     </a>
+                                        
+                                        
                                     <!--end::Thumbnail-->
                                     <div class="ms-5">
                                         <!--begin::Title-->
-                                        <a href="{{route('client.led.edit',$user->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$user->firstname.' '.$user->lastname}}</a>
+                                        <a href="{{route('client.led.edit',$subOrder->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$subOrder->led->title}}</a>
                                         <!--end::Title-->
                                     </div>
                                 </div>
@@ -146,7 +155,7 @@
                             <td class="text-end pe-0" data-order="rating-5" data-filter="rating-5">
                                 <div class="rating justify-content-start">
                                     
-                                    <span class="fw-bolder">{{$user->email}}</span>
+                                    <span class="fw-bolder">{{$subOrder->order->id}}</span>
                                     
                                 </div>
                             </td>
@@ -156,31 +165,44 @@
                             <!--end::Price=-->
                             <!--begin::Viewed=-->
                             <td class="text-start pe-0">
-                                <span>{{$user->address}}</span>
+                                <span>{{$subOrder->price}}</span>
+                            </td>
+
+                            <td class="text-start pe-0">
+                                <span>{{$subOrder->no_of_days}}</span>
+                            </td>
+
+                            <td class="text-start pe-0">
+                                <span>{{$subOrder->startDate->format('F d, Y')}}</span>
+                            </td>
+
+                            <td class="text-start pe-0">
+                                <span>{{$subOrder->endDate->format('F d, Y')}}</span>
                             </td>
                             <!--end::Viewed=-->
                             <!--begin::Percent=-->
-                            <td class="text-start pe-0">{{$user->phone}}</td>
+                            
                             
                             <td class="text-start pe-0">
-                                <span>{{$user->created_at->format('F d, Y')}}</span>
+                                <span>{{$subOrder->created_at->format('F d, Y')}}</span>
                             </td>
                             <td class="text-end pe-0">
                                 <div class="rating justify-content-end">
                                     {{-- <a class="btn btn-primary" href="{{route('client.led.edit',$user->id)}}">Edit</a> --}}
-                                <form action="{{route('admin.users.list.delete')}}" method="post">
+                                {{-- <form action="{{route('admin.users.list.delete')}}" method="post">
                                     @csrf
                                   <button type="submit" class="btn btn-danger" name="user_id" value="{{$user->id}}">Delete</button>
                                 </form>
                                 <form action="{{route('admin.users.list.order')}}" method="post">
                                     @csrf
                                   <button type="submit" class="btn btn-primary" name="user_id" value="{{$user->id}}">Orders</button>
-                                </form>
+                                </form> --}}
                                 </div>
                                 
                             </td>
                             <!--end::Percent=-->
                         </tr>
+                        @endforeach
                         @endforeach
                         
                         <!--end::Table row-->

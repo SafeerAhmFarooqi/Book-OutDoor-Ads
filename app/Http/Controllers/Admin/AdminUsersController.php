@@ -26,6 +26,17 @@ class AdminUsersController extends BaseAdminController
     Storage::deleteDirectory('public/led-images/'.$request->user_id);
     return back()->with('success', 'User Deleted Successfully');
  }    
+
+ public function showUserOrders(Request $request)
+ {
+     $user=User::find($request->user_id);
+     $orders=$user->orders->where('payment_status',true);
+     return view('admin-dashboard.users-order-page',[
+        'user'=>$user,
+        'orders'=>$orders,
+        'srNo'=>0,
+      ]);
+ }   
 }
 
 
