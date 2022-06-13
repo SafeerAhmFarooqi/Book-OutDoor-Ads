@@ -31,6 +31,9 @@
                 </div>
                 <!--end::Card title-->
                 <!--begin::Card toolbar-->
+                <div class="card-toolbar flex-row-fluid justify-content-start gap-5">
+                        <h6>Partner Email : {{$client->email}}</h6>
+                </div>
                 <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                     <!--begin::Daterangepicker-->
                     {{-- <input class="form-control form-control-solid w-100 mw-250px" placeholder="Pick date range" id="kt_ecommerce_report_views_daterangepicker" /> --}}
@@ -104,15 +107,13 @@
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                            <th class="min-w-150px">Sr No.</th>
-                            <th class="min-w-150px">Name</th>
-                            <th class="text-start min-w-100px">Id</th>
-                            <th class="text-start min-w-100px">Email</th>
-                            <th class="text-start min-w-100px">Company</th>
-                            <th class="text-start min-w-70px">Address</th>
-                            <th class="text-start min-w-100px">Phone</th>
-                            <th class="text-start min-w-100px">Postal Code</th>
-                            <th class="text-start min-w-100px">Date Created</th>
+                            <th class="text-start min-w-100px">Record Id</th>
+                            <th class="min-w-150px">Title</th>
+                            <th class="text-start min-w-70px">Tax</th>
+                            <th class="text-start min-w-100px">Price</th>
+                            <th class="text-start min-w-100px">Total Price</th>
+                            <th class="text-start min-w-100px">Location</th>
+                            <th class="text-start min-w-100px">Date Created</th>    
                             <th class="text-start min-w-100px">Actions</th>
                         </tr>
                         <!--end::Table row-->
@@ -121,67 +122,72 @@
                     <!--begin::Table body-->
                     <tbody class="fw-bold text-gray-600">
                         <!--begin::Table row-->
-                        @foreach ($clients as $client)
+                        @foreach ($leds as $led)
                         <tr>
                             <!--begin::Product=-->
-                            <td class="text-start">
-                                <span class="fw-bolder">{{++$srNo}}</span>
+                            <td class="text-start pe-0">
+                                <span class="fw-bolder">{{$led->id}}</span>
                             </td>
                             <td>
                                 <div class="d-flex align-items-center">
                                     <!--begin::Thumbnail-->
-                                    <a href="{{route('client.led.edit',$client->id)}}" class="symbol symbol-50px">
-                                        <span class="symbol-label" style="background-image:url();"></span>
+                                    <a href="{{route('client.led.edit',$led->id)}}" class="symbol symbol-50px">
+                                        <span class="symbol-label" style="background-image:url('{{asset('storage/'.($led->images->first())->path)}}');"></span>
                                     </a>
                                     <!--end::Thumbnail-->
                                     <div class="ms-5">
                                         <!--begin::Title-->
-                                        <a href="{{route('client.led.edit',$client->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$client->firstname.' '.$client->lastname}}</a>
+                                        <a href="{{route('client.led.edit',$led->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$led->title}}</a>
                                         <!--end::Title-->
                                     </div>
                                 </div>
                             </td>
+
+                            <td class="text-start pe-0">
+                                <span>{{$led->tax}}</span>
+                            </td>
+
+                            <td class="text-start pe-0">
+                                <span>{{$led->price}}</span>
+                            </td>
+
+                            <td class="text-start pe-0">
+                                <span>{{$led->price+$led->tax}}</span>
+                            </td>
+
+                            <td class="text-start pe-0">
+                                <span>{{$led->location}}</span>
+                            </td>
+
+                            <td class="text-start pe-0">
+                                <span>{{$led->created_at->format('F d, Y')}}</span>
+                            </td>
                             <!--end::Product=-->
                             <!--begin::SKU=-->
-                            <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$client->id}}</span>
-                            </td>
+                            
                             <!--end::SKU=-->
                             <!--begin::Rating-->
-                            <td class="text-end pe-0" data-order="rating-5" data-filter="rating-5">
-                                <div class="rating justify-content-start">
-                                    
-                                    <span class="fw-bolder">{{$client->email}}</span>
-                                    
-                                </div>
-                            </td>
+                          
                             <!--end::Rating-->
                             <!--begin::Price=-->
-                            <td class="text-start pe-0">
-                                <span>{{$client->company}}</span>
-                            </td>
+                           
                             <!--end::Price=-->
                             <!--begin::Viewed=-->
-                            <td class="text-start pe-0">
-                                <span>{{$client->address}}</span>
-                            </td>
+                            
                             <!--end::Viewed=-->
                             <!--begin::Percent=-->
-                            <td class="text-start pe-0">{{$client->phone}}</td>
-                            <td class="text-start pe-0">{{$client->postal_code}}</td>
-                            <td class="text-start pe-0">
-                                <span>{{$client->created_at->format('F d, Y')}}</span>
-                            </td>
+                           
+                            
                             <td class="text-end pe-0">
                                 <div class="rating justify-content-end">
-                                    {{-- <a class="btn btn-primary" href="{{route('client.led.edit',$client->id)}}">Edit</a> --}}
-                                <form action="{{route('admin.client.list.delete')}}" method="post">
+                                    {{-- <a class="btn btn-primary" href="{{route('client.led.edit',$led->id)}}">Edit</a> --}}
+                                <form action="{{route('admin.led.list.delete')}}" method="post">
                                     @csrf
-                                  <button type="submit" class="btn btn-danger" name="client_id" value="{{$client->id}}">Delete</button>
+                                  <button type="submit" class="btn btn-danger" name="led_id" value="{{$led->id}}">Delete</button>
                                 </form>
-                                <form action="{{route('admin.client.list.led')}}" method="post">
+                                <form action="{{route('admin.led.list.order')}}" method="post">
                                     @csrf
-                                  <button type="submit" class="btn btn-primary" name="client_id" value="{{$client->id}}">Leds</button>
+                                  <button type="submit" class="btn btn-primary" name="led_id" value="{{$led->id}}">Orders</button>
                                 </form>
                                 </div>
                                 
