@@ -36,7 +36,7 @@
                     <div class="row fv-row mb-7">
                         <!--begin::Col-->
                         <div class="col-xl-6">
-                            <label class="form-label fw-bolder text-dark fs-6">First Name</label>
+                            <label class="form-label fw-bolder required text-dark fs-6">First Name</label>
                             <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="firstname" value="{{old('firstname')}}" />
                             @error('firstname')
                             <div class="alert alert-danger">
@@ -47,7 +47,7 @@
                         <!--end::Col-->
                         <!--begin::Col-->
                         <div class="col-xl-6">
-                            <label class="form-label fw-bolder text-dark fs-6">Last Name</label>
+                            <label class="form-label fw-bolder required text-dark fs-6">Last Name</label>
                             <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="lastname" value="{{old('lastname')}}" />
                             @error('lastname')
                             <div class="alert alert-danger">
@@ -60,9 +60,29 @@
                     <!--end::Input group-->
                     <!--begin::Input group-->
                     <div class="fv-row mb-7">
-                        <label class="form-label fw-bolder text-dark fs-6">Email</label>
+                        <label class="form-label fw-bolder required text-dark fs-6">Email</label>
                         <input class="form-control form-control-lg form-control-solid" type="email" placeholder="" name="email" value="{{old('email')}}" />
                         @error('email')
+                        <div class="alert alert-danger">
+                                {{$message}}
+                        </div>
+                        @enderror
+                    </div>
+
+                    <div class="fv-row mb-7">
+                        <label class="form-label fw-bolder required text-dark fs-6">Address</label>
+                        <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="address" value="{{old('address')}}"  id="myAddress"/>
+                        @error('address')
+                        <div class="alert alert-danger">
+                                {{$message}}
+                        </div>
+                        @enderror
+                    </div>
+
+                    <div class="fv-row mb-7">
+                        <label class="form-label fw-bolder required text-dark fs-6">Phone</label>
+                        <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="phone" value="{{old('phone')}}" />
+                        @error('phone')
                         <div class="alert alert-danger">
                                 {{$message}}
                         </div>
@@ -74,7 +94,7 @@
                         <!--begin::Wrapper-->
                         <div class="mb-1">
                             <!--begin::Label-->
-                            <label class="form-label fw-bolder text-dark fs-6">Password</label>
+                            <label class="form-label required fw-bolder text-dark fs-6">Password</label>
                             <!--end::Label-->
                             <!--begin::Input wrapper-->
                             <div class="position-relative mb-3">
@@ -107,7 +127,7 @@
                     <!--end::Input group=-->
                     <!--begin::Input group-->
                     <div class="fv-row mb-5">
-                        <label class="form-label fw-bolder text-dark fs-6">Confirm Password</label>
+                        <label class="form-label fw-bolder required text-dark fs-6">Confirm Password</label>
                         <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="password_confirmation"/>
                         @error('password_confirmation')
                         <div class="alert alert-danger">
@@ -155,4 +175,20 @@
 
 @section('pageScripts')
 {{-- <script src="{{ asset('assets/Metronic-Theme/js/custom/authentication/sign-up/general.js') }}"></script> --}}
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyAIeDyz_v1KkoU3ZTRqK5e-9Ax1lNjSIEI"></script>
+<script type="text/javascript">
+    var searchInput = 'myAddress';
+    
+        $(document).ready(function () {
+            var autocomplete;
+            autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+                types: ['geocode']
+               
+            });
+        
+            google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                var near_place = autocomplete.getPlace();
+            });
+        });
+</script>
 @endsection

@@ -82,13 +82,13 @@ class RegisteredUserController extends Controller
         {
             
             $request->validate([
-                'firstname' => ['required', 'string', 'max:255'],
-                'lastname' => ['required', 'string', 'max:255'],
+                'firstname' => ['required', 'string', 'max:500'],
+                'lastname' => ['required', 'string', 'max:500'],
                 // 'company' => ['required', 'string', 'max:255'],
-                // 'address' => ['required', 'string', 'max:255'],
-                // 'phone' => ['required', 'string', 'max:255'],
+                 'address' => ['required', 'string', 'max:500'],
+                'phone' => ['required', 'string', 'max:500'],
                 // 'postal_code' => ['required', 'string', 'max:255'],
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+                'email' => ['required', 'string', 'email', 'max:500', 'unique:users'],
                 'password' => ['required', 'confirmed', Rules\Password::defaults()],
             ]);    
 
@@ -96,8 +96,8 @@ class RegisteredUserController extends Controller
                 'firstname' => $request->firstname,
                 'lastname' => $request->lastname,
                 // 'company' => $request->company,
-                // 'address' => $request->address,
-                // 'phone' => $request->phone,
+                 'address' => $request->address,
+                 'phone' => $request->phone,
                 // 'postal_code' => $request->postal_code,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
