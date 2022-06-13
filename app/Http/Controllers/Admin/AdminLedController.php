@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Led;
 use App\Models\LedImages;
+use App\Models\SubOrders;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 
@@ -17,6 +18,16 @@ class AdminLedController extends BaseAdminController
     // return view('test');
     $leds = Led::all();
     return view('admin-dashboard.led-list-page',['leds'=>$leds,'srNo'=>0]);
+ }    
+
+ public function  showOrdersList()
+ {
+    // return view('test');
+    $subOrders = SubOrders::all();
+    return view('admin-dashboard.led-orders-page',[
+       'subOrders'=>$subOrders,
+       'srNo'=>0,
+      ]);
  }    
 
  public function deleteLed(Request $request)
