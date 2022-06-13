@@ -83,6 +83,7 @@ Route::group(['middleware' => ['role:Admin','auth']], function () {
     Route::get('/admin-trending-leds', [AdminLedController::class,'trendingLeds'])->name('admin.led.trending');
     Route::post('/admin-led-add-trending', [AdminLedController::class,'addLedTrending'])->name('admin.led.add.trending');
     Route::post('/admin-led-remove-trending', [AdminLedController::class,'removeLedTrending'])->name('admin.led.remove.trending');
+    Route::get('/admin-orders-list', [AdminLedController::class,'showOrdersList'])->name('admin.led.orders');
 });
 
 require __DIR__.'/auth.php';
