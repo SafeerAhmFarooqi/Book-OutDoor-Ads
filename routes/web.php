@@ -67,6 +67,7 @@ Route::group(['middleware' => ['role:Client','auth']], function () {
 Route::group(['middleware' => ['role:Admin','auth']], function () {
     Route::get('/admin-users-list', [AdminUsersController::class,'usersList'])->name('admin.users.list');
     Route::post('/admin-users-list-delete', [AdminUsersController::class,'deleteUser'])->name('admin.users.list.delete');
+    Route::post('/admin-users-list-orders', [AdminUsersController::class,'showUserOrders'])->name('admin.users.list.order');
     Route::get('/admin-client-list', [AdminClientController::class,'clientList'])->name('admin.client.list');
     Route::post('/admin-client-list-delete', [AdminClientController::class,'deleteClient'])->name('admin.client.list.delete');
     Route::get('/admin-led-list', [AdminLedController::class,'ledList'])->name('admin.led.list');
