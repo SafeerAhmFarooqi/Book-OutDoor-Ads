@@ -179,7 +179,7 @@
                             <td class="text-end pe-0" data-order="rating-5" data-filter="rating-5">
                                 <div class="rating justify-content-start">
                                     
-                                    <span class="fw-bolder">{{$led->description}}</span>
+                                    <span class="fw-bolder">{{substr(strip_tags($led->description),0,20)}}...</span>
                                     
                                 </div>
                             </td>
