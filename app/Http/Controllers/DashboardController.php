@@ -13,9 +13,72 @@ use App\Models\LedImages;
 use App\Models\City;
 use App\Models\Orders;
 use App\Models\SubOrders;
+use Mollie\Laravel\Facades\Mollie;
 
 class DashboardController extends AdminController
 {
+
+   public function preparePayment()
+{
+    $payment = Mollie::api()->payments->create([
+        "amount" => [
+            "currency" => "EUR",
+            "value" => "10.00" // You must send the correct number of decimals, thus we enforce the use of strings
+        ],
+        "description" => "Order #12345",
+        "redirectUrl" => route('order.success'),
+        "webhookUrl" => route('webhooks.mollie'),
+        "metadata" => [
+            "order_id" => "12345",
+        ],
+    ]);
+
+    // redirect customer to Mollie checkout page
+    return redirect($payment->getCheckoutUrl(), 303);
+}
+
+public function payment(Request $request)
+   {
+            $order=Orders::find($request->order_id);
+            $price=$order->total_price.'.00';
+            //return $price;
+            //return $order->total_price; 
+            // $order->payment_status=true;
+            // $order->save();
+            // $request->session()->forget('cart.items');
+            // return view('app-dashboard.order-complete',[
+            //    'order'=>$order,
+            // ]);
+
+            $payment = Mollie::api()->payments->create([
+               "amount" => [
+                   "currency" => "EUR",
+                   "value" => number_format($order->total_price, 2, '.', ''), // You must send the correct number of decimals, thus we enforce the use of strings
+               ],
+               "description" => "Order #12345",
+               "redirectUrl" => route('order.success'),
+               "webhookUrl" => route('webhooks.mollie'),
+               "metadata" => [
+                   "order_id" => $order->id,
+               ],
+           ]);
+       
+           // redirect customer to Mollie checkout page
+           return redirect($payment->getCheckoutUrl(), 303);
+            
+   }
+
+public function handleWebhookNotification() {
+   $paymentId = 12345;
+   $payment = Mollie::api()->payments->get($paymentId);
+
+   if ($payment->isPaid())
+   {
+       echo 'Payment received.';
+       // Do your thing ...
+   }
+}
+
    public function geoLocate($address)
     {
         try {
@@ -370,17 +433,7 @@ class DashboardController extends AdminController
       return redirect()->route('home');
    }
 
-   public function payment(Request $request)
-   {
-            $order=Orders::find($request->order_id);
-            $order->payment_status=true;
-            $order->save();
-            $request->session()->forget('cart.items');
-            return view('app-dashboard.order-complete',[
-               'order'=>$order,
-            ]);
-            
-   }
+   
 
    public function searchLed(Request $request)
    {

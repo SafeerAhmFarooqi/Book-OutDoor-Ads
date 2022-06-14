@@ -24,6 +24,13 @@ use App\Http\Controllers\Admin\AdminCityController;
 */
 
 Route::get('/', [DashboardController::class,'home'])->name('home');
+Route::get('/order-success', function(){
+    return "payment Successfull";
+})->name('order.success');
+Route::get('/webhooks-mollie', function(){
+    return "payment Successfull webhooks.mollie";
+} )->name('webhooks.mollie');
+
 Route::get('/led-detail/{id}', [DashboardController::class,'ledDetail'])->name('app.led.detail');
 Route::post('/cart-led-add', [DashboardController::class,'addLedToCart'])->name('cart.led.add');
 Route::post('/cart-led-delete', [DashboardController::class,'deleteLedFromCart'])->name('cart.led.delete');
@@ -38,6 +45,7 @@ Route::get('/contact', [DashboardController::class,'showContact'])->name('show.c
 Route::get('/agb', [DashboardController::class,'showAgb'])->name('show.agb');
 Route::get('/policy', [DashboardController::class,'showPolicy'])->name('show.policy');
 Route::get('/list-leds-in-cities/{id?}', [DashboardController::class,'listCitiesLeds'])->name('list.cities.led');
+Route::get('/payment-m', [DashboardController::class,'preparePayment']);
 
 Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['auth'])->name('dashboard');
 
