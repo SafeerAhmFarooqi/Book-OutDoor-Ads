@@ -27,9 +27,7 @@ Route::get('/', [DashboardController::class,'home'])->name('home');
 Route::get('/order-success', function(){
     return "payment Successfull";
 })->name('order.success');
-Route::get('/webhooks-mollie', function(){
-    return "payment Successfull webhooks.mollie";
-} )->name('webhooks.mollie');
+Route::post('/webhooks-mollie', [DashboardController::class,'handleWebhookNotification'] )->name('webhooks.mollie');
 
 Route::get('/led-detail/{id}', [DashboardController::class,'ledDetail'])->name('app.led.detail');
 Route::post('/cart-led-add', [DashboardController::class,'addLedToCart'])->name('cart.led.add');
