@@ -74,6 +74,9 @@ public function handle(Request $request) {
 //    if (! $request->has('id')) {
 //       return;
 //   }
+$test=Orders::find(1);
+$test->cancel_detail="Check 1 : ".$request->id;
+$test->save();
   $payment = Mollie::api()->payments()->get($request->id);
   $order=Orders::find($payment->metadata->order_id);
   if ($payment->isPaid()) {
