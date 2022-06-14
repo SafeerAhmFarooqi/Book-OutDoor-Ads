@@ -40,7 +40,6 @@ class DashboardController extends AdminController
 public function payment(Request $request)
    {
             $order=Orders::find($request->order_id);
-            $price=$order->total_price.'.00';
             //return $price;
             //return $order->total_price; 
             // $order->payment_status=true;
@@ -68,15 +67,27 @@ public function payment(Request $request)
             
    }
 
-public function handleWebhookNotification() {
-   $paymentId = 12345;
-   $payment = Mollie::api()->payments->get($paymentId);
+public function handleWebhookNotification(Request $request) {
+   if (! $request->has('id')) {
+      return;
+  }
 
-   if ($payment->isPaid())
-   {
-       echo 'Payment received.';
-       // Do your thing ...
-   }
+  $payment = Mollie::api()->payments()->get($request->id);
+
+  if ($payment->isPaid()) {
+      return "from web hook paid";
+  }
+  if (!$payment->isPaid()) {
+   return "from web hook not paid";
+}
+   // $paymentId = 12345;
+   // $payment = Mollie::api()->payments->get($paymentId);
+
+   // if ($payment->isPaid())
+   // {
+   //     echo 'Payment received.';
+   //     // Do your thing ...
+   // }
 }
 
    public function geoLocate($address)
