@@ -61,31 +61,28 @@ public function payment(Request $request)
                    "order_id" => $order->id,
                ],
            ]);
-       
+           $payment = Mollie::api()->payments()->get($payment->id);
            // redirect customer to Mollie checkout page
            return redirect($payment->getCheckoutUrl(), 303);
             
    }
 
-public function handleWebhookNotification(Request $request) {
-   
+public function handle(Request $request) {
+   //return "safeer";
    //return redirect('/');
    //echo "safeer";
 //    if (! $request->has('id')) {
 //       return;
 //   }
-
   $payment = Mollie::api()->payments()->get($request->id);
-  $order=Orders::find($request->order_id);
+  $order=Orders::find($payment->metadata->order_id);
   if ($payment->isPaid()) {
      $order->payment_status=true;
      $order->save();
-      echo "from web hook paid";
   }
   if (!$payment->isPaid()) {
    $order->payment_status=false;
      $order->save();
-   echo "from web hook not paid";
 }
    // $paymentId = 12345;
    // $payment = Mollie::api()->payments->get($paymentId);
