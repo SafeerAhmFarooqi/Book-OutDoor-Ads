@@ -95,6 +95,7 @@
                                       <form action="{{route('cart.led.add')}}" method="post">
                                         @csrf
                                       <input type="text" name="book_dates" value="{{\Carbon\Carbon::now()}}" />
+                                      <h6 id="alert" style="color: red;"></h6>
                                   </div>
                                   
 
@@ -646,8 +647,40 @@ var Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24));
         document.getElementById("multiply_show").innerHTML =  'X';
         document.getElementById("days_show").innerHTML =  ' Days';
         document.getElementById("total_price").innerHTML =  Difference_In_Days*{{$led->price}};
+        document.getElementById("alert").innerHTML =  ''; 
        // alert(start.format('YYYY-MM-DD'));
       });
+
+      $('input[name="book_dates"]').on('apply.daterangepicker', function(ev, picker) {
+        var pickerStartDate=new Date(picker.startDate.format('YYYY-MM-DD'));
+        var pickerEndDate=new Date(picker.endDate.format('YYYY-MM-DD'));
+        dateRanges.forEach(range => {
+          startDateObject=new Date(range.startDate);
+                startDate=new Date(startDateObject.getFullYear()+'-'+(startDateObject.getMonth() + 1)+'-'+startDateObject.getDate());
+                endDateObject=new Date(range.endDate);
+                endDate=new Date(endDateObject.getFullYear()+'-'+(endDateObject.getMonth() + 1)+'-'+endDateObject.getDate());
+          //alert(startDate+' : '+endDate);
+         // alert(picker.startDate.format('YYYY-MM-DD')+' : '+picker.endDate.format('YYYY-MM-DD'));
+         //alert(pickerStartDate.getTime()+' : '+startDate.getTime());
+          if(pickerStartDate.getTime()<startDate.getTime()&&pickerEndDate.getTime()>endDate.getTime())
+          {
+           // alert('Invalid Date Choosen');
+     $('input[name="book_dates"]').val('');  
+     document.getElementById("alert").innerHTML =  'Invalid Date';     
+          }
+        });
+        var today = new Date();
+
+var todayDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+  //  if(picker.startDate.format('YYYY-MM-DD')<todayDate)
+  //  {
+  //    alert('Invalid Date Choosen');
+  //    $('input[name="book_dates"]').val(''); 
+  //  }   
+  //do something, like clearing an input
+ // alert(picker.startDate.format('YYYY-MM-DD'));
+  //$('#daterange').val('');
+});
     });
     </script>
 @endsection
