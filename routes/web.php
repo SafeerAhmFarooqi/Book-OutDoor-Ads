@@ -24,9 +24,7 @@ use App\Http\Controllers\Admin\AdminCityController;
 */
 
 Route::get('/', [DashboardController::class,'home'])->name('home');
-Route::get('/order-success', function(){
-    return "payment Successfull";
-})->name('order.success');
+Route::get('/payment-process/{id?}',[DashboardController::class,'paymentProcess'])->name('payment.order.process');
 Route::post('/webhooks-mollie', [DashboardController::class,'handle'] )->name('webhooks.mollie');
 
 Route::get('/led-detail/{id}', [DashboardController::class,'ledDetail'])->name('app.led.detail');

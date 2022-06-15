@@ -18,23 +18,12 @@ use Mollie\Laravel\Facades\Mollie;
 class DashboardController extends AdminController
 {
 
-   public function preparePayment()
+   public function paymentProcess($id=null)
 {
-    $payment = Mollie::api()->payments->create([
-        "amount" => [
-            "currency" => "EUR",
-            "value" => "10.00" // You must send the correct number of decimals, thus we enforce the use of strings
-        ],
-        "description" => "Order #12345",
-        "redirectUrl" => route('order.success'),
-        "webhookUrl" => route('webhooks.mollie'),
-        "metadata" => [
-            "order_id" => "12345",
-        ],
-    ]);
-
-    // redirect customer to Mollie checkout page
-    return redirect($payment->getCheckoutUrl(), 303);
+   $order=Orders::findOrFail($id);
+    return view('app-dashboard.order-complete',[
+               'order'=>$order,
+            ]);
 }
 
 public function payment(Request $request)
@@ -54,14 +43,16 @@ public function payment(Request $request)
                    "currency" => "EUR",
                    "value" => number_format($order->total_price, 2, '.', ''), // You must send the correct number of decimals, thus we enforce the use of strings
                ],
-               "description" => "Order #12345",
-               "redirectUrl" => route('order.success'),
+               "description" => "Order #".$order->id,
+               "redirectUrl" => route('payment.order.process',$order->id),
                "webhookUrl" => route('webhooks.mollie'),
                "metadata" => [
                    "order_id" => $order->id,
                ],
            ]);
-           $payment = Mollie::api()->payments()->get($payment->id);
+           $order->payment_id=$payment->id;
+           $order->save();
+          // $payment = Mollie::api()->payments()->get($payment->id);
            // redirect customer to Mollie checkout page
            return redirect($payment->getCheckoutUrl(), 303);
             
@@ -71,12 +62,9 @@ public function handle(Request $request) {
    //return "safeer";
    //return redirect('/');
    //echo "safeer";
-//    if (! $request->has('id')) {
-//       return;
-//   }
-$test=Orders::find(1);
-$test->cancel_detail="Check 1 : ".$request->id;
-$test->save();
+   if (! $request->has('id')) {
+      return;
+  }
   $payment = Mollie::api()->payments()->get($request->id);
   $order=Orders::find($payment->metadata->order_id);
   if ($payment->isPaid()) {
@@ -348,7 +336,7 @@ $test->save();
                'order_id' => $order->id,
            ]);
            }
-
+           $request->session()->forget('cart.items');
            return view('app-dashboard.payment-page',[
               'order'=>$order,
            ]);

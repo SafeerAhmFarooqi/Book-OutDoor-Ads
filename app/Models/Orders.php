@@ -25,6 +25,7 @@ class Orders extends Model
         'complete_status',
         'cancel_status',
         'cancel_detail',
+        'payment_id',
     ];
 
     protected static function booted()
