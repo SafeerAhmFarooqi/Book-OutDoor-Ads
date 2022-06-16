@@ -16,7 +16,7 @@
                     <div class="col-2"><img class="img-fluid" src="{{asset('storage/'.($item->images->first())->path)}}"></div>
                     <div class="col">
                         <div class="row text-muted">{{$item->title}}</div>
-                        <div class="row">{{$item->description}}</div>
+                        <div class="row">{{substr(strip_tags($item->description),0,20)}}...</div>
                     </div>
                     <div class="col">
                         <div class="row text-muted">Tax</div>
@@ -74,7 +74,7 @@
                 <div class="col"> TOTAL PRICE</div>
                 <div class="col text-right">&euro; {{$totalPrice}}</div>
             </div>
-            <a href="{{route('led.checkout')}}" class="btn">CHECKOUT</a>
+            <a href="{{route('led.checkout')}}" class="btn">Pay Now</a>
         </div>
     </div>
     
