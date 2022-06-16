@@ -75,6 +75,7 @@
                 <div class="col text-right">&euro; {{$totalPrice}}</div>
             </div>
             <a href="{{route('led.checkout')}}" class="btn">Pay Now</a>
+            
         </div>
     </div>
     

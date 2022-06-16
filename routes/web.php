@@ -33,7 +33,7 @@ Route::post('/cart-led-delete', [DashboardController::class,'deleteLedFromCart']
 Route::get('/cart-list-items', [DashboardController::class,'listCartItems'])->name('cart.list.items');
 Route::post('/cart-list-items-delete', [DashboardController::class,'deleteLedFromCartList'])->name('cart.list.led.delete');
 Route::get('/checkout', [DashboardController::class,'checkout'])->name('led.checkout');
-Route::post('/payment', [DashboardController::class,'payment'])->name('led.order.payment');
+Route::get('/payment/{id?}', [DashboardController::class,'payment'])->name('led.order.payment');
 Route::get('/search-led', [DashboardController::class,'searchLed'])->name('find.led');
 Route::get('/search-map-led', [DashboardController::class,'searchMapLed'])->name('find.map.led');
 Route::get('/imprint', [DashboardController::class,'showImprint'])->name('show.imprint');
