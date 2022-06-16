@@ -338,7 +338,7 @@ public function handle(Request $request) {
            ]);
            }
            $request->session()->forget('cart.items');
-           $this->payment($order->id);
+           return redirect()->route('led.order.payment',$order->id);
          //   return view('app-dashboard.payment-page',[
          //      'order'=>$order,
          //   ]);
