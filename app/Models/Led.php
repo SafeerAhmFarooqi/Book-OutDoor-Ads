@@ -41,10 +41,11 @@ class Led extends Model
     {
         strtok($value,'*');
         $startDate=strtok('-');
-        $endDate=strtok('');
+        $endDate=strtok('*');
+        $noOfDays=strtok('');
         $this->attributes['startDate'] = $startDate;
         $this->attributes['endDate'] = $endDate;
-        $this->attributes['noOfDays'] = Carbon::parse($startDate)->diffInDays(Carbon::parse($endDate))+1;
+        $this->attributes['noOfDays'] = $noOfDays;
         
     }
 

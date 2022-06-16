@@ -25,7 +25,7 @@
                     <div class="col">
                         <div class="row text-muted">From : {{\Carbon\Carbon::parse($item->startDate)->format('F d, Y') }}</div>
                         <div class="row text-muted">To : {{\Carbon\Carbon::parse($item->endDate)->format('F d, Y')}}</div>
-                        <div class="row text-muted">Total Days : {{\Carbon\Carbon::parse($item->startDate)->diffInDays(Carbon\Carbon::parse($item->endDate))+1}}</div>
+                        <div class="row text-muted">Total Days : {{$item->noOfDays}}</div>
                     </div>
                     
                     
