@@ -26,9 +26,9 @@ class DashboardController extends AdminController
             ]);
 }
 
-public function payment(Request $request)
+public function payment($id)
    {
-            $order=Orders::find($request->order_id);
+            $order=Orders::find($id);
             //return $price;
             //return $order->total_price; 
             // $order->payment_status=true;
@@ -338,9 +338,10 @@ public function handle(Request $request) {
            ]);
            }
            $request->session()->forget('cart.items');
-           return view('app-dashboard.payment-page',[
-              'order'=>$order,
-           ]);
+           $this->payment($order->id);
+         //   return view('app-dashboard.payment-page',[
+         //      'order'=>$order,
+         //   ]);
 
          } else {
             return redirect()->route('home');
