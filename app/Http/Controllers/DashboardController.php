@@ -149,6 +149,7 @@ public function handle(Request $request) {
    public function addLedToCart(Request $request)
    {
       //return  strtok($request->led_id.'*'.$request->book_dates,'*');
+      //return $request->no_of_days;
       $request->session()->push('cart.items', $request->led_id.'*'.$request->book_dates);
       return back()->with('message', 'Item Added to Cart Successfully' );
    }

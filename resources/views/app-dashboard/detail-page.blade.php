@@ -36,6 +36,7 @@
         {{ session()->get('message') }}
     </div>
    @endif
+
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                   <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -96,6 +97,7 @@
                                         @csrf
                                       <input type="text" name="book_dates" value="{{\Carbon\Carbon::now()}}" />
                                       <h6 id="alert" style="color: red;"></h6>
+                                      <input type="hidden" id="no_of_days" name="no_of_days">
                                   </div>
                                   
 
@@ -162,6 +164,7 @@ Add to Cart                            </button>
               
               <div>
                 <textarea id="kt_docs_tinymce_basic" placeholder="Description">{{$led->description}}</textarea>
+                
               </div>
               
             </div>
@@ -641,20 +644,9 @@ jQuery(function($) {
       }, function(start, end, label) {
         var date1 = new Date(start);
 var date2 = new Date(end);
-var Difference_In_Time = date2.getTime() - date1.getTime();
-var Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24));
-        document.getElementById("total_days").innerHTML = Difference_In_Days;
-        document.getElementById("multiply_show").innerHTML =  'X';
-        document.getElementById("days_show").innerHTML =  ' Days';
-        document.getElementById("total_price").innerHTML =  Difference_In_Days*{{$led->price}};
-        document.getElementById("alert").innerHTML =  ''; 
-       // alert(start.format('YYYY-MM-DD'));
-      });
-
-      $('input[name="book_dates"]').on('apply.daterangepicker', function(ev, picker) {
-        var pickerStartDate=new Date(picker.startDate.format('YYYY-MM-DD'));
-        var pickerEndDate=new Date(picker.endDate.format('YYYY-MM-DD'));
-        dateRanges.forEach(range => {
+var disableDays=0;
+var a=0,b=0;
+dateRanges.forEach(range => {
           startDateObject=new Date(range.startDate);
                 startDate=new Date(startDateObject.getFullYear()+'-'+(startDateObject.getMonth() + 1)+'-'+startDateObject.getDate());
                 endDateObject=new Date(range.endDate);
@@ -662,25 +654,94 @@ var Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24));
           //alert(startDate+' : '+endDate);
          // alert(picker.startDate.format('YYYY-MM-DD')+' : '+picker.endDate.format('YYYY-MM-DD'));
          //alert(pickerStartDate.getTime()+' : '+startDate.getTime());
-          if(pickerStartDate.getTime()<startDate.getTime()&&pickerEndDate.getTime()>endDate.getTime())
+          if(date1.getTime()<startDate.getTime()&&date2.getTime()>endDate.getTime())
           {
-           // alert('Invalid Date Choosen');
-     $('input[name="book_dates"]').val('');  
-     document.getElementById("alert").innerHTML =  'Invalid Date';     
+            a=startDate.getTime() - endDate.getTime();
+            disableDays=Math.round(a / (1000 * 3600 * 24)); 
+            disableDays=(disableDays-1)*-1;
           }
         });
-        var today = new Date();
+// dateRanges.reduce(function(bool, range) {
+//                 startDateObject=new Date(range.startDate);
+//                 endDateObject=new Date(range.endDate);
+//                 if(date1.getTime()<startDateObject.getTime()&&date2.getTime()>endDateObject.getTime())
+//                 {
+                    
+//                 }
+//             }
+          
+var Difference_In_Time = date2.getTime() - date1.getTime();
+var Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24));
+Difference_In_Days=Difference_In_Days-disableDays;
+        document.getElementById("total_days").innerHTML = Difference_In_Days;
+        document.getElementById("multiply_show").innerHTML =  'X';
+        document.getElementById("days_show").innerHTML =  ' Days';
+        document.getElementById("total_price").innerHTML =  Difference_In_Days*{{$led->price}};
+        document.getElementById("alert").innerHTML =  ''; 
+        document.getElementById("no_of_days").value = Difference_In_Days;
+       // alert(start.format('YYYY-MM-DD'));
+      });
 
-var todayDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-  //  if(picker.startDate.format('YYYY-MM-DD')<todayDate)
-  //  {
-  //    alert('Invalid Date Choosen');
-  //    $('input[name="book_dates"]').val(''); 
-  //  }   
-  //do something, like clearing an input
- // alert(picker.startDate.format('YYYY-MM-DD'));
-  //$('#daterange').val('');
-});
+//       $('input[name="book_dates"]').on('apply.daterangepicker', function(ev, picker) {
+//         var pickerStartDate=new Date(picker.startDate.format('YYYY-MM-DD'));
+//         var pickerEndDate=new Date(picker.endDate.format('YYYY-MM-DD'));
+//         dateRanges.forEach(range => {
+//           startDateObject=new Date(range.startDate);
+//                 startDate=new Date(startDateObject.getFullYear()+'-'+(startDateObject.getMonth() + 1)+'-'+startDateObject.getDate());
+//                 endDateObject=new Date(range.endDate);
+//                 endDate=new Date(endDateObject.getFullYear()+'-'+(endDateObject.getMonth() + 1)+'-'+endDateObject.getDate());
+//           //alert(startDate+' : '+endDate);
+//          // alert(picker.startDate.format('YYYY-MM-DD')+' : '+picker.endDate.format('YYYY-MM-DD'));
+//          //alert(pickerStartDate.getTime()+' : '+startDate.getTime());
+//           if(pickerStartDate.getTime()<startDate.getTime()&&pickerEndDate.getTime()>endDate.getTime())
+//           {
+//            // alert('Invalid Date Choosen');
+//      $('input[name="book_dates"]').val('');  
+//      doument.getElementById("alert").innerHTML =  'Invalid Date';     
+//           }
+//         });
+//         var today = new Date();
+
+// var todayDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+//   //  if(picker.startDate.format('YYYY-MM-DD')<todayDate)
+//   //  {
+//   //    alert('Invalid Date Choosen');
+//   //    $('input[name="book_dates"]').val(''); 
+//   //  }   
+//   //do something, like clearing an input
+//  // alert(picker.startDate.format('YYYY-MM-DD'));
+//   //$('#daterange').val('');
+// });
+//       $('input[name="book_dates"]').on('apply.daterangepicker', function(ev, picker) {
+//         var pickerStartDate=new Date(picker.startDate.format('YYYY-MM-DD'));
+//         var pickerEndDate=new Date(picker.endDate.format('YYYY-MM-DD'));
+//         dateRanges.forEach(range => {
+//           startDateObject=new Date(range.startDate);
+//                 startDate=new Date(startDateObject.getFullYear()+'-'+(startDateObject.getMonth() + 1)+'-'+startDateObject.getDate());
+//                 endDateObject=new Date(range.endDate);
+//                 endDate=new Date(endDateObject.getFullYear()+'-'+(endDateObject.getMonth() + 1)+'-'+endDateObject.getDate());
+//           //alert(startDate+' : '+endDate);
+//          // alert(picker.startDate.format('YYYY-MM-DD')+' : '+picker.endDate.format('YYYY-MM-DD'));
+//          //alert(pickerStartDate.getTime()+' : '+startDate.getTime());
+//           if(pickerStartDate.getTime()<startDate.getTime()&&pickerEndDate.getTime()>endDate.getTime())
+//           {
+//            // alert('Invalid Date Choosen');
+//      $('input[name="book_dates"]').val('');  
+//      document.getElementById("alert").innerHTML =  'Invalid Date';     
+//           }
+//         });
+//         var today = new Date();
+
+// var todayDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+//   //  if(picker.startDate.format('YYYY-MM-DD')<todayDate)
+//   //  {
+//   //    alert('Invalid Date Choosen');
+//   //    $('input[name="book_dates"]').val(''); 
+//   //  }   
+//   //do something, like clearing an input
+//  // alert(picker.startDate.format('YYYY-MM-DD'));
+//   //$('#daterange').val('');
+// });
     });
     </script>
 @endsection
