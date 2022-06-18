@@ -1,3 +1,4 @@
+
 @extends('layouts.led-theme')
 
 @section('content')
@@ -10,8 +11,8 @@
           
           <div class="row justify-content-center mb-4">
             <div class="col-md-8 text-center">
-              <h1 class="" data-aos="fade-up">Largest LED Classifieds In  World</h1>
-              <p data-aos="fade-up" data-aos-delay="100">You can buy, sell anything you want.</p>
+              <h1 class="" data-aos="fade-up">{{$led->title}}</h1>
+              <p data-aos="fade-up" data-aos-delay="100">{{$led->location}}</p>
             </div>
           </div>
 
@@ -143,52 +144,57 @@ Add to Cart                            </button>
         </div>
 
       </div>
-      <h1 style="box-sizing: border-box; margin: 0px 0px 20px; font-weight: 500; line-height: 1.2; font-size: 2.5rem; color: rgb(44, 53, 218); font-family: cbold; text-transform: uppercase; background-color: rgb(255, 255, 255);"><span style="color: rgb(38, 38, 38); font-family: cblack; font-size: 24px;">{{$led->title}}</span></h1>
-      <div class="row">
-       
-        <div class="col-md-5">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Location</h5>
-              <h6 class="card-subtitle mb-2 text-muted">{{$led->location}}</h6> 
-              <h5 class="card-title">Price</h5>
-              <h6 class="card-subtitle mb-2 text-muted">{{$led->price}}</h6>
-              <h5 class="card-title">Tax</h5>
-              <h6 class="card-subtitle mb-2 text-muted">{{$led->tax}}</h6>
-            </div>
-          </div>
-          <div class="card mt-5">
-            <div class="card-body">
-              <h5 class="card-title">Description</h5>
-              <h6 class="card-subtitle mb-2 text-muted">{{$led->title}}</h6>
-              
-              <div>
-                <textarea id="kt_docs_tinymce_basic" placeholder="Description">{{$led->description}}</textarea>
-                
-              </div>
-              
-            </div>
-          </div>
+
+      <div class="clearfix"> </div>
+
+
+      <div class="container" style="padding:35px;background:#fff">
+
+        <div class="wrapper">
+        <h1  > {{$led->title}} </h1>
+        <h4> <i class="fa fa-map-marker" style="font-size:24px;color:#2c35da"></i> {{$led->location}}  </h4>
+</div>
+<div class="wrapper" style="margin-top:-30px">
+        <h4 style="float:right">
+        <span style="padding-left:50px"> <i class="fa fa-eur" style="font-size:15px"></i> {{$led->price}} / 
+            <span style="font-size:10px"> day</span>&nbsp;&nbsp;&nbsp;</span>
+        </h4> 
+        <h4 style="float:right"> <i class="fa fa-handshake-o" style="font-size:24px;color:#2c35da"></i> {{$led->tax}}  </h4>
+    </div>
+    
+    <div class="clearfix"></div>
+
+
+        
+        <div class="container" style="padding-top:40px;">
+          {!! preg_replace('#<script(.*?)>(.*?)</script>#is', '', $led->description) !!}
         </div>
-        <div class="col-md-7">
-          <div class="row">
-            <div id="mymap"></div>
-        </div>
-        </div>
+         <div class="wrapper">   <div id="mymap"></div></div>
       </div>
-      <div class="row">
+      
+      
+     
+      <div class="row" style="background:#fff;margin:1px">
         <form action="#" method="post" style="width:100%;padding:20px">
         
         <div class="form-group">
         <label for="comment"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Comment:</font></font></label>
         <textarea class="form-control" rows="5" name="commenttext"></textarea>
         </div>
-        <font style="vertical-align: inherit;"><font style="vertical-align: inherit;"><input type="submit" class="form-control" name="submitcomment" value="Send" style="width:100px"></font></font>
+        <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
+            <input type="submit" class="form-control" name="submitcomment" value="Comment" style="width: 100px;
+    padding: 1px;
+    background: #333;
+    color: #fff;">
+        </font></font>
         
                         </form>
         
                         <!-- end new post comment here -->
         </div>
+
+
+
     </div>
   </div>
 
@@ -204,17 +210,17 @@ Add to Cart                            </button>
   {{-- <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/bootstrap.min.css')}}"> --}}
   {{-- <link rel="stylesheet" href="{{asset('assets/Bootstrap-4-1/bootstrap.min.css')}}"> --}}
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
     /*
     # Welcome
     --------------------------------*/
 
     #mymap {
-      		border:1px solid red;
-      		width: 800px;
+      		  
+      		width: 100%;
       		height: 500px;
-          margin-top: 2%;
+          margin-top: 12%;
     	}
     .home-page-welcome {
         position: relative;
@@ -501,10 +507,16 @@ width: 640px;
   //   readonly: 1,
   //                     };
   var options = {selector: "#kt_docs_tinymce_basic",
-  statusbar: false,
+  //theme : 'advanced',
+  plugins : 'autoresize',
+  width: '100%',
+  height: '25%',
+  autoresize_min_height: 400,
+  autoresize_max_height: 800,
   menubar: false,
-  toolbar: false,
-  readonly: 1,
+    statusbar: false,
+    toolbar: false,
+    readonly: 1,
                       };
   
   if (KTApp.isDarkMode()) {
