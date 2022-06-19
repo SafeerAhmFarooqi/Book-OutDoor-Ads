@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Comments extends Model
 {
@@ -11,7 +12,7 @@ class Comments extends Model
 
     protected $table = 'comments';
 
-    protected $fillable = ['user_id','led_id', 'comment'];
+    protected $fillable = ['user_id','led_id', 'comment', 'status'];
 
     protected static function booted()
     {

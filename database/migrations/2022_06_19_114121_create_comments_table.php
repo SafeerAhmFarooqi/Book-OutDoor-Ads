@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('led_id');
             $table->string('comment')->nullable();
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }

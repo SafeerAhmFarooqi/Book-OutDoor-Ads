@@ -171,7 +171,6 @@ Add to Cart                            </button>
         </div>
          <div class="wrapper">   <div id="mymap"></div></div>
       </div>
-      
       <div style="background:#fff;margin:5px;">
         <div class="card">
           
@@ -180,35 +179,45 @@ Add to Cart                            </button>
           </div>
         </div>
       </div>
-
+      @if ($led->comments->where('status',true)->count()>0)
+          @foreach ($led->comments->where('status',true) as $comment)
+          <div style="background:#fff;margin:5px;">
+            <div class="card">
+              
+              <div class="card-body">
+                <h5 class="card-text">{{$comment->user->firstname.' '.$comment->user->lastname}} </h5>
+                <p>{{$comment->comment}}</p>
+              </div>
+            </div>
+          </div>
+          @endforeach
+      @else
       <div style="background:#fff;margin:5px;">
         <div class="card">
           
           <div class="card-body">
-            <h5 class="card-text">Safeer Ahmed Farooqi </h5>
-            <p>very good place</p>
+            <h6 class="card-text">This led Has No Comments</h6>
           </div>
         </div>
       </div>
+      @endif
      
-      <div class="row" style="background:#fff;margin:5px;">
-        <form action="#" method="post" style="width:100%;padding:20px">
-        
-        <div class="form-group">
-        <label for="comment"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Comment:</font></font></label>
-        <textarea class="form-control" rows="5" name="commenttext"></textarea>
-        </div>
-        <font style="vertical-align: inherit;"><font style="vertical-align: inherit;">
-            <input type="submit" class="form-control" name="submitcomment" value="Comment" style="width: 100px;
-    padding: 1px;
-    background: #333;
-    color: #fff;">
-        </font></font>
-        
-                        </form>
-        
-                        <!-- end new post comment here -->
-        </div>
+
+     
+     @if (Auth::check()&&Auth::user()->hasRole('User'))
+     <div>
+      <livewire:comments :ledId="$led->id" />
+     </div>
+     @else
+     <div class="card">
+      
+      <div class="card-body">
+        <h5 class="card-title">Please Sign in to Comment here</h5>
+        <a href="{{route('user.login')}}" class="btn btn-primary">Sign In</a>
+      </div>
+    </div>
+     @endif
+     
 
 
 
