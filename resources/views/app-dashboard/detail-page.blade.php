@@ -172,9 +172,26 @@ Add to Cart                            </button>
          <div class="wrapper">   <div id="mymap"></div></div>
       </div>
       
-      
+      <div style="background:#fff;margin:5px;">
+        <div class="card">
+          
+          <div class="card-body">
+            <h3 class="card-text">Comments : </h3>
+          </div>
+        </div>
+      </div>
+
+      <div style="background:#fff;margin:5px;">
+        <div class="card">
+          
+          <div class="card-body">
+            <h5 class="card-text">Safeer Ahmed Farooqi </h5>
+            <p>very good place</p>
+          </div>
+        </div>
+      </div>
      
-      <div class="row" style="background:#fff;margin:1px">
+      <div class="row" style="background:#fff;margin:5px;">
         <form action="#" method="post" style="width:100%;padding:20px">
         
         <div class="form-group">
