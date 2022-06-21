@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Led;
 use App\Models\LedImages;
+use App\Models\Comments;
 use App\Models\SubOrders;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
@@ -30,13 +31,49 @@ class AdminLedController extends BaseAdminController
       ]);
  }    
 
+ public function  showLedComment()
+ {
+    // return view('test');
+    $comments = Comments::all();
+    return view('admin-dashboard.led-comments-page',[
+       'comments'=>$comments,
+       'srNo'=>0,
+      ]);
+ }    
+
  public function deleteLed(Request $request)
  {
     $userId=(Led::find($request->led_id))->user_id;
     Led::with('images')->where('id',$request->led_id)->delete();
     Storage::deleteDirectory('public/led-images/'.$userId.'/'.$request->led_id);
     return back()->with('success', 'Led Deleted Successfully');
- }   
+ }
+ 
+ public function activateLedComment(Request $request)
+ {
+   //return $request->comment_id;
+    $comment=Comments::find($request->comment_id);
+    $comment->status=true;
+    $comment->save();
+    return back()->with('success', 'Comment Activated Successfully');
+ }
+ 
+ public function deactivateLedComment(Request $request)
+ {
+      //return $request->comment_id;
+      $comment=Comments::find($request->comment_id);
+      $comment->status=false;
+      $comment->save();
+      return back()->with('success', 'Comment De-Activated Successfully');
+ }
+
+ public function deleteLedComment(Request $request)
+ {
+      //return $request->comment_id;
+      $comment=Comments::find($request->comment_id);
+      $comment->delete();
+      return back()->with('success', 'Comment Deleted Successfully');
+ }
  
  public function showLedOrders(Request $request)
  {
