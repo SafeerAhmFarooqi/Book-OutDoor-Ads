@@ -88,6 +88,10 @@ Route::group(['middleware' => ['role:Admin','auth']], function () {
     Route::post('/admin-led-add-trending', [AdminLedController::class,'addLedTrending'])->name('admin.led.add.trending');
     Route::post('/admin-led-remove-trending', [AdminLedController::class,'removeLedTrending'])->name('admin.led.remove.trending');
     Route::get('/admin-orders-list', [AdminLedController::class,'showOrdersList'])->name('admin.led.orders');
+    Route::get('/admin-led-comments', [AdminLedController::class,'showLedComment'])->name('admin.led.comment');
+    Route::post('/admin-led-comment-activate', [AdminLedController::class,'activateLedComment'])->name('admin.led.comment.activate');
+    Route::post('/admin-led-comment-deactivate', [AdminLedController::class,'deactivateLedComment'])->name('admin.led.comment.deactivate');
+    Route::post('/admin-led-comment-delete', [AdminLedController::class,'deleteLedComment'])->name('admin.led.comment.delete');
 });
 
 require __DIR__.'/auth.php';
