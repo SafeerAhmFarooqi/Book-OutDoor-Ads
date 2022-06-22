@@ -20,10 +20,11 @@ class DashboardController extends AdminController
 
    public function paymentProcess($id=null)
 {
-   $order=Orders::findOrFail($id);
-    return view('app-dashboard.order-complete',[
-               'order'=>$order,
-            ]);
+   // $order=Orders::findOrFail($id);
+   //  return view('app-dashboard.order-complete',[
+   //             'order'=>$order,
+   //          ]);
+   return redirect('/')->with('payment','Thanks for your order,Please check your orders section');
 }
 
 public function payment($id)
@@ -45,7 +46,7 @@ public function payment($id)
                ],
                "description" => "Order #".$order->id,
                "redirectUrl" => route('payment.order.process',$order->id),
-               "webhookUrl" => route('webhooks.mollie'),
+               //"webhookUrl" => route('webhooks.mollie'),
                "metadata" => [
                    "order_id" => $order->id,
                ],
