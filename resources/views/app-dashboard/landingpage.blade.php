@@ -3,6 +3,7 @@
 @section('content')
 <div class="site-blocks-cover overlay" style="background-image: url({{asset('assets/Led-Theme/images/hero_2.jpg')}});" data-aos="fade" data-stellar-background-ratio="0.5">
     <div class="container">
+      
       <div class="row align-items-center justify-content-center text-center">
 
         <div class="col-md-12">
@@ -15,7 +16,11 @@
               <p data-aos="fade-up" data-aos-delay="100">You can buy, sell anything you want.</p>
             </div>
           </div>
-
+          @if(session()->has('payment'))
+    <div class="alert alert-success">
+        {{ session()->get('payment') }}
+    </div>
+@endif
           <div class="form-search-wrap" data-aos="fade-up" data-aos-delay="200">
             {{-- <form method="post" action="https://led-werbeflaechen.de/newled/search.php">
               <div class="row align-items-center">
