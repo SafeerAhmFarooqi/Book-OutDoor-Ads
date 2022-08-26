@@ -43,9 +43,9 @@ Route::get('/policy', [DashboardController::class,'showPolicy'])->name('show.pol
 Route::get('/list-leds-in-cities/{id?}', [DashboardController::class,'listCitiesLeds'])->name('list.cities.led');
 Route::get('/payment-m', [DashboardController::class,'preparePayment']);
 
-Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['auth','verified'])->name('dashboard');
 
-Route::group(['middleware' => ['role:User','auth']], function () {
+Route::group(['middleware' => ['role:User','auth','verified']], function () {
     Route::get('/user-profile', [UserProfileController::class,'show'])->name('user.profile.show');
     Route::get('/user-profile-edit', [UserProfileController::class,'edit'])->name('user.profile.edit');
     Route::post('/user-profile-edit', [UserProfileController::class,'update'])->name('user.profile.update');
@@ -54,7 +54,7 @@ Route::group(['middleware' => ['role:User','auth']], function () {
     
 });
 
-Route::group(['middleware' => ['role:Client','auth']], function () {
+Route::group(['middleware' => ['role:Client','auth','verified']], function () {
     Route::get('/client-profile', [ClientProfileController::class,'show'])->name('client.profile.show');
     Route::get('/client-profile-edit', [ClientProfileController::class,'edit'])->name('client.profile.edit');
     Route::post('/client-profile-edit', [ClientProfileController::class,'update'])->name('client.profile.update');
