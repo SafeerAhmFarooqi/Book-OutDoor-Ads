@@ -19,7 +19,7 @@ class AdminSeeder extends Seeder
     {
         $user = User::factory()->create([
             'firstname' => 'Admin',
-            'email' => 'admin@asadsohail.com',
+            'email' => 'admin@led-werbeflaechen.de',
             'password' => Hash::make('aaaaaaaa'),
         ]);
         $user->assignRole('Admin');
