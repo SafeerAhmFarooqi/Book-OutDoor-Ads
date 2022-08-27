@@ -53,9 +53,7 @@
           
           <div class="row justify-content-center mb-4">
             <div class="col-md-8 text-center">
-              <h1 class="" data-aos="fade-up">Largest LED Classifieds In  World
-              </h1>
-              <p data-aos="fade-up" data-aos-delay="100">You can buy, sell anything you want.</p>
+              @include('led-theme.top-message')
               <p data-aos="fade-up" data-aos-delay="100">{{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}</p>
               
             </div>
