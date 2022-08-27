@@ -48,9 +48,7 @@
           
           <div class="row justify-content-center mb-4">
             <div class="col-md-8 text-center">
-              <h1 class="" data-aos="fade-up">Largest LED Classifieds In  World
-              </h1>
-              <p data-aos="fade-up" data-aos-delay="100">You can buy, sell anything you want.</p>
+              @include('led-theme.top-message')
               <p data-aos="fade-up" data-aos-delay="100">{{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}</p>
               
             </div>
