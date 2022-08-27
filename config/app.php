@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'WERBEFLÄCHEN'),
     'title' => env('APP_TITLE', 'LED'),
 
     /*
@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => env('APP_URL', 'https://led-werbeflaechen.de'),
 
     'asset_url' => env('ASSET_URL'),
 
