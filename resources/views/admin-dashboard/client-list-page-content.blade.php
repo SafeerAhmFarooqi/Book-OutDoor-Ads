@@ -108,6 +108,7 @@
                             <th class="min-w-150px">Name</th>
                             <th class="text-start min-w-100px">Id</th>
                             <th class="text-start min-w-100px">Email</th>
+                            <th class="text-start min-w-100px">Status</th>
                             <th class="text-start min-w-100px">Company</th>
                             <th class="text-start min-w-70px">Address</th>
                             <th class="text-start min-w-100px">Phone</th>
@@ -158,6 +159,9 @@
                             <!--end::Rating-->
                             <!--begin::Price=-->
                             <td class="text-start pe-0">
+                                <span>{{$client->status?'Enabled' : 'Disabled'}}</span>
+                            </td>
+                            <td class="text-start pe-0">
                                 <span>{{$client->company}}</span>
                             </td>
                             <!--end::Price=-->
@@ -182,6 +186,14 @@
                                 <form action="{{route('admin.client.list.led')}}" method="post">
                                     @csrf
                                   <button type="submit" class="btn btn-primary" name="client_id" value="{{$client->id}}">Leds</button>
+                                </form>
+                                <form action="{{route('admin.partner.list.enable')}}" method="post">
+                                    @csrf
+                                  <button type="submit" class="btn btn-primary" name="user_id" value="{{$client->id}}">Enable</button>
+                                </form>
+                                <form action="{{route('admin.partner.list.disable')}}" method="post">
+                                    @csrf
+                                  <button type="submit" class="btn btn-danger" name="user_id" value="{{$client->id}}">Disable</button>
                                 </form>
                                 </div>
                                 
