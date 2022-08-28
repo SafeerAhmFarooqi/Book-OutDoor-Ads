@@ -7,8 +7,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Led;
 use App\Models\LedImages;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
+use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Support\Facades\Lang;
+use App\Mail\UserAccountActivationEmail;
+use App\Mail\UserAccountDeactivationEmail;
 
 class AdminUsersController extends BaseAdminController
 {
@@ -26,6 +31,27 @@ class AdminUsersController extends BaseAdminController
     Storage::deleteDirectory('public/led-images/'.$request->user_id);
     return back()->with('success', 'User Deleted Successfully');
  }    
+
+ public function enableUser(Request $request)
+ {
+   $user=User::findOrFail($request->user_id);
+   $user->update([
+      'status'=>true,
+    ]);
+    Mail::to($user->email)->send(new UserAccountActivationEmail());
+    return back()->with('success', 'User Enabled Successfully and Email Noification has been sent');
+ }  
+
+ public function disableUser(Request $request)
+ {
+   $user=User::findOrFail($request->user_id);
+   $user->update([
+      'status'=>false,
+    ]);
+
+    Mail::to($user->email)->send(new UserAccountDeactivationEmail());
+    return back()->with('success', 'User Disabled Successfully and Email Noification has been sent');
+ }  
 
  public function showUserOrders(Request $request)
  {

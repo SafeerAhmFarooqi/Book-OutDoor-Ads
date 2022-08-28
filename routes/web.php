@@ -43,9 +43,9 @@ Route::get('/policy', [DashboardController::class,'showPolicy'])->name('show.pol
 Route::get('/list-leds-in-cities/{id?}', [DashboardController::class,'listCitiesLeds'])->name('list.cities.led');
 Route::get('/payment-m', [DashboardController::class,'preparePayment']);
 
-Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['auth','verified'])->name('dashboard');
+Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['auth','verified','admin.dashboard.approved'])->name('dashboard');
 
-Route::group(['middleware' => ['role:User','auth','verified']], function () {
+Route::group(['middleware' => ['role:User','auth','verified','admin.user.approved']], function () {
     Route::get('/user-profile', [UserProfileController::class,'show'])->name('user.profile.show');
     Route::get('/user-profile-edit', [UserProfileController::class,'edit'])->name('user.profile.edit');
     Route::post('/user-profile-edit', [UserProfileController::class,'update'])->name('user.profile.update');
@@ -54,7 +54,7 @@ Route::group(['middleware' => ['role:User','auth','verified']], function () {
     
 });
 
-Route::group(['middleware' => ['role:Client','auth','verified']], function () {
+Route::group(['middleware' => ['role:Client','auth','verified','admin.partner.approved']], function () {
     Route::get('/client-profile', [ClientProfileController::class,'show'])->name('client.profile.show');
     Route::get('/client-profile-edit', [ClientProfileController::class,'edit'])->name('client.profile.edit');
     Route::post('/client-profile-edit', [ClientProfileController::class,'update'])->name('client.profile.update');
@@ -71,6 +71,8 @@ Route::group(['middleware' => ['role:Client','auth','verified']], function () {
 Route::group(['middleware' => ['role:Admin','auth']], function () {
     Route::get('/admin-users-list', [AdminUsersController::class,'usersList'])->name('admin.users.list');
     Route::post('/admin-users-list-delete', [AdminUsersController::class,'deleteUser'])->name('admin.users.list.delete');
+    Route::post('/admin-users-list-enable', [AdminUsersController::class,'enableUser'])->name('admin.users.list.enable');
+    Route::post('/admin-users-list-disable', [AdminUsersController::class,'disableUser'])->name('admin.users.list.disable');
     Route::post('/admin-users-list-orders', [AdminUsersController::class,'showUserOrders'])->name('admin.users.list.order');
     Route::get('/admin-client-list', [AdminClientController::class,'clientList'])->name('admin.client.list');
     Route::post('/admin-client-list-delete', [AdminClientController::class,'deleteClient'])->name('admin.client.list.delete');
