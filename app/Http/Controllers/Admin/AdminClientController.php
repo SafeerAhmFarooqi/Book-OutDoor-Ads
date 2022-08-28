@@ -9,6 +9,9 @@ use App\Models\Led;
 use App\Models\LedImages;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
+use App\Mail\UserAccountActivationEmail;
+use App\Mail\UserAccountDeactivationEmail;
+use Illuminate\Support\Facades\Mail;
 
 class AdminClientController extends BaseAdminController
 {
@@ -26,6 +29,27 @@ class AdminClientController extends BaseAdminController
     Storage::deleteDirectory('public/led-images/'.$request->client_id);
     return back()->with('success', 'Client Deleted Successfully');
  }    
+
+ public function enablePartner(Request $request)
+ {
+   $user=User::findOrFail($request->user_id);
+   $user->update([
+      'status'=>true,
+    ]);
+    Mail::to($user->email)->send(new UserAccountActivationEmail());
+    return back()->with('success', 'Partner Enabled Successfully and Email Noification has been sent');
+ }  
+
+ public function disablePartner(Request $request)
+ {
+   $user=User::findOrFail($request->user_id);
+   $user->update([
+      'status'=>false,
+    ]);
+
+    Mail::to($user->email)->send(new UserAccountDeactivationEmail());
+    return back()->with('success', 'Partner Disabled Successfully and Email Noification has been sent');
+ }  
 
  public function showClientLeds(Request $request)
  {
