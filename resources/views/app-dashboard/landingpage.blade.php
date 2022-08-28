@@ -75,7 +75,9 @@
           @foreach ($cities as $city)
           <div class="col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
             <a href="{{route('list.cities.led',$city->id)}}" class="popular-category h-100">
-              <span class="icon"><span class="flaticon-house"></span></span>
+              {{-- <span class="icon"><span class="flaticon-house"></span></span> --}}
+              {{-- <img src="{{asset('storage/'.$city->icon)}}" alt="" srcset=""> --}}
+              <img src="{{asset('storage/'.$city->icon)}}" style="width: 150px; height: 150px;">      
               <span class="caption mb-2 d-block">{{$city->city}}</span>
               <span class="number">{{$city->led->count()}}</span>
             </a>
