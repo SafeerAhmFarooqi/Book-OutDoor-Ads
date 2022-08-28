@@ -51,6 +51,46 @@ class AdminCityController extends BaseAdminController
     }
  }    
 
+ public function cityUpdate(Request $request)
+ {
+    $request->validate([
+        'city' => ['required', 'string', 'max:255'],
+        'icon' => 'image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+    ]);
+
+
+    $city=City::findOrFail($request->cityId);
+    $city->update([
+        'city' => $request->city,
+    ]);
+    if($request->icon)
+    {
+        storage::delete('public/'.$city->icon);
+        $request->icon->store('city-images/'.$city->id,'public');
+        $filePath = 'city-images/'.$city->id.'/'. $request->icon->hashName();
+        $city->icon=$filePath;
+        $city->save();
+    }
+    elseif($request->icon_remove)
+    {
+        $request->validate([
+            'icon' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        ]);
+        // storage::delete('public/'.$city->icon);
+        // $city->update([
+        //     'icon' => '',
+        // ]);
+    }
+    if($city)
+    {
+        return back()->with('success', 'Led Updated Successfully' );
+    }
+    else
+    {
+        return back()->with('success', 'Unable to Update New Led' );
+    }
+ } 
+
  public function cityDelete(Request $request)
     {
         City::find($request->city_id)->delete();

@@ -154,12 +154,140 @@
                                   <button type="submit" class="btn btn-danger" name="city_id" value="{{$city->id}}">Delete</button>
                                   
                                 </form>
+                                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_update_address_{{$city->id}}">Update</a>
                                 {{-- <button type="submit" class="btn btn-primary" name="client_id" value="{{$city->id}}">Edit</button> --}}
                                 </div>
                                 
                             </td>
                             <!--end::Percent=-->
                         </tr>
+                        <div class="modal fade" id="kt_modal_update_address_{{$city->id}}" tabindex="-1" aria-hidden="true">
+                            <!--begin::Modal dialog-->
+                            <div class="modal-dialog modal-dialog-centered mw-650px">
+                                <!--begin::Modal content-->
+                                <div class="modal-content">
+                                    <!--begin::Form-->
+                                    <form class="form" action="{{route('admin.city.update')}}" id="kt_modal_new_address_form" method="POST" enctype="multipart/form-data">
+                                        @csrf
+                                        <!--begin::Modal header-->
+                                        <div class="modal-header" id="kt_modal_new_address_header">
+                                            <!--begin::Modal title-->
+                                            <h2>Update {{$city->city}} City</h2>
+                                            <!--end::Modal title-->
+                                            <!--begin::Close-->
+                                            <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                                                <span class="svg-icon svg-icon-1">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                                                        <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
+                                                    </svg>
+                                                </span>
+                                                <!--end::Svg Icon-->
+                                            </div>
+                                            <!--end::Close-->
+                                        </div>
+                                        <!--end::Modal header-->
+                                        <!--begin::Modal body-->
+                                        <div class="modal-body py-10 px-lg-17">
+                                            <!--begin::Scroll-->
+                                            <div class="scroll-y me-n7 pe-7" id="kt_modal_new_address_scroll" data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto" data-kt-scroll-dependencies="#kt_modal_new_address_header" data-kt-scroll-wrappers="#kt_modal_new_address_scroll" data-kt-scroll-offset="300px">
+                                                <!--begin::Notice-->
+                                                <!--begin::Notice-->
+                                               
+                                                <!--end::Notice-->
+                                                <!--end::Notice-->
+                                                <!--begin::Input group-->
+                                                <div class="d-flex flex-column mb-5 fv-row">
+                                                    <div class="row mb-6">
+                                                        <!--begin::Label-->
+                                                        <label class="col-lg-4 col-form-label fw-bold fs-6">City Icon</label>
+                                                        <!--end::Label-->
+                                                        <!--begin::Col-->
+                                                        <div class="col-lg-8">
+                                                            <!--begin::Image input-->
+                                                            <div class="image-input image-input-outline" data-kt-image-input="true" style="background-image: url('assets/Metronic-Theme/media/svg/avatars/blank.svg')">
+                                                                <!--begin::Preview existing avatar-->
+                                                                <div class="image-input-wrapper w-125px h-125px" style="background-image: url('{{$city->icon?'storage/'.$city->icon : 'assets/Metronic-Theme/media/svg/avatars/blank.svg'}}')"></div>
+                                                                <!--end::Preview existing avatar-->
+                                                                <!--begin::Label-->
+                                                                <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
+                                                                    <i class="bi bi-pencil-fill fs-7"></i>
+                                                                    <!--begin::Inputs-->
+                                                                    <input type="file" name="icon" value="{{$city->icon}}" />
+                                                                    <input type="hidden" name="icon_remove" />
+                                                                    <!--end::Inputs-->
+                                                                </label>
+                                                                <!--end::Label-->
+                                                                <!--begin::Cancel-->
+                                                                <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Cancel avatar">
+                                                                    <i class="bi bi-x fs-2"></i>
+                                                                </span>
+                                                                <!--end::Cancel-->
+                                                                <!--begin::Remove-->
+                                                                <span class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Remove avatar">
+                                                                    <i class="bi bi-x fs-2"></i>
+                                                                </span>
+                                                                <!--end::Remove-->
+                                                            </div>
+                                                            <!--end::Image input-->
+                                                            <!--begin::Hint-->
+                                                            <div class="form-text">Allowed file types: png, jpg, jpeg.</div>
+                                                            @error('icon')
+                                                            <div class="alert alert-danger" role="alert">
+                                                                {{$message}}
+                                                            </div>
+                                                            @enderror
+                                                            <!--end::Hint-->
+                                                        </div>
+                                                        <!--end::Col-->
+                                                    </div>
+                                                </div>
+                        
+                                              
+                                                <!--end::Input group-->
+                                                <!--begin::Input group-->
+                                                
+                                                <!--end::Input group-->
+                                                <!--begin::Input group-->
+                                                <div class="d-flex flex-column mb-5 fv-row">
+                                                    <!--begin::Label-->
+                                                    <label class="required fs-5 fw-bold mb-2">City Name</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                    <input type="hidden" name="cityId" value="{{$city->id}}">
+                                                    <input class="form-control form-control-solid" placeholder="" name="city" value="{{$city->city}}"/>
+                                                    @error('city')
+                                                    <div class="alert alert-danger" role="alert">
+                                                        {{$message}}
+                                                    </div>
+                                                    @enderror
+                                                    <!--end::Input-->
+                                                </div>
+                                                
+                                            </div>
+                                            <!--end::Scroll-->
+                                        </div>
+                                        <!--end::Modal body-->
+                                        <!--begin::Modal footer-->
+                                        <div class="modal-footer flex-center">
+                                            <!--begin::Button-->
+                                            <button type="reset" id="kt_modal_new_address_cancel" class="btn btn-light me-3">Reset</button>
+                                            <!--end::Button-->
+                                            <!--begin::Button-->
+                                            <button type="submit" id="kt_modal_new_address_submit" class="btn btn-primary">
+                                                <span class="indicator-label">Update</span>
+                                                <span class="indicator-progress">Please wait...
+                                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                            </button>
+                                            <!--end::Button-->
+                                        </div>
+                                        <!--end::Modal footer-->
+                                    </form>
+                                    <!--end::Form-->
+                                </div>
+                            </div>
+                        </div>
                         @endforeach
                         
                         <!--end::Table row-->
