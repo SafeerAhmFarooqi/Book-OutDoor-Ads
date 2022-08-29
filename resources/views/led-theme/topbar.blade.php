@@ -54,58 +54,32 @@
              <li><a href="{{route('user.register')}}">Register</a></li>     
              @endif
             
+            
+
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Cart({{count($cartItems??$cartItems=[])}})
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                
-                <div class="dropdown-item">
-                  {{-- <span style="float: left;">
-                    <img src="{{asset('storage/'.($item->images->first())->path)}}" alt=""  style="width: 40px;height: 40px;">
-                  </span>
-                  <div style="display: block;">
-                    <span style="float: left;">{{$item->title}}</span> <span style="float: right;"><a  href="#" style="float: right;margin-bottom: 20%;" title="delete item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                @if (count($cartItems)>0)
+                @foreach ($cartItems as $item)
+                <span class="dropdown-item">
+                 <img src="{{asset('storage/'.($item->images->first())->path)}}" alt="" style="width: 35px; height: 35px;">
+                 {{$item->title}}
+                 <form action="{{route('cart.led.delete')}}" method="post" style="display: inline;">
+                    @csrf
+                   <button style="padding: 0;border: none;background: none;cursor: pointer;" type="submit" name="led_id" value="{{$item->id}}" title="delete item">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
                       <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
-                    </svg></a></span>  
-                  </div> --}}
-                  <ul class="list-group">
-                    @if (count($cartItems)>0)
-                    @foreach ($cartItems as $item)
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                      <span style="float: left;">
-                        <img src="{{asset('storage/'.($item->images->first())->path)}}" alt=""  style="width: 40px;height: 40px;">
-                      </span>
-                      <p class="d-inline-block text-truncate" style="width: 100px;">{{$item->title}}</p>
-                      <span style="float: right;">
-                        <form action="{{route('cart.led.delete')}}" method="post">
-                          @csrf
-                        <button style="padding: 0;
-                        border: none;
-                        background: none;cursor: pointer;" type="submit" name="led_id" value="{{$item->id}}" title="delete item"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
-                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
-                      </svg></button>
-                    </form>
-                    </span>
-                    </li>    
-                    @endforeach
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                        <a href="{{route('cart.list.items')}}" class="dropdown-item"  style="cursor: pointer;">Go to Cart</a>
-                       
-                    </li>        
-                    @else
-                        Cart Is Empty
-                    @endif
-                    
-                    
-               
-                  </ul>
-                </div>
-                
-                   
-                
-               
-
+                    </svg>
+                   </button>
+                 </form>
+                </span>                    
+                @endforeach
+                <a class="dropdown-item" href="{{route('cart.list.items')}}">Go to Cart</a>
+                @else
+                <a class="dropdown-item">Cart Is Empty</a>    
+                @endif
               </div>
             </li>
 
