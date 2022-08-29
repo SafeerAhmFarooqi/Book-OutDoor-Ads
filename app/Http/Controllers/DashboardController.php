@@ -151,6 +151,17 @@ public function handle(Request $request) {
    {
       //return  strtok($request->led_id.'*'.$request->book_dates,'*');
       //return $request->no_of_days;
+      $request->validate([
+         //Validation Rules
+         'no_of_days' => ['required'],
+       
+     ],[
+         //Validation Messages
+         'required'=>':attribute is Required',
+     ],[
+         //Validation Attributes
+         'no_of_days' =>'Booking Date',
+     ]);
       $request->session()->push('cart.items', $request->led_id.'*'.$request->book_dates.'*'.$request->no_of_days);
       return back()->with('message', 'Item Added to Cart Successfully' );
    }
@@ -177,7 +188,7 @@ public function handle(Request $request) {
 
    public function ledDetail($id)
    {
-      $led=Led::with('images')->where('id',$id)->first();
+      $led=Led::findOrFail($id);
 
       $cartItems=[];
       if (session()->has('cart.items')) {

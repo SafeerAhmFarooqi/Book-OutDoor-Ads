@@ -27,7 +27,7 @@
                   <!-- select-wrap, .wrap-icon -->
                   <div class="wrap-icon">
                     <span class="icon icon-room"></span>
-                    <input type="text" placeholder="Location" class="form-control" wire:model='location'>
+                    <input type="text" placeholder="Location" class="form-control" id="location" wire:model='location'>
                   </div>
                 </div>
 
@@ -242,6 +242,22 @@
 
 @section('scripts')
 @parent
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyAIeDyz_v1KkoU3ZTRqK5e-9Ax1lNjSIEI"></script>
+<script type="text/javascript">
+    var searchInput = 'location';
+    
+        $(document).ready(function () {
+            var autocomplete;
+            autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+                types: ['geocode']
+               
+            });
+        
+            google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                var near_place = autocomplete.getPlace();
+            });
+        });
+</script>
 <script>
   $(function() {
     $('input[name="book_dates"]').daterangepicker({
