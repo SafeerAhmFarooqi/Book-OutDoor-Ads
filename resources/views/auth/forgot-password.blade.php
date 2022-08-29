@@ -70,9 +70,12 @@
           <p class="color-black-opacity-5">{{ __('Enter Your Email Address') }}</p>
         </div>
       </div>
+     
       <div class="row justify-content-center mb-1">
+       
         <form method="POST" action="{{ route('password.email') }}">
             @csrf
+            @include('common.validation')
             <div class="form-group">
               <label for="exampleInputEmail1">Email address</label>
               <input class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" type="email" name="email" value="{{old('email')}}" required autofocus >
