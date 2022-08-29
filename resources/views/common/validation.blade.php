@@ -8,6 +8,11 @@
     {{ session()->get('error') }}
 </div>
 @endif
+@if(session()->has('status'))
+<div class="alert alert-success">
+    {{ session()->get('status') }}
+</div>
+@endif
 
 @if (count($errors) > 0)
      @foreach ($errors->all() as $error)

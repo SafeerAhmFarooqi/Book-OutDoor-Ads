@@ -1,10 +1,13 @@
 @extends('layouts.metronic-theme')
 @section('content')
 <div class="d-flex flex-column flex-root">
+    
     <!--begin::Authentication - Sign-in -->
     <div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed" style="background-image: url(assets/media/illustrations/sketchy-1/14.png">
+        
         <!--begin::Content-->
         <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
+            
             <!--begin::Logo-->
             <a href="/" class="mb-12">
                 {{-- <h4>Home</h4> --}}
@@ -12,7 +15,9 @@
             </a>
             <!--end::Logo-->
             <!--begin::Wrapper-->
+            
             <div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
+               @include('common.validation')
                 <!--begin::Form-->
                 <form class="form w-100"  method="POST" action="{{ route('login') }}">
                    @csrf
@@ -32,7 +37,7 @@
                         <label class="form-label fs-6 fw-bolder text-dark">Email</label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <input class="form-control form-control-lg form-control-solid" type="text" name="email" />
+                        <input class="form-control form-control-lg form-control-solid" type="text" name="email" value="{{old('email')}}"/>
                         <!--end::Input-->
                     </div>
                     <!--end::Input group-->

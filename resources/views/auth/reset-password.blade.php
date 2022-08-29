@@ -77,7 +77,7 @@
   
   <div class="site-section" data-aos="fade">
     <div class="container">
-        @include('common.validation')
+        
       <div class="row justify-content-center mb-5">
         <div class="col-md-7 text-center border-primary">
           <h2 class="font-weight-light text-primary">Password Reset</h2>
@@ -88,10 +88,11 @@
         
         <form method="POST" action="{{ route('password.update') }}">
             @csrf
+            @include('common.validation')
             <input type="hidden" name="token" value="{{ $request->route('token') }}">
             <div class="form-group">
-              <label for="exampleInputEmail1">Email address</label>
-              <input class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" type="email" name="email" value="{{old('email', $request->email)}}" required autofocus >
+              {{-- <label for="exampleInputEmail1">Email address</label> --}}
+              <input type="hidden" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" type="email" name="email" value="{{old('email', $request->email)}}" required autofocus >
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">Password</label>

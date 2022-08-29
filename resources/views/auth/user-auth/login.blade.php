@@ -14,6 +14,7 @@
             <!--begin::Wrapper-->
             <div class="w-lg-500px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
                 <!--begin::Form-->
+                @include('common.validation')
                 <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form"  method="POST" action="{{ route('login') }}">
                    @csrf
                     <!--begin::Heading-->
@@ -33,7 +34,7 @@
                         <label class="form-label fs-6 fw-bolder text-dark">Email</label>
                         <!--end::Label-->
                         <!--begin::Input-->
-                        <input class="form-control form-control-lg form-control-solid" type="text" name="email" />
+                        <input class="form-control form-control-lg form-control-solid" type="text" name="email" value="{{old('email')}}"/>
                         <!--end::Input-->
                     </div>
                     <!--end::Input group-->
