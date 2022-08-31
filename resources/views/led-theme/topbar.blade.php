@@ -4,7 +4,13 @@
     <div class="row align-items-center">
       
       <div class="col-6 col-xl-2">
-        <h1 class="mb-0 site-logo"><a href="/" class="text-black mb-0">Werbeflächen <span class="text-primary"> </span>  </a></h1>
+        {{-- <h1 class="mb-0 site-logo"><a href="/" class="text-black mb-0">Werbeflächen <span class="text-primary"> </span>  </a></h1> --}}
+        <a  href="/">
+          <span>
+            <img src="{{asset('assets\Led-Theme\logo/logo.png')}}" width="200" height="40"  alt="WERBEFLÄCHEN" style="color: #1e1e2d">
+          </span>
+          
+        </a>
       </div>
       <div class="col-12 col-md-10 d-none d-xl-block">
         <nav class="site-navigation position-relative text-right" role="navigation">
@@ -14,7 +20,7 @@
             <li><a href="{{route('show.imprint')}}">Impressum</a></li> 
              <li><a href="{{route('show.contact')}}">kontakt</a></li> 
              
-             @if (Auth::check()&&Auth::user()->hasRole('User'))
+             @if (Auth::check()&&Auth::user()->hasRole(['User','Admin','Client']))
             
              <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -22,8 +28,12 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{{route('dashboard')}}">Dashboard</a>
-                <a class="dropdown-item" href="{{route('user.profile.show')}}">My Profile</a>
-                <a class="dropdown-item" href="{{route('user.orders.list')}}">My Orders</a>
+                @if (Auth::user()->hasRole(['User','Client']))
+                <a class="dropdown-item" href="{{Auth::user()->hasRole('User')? route('user.profile.show') : route('client.profile.show')}}">My Profile</a>                    
+                @endif
+                <a class="dropdown-item" href="{{Auth::user()->hasRole('User')? route('user.orders.list') : (Auth::user()->hasRole('Client')?route('client.order.view') : route('admin.led.orders'))}}">{{Auth::user()->hasRole('Admin')?'Orders' : 'My Orders'}}</a>                    
+              
+                
                 <div class="dropdown-divider"></div>
                 <form action="{{route('logout')}}" method="post" style="display: inline;">
                   @csrf
