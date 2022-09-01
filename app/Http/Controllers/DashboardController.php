@@ -46,7 +46,7 @@ public function payment($id)
                ],
                "description" => "Order #".$order->id,
                "redirectUrl" => route('payment.order.process',$order->id),
-               //"webhookUrl" => route('webhooks.mollie'),
+               "webhookUrl" => route('webhooks.mollie'),
                "metadata" => [
                    "order_id" => $order->id,
                ],
@@ -67,7 +67,7 @@ public function handle(Request $request) {
       return;
   }
   $payment = Mollie::api()->payments()->get($request->id);
-  $order=Orders::find($payment->metadata->order_id);
+  $order=Orders::findOrFail($payment->metadata->order_id);
   if ($payment->isPaid()) {
      $order->payment_status=true;
      $order->save();
