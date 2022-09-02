@@ -196,7 +196,11 @@ public function handle(Request $request) {
             array_push($cartItems,Led::find(strtok($value,'*')));
          }
       }
-      $disableDates=SubOrders::where('led_id',$id)
+      $disableDates=SubOrders::with(['order'])
+      ->whereHas('order', function($q) {
+      $q->where('payment_status',true);
+      })
+      ->where('led_id',$id)
       ->where('startDate','>=',Carbon::now()->format('Y-m-d'))
       ->get();
       return view('app-dashboard.detail-page',[

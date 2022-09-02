@@ -11,7 +11,9 @@ class UserOrderController extends BaseUserController
 {
    public function show()
    {
-        $orders=Orders::where('user_id',Auth::user()->id)->get();
+        $orders=Orders::where('user_id',Auth::user()->id)
+        ->where('payment_status',true)
+        ->get();
        return view('user-dashboard.order-page',[
            'orders'=>$orders,
            'srNo'=>0,
