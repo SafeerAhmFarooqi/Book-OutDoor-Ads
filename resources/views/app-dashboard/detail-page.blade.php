@@ -32,7 +32,7 @@
       <div class="row">
         
         <div class="col-md-8">
-   @include('common.validation')
+         @include('common.validation')
   
 
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -60,8 +60,8 @@
                   <span class="sr-only">Next</span>
                 </a>
               </div>
-<div class="clearfix"> </div>
-<br><br>          
+            <div class="clearfix"> </div>
+          <br><br>          
    
         </div>
         <div class="col-lg-4 ml-auto">
@@ -85,10 +85,10 @@
                                       <div class="input-group-prepend cticon">
                                       <!--     <span class="input-group-text">
                                                 <img src="images/calandericon.png" style="
-  width: 20px;
-  color: #fff !important;
-  /* background: #fff; */
-">
+                                    width: 20px;
+                                    color: #fff !important;
+                                    /* background: #fff; */
+                                  ">
                                           </span> -->
                                       </div>
                                       <form action="{{route('cart.led.add')}}" method="post">
@@ -102,16 +102,16 @@
                               </div>
 
 
-<ul class="list-group" style="padding:2px;font-size:13px;">
-<li class="list-group-item listordertaking" style="background:none;border:none;padding:0;padding-top:10px"> <span id="per_booking_cost" style="font-weight:bold;color:#333"> € </span> <span id="id_x" style="font-weight:bold;color:#333"> {{$led->price}} </span><span style="font-weight:bold;color:#333" id="multiply_show"></span> <span style="font-weight:bold;color:#333" id="total_days"></span><span id="days_show"></span> <span id="days_id"></span> <span class=" pull-right" id="total_cost">  </span></li>
-<!--   <li class="list-group-item listordertaking"> 25 &euro; x  <span class="badge pull-right" >12</span></li>
---> </ul>
+                          <ul class="list-group" style="padding:2px;font-size:13px;">
+                          <li class="list-group-item listordertaking" style="background:none;border:none;padding:0;padding-top:10px"> <span id="per_booking_cost" style="font-weight:bold;color:#333"> € </span> <span id="id_x" style="font-weight:bold;color:#333"> {{$led->price}} </span><span style="font-weight:bold;color:#333" id="multiply_show"></span> <span style="font-weight:bold;color:#333" id="total_days"></span><span id="days_show"></span> <span id="days_id"></span> <span class=" pull-right" id="total_cost">  </span></li>
+                          <!--   <li class="list-group-item listordertaking"> 25 &euro; x  <span class="badge pull-right" >12</span></li>
+                          --> </ul>
 
-<ul class="list-group" style="margin-top: 20px; display: none;" id="sicial_id_sh">
-<li class="list-group-item bookingoff">Werbefoto <span class=" pull-right">  <del> 99 €</del>  </span></li>
-<li class="list-group-item bookingoff ">Social Media Beitrag  <span class=" pull-right">  <del> 99 €</del>  </span></li>
-<li class="list-group-item bookingoff">Facebook &amp; Instagram Post  <span class=" pull-right">  <del> 199 €</del>  </span></li>
-</ul>
+                          <ul class="list-group" style="margin-top: 20px; display: none;" id="sicial_id_sh">
+                          <li class="list-group-item bookingoff">Werbefoto <span class=" pull-right">  <del> 99 €</del>  </span></li>
+                          <li class="list-group-item bookingoff ">Social Media Beitrag  <span class=" pull-right">  <del> 99 €</del>  </span></li>
+                          <li class="list-group-item bookingoff">Facebook &amp; Instagram Post  <span class=" pull-right">  <del> 199 €</del>  </span></li>
+                          </ul>
 
                               <table class="table" style="width:100%">
                                   <tbody>
@@ -125,12 +125,12 @@
                                   </tbody>
                               </table>
 
- <button type="submit" class="buttonsubmit btn btn-default" name="led_id" value="{{$led->id}}" style="font-size:15px">
-Add to Cart                            </button>
-</form>
-   
-<hr>
-<p id="underactionbutton" style="font-size:12px;text-align: center"> Geben Sie Ihren Buchungszeitraum ein, um den Gesamtpreis pro Tag zu sehen. </p>
+                          <button type="submit" class="buttonsubmit btn btn-default" name="led_id" value="{{$led->id}}" style="font-size:15px">
+                          Add to Cart                            </button>
+                          </form>
+                            
+                          <hr>
+                          <p id="underactionbutton" style="font-size:12px;text-align: center"> Geben Sie Ihren Buchungszeitraum ein, um den Gesamtpreis pro Tag zu sehen. </p>
                                
                           </div>
 
@@ -661,8 +661,10 @@ jQuery(function($) {
     var y = moment("2022-07-25");
     var dates=@json($disableDates);
     var dateRanges=@json($disableDates);
+    var dateToday = new Date();
       $('input[name="book_dates"]').daterangepicker({
         opens: 'left',
+        minDate: dateToday,
         isInvalidDate: function(date) {
           // var dateRanges = [
           //       { 'start': moment('2022-06-10'), 'end': moment('2022-06-12') },
