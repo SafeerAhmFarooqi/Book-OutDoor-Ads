@@ -1,177 +1,122 @@
-@extends('layouts.metronic-theme')
+
+@extends('layouts.led-theme')
+
 @section('content')
-<div class="d-flex flex-column flex-root">
-    <!--begin::Authentication - Sign-up -->
-    <div class="d-flex flex-column flex-column-fluid bgi-position-y-bottom position-x-center bgi-no-repeat bgi-size-contain bgi-attachment-fixed" style="background-image: url(assets/media/illustrations/sketchy-1/14.png">
-        <!--begin::Content-->
-        <div class="d-flex flex-center flex-column flex-column-fluid p-10 pb-lg-20">
-            <!--begin::Logo-->
-            <a href="/" class="mb-12">
-               <!--  <img alt="Logo" src="assets/Metronic-Theme/media/logos/logo-1.svg" class="h-40px" /> -->
-            </a>
-            <!--end::Logo-->
-            <!--begin::Wrapper-->
-            <div class="w-lg-600px bg-body rounded shadow-sm p-10 p-lg-15 mx-auto">
-                <!--begin::Form-->
-                <form class="form w-100" novalidate="novalidate" id="kt_sign_up_form"  method="POST" action="{{ route('register') }}">
-                    @csrf
-                    <!--begin::Heading-->
-                    <div class="mb-10 text-center">
-                        <!--begin::Title-->
-                        <h1 class="text-dark mb-3">Create a User Account for Led</h1>
-                        <!--end::Title-->
-                        <!--begin::Link-->
-                        <div class="text-gray-400 fw-bold fs-4">Already have an account?
-                        <a href="{{route('user.login')}}" class="link-primary fw-bolder">Sign in here</a></div>
-                        <!--end::Link-->
-                    </div>
-                    <!--end::Heading-->
-                    <!--begin::Action-->
-               
-                    <!--end::Action-->
-                    <!--begin::Separator-->
-                 
-                    <!--end::Separator-->
-                    <!--begin::Input group-->
-                    <div class="row fv-row mb-7">
-                        <!--begin::Col-->
-                        <div class="col-xl-6">
-                            <label class="form-label fw-bolder required text-dark fs-6">First Name</label>
-                            <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="firstname" value="{{old('firstname')}}" />
-                            @error('firstname')
-                            <div class="alert alert-danger">
-                                    {{$message}}
-                            </div>
-                            @enderror
-                        </div>
-                        <!--end::Col-->
-                        <!--begin::Col-->
-                        <div class="col-xl-6">
-                            <label class="form-label fw-bolder required text-dark fs-6">Last Name</label>
-                            <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="lastname" value="{{old('lastname')}}" />
-                            @error('lastname')
-                            <div class="alert alert-danger">
-                                    {{$message}}
-                            </div>
-                            @enderror
-                        </div>
-                        <!--end::Col-->
-                    </div>
-                    <!--end::Input group-->
-                    <!--begin::Input group-->
-                    <div class="fv-row mb-7">
-                        <label class="form-label fw-bolder required text-dark fs-6">Email</label>
-                        <input class="form-control form-control-lg form-control-solid" type="email" placeholder="" name="email" value="{{old('email')}}" />
-                        @error('email')
-                        <div class="alert alert-danger">
-                                {{$message}}
-                        </div>
-                        @enderror
-                    </div>
 
-                    <div class="fv-row mb-7">
-                        <label class="form-label fw-bolder required text-dark fs-6">Address</label>
-                        <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="address" value="{{old('address')}}"  id="myAddress"/>
-                        @error('address')
-                        <div class="alert alert-danger">
-                                {{$message}}
-                        </div>
-                        @enderror
-                    </div>
+ 
+    <section id="login">
+        <div class="container-fluid w3-padding-48-top">
+            <div class="row">
+                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
+                    <h2 class="cp-heading">Reigster Your Account</h2>
+                    <p class="log-info-text">Gain access for the rental LED experience</p>
+                        <a href="{{route('user.login')}}" ><p class="log-forgot-text" style="margin:0 !important">Already Have Account ? Log in </p></a>
 
-                    <div class="fv-row mb-7">
-                        <label class="form-label fw-bolder required text-dark fs-6">Phone</label>
-                        <input class="form-control form-control-lg form-control-solid" type="text" placeholder="" name="phone" value="{{old('phone')}}" />
-                        @error('phone')
-                        <div class="alert alert-danger">
-                                {{$message}}
-                        </div>
-                        @enderror
-                    </div>
-                    <!--end::Input group-->
-                    <!--begin::Input group-->
-                    <div class="mb-10 fv-row" data-kt-password-meter="true">
-                        <!--begin::Wrapper-->
-                        <div class="mb-1">
-                            <!--begin::Label-->
-                            <label class="form-label required fw-bolder text-dark fs-6">Password</label>
-                            <!--end::Label-->
-                            <!--begin::Input wrapper-->
-                            <div class="position-relative mb-3">
-                                <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="password"/>
-                                @error('password')
+                    <div class="row w3-padding-36-top">
+                        <div class="col-md-12">
+                            <div class="row">
+                                 
+                                 @include('common.validation')
+     <form    action="{{ route('register') }}" method="POST">
+                                    @csrf
+<!--    @if ($errors->any())
+   {{dd($errors)}}
+                    @foreach ($errors->all() as $error)
+                    <div class="alert alert-danger" role="alert">
+                        {{$error}}
+                    </div> 
+                    @endforeach
+                    @endif 
+                                -->   
+                    <div class="col-sm-6 form-group">
+                        <label>First Name</label> <input class="cp-input-form"   type="text" placeholder="" name="firstname" value="{{old('firstname')}}" >
+                          @error('firstname')
                                 <div class="alert alert-danger">
                                         {{$message}}
                                 </div>
                                 @enderror
-                                <span class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2" data-kt-password-meter-control="visibility">
-                                    <i class="bi bi-eye-slash fs-2"></i>
-                                    <i class="bi bi-eye fs-2 d-none"></i>
-                                </span>
+
+                    </div>  
+                    <div class="col-sm-6 form-group">
+                        <label>Last Name</label> <input class="cp-input-form"    type="text" placeholder="" name="lastname" value="{{old('lastname')}}">
+                          @error('lastname')
+                            <div class="alert alert-danger">
+                                    {{$message}}
                             </div>
-                            <!--end::Input wrapper-->
-                            <!--begin::Meter-->
-                            <div class="d-flex align-items-center mb-3" data-kt-password-meter-control="highlight">
-                                <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
-                                <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
-                                <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2"></div>
-                                <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px"></div>
+                            @enderror
+
+                    </div> 
+                    <div class="col-sm-6 form-group">
+                        <label>Email</label> <input class="cp-input-form"  type="email" placeholder="" name="email" value="{{old('email')}}">
+                            @error('email')
+                            <div class="alert alert-danger">
+                                    {{$message}}
                             </div>
-                            <!--end::Meter-->
+                            @enderror
+
+                    </div> 
+                    <div class="col-sm-6 form-group">
+                        <label>Phone</label> <input class="cp-input-form"   type="text" placeholder="" name="phone" value="{{old('phone')}}">
+                          @error('phone')
+                        <div class="alert alert-danger">
+                                {{$message}}
                         </div>
-                        <!--end::Wrapper-->
-                        <!--begin::Hint-->
-                        <div class="text-muted">Use 8 or more characters with a mix of letters, numbers &amp; symbols.</div>
-                        <!--end::Hint-->
+                        @enderror
+                    </div> 
+                  
+                    <div class="col-sm-12 form-group">
+                        <label>address</label> 
+                        <input class="cp-input-form" type="text" placeholder="" name="address" value="{{old('address')}}"  id="myAddress" >
+                            @error('address')
+                        <div class="alert alert-danger">
+                                {{$message}}
+                        </div>
+                        @enderror
                     </div>
-                    <!--end::Input group=-->
-                    <!--begin::Input group-->
-                    <div class="fv-row mb-5">
-                        <label class="form-label fw-bolder required text-dark fs-6">Confirm Password</label>
-                        <input class="form-control form-control-lg form-control-solid" type="password" placeholder="" name="password_confirmation"/>
+                    <div class="col-sm-6 form-group">
+                            <label>Password</label> 
+                            <input class="cp-input-form"  type="password" placeholder="" name="password" >
+                        </div>
+                    <div class="col-sm-6 form-group">
+                            <label>Password</label> 
+                            <input class="cp-input-form"  type="password" placeholder="" name="password_confirmation"  >
+                               @error('password')
+                        <div class="alert alert-danger">
+                                {{$message}}
+                        </div>
+                        @enderror
                         @error('password_confirmation')
                         <div class="alert alert-danger">
                                 {{$message}}
                         </div>
                         @enderror
-                    </div>
-
-                    <input type="hidden" name="role" value="user">
+                        </div>
+                                
+                           <input type="hidden" name="role" value="user">
                     <input type="hidden" name="checkout" value="{{isset($checkout)?$checkout : false}}">
-
-                    <!--end::Input group-->
-                    <!--begin::Input group-->
-                    {{-- <div class="fv-row mb-10">
-                        <label class="form-check form-check-custom form-check-solid form-check-inline">
-                            <input class="form-check-input" type="checkbox" name="toc" value="1" />
-                            <span class="form-check-label fw-bold text-gray-700 fs-6">I Agree
-                            <a href="#" class="ms-1 link-primary">Terms and conditions</a>.</span>
-                        </label>
-                    </div> --}}
-                    <!--end::Input group-->
-                    <!--begin::Actions-->
-                    <div class="text-center">
-                        <button type="submit" id="kt_sign_up_submit" class="btn btn-lg btn-primary">
-                            <span class="indicator-label">Submit</span>
-                            <span class="indicator-progress">Please wait...
-                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                          
+                            <div class="w3-padding-36-top w3-center">
+                             <button type="submit" class="cp-login-btn w3-ripple btn btn-lg btn-primary w-100 mb-5">
+                            <span class="indicator-label">Create Account</span> 
                         </button>
+                        <a href="{{route('user.login')}}" ><p class="log-forgot-text" >Already Have Account ? Log in </p></a>
+  </div></form>
+                         
+                            </div>
+                        </div>
                     </div>
-                    <!--end::Actions-->
-               
-                </form>
-                <!--end::Form-->
+                </div>
+            
+                <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
+                  <img src="{{asset('assets/newtheme2023/images/loginledimage.jpg')}}" class="cp-img w3-hide-small w3-hide-medium w3-right w3-padding-right">
+                </div>
             </div>
-            <!--end::Wrapper-->
         </div>
-        <!--end::Content-->
-        <!--begin::Footer-->
-         
-        <!--end::Footer-->
-    </div>
-    <!--end::Authentication - Sign-up-->
-</div>
-@endsection
+    </section> 
+
+
+
+@endsection  
 
 @section('pageScripts')
 {{-- <script src="{{ asset('assets/Metronic-Theme/js/custom/authentication/sign-up/general.js') }}"></script> --}}

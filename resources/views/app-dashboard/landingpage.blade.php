@@ -1,510 +1,227 @@
+
 @extends('layouts.led-theme')
 
 @section('content')
-<div class="site-blocks-cover overlay" style="background-image: url({{asset('assets/Led-Theme/images/hero_2.jpg')}});" data-aos="fade" data-stellar-background-ratio="0.5">
-    <div class="container">
-      
-      <div class="row align-items-center justify-content-center text-center">
+      <!--header-->
+      <div class="container-fluid">
+         <div class="bg-header" style="background-image: url('{{asset('assets/newtheme2023/images/bgimagemainpage.png')}}');">
 
-        <div class="col-md-12">
-          
-          
-          <div class="row justify-content-center mb-4">
-            <div class="col-md-8 text-center">
-              @include('led-theme.top-message')
-            </div>
-          </div>
-          @if(session()->has('payment'))
-    <div class="alert alert-success">
-        {{ session()->get('payment') }}
-    </div>
-@endif
-          <div class="form-search-wrap" data-aos="fade-up" data-aos-delay="200">
-            {{-- <form method="post" action="https://led-werbeflaechen.de/newled/search.php">
-              <div class="row align-items-center">
-                <div class="col-sm-5">
-                  <input type="text" class="form-control rounded" placeholder="What are you looking for?" name="str_con">
-                </div>
-                <div class="col-sm-5">
-                  <div class="wrap-icon">
-                    <span class="icon icon-room"></span>
-                    <input type="text" class="form-control rounded" placeholder="Location" id="googleLocation" name="googleLocation">
+             <h1 class="header-text">Easy way to rent a perfect LED</h1>
+            <p class="header-p-text theme-text-col">We provide a complete service for the LED Advertisement</p>
+            <br>
+            <div class="auto-search-wrapper">
+               <div class="search-input">
+                <form method="get" action="{{route('find.led')}}">
+              {{-- @csrf --}}
+                 <a href="#" target="_blank" hidden></a>
+                 <input type="text" class="w3-cus-input" placeholder="Where do you want to Advertisement?" id="googleLocation" name="googleLocation">
+
                     <input type="hidden" class="hide" name="lati" id="lati" />
                     <input type="hidden" class="hide" name="longi" id="longi" />
-                  </div>
-                </div>
-                <div class="col-lg-12 col-xl-2 ml-auto text-right">
-                  <input type="submit" class="btn btn-primary btn-block rounded" value="Search">
-                </div>
-              </div>
-            </form> --}}
 
-            <form method="get" action="{{route('find.led')}}">
-              {{-- @csrf --}}
-              <div class="row align-items-center">
-                <div class="col-sm-5">
-                  <input type="text" class="form-control rounded" placeholder="What are you looking for?" name="find">
+                 <div class="autocom-box">
+                   <!-- here list are inserted from javascript -->
+                 </div>
+                 <div class="icon"> 
+                  <input type="submit" class="fa fa-search" value="&#xf002;" style="background:none">
                 </div>
-                <div class="col-sm-5">
-                  <div class="wrap-icon">
-                    <span class="icon icon-room"></span>
-                    <input type="text" class="form-control rounded" placeholder="Location" id="googleLocation" name="location">
-                    {{-- <input type="hidden" class="hide" name="lati" id="lati" />
-                    <input type="hidden" class="hide" name="longi" id="longi" /> --}}
-                  </div>
-                </div>
-                <div class="col-lg-12 col-xl-2 ml-auto text-right">
-                  <input type="submit" class="btn btn-primary btn-block rounded" value="Search">
+                </form>
+                 
+
+
+               
+               </form>
+               </div>
+            </div>
+         </div>
+      </div>
+
+
+<!-- papular start -->
+
+
+ 
+  <section class="w3-text-black bg-gray w3-padding-25-top" id="search-listing">
+    <div class="container-fluid padding50up">
+        <h2 class="sub-h2 alignleft">Available in many well-known <br> Papular LED's For Advertisement in Germany</h2>
+
+ @foreach ($popularLeds as $led)
+      <div class="hp-card-sl col-sm-6">
+        <div class="row">
+          <div class="col-sm-12 w3-margin-bottom-25-sm">
+            <div class="w3-white">
+              <img class="w3-detail-image w3-border-radius-10" src="{{asset('storage/'.($led->images->first())->path)}}">
+
+              <img class="mySlides w3-detail-image w3-border-radius-10" src="{{asset('storage/'.($led->images->first())->path)}}" style="display:none">
+
+              <div class="w3-row-padding" style="margin:10px -10px 0px -10px!important">
+                <div class="w3-col s6">
+                  <img class="w3-detail-silde-img w3-border-radius-10" onclick="currentDiv(1)" src="{{asset('storage/'.($led->images->first())->path)}}"></div>
+
+                <div class="w3-col s6">
+                  <img class="w3-detail-silde-img w3-border-radius-10" onclick="currentDiv(2)" src="{{asset('storage/'.($led->images->first())->path)}}"></div>
+
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12" style="padding-top:30px">
+            <div class="w3-padding-8">
+              <div class="flex-sb">
+                <div class="flex-sb-sm">
+                  <a href="{{route('app.led.detail',$led->id)}}"><span class="sp-h-24">{{$led->title}}</span></a> <span class="btn feature-link">Papular</span>
+                </div> 
+              </div>
+              <p class="sp-text theme-light-gray" style="color: #A5A5A5 !important;">{{$led->location}}</p>
+               
+            </div>
+            <div class="row">
+              <div class="col-sm-12 col-md-7 w3-margin-bottom-25-sm">
+                <div class="flex-sb">
+                 <p class="ra-h-24">€ {{$led->price}} / Day</p> 
                 </div>
               </div>
-            </form>
+              
+            </div>
+             
+            <div class="flex-sb f-d-col-sm">
+               
+            
+              <div class="" style="padding-bottom:30px">
+                <br>
+                <div class="res-see-more">
+                  <a href="{{route('app.led.detail',$led->id)}}"><button class="sp-btn theme-bg btn">See More</button></a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </div> 
+ @endforeach 
+ 
+     
     </div>
-  </div>  
-
-  <div class="site-section bg-light">
-    <div class="container">
-      
-      <div class="overlap-category mb-5">
-        <div class="row align-items-stretch no-gutters">
-          
-          
-          
-          @foreach ($cities as $city)
-          <div class="col-sm-6 col-md-4 mb-4 mb-lg-0 col-lg-2">
-            <a href="{{route('list.cities.led',$city->id)}}" class="popular-category h-100">
-              {{-- <span class="icon"><span class="flaticon-house"></span></span> --}}
-              {{-- <img src="{{asset('storage/'.$city->icon)}}" alt="" srcset=""> --}}
-              <img src="{{asset('storage/'.$city->icon)}}" style="width: 150px; height: 150px;">      
-              <span class="caption mb-2 d-block">{{$city->city}}</span>
-              <span class="number">{{$city->led->count()}}</span>
-            </a>
-          </div>    
-          @endforeach
-          
-          
+  </section> 
 
 
 
 
-                 </div>
-      </div>
-      
-      <div class="row">
-        <div class="col-12">
-          <h2 class="h5 mb-4 text-black">Featured Ads</h2>
+
+ 
+
+
+
+<!-- Trending start -->
+
+<div class="container-fluid padding50up">
+  <h2 class="sub-h2 alignleft">Available in many well-known <br> Papular LED's For Advertisement in Germany</h2>
+<div class="row w3-padding-56-top">
+ <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 w3-margin-bottom-30">    
+    
+
+  <div class="py-4 container min-vh-100 d-flex justify-content-center align-items-center">
+    <div class="row">
+       @foreach ($trendingLeds as $led)
+        <div class="col-md-6">
+            <div class="card1 mt-3 p-3 g-2" style="background-image: url('{{asset('storage/'.($led->images->first())->path)}}'); 
+             -webkit-background-size: cover;
+             -moz-background-size: cover;
+             -o-background-size: cover;
+             background-size: cover;"> 
+        <div class="mt-3">
+            <h2 class="text1 papularledtitle">{{$led->title}}</h2>
+        </div> 
+        <div class="mt-3">
+            <h2 class="text1 papularledprice"> € {{$led->price}} / Day</h2>
+        </div> 
+
+        <div class="mt-3 d-flex justify-content-end px-2">
+            <a href="{{route('app.led.detail',$led->id)}}" class="btn-submit papularledbtn btn">Book Now</a>
+        </div>        
+          </div>
         </div>
+      @endforeach
+    </div>    
+  </div>
+</div> 
+
+</div>
+</div>
+<!--end Trending LED -->
+
+
+
+
+
+
+            <!--search-->
+    <section id="my-search">
+      <div class="container-fluid w3-padding-105-top">
+            <div class="bg-img-2" style="background-image: url('{{asset('assets/newtheme2023/images/bgimagemainpage2.png')}}');">
+               <div class="row">
+                 
+            <h2 class="re-text">Find your best LED</h2>
+            <p class="header-p-text theme-text-col">We provide a complete service for the LED Advertisement in your City</p>
+            <div class="w3-padding-32-top">
+                  <button class="search-btn" onclick="myfunc();">START MY SEARCH</button>
+            </div>
       </div>
-      <div class="row">
-        <div class="col-12  block-13">
-          <div class="owl-carousel nonloop-block-13">
+      </div>
+      </div>
+   
+
+
+
+<div class="container-fluid ">
+      <div class="row w3-padding-56-top">
+        @foreach ($leds as $led) 
+             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 w3-margin-bottom-30">
+                 <div class="card h-100">
+              <!--   <a href="#"><img class="card-img-top" src="{{asset('storage/'.($led->images->first())->path)}}" alt="" style="width:100%"></a> -->
+
+
+                <a href="{{route('app.led.detail',$led->id)}}"><img class="card-img-top" src="{{asset('storage/'.($led->images->first())->path)}}" alt="" style="width:100%;min-height: 200px;;max-height: 200px;"></a>  
+
+
+
+                <div class="card-body viewledlistmainpage" >
+                    <h2 class="card-title alignleft"  >
+                        <a href="{{route('app.led.detail',$led->id)}}" class="viewledlistmainpageheading"> € {{$led->price}}</a>
+                    </h2>
+                    <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text viewledlistmainpageheading1"  > {{$led->title}}</h2>
+
+                    <h2 class="card-title viewledlistmainpageheading2">{{$led->location}}</h4>
+
+                     
+                    <h2 class="card-title alignright"  >
+                        <a href="{{route('app.led.detail',$led->id)}}"  class="viewledlistmainpageheading3"  >   € {{$led->price}} / <b  class="viewledlistmainpageheading4"  > day</b> </a>
+                    </h2>
+                    
+                    <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text"> 
+                        <a href="{{route('app.led.detail',$led->id)}}">
+                          <img src="{{asset('assets/newtheme2023/images/arrowblue.png')}}"   class="viewledlistmainpageheading6"  > 
+                        </a>
+                    </h2>
+                </div>
+              </div>
+            </div> 
+        @endforeach
+
+      </div>
+</div>
+<!-- end listing -->
+
+
+            
        
 
-            @foreach ($leds as $led)
-            
-            <div class="d-block d-md-flex listing vertical">
-              <a href="{{route('app.led.detail',$led->id)}}" class="img d-block" style="background-image: url('{{asset('storage/'.($led->images->first())->path)}}');"></a>
-              
-              <div class="lh-content">
-                <span class="category">Led</span>
-                <a href="#" class="bookmark"><span class="icon-heart"></span></a>
-                <h3><a href="{{route('app.led.detail',$led->id)}}" style="font-size:12px">{{$led->title}}</a></h3>
-                
-                <address>{{substr($led->location,0,15)}}
-                @if (strlen($led->location)>15)
-                    .....
-                @endif
-                </address>
-                <p class="mb-0">  
-                  <span class="review" style="font-weight:bold">€ {{$led->price}} / day</span>
-                </p>
-              </div>
-            </div>    
-            @endforeach
-            
-            
-            
-           
-            
-            
-      
-
-           
-
-          </div>
-        </div>
-
-
-      </div>
-    </div>
-  </div>
   
-  <div class="site-section" data-aos="fade">
-    <div class="container">
-      <div class="row justify-content-center mb-5">
-        <div class="col-md-7 text-center border-primary">
-          <h2 class="font-weight-light text-primary">Popular LED's</h2>
-          <p class="color-black-opacity-5">Most Top Rated LED's</p>
-        </div>
-      </div>
-
-      <div class="row">
-
-        @foreach ($popularLeds as $led)
-        <div class="col-md-6 mb-4 mb-lg-4 col-lg-4">
-          
-          <div class="listing-item">
-            <div class="listing-image">
-              <img src="{{asset('storage/'.($led->images->first())->path)}}" alt="Image" class="img-fluid">
-            </div>
-            <div class="listing-item-content">
-              {{-- <a href="ledd708.html?id=3" class="bookmark" data-toggle="tooltip" data-placement="left" title="Bookmark"><span class="icon-heart"></span></a> --}}
-              <a class="px-3 mb-3 category" href="{{route('app.led.detail',$led->id)}}">{{$led->title}}</a>
-              <h2 class="mb-1"><a href="{{route('app.led.detail',$led->id)}}" style="font-size:12px">Price : {{$led->price}}</a></h2>
-              <span class="address">City : {{$led->city->city}}</span><br>
-              <span class="address">Location : {{$led->location}}</span>
-            </div>
-          </div>
-
-        </div>
-        @endforeach
-      </div>
-    </div>
-  </div>
-
-
-  <div class="site-section bg-light">
-    <div class="container">
-      <div class="row mb-5">
-        <div class="col-md-7 text-left border-primary">
-          <h2 class="font-weight-light text-primary">Trending Today</h2>
-        </div>
-      </div>
-      <div class="row mt-5">
-        @foreach ($trendingLeds as $led)
-        <div class="col-lg-6">
-          <div class="d-block d-md-flex listing">
-            <a href="{{route('app.led.detail',$led->id)}}" class="img d-block" style="background-image: url('{{asset('storage/'.($led->images->first())->path)}}')"></a>
-            <div class="lh-content">
-              <span class="category">{{$led->title}}</span>
-              {{-- <a href="#" class="bookmark"><span class="icon-heart"></span></a> --}}
-              <h3><a href="{{route('app.led.detail',$led->id)}}">Price : {{$led->price}}/day</a></h3>
-              <span class="address">City : {{$led->city->city}}</span><br>
-              <address>Location : {{$led->location}}</address>
-              <p class="mb-0"> 
-                <span class="review"></span>
-              </p>
-            </div>
-          </div>
-        </div>    
-        @endforeach
-        
-        
-        
-      </div>
-    </div>
-  </div>
-
-
-<div class="home-page-welcome">
-      <div class="container">
-          <div class="row">
-              <div class="col-12 col-lg-6 order-2 order-lg-1">
-                  <div class="welcome-content">
-                      <header class="entry-header">
-                          <h2 class="entry-title">Willkommen im LED-WERBEFLÄCHEN MAGAZIN!
-
-</h2>
-                      </header><!-- .entry-header -->
-
-                      <div class="entry-content mt-5">
-                          <p>Als unser Werbepartner  haben Sie die Möglichkeit exklusiv im LED-Werbeflächen MAGAZIN mit Ihrem Unternehmen platziert zu werden. Sprechen Sie uns gerne  auf unser MAGAZIN an und erhalten Sie einen Überblick über  die Partnerunternehmen der LED-Werbeflächen.</p>
-                      </div><!-- .entry-content -->
-
-
-                  </div><!-- .welcome-content -->
-              </div><!-- .col -->
-
-              <div class="col-12 col-lg-6 mt-4 order-1 order-lg-2">
-                  <img src="{{asset('assets/Led-Theme/images/slide1.jpg')}}" alt="welcome">
-              </div><!-- .col -->
-          </div><!-- .row -->
-      </div><!-- .container -->
-  </div>
 
 
 
-  <div class="site-section bg-white">
-    <div class="container">
-
-      <div class="row justify-content-center mb-5">
-        <div class="col-md-7 text-center border-primary">
-          <h2 class="font-weight-light text-primary">Testimonials</h2>
-        </div>
-      </div>
-
-      <div class="slide-one-item home-slider owl-carousel">
-        <div>
-          <div class="testimonial">
-            <figure class="mb-4">
-              <img src="{{asset('assets/Led-Theme/images/person_3.jpg')}}" alt="Image" class="img-fluid mb-3">
-              <p>John Smith</p>
-            </figure>
-            <blockquote>
-              <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur unde reprehenderit aperiam quaerat fugiat repudiandae explicabo animi minima fuga beatae illum eligendi incidunt consequatur. Amet dolores excepturi earum unde iusto.&rdquo;</p>
-            </blockquote>
-          </div>
-        </div>
-        <div>
-          <div class="testimonial">
-            <figure class="mb-4">
-              <img src="{{asset('assets/Led-Theme/images/person_2.jpg')}}" alt="Image" class="img-fluid mb-3">
-              <p>Christine Aguilar</p>
-            </figure>
-            <blockquote>
-              <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur unde reprehenderit aperiam quaerat fugiat repudiandae explicabo animi minima fuga beatae illum eligendi incidunt consequatur. Amet dolores excepturi earum unde iusto.&rdquo;</p>
-            </blockquote>
-          </div>
-        </div>
-
-        <div>
-          <div class="testimonial">
-            <figure class="mb-4">
-              <img src="{{asset('assets/Led-Theme/images/person_4.jpg')}}" alt="Image" class="img-fluid mb-3">
-              <p>Robert Spears</p>
-            </figure>
-            <blockquote>
-              <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur unde reprehenderit aperiam quaerat fugiat repudiandae explicabo animi minima fuga beatae illum eligendi incidunt consequatur. Amet dolores excepturi earum unde iusto.&rdquo;</p>
-            </blockquote>
-          </div>
-        </div>
-
-        <div>
-          <div class="testimonial">
-            <figure class="mb-4">
-              <img src="{{asset('assets/Led-Theme/images/person_5.jpg')}}" alt="Image" class="img-fluid mb-3">
-              <p>Bruce Rogers</p>
-            </figure>
-            <blockquote>
-              <p>&ldquo;Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur unde reprehenderit aperiam quaerat fugiat repudiandae explicabo animi minima fuga beatae illum eligendi incidunt consequatur. Amet dolores excepturi earum unde iusto.&rdquo;</p>
-            </blockquote>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
 
 
-<div class="home-page-limestone" style="padding:0">
-      <div class="container">
-        <div class="text-center">
-          <h2 class="font-weight-light text-primary" style="padding-bottom:50px;font-weight:bold !important">Our Partners </h2>
-        </div>
+  
+</section>
+@endsection  
 
-
-          <div class="row">
-              <div class="coL-12 col-lg-6">
-                  <div class="section-heading" style="padding-top:60px">
-                      <h3 class="entry-title" style="font-size:18px">DAS LED-BRANCHENFENSTER. IHR BLICKPUNKT.</h3>
-<h4 style="font-size:19px">SIE WÜNSCHEN WEITERE INFORMATIONEN? <br> WIR SIND GERNE FÜR SIE DA.
-</h4><br>
-
-<ul class="contact-info p-0">
-                          <li><i class="fa fa-phone"></i><span>  0261 - 200 695 68  <i class="fa fa-mobile" style="margin:0"></i>0176 - 808 507 25</span></li><br>
-                          <li><i class="fa fa-envelope"></i><span>hochhalter@led-werbeflächen.de</span></li><br>
-                         
-
-<li><i class="fa fa-map-marker"></i><span>Löhrstraße 87A/B 56068 Koblenz
-
-</span></li>
-                      </ul>
-
-     
-                  </div><!-- .section-heading -->
-              </div><!-- .col -->
-
-
-              <div class="col-12 col-lg-6">
-                  <div class="milestones d-flex flex-wrap justify-content-between">
-                          <div class="container">
-      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="{{asset('assets/Led-Theme/images/partner/1.jpg')}}" style="width:100%"></div>
-      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="{{asset('assets/Led-Theme/images/partner/2.jpg')}}" style="width:100%"></div>
-      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="{{asset('assets/Led-Theme/images/partner/3.jpg')}}" style="width:100%"></div>
-      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="{{asset('assets/Led-Theme/images/partner/4.jpg')}}" style="width:100%"></div>
-      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="{{asset('assets/Led-Theme/images/partner/5.jpg')}}" style="width:100%"></div> 
-      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="{{asset('assets/Led-Theme/images/partner/6.jpg')}}" style="width:100%"></div>
-      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="{{asset('assets/Led-Theme/images/partner/7.jpg')}}" style="width:100%"></div>
-      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="{{asset('assets/Led-Theme/images/partner/8.jpg')}}" style="width:100%"></div> 
-      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="{{asset('assets/Led-Theme/images/partner/9.jpg')}}" style="width:100%"></div>
-      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="{{asset('assets/Led-Theme/images/partner/10.jpg')}}" style="width:100%"></div>
-      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="{{asset('assets/Led-Theme/images/partner/11.jpg')}}" style="width:100%"></div> 
-      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="{{asset('assets/Led-Theme/images/partner/12.jpg')}}" style="width:100%"></div>
-      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="{{asset('assets/Led-Theme/images/partner/13.jpg')}}" style="width:100%"></div>
-      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="{{asset('assets/Led-Theme/images/partner/14.jpg')}}" style="width:100%"></div> 
-      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="{{asset('assets/Led-Theme/images/partner/15.jpg')}}" style="width:100%"></div>
-      <div class="col-sm-3" style="float:left"><img class="img-responsive" src="{{asset('assets/Led-Theme/images/partner/16.jpg')}}" style="width:100%"></div> 
-      
-  </div>
-                  </div><!-- .milestones -->
-              </div><!-- .col -->
-          </div><!-- .row -->
-      </div><!-- .container -->
-  </div>
-
-    
-@endsection
-
-@section('Styles')
-    @parent
-    
-
-    
-<style>
-    /*
-    # Welcome
-    --------------------------------*/
-    
-    .symbol.symbol-50px>img{width:50px;height:50px}
-    .symbol-label{display:flex;align-items:center;justify-content:center;font-weight:500;color:#3f4254;background-color:#f5f8fa;background-repeat:no-repeat;background-position:center center;background-size:cover;border-radius:.475rem}
-
-    .home-page-welcome {
-        position: relative;
-        padding: 96px 0;
-        background: url("assets/Led-Theme/images/slide1.jpg") no-repeat center;
-        background-size: cover;
-        z-index: 99;
-    }
-    
-    .home-page-welcome::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: -1;
-        width: 100%;
-        height: 100%;
-        background: rgba(21,21,21,.9);
-    }
-    
-    .welcome-content .entry-title {
-        position: relative;
-        padding-bottom: 24px;
-        font-size: 36px;
-        font-weight: 600;
-        color: #fff;
-    }
-    
-    .welcome-content .entry-title::before {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 64px;
-        height: 4px;
-        border-radius: 2px;
-        background: #2c35da;
-    }
-    
-    .welcome-content .entry-content {
-        font-size: 14px;
-        line-height: 2;
-        color: #b7b7b7;
-    }
-    
-    .home-page-welcome img {
-        display: block;
-        width: 100%;
-    }
-    
-    @media screen and (max-width: 992px){
-        .home-page-welcome img {
-            margin-bottom: 60px;
-        }
-    }
-    
-    /*
-    
-    /*
-    # Home Milestone
-    --------------------------------*/
-    .home-page-limestone {
-        padding: 96px 0;
-    }
-    
-    .home-page-limestone .section-heading .entry-title {
-        padding-bottom: 36px;
-        line-height: 1.6;
-    }
-    
-    .home-page-limestone .section-heading p {
-        font-size: 14px;
-        color: #595858;
-    }
-    .site-footer::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: -1;
-        width: 100%;
-        height: 101%;
-        background: rgba(22,22,22,.92);
-    }
-    .footeruiclass li a
-    {
-      color: #fff;
-      font-size: 15px;
-    }
-    .footeruiclass
-    {
-        padding-top: 15px;
-    }
-    </style>
-@endsection
-
-
-@section('modals')
-<div class="modal" id="showLedCalanderModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Modal Heading</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <!-- Modal body -->
-        <div class="modal-body" id="showLedCalander">
-          <!--<input type="text" name="daterange" id="demoDate" class="demo">-->
-        </div>
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-@endsection
-
-@section('pageScripts')
-
-
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyAIeDyz_v1KkoU3ZTRqK5e-9Ax1lNjSIEI"></script>
-<script type="text/javascript">
-    var searchInput = 'googleLocation';
-    
-        $(document).ready(function () {
-            var autocomplete;
-            autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
-                types: ['geocode']
-               
-            });
-        
-            google.maps.event.addListener(autocomplete, 'place_changed', function () {
-                var near_place = autocomplete.getPlace();
-            });
-        });
-</script>
-@endsection
+ 
