@@ -29,6 +29,65 @@
                     <!--begin::Card body-->
                     <div class="card-body border-top p-9">
                         <!--begin::Input group-->
+                        
+                        <div class="row mb-6">
+                            <!--begin::Label-->
+                            <label class="col-lg-4 col-form-label fw-bold fs-6">
+                                <span class="required">Led Type</span>
+                                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Location of Led"></i>
+                            </label>
+                            <!--end::Label-->
+                            <!--begin::Col-->
+                            <div class="col-lg-8 fv-row">
+                                <select name="ledtype" id="ledtype" aria-label="Select Led Type"  data-placeholder="Select Led Type..." class="form-select form-select-solid form-select-lg fw-bold">
+                                    <option  value="1" {{old('ledtype')==1?'selected' : ''}}>Singlemedia</option>
+                                    <option  value="2" {{old('ledtype')==2?'selected' : ''}}>Multimedia</option>                                        
+                                </select>
+                                @error('ledtype')
+                                <div class="alert alert-danger">
+                                        {{$message}}
+                                </div>
+                                @enderror
+                            </div>
+                            <!--end::Col-->
+                        </div>
+
+                        <div class="row mb-6" id="multimediaquantitydropdown">
+                            <!--begin::Label-->
+                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Booking Per Day</label>
+                            <!--end::Label-->
+                            <!--begin::Col-->
+                            <div class="col-lg-8 fv-row">
+                                <input type="number" name="multimediaquantity" class="form-control form-control-lg form-control-solid" placeholder="Enter Number ( This field appear only when multimedia selected" value="{{old('multimediaquantity')}}" />
+                                @error('multimediaquantity')
+                                <div class="alert alert-danger">
+                                        {{$message}}
+                                </div>
+                                @enderror
+                            </div>
+                            <!--end::Col-->
+                        </div>
+
+                        <div class="row mb-6" id="multimediaquantitydropdown">
+                            <!--begin::Label-->
+                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Booking Duration</label>
+                            <!--end::Label-->
+                            <!--begin::Col-->
+                            <div class="col-lg-8 fv-row">
+                                <select name="bookingduration"  aria-label="Select Booking Duration"  data-placeholder="Select Booking Duration..." class="form-select form-select-solid form-select-lg fw-bold">    
+                                       @foreach ($bookingDurations as $key => $value)
+                                       <option  value="{{$key}}">{{$value}}</option>       
+                                       @endforeach                                     
+                                </select>
+                                @error('bookingduration')
+                                <div class="alert alert-danger">
+                                        {{$message}}
+                                </div>
+                                @enderror
+                            </div>
+                            <!--end::Col-->
+                        </div>
+
                         <div class="row mb-6">
                             <!--begin::Label-->
                             <label class="col-lg-4 col-form-label required fw-bold fs-6">Title</label>
@@ -78,43 +137,8 @@
                             <!--end::Col-->
                         </div>
 
-                        <div class="row mb-6">
-                            <!--begin::Label-->
-                            <label class="col-lg-4 col-form-label fw-bold fs-6">
-                                <span class="required">Led Type</span>
-                                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Location of Led"></i>
-                            </label>
-                            <!--end::Label-->
-                            <!--begin::Col-->
-                            <div class="col-lg-8 fv-row">
-                                <select name="ledtype" id="ledtype" aria-label="Select Led Type"  data-placeholder="Select Led Type..." class="form-select form-select-solid form-select-lg fw-bold">
-                                    <option  value="1" {{old('ledtype')==1?'selected' : ''}}>Singlemedia</option>
-                                    <option  value="2" {{old('ledtype')==2?'selected' : ''}}>Multimedia</option>                                        
-                                </select>
-                                @error('ledtype')
-                                <div class="alert alert-danger">
-                                        {{$message}}
-                                </div>
-                                @enderror
-                            </div>
-                            <!--end::Col-->
-                        </div>
 
-                        <div class="row mb-6" id="multimediaquantitydropdown">
-                            <!--begin::Label-->
-                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Multimedia Quantity</label>
-                            <!--end::Label-->
-                            <!--begin::Col-->
-                            <div class="col-lg-8 fv-row">
-                                <input type="number" name="multimediaquantity" class="form-control form-control-lg form-control-solid" placeholder="How Many" value="{{old('multimediaquantity')}}" />
-                                @error('multimediaquantity')
-                                <div class="alert alert-danger">
-                                        {{$message}}
-                                </div>
-                                @enderror
-                            </div>
-                            <!--end::Col-->
-                        </div>
+                   
 
                         <div class="row mb-6">
                             <!--begin::Label-->

@@ -18,6 +18,7 @@ class ClientLedController extends BaseClientController
         $cities=City::all();
         return view('client-dashboard.led-add-page',[
             'cities'=>$cities,
+            'bookingDurations'=>Led::$bookingDurations,
         ]);
     }
 
@@ -30,6 +31,7 @@ class ClientLedController extends BaseClientController
             'location' => ['required', 'string', 'max:500'],
             'ledtype' => ['required'],
             'multimediaquantity' => $request->ledtype==2?['required', 'integer'] : '',
+            'bookingduration' => ['required'],
             'city' => ['required', 'string', 'max:500'],
             'price' => ['required', 'numeric'],
             'tax' => ['required', 'numeric'],
@@ -46,6 +48,7 @@ class ClientLedController extends BaseClientController
             'location' => 'Location',
             'ledtype' => 'Led Type',
             'multimediaquantity' => 'Multimedia Quantity',
+            'bookingduration' => 'Booking Duration',
             'city' => 'City',
             'price' => 'Price',
             'tax' => 'Tax',
@@ -58,6 +61,7 @@ class ClientLedController extends BaseClientController
             'location' => $request->location,
             'multimedia' => $request->ledtype==2? true : false,
             'multimediaquantity' => $request->ledtype==2?$request->multimediaquantity : null,
+            'bookingduration' => $request->bookingduration,
             'city_id' => $request->city,
             'price' => $request->price,
             'tax' => $request->tax,

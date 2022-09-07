@@ -13,7 +13,7 @@ class Led extends Model
 
     protected $table = 'led';
 
-    protected $fillable = ['user_id','city_id', 'title','multimedia','multimediaquantity', 'description', 'location', 'price', 'tax', 'city', 'popular', 'trending'];
+    protected $fillable = ['user_id','city_id', 'title','multimedia','multimediaquantity','bookingduration','description', 'location', 'price', 'tax', 'city', 'popular', 'trending'];
 
     protected static function booted()
     {
@@ -21,6 +21,15 @@ class Led extends Model
             $led->user_id = Auth::user()->id;
         });
     }
+
+    public static array $bookingDurations = [
+        '1' => 'All',
+        '2' => '3 Days',
+        '3' => '1 Week',
+        '4' => '1 Month',
+        '5' => '3 Month',
+        '6' => '6 Month',
+    ];
 
     public function images()
     {
@@ -52,6 +61,10 @@ class Led extends Model
         $this->attributes['endDate'] = $endDate;
         $this->attributes['noOfDays'] = $noOfDays;
         
+    }
+
+    public function getbookingDurationAttribute() {
+        return collect(self::$bookingDurations)->get($this->bokingduration);
     }
 
 }
