@@ -19,15 +19,14 @@
                                  @include('common.validation')
      <form    action="{{ route('register') }}" method="POST">
                                     @csrf
-<!--    @if ($errors->any())
-   {{dd($errors)}}
+    @if ($errors->any())
                     @foreach ($errors->all() as $error)
                     <div class="alert alert-danger" role="alert">
                         {{$error}}
                     </div> 
                     @endforeach
                     @endif 
-                                -->   
+                                
                     <div class="col-sm-6 form-group">
                         <label>First Name</label> <input class="cp-input-form"   type="text" placeholder="" name="firstname" value="{{old('firstname')}}" >
                           @error('firstname')
