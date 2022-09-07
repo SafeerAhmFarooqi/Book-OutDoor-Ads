@@ -20,7 +20,7 @@
      <form    action="{{ route('register') }}" method="POST">
                                     @csrf
 <!--    @if ($errors->any())
-   {{dd($errors)}}
+   
                     @foreach ($errors->all() as $error)
                     <div class="alert alert-danger" role="alert">
                         {{$error}}
