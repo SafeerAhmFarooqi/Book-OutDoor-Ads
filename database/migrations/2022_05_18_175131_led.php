@@ -18,6 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('city_id');
             $table->string('title')->nullable();
+            $table->boolean('multimedia')->nullable();
+            $table->smallInteger('multimediaquantity')->nullable();
             $table->text('description')->nullable();
             $table->string('location')->nullable();
             $table->double('price')->nullable();

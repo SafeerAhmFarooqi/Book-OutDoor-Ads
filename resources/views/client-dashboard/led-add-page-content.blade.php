@@ -81,6 +81,44 @@
                         <div class="row mb-6">
                             <!--begin::Label-->
                             <label class="col-lg-4 col-form-label fw-bold fs-6">
+                                <span class="required">Led Type</span>
+                                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Location of Led"></i>
+                            </label>
+                            <!--end::Label-->
+                            <!--begin::Col-->
+                            <div class="col-lg-8 fv-row">
+                                <select name="ledtype" id="ledtype" aria-label="Select Led Type"  data-placeholder="Select Led Type..." class="form-select form-select-solid form-select-lg fw-bold">
+                                    <option  value="1" {{old('ledtype')==1?'selected' : ''}}>Singlemedia</option>
+                                    <option  value="2" {{old('ledtype')==2?'selected' : ''}}>Multimedia</option>                                        
+                                </select>
+                                @error('ledtype')
+                                <div class="alert alert-danger">
+                                        {{$message}}
+                                </div>
+                                @enderror
+                            </div>
+                            <!--end::Col-->
+                        </div>
+
+                        <div class="row mb-6" id="multimediaquantitydropdown">
+                            <!--begin::Label-->
+                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Multimedia Quantity</label>
+                            <!--end::Label-->
+                            <!--begin::Col-->
+                            <div class="col-lg-8 fv-row">
+                                <input type="number" name="multimediaquantity" class="form-control form-control-lg form-control-solid" placeholder="How Many" value="{{old('multimediaquantity')}}" />
+                                @error('multimediaquantity')
+                                <div class="alert alert-danger">
+                                        {{$message}}
+                                </div>
+                                @enderror
+                            </div>
+                            <!--end::Col-->
+                        </div>
+
+                        <div class="row mb-6">
+                            <!--begin::Label-->
+                            <label class="col-lg-4 col-form-label fw-bold fs-6">
                                 <span class="required">City</span>
                                 <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Location of Led"></i>
                             </label>
@@ -152,7 +190,7 @@
                                 <input type="file" name="images[]" class="form-control form-control-lg form-control-solid" multiple/> 
                                 @if (count($errors) > 0)
                                     @foreach ($errors->all() as $error)
-                                    @if (str_contains($error, 'images'))
+                                    @if (str_contains($error, 'Image'))
                                     <div class="alert alert-danger">
                                         {{$error}}
                                     </div>
@@ -215,4 +253,37 @@ if (KTApp.isDarkMode()) {
 
 tinymce.init(options);
 </script>
+
+<script>
+    $(document).ready(function(){
+        checkLedType();
+        function checkLedType()
+        {
+            if ("{{old('ledtype')}}"==1) {
+                $("#ledtype").val(1);
+            }
+            if ("{{old('ledtype')}}"==2) {
+                $("#ledtype").val(2);
+            }
+            if ($("#ledtype").val()==1) {
+                $("#multimediaquantitydropdown").hide();
+            } 
+            if($("#ledtype").val()==2) {
+                $("#multimediaquantitydropdown").show();
+            }
+        }
+        function checkLedType2()
+        {
+            if ($("#ledtype").val()==1) {
+                $("#multimediaquantitydropdown").hide();
+            } 
+            if($("#ledtype").val()==2) {
+                $("#multimediaquantitydropdown").show();
+            }
+        }
+        $("#ledtype").change(function(){
+            checkLedType2();
+});
+    });
+    </script>
 @endsection

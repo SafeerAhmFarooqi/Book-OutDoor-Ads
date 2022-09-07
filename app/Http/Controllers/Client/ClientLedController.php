@@ -24,20 +24,40 @@ class ClientLedController extends BaseClientController
     public function storeLed(Request $request)
     {
         $request->validate([
+            //Validation Rules
             'title' => ['required', 'string', 'max:255'],
             'description' => ['required'],
             'location' => ['required', 'string', 'max:500'],
+            'ledtype' => ['required'],
+            'multimediaquantity' => $request->ledtype==2?['required', 'integer'] : '',
             'city' => ['required', 'string', 'max:500'],
             'price' => ['required', 'numeric'],
             'tax' => ['required', 'numeric'],
             'images' => 'required',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,bmp|max:2048'
+          
+        ],[
+            //Validation Messages
+            'required'=>':attribute is Required',
+        ],[
+            //Validation Attributes
+            'title' => 'Title',
+            'description' => 'Description',
+            'location' => 'Location',
+            'ledtype' => 'Led Type',
+            'multimediaquantity' => 'Multimedia Quantity',
+            'city' => 'City',
+            'price' => 'Price',
+            'tax' => 'Tax',
+            'images' => 'Image',
         ]);
 
         $led = Led::create([
             'title' => $request->title,
             'description' => $request->description,
             'location' => $request->location,
+            'multimedia' => $request->ledtype==2? true : false,
+            'multimediaquantity' => $request->ledtype==2?$request->multimediaquantity : null,
             'city_id' => $request->city,
             'price' => $request->price,
             'tax' => $request->tax,
