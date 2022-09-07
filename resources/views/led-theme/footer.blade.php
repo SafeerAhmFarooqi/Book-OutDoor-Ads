@@ -1,71 +1,155 @@
-<footer class="site-footer" style="    position: relative;
-padding: 96
-px
-0 90
-px
-;
-font-weight: 500;
-color: #929191;
-background: url(../../www.led-werbeflaechen.de/newassets/products/p1.jpg) no-repeat center;
-background-size: cover;
-z-index: 99;margin-top:50px"> 
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="row">
-          <div class="col-md-4">
-            <h2 class="footer-heading mb-4" style="font-size:18px;font-weight: bold">Zahlungsarten</h2>
-            <ul class="list-unstyled footeruiclass">
-              <li><a href="#" style="">PayPal</a></li>
-              <li><a href="#">Bankeinzug</a></li>
-              <li><a href="#">Banküberweisung</a></li> 
-            </ul>
-          </div>
+ <footer class="w3-padding-86-top container-fluid w3-margin-bottom-30">
+      <div class="row w3-padding-32-top">
+         <div class="col-xs-12 col-lg-5 col-md-6 col-sm-12 w3-padding-right-20 w3-margin-bottom-30">
+            <div class="w3-center-logo">
+               <img src="images/main-logo.png" alt="" class="img-responsive">
+            </div>
+            <div class="w3-padding-32-top">
+               <p class="footer-p-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil, fugit similique. Omnis nulla repellendus minus cumque sit blanditiis vel, nihil eos consectetur maxime similique autem eveniet ullam, iure, placeat consequuntur?
+               </p>
+            </div>
+            <div class="icon-bar-2 f-h4 w3-padding-32-top">
+               <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+               <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>  
+               <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+               <a href="#" class="youtube"><i class="fa fa-instagram"></i></a> 
+            </div>
+            <div class="w3-padding-32-top ">
+               <p class="footer-p-text"> © 2022. All rights reserved
+               </p>
+            </div>
+         </div>
+         <div class="col-xs-12 col-lg-2 col-md-6 col-sm-12 w3-margin-bottom-30">
+            <h4 class="w3-padding-2-top footer-h-text">Take a Tour</h4>
+            <div class="w3-padding-32-top ">
+               <p class="footer-p2-text">Properties</p>
+               <p class="footer-p2-text">Advertise</p>
+               <p class="footer-p2-text">Agents</p>
+               <p class="footer-p2-text">Terms</p>
+               <p class="footer-p2-text">Privacy</p>
+            </div>
+         </div>
+         <div class=" col-xs-12 col-lg-2 col-md-6 col-sm-12 w3-margin-bottom-30">
+            <h4 class="w3-padding-2-top footer-h-text">Our Company</h4>
+            <div class=" w3-padding-32-top ">
+               <p class="footer-p2-text">FAQs</p>
+               <p class="footer-p2-text">Blog</p>
+               <p class="footer-p2-text">About</p>
+               <p class="footer-p2-text">Help Centre</p>
+            </div>
+         </div>
+         <div class="col-xs-12 col-lg-3 col-md-6 col-sm-12 w3-margin-bottom-30">
+            <h4 class="w3-padding-2-top footer-h-text">Subscribe</h4>
+            <div class="w3-padding-32-top ">
+            <p class="footer-p-text">Subscribe to get latest property, blog news from us
+            </p>
+            </div>
+            <div class="w3-padding-32-top">
+               <div class="wrapper">
+                  <div class="box">
+                     <input type="text" name="" class="email-sub" placeholder="Email Address">
+                     <button class="btn-form main-col-bg"><img src="images/arrow-right.png" class="w3-image"></button>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!--row-->
+    </footer>
+
+<script src="{{asset('assets/newtheme2023/assets/javascript.js')}}"></script>
    
+      <script>
+         function myfunc(){
+            document.getElementById('search').focus();
+         }
+      </script>
+      <script>
+        const searchWrapper = document.querySelector(".search-input");
+        const inputBox = searchWrapper.querySelector("input");
+        const suggBox = searchWrapper.querySelector(".autocom-box");
+        const icon = searchWrapper.querySelector(".icon");
+        let linkTag = searchWrapper.querySelector("a");
+        let webLink;
 
-
-
-
-  
-          <div class="col-md-4">
-            <h2 class="footer-heading mb-4" style="font-size:18px;font-weight: bold">Links</h2>
-            <ul class="list-unstyled footeruiclass">
-              <li><a href="{{route('show.policy')}}">Datenschutz</a></li>
-              <li><a href="{{route('show.agb')}}">AGB</a></li>
-              <li><a href="{{route('show.imprint')}}">Impressum</a></li>   
-              <li><a href="{{route('show.contact')}}">Kontakt</a></li>
-            </ul>
-          </div>
-
-
-
-
-          <div class="col-md-4">
-            <h2 class="footer-heading mb-4" style="font-size:18px;font-weight: bold">Kontakt</h2>
-            <ul class="list-unstyled footeruiclass">
-              <li><a href="#"> 0261 - 200 695 68</a></li>
-              <li><a href="#">0176 - 808 507 25</a></li>
-              <li><a href="#">hochhalter@led-werbeflaechen.de</a></li>
-              <li><a href="#">Löhrstraße 87A/B | 56068 Koblenz</a></li>
-              <li><a href="{{route('client.login')}}" class="btn btn-warning"> Partner Login </a></li>
-              <li><a href="{{route('admin.login')}}" class="btn btn-warning"> Admin Login</a></li> 
-            </ul>
-          </div>
-        </div>
-      </div>
-      
-    </div>
-    <div class="row pt-5 mt-5 text-center">
-      <div class="col-md-12">
-        <div class="border-top pt-5">
-        <p  >
+    async function getAddress() {
+          const value = document.getElementById('search').value;
+          var myHeaders = new Headers();
+            myHeaders.append("Cookie", "TiPMix=99.03755974279281; x-ms-routing-name=self");
+            
+            var requestOptions = {
+              method: 'GET',
+              headers: myHeaders,
+              redirect: 'follow'
+            };
+          var url = "https://api.getaddress.io/autocomplete/";
+            fetch(url+value+"?api-key=bsXbfpPoV0qSRB12WLkhZQ36387", requestOptions)
+            .then(response => response.json())
+            .then(result => showSuggestions(result))
+            .catch(error => console.log('error', error));
+        
+        }
     
-        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved  <a href="#" target="_blank" style="color:#fff;font-weight:bold"> LED-Werbeflächen</a>
-       
-        </p>
-        </div>
-      </div>
-      
-    </div>
-  </div>
-</footer>
+        inputBox.onkeyup = (e)=>{
+            
+            getAddress();
+            
+        }
+
+        function select(element){
+            let selectData = element.textContent;
+            inputBox.value = selectData;
+            searchWrapper.classList.remove("active");
+        }
+
+        function showSuggestions(result){
+            let listData;
+            if(!result.length){
+                for(let i = 0; i < result.suggestions.length; i++) {
+                    if(i == 0){
+                        userValue = result.suggestions[i].address;
+                        listData = `<li>${userValue}</li>`;
+                    }
+                    else{
+                     userValue = result.suggestions[i].address;
+                    listData += `<li>${userValue}</li>`;   
+                    }
+                }
+            }
+            else{
+              listData = list.join('Type more...');
+            }
+            suggBox.innerHTML = listData;
+            searchWrapper.classList.add("active"); //show autocomplete box
+                let allList = suggBox.querySelectorAll("li");
+                for (let i = 0; i < allList.length; i++) {
+                    //adding onclick attribute in all li tag
+                    allList[i].setAttribute("onclick", "select(this)");
+                }
+        }
+</script>
+<script src="{{asset('assets/newtheme2023/assets/suggestions.js')}}"></script>
+<script src="{{asset('assets/newtheme2023/assets/script.js')}}"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyAIeDyz_v1KkoU3ZTRqK5e-9Ax1lNjSIEI"></script>
+<script type="text/javascript">
+    var searchInput = 'googleLocation';
+    
+        $(document).ready(function () {
+            var autocomplete;
+            autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+                types: ['geocode']
+               
+            });
+        
+            google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                var near_place = autocomplete.getPlace();
+            });
+        });
+</script>
+
+
+
+
+ 
+ 
