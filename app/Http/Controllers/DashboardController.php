@@ -492,6 +492,11 @@ public function handle(Request $request) {
       return view('app-dashboard.policy');       
    }
 
+   public function showAbout()
+   {
+      return view('app-dashboard.about');       
+   }
+
    public function listCitiesLeds($id=false)
    {
       if($id)
