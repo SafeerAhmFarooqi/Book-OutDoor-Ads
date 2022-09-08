@@ -63,7 +63,7 @@ class Led extends Model
         
     }
 
-    public function getbookingDurationAttribute() {
+    public function getbookingdurationAttribute() {
         return collect(self::$bookingDurations)->get($this->bokingduration);
     }
 

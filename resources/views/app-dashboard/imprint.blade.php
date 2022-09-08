@@ -14,17 +14,16 @@
      
     <div class="contact-form col-sm-4">
         <h1 class="title" style="font-weight:bold;padding-bottom:20px">Impressum</h1><br>
-        <p> LED-Werbeflächen Marketing GmbH, Löhrstraße 87a/b 56068 Koblenz</p><br>
+        <p> Heinen data systems GmbH</p><br>
+        <p>Simmern Street 86a</p><br>
+        <p> 56075 Koblenz</p><br>
 
-    <p>Gesellschafter: Uwe Hochhalter, Viktor Hochhalter, Danny Hochhalter.     </p><br>
+ 
+    <p>Telefon: +49 (0)261 803090</p><br>
+    <p>Fax: +49 (0)261 85426</p><br>
 
-    <p>Telefon: 026120069568</p><br>
-
-    <p>E-Mail: hochhalter@led-werbeflaechen.de</p><br>
-
-    <p>Umsatzsteuer-Identifikationsnummer gem. § 27a UStG: DE305892470</p><br>
-
-    <p>Inhaltlich Verantwortlicher gem. § 55 II RStV: Uwe Hochhalter (Anschrift s.o.)</p>
+    <p>E-Mail: p.heinen@heinen-datensysteme.de</p><br>
+    <p>Website:  <a href="http://heinen-it.com/">heinen-it.com</a> </p><br> 
 
          
     </div>
