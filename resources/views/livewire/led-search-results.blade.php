@@ -1,98 +1,153 @@
 <div>
     {{-- The whole world belongs to you. --}}
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3  ">
-            <div class="mb-5">
-               <form action="#" method="post">
-                
-                <div class="form-group">
-                  <input type="text" placeholder="What are you looking for?" class="form-control" wire:model='find'>
+<div>
+  <div class="container-fluid DN-800" id="search-page">
+        
+    <div class="sp-backdrop-bg sp-border">
+        <div class="flex-stretch">
+            <div class="f-g-4 col-sm-4" >
+                <div class="flex-st">
+                    <p class="margin-right">  <i class="fa fa-map-marker" style="font-size: 25px;"></i></p><input class="cp-input-form"   placeholder="Enter Search Location" style="border:none; outline:none; font-size:16px;"  wire:model='location'>
                 </div>
-                <div class="form-group">
-                  <div class="select-wrap">
-                      <span class="icon"><span class="icon-keyboard_arrow_down"></span></span>
-                      <select class="form-control" wire:model='selectedCity'>
-                        {{-- <option value="">Select a City...</option> --}}
-                        <option value="">All Cities</option>
-                        @foreach ($cities as $city)
-                        <option value="{{$city->id}}" selected="">{{$city->city}}</option>
-                        @endforeach
-                        
-                        
-                      </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                  <!-- select-wrap, .wrap-icon -->
-                  <div class="wrap-icon">
-                    <span class="icon icon-room"></span>
-                    <input type="text" placeholder="Location" class="form-control" id="location" wire:model='location'>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <!-- select-wrap, .wrap-icon -->
-                  <div class="wrap-icon">
-                    <span class="icon icon-room"></span>
-                    <input type="text" name="book_dates" class="form-control"/>
-                  </div>
-                </div>
-                <div class="form-group" wire:ignore>
-                  <h3 style="font-size:15px;padding:10px 0px 15px 0px;font-weight: bold;"> Price Select </h3>
-  <div id="slider-range"></div>
-   
- 
-  <div class="row slider-labels">
-    <div class="col-sm-6 caption">
-      <strong>Min:</strong> <span id="slider-range-value1"></span>
-    </div>
-    <div class="col-sm-6 text-right caption">
-      <strong>Max:</strong> <span id="slider-range-value2"></span>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-10">
-        <a href="{{route('find.map.led')}}">
-          <img src="https://www.reviewgeek.com/p/uploads/2020/04/fadc14dd.jpg?height=200p&trim=2,2,2,2" style="width:100%;margin-top:50px">
-        </a>
-    </div>
-  </div>
-                </div>
-              </form>
-            </div>   
-          </div>
-          <div class="col-lg-8">
-            <div class="row">
-                @foreach ($leds as $led)
-                <div class="col-lg-6">  
-                    <div class="d-block d-md-flex listing vertical">
-                      <a href="{{route('app.led.detail',$led->id)}}" class="img d-block" style="background-image: url('{{asset('storage/'.($led->images->first())->path)}}')"></a>
-                      <div class="lh-content">
-                        <span class="category">{{($cities->where('id',$led->city_id)->first())->city}}</span>
-                        <span class="category">Price : €{{$led->price}}/day</span>
-                        {{-- <a href="#" class="bookmark"><span class="icon-heart"></span></a> --}}
-                        <h3><a href="{{route('app.led.detail',$led->id)}}">{{$led->title}}</a></h3>   
-                        <address>{{$led->location}}</address>
-                        {{-- <p class="mb-0">
-                          <span class="icon-star text-warning"></span>
-                          <span class="icon-star text-warning"></span>
-                          <span class="icon-star text-warning"></span>
-                          <span class="icon-star text-warning"></span>
-                          <span class="icon-star text-secondary"></span>
-                          <span class="review">(3 Reviews)</span>
-                        </p> --}}
-                      </div>
-                    </div>
-                  </div>      
-                @endforeach
-              
-              
-              
             </div>
-          </div>
+            <div class="f-g-1 margin-right">
+                <div class="vr-line"></div>
+            </div>
+            <div class="f-g-2">
+                <p class="font-lufga-18 dis-none">City</p>
+                <div class="flex-st">
+                    <div class="dropdown margin-right">
+                        <select aria-labelledby="menu1" wire:model='selectedCity' style="padding: 8px 32px 8px 0px;border: none;outline: none;text-align: center;color: #8F90A6!important;">
+                          <option value="">All Cities</option>
+                          @foreach ($cities as $city)
+                          <option value="{{$city->id}}" selected="">{{$city->city}}</option>
+                          @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="f-g-1 margin-right">
+                <div class="vr-line"></div>
+            </div>
+            <div class="f-g-2">
+                <p class="font-lufga-18 dis-none">Dates</p>
+                <div class="flex-st">
+                    <div class="dropdown margin-right">
+                        <select id="property_type" name="property_type" style="padding: 8px 32px 8px 0px;border: none;outline: none;text-align: center;color: #8F90A6!important;">
+                            <option value="">
+                               1-10-2022 - 10-10-2023
+                            </option> 
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="f-g-1 margin-right">
+                <div class="vr-line"></div>
+            </div>
+     
+            <div class="f-g-2">
+                <p class="font-lufga-18 dis-none">Price Range</p>
+                <div class="flex-st">
+                    <div class="dropdown margin-right">
+                        <select  wire:model='priceRange' style="padding: 8px 32px 8px 0px;border: none;outline: none;text-align: center;color: #8F90A6!important;">
+                          <option value="">
+                            Select Price Range...
+                         </option>  
+                          <option value="1-10">
+                               € 1 - € 10 
+                            </option>
+                              <option value="11-30"> 
+                               € 11 - € 30 
+                            </option> 
+                              <option value="31-50"> 
+                               € 31 - € 50 
+                            </option> 
+                              <option value="51-100"> 
+                               € 51 - € 100 
+                            </option> 
+                              <option value="100-150"> 
+                               € 100 - € 150 
+                            </option> 
+                              <option value="150-300"> 
+                               € 150 - € 300 
+                            </option> 
+                              <option value="300-500"> 
+                               € 300 - € 500 
+                            </option> 
+                              <option value="500-999999999999999999"> 
+                               € 500 +
+                            </option> 
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="f-g-1 margin-right">
+                <div class="vr-line"></div>
+            </div>
+
+            <div class="f-g-2">
+                <a href="{{route('find.map.led')}}"> <img src="https://1000logos.net/wp-content/uploads/2021/05/Google-Maps-logo.png" class="img-responsive cursor-on"  style="width:90px">
+                </a>
+           </div>
+
+
+
+            
+      
+            
+            
         </div>
-      </div>
+    </div>
+</div> 
+
+<div class="container-fluid ">
+  <div class="row w3-padding-56-top">
+   @foreach ($leds as $led)
+   <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 w3-margin-bottom-30">
+    <div class="card h-100">
+
+
+   <a href="{{route('app.led.detail',$led->id)}}"><img class="card-img-top" src="{{asset('storage/'.($led->images->first())->path)}}" alt="" style="width:100%;min-height: 200px;;max-height: 200px;"></a>  
+
+
+
+   <div class="card-body viewledlistmainpage" >
+       <h2 class="card-title alignleft"  >
+           <a href="#" class="viewledlistmainpageheading">Price : €{{$led->price}}/day</a>
+       </h2>
+       <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text viewledlistmainpageheading1"  > {{$led->title}}</h2>
+
+       <h2 class="card-title viewledlistmainpageheading2"> {{($cities->where('id',$led->city_id)->first())->city}} </h4>
+
+        
+       <h2 class="card-title alignright"  >
+           <a href="#"  class="viewledlistmainpageheading3"  > Price : €{{$led->price}} / <b  class="viewledlistmainpageheading4"  > day</b> </a>
+       </h2>
+       
+       <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text" style="text-align:right"> 
+           <a href="#" >
+             <img src="http://127.0.0.1:8000/assets/newtheme2023/images/arrowblue.png"   class="viewledlistmainpageheading6"  > 
+           </a>
+       </h2>
+   </div>
+ </div>
+</div>
+   @endforeach
+          
+         
+         
+          
+          
+         
+         
+         
+          
+    
+
+  </div>
+</div>
+</div>
+        
 </div>
 
 @section('Styles')

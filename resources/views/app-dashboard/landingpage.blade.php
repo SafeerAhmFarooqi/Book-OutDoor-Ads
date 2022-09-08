@@ -132,14 +132,14 @@
               
                   @foreach ($cities as $city)
                   <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 w3-margin-bottom-30">
-                  <div class="w3-display-container">
+                    <div class="w3-display-container">
                     <a href="{{route('list.cities.led',$city->id)}}">
                     <div class="w3-display-middle city-text">
                         {{$city->city}}
                     </div><img alt="lonodn" class="city-img" src="{{asset('storage/'.$city->icon)}}"></a>
-                </div>
-              </div> 
-              @endforeach
+                    </div>
+                  </div> 
+                 @endforeach
                     
               
               
