@@ -36,7 +36,7 @@ class ClientLedController extends BaseClientController
             'price' => ['required', 'numeric'],
             'tax' => ['required', 'numeric'],
             'images' => 'required',
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,bmp|max:2048'
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,bmp|max:20000'
           
         ],[
             //Validation Messages
@@ -123,11 +123,11 @@ class ClientLedController extends BaseClientController
         }
         $request->validate([
             'title' => ['required', 'string', 'max:255'],
-            'description' => ['required', 'string', 'max:500'],
+            'description' => ['required', 'string'],
             'location' => ['required', 'string', 'max:500'],
             'price' => ['required', 'numeric'],
             'tax' => ['required', 'numeric'],
-            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,bmp|max:2048'
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,bmp|max:20000'
         ]);
         $led->update($request->all());
         if($request->file('images'))
