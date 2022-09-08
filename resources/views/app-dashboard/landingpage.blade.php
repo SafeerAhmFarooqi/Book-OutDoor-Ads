@@ -129,38 +129,21 @@
 
 
             <div class="row w3-padding-56-top">
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 w3-margin-bottom-30">
-                    <div class="w3-display-container">
-                        <a href="#">
-                        <div class="w3-display-middle city-text">
-                            Koblenz
-                        </div><img alt="lonodn" class="city-img" src="{{asset('assets/newtheme2023/images/cityslide1.png')}}"></a>
-                    </div>
-                </div> 
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 w3-margin-bottom-30">
-                    <div class="w3-display-container">
-                        <a href="#">
-                        <div class="w3-display-middle city-text">
-                            Frankfurt
-                        </div><img alt="lonodn" class="city-img" src="{{asset('assets/newtheme2023/images/cityslide2.png')}}"></a>
-                    </div>
-                </div> 
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 w3-margin-bottom-30">
-                    <div class="w3-display-container">
-                        <a href="#">
-                        <div class="w3-display-middle city-text">
-                            Köln
-                        </div><img alt="lonodn" class="city-img" src="{{asset('assets/newtheme2023/images/cityslide3.png')}}"></a>
-                    </div>
-                </div> 
-                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 w3-margin-bottom-30">
-                    <div class="w3-display-container">
-                        <a href="#">
-                        <div class="w3-display-middle city-text">
-                            Düsseldorf
-                        </div><img alt="lonodn" class="city-img" src="{{asset('assets/newtheme2023/images/cityslide4.png')}}"></a>
-                    </div>
-                </div> 
+              
+                  @foreach ($cities as $city)
+                  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 w3-margin-bottom-30">
+                  <div class="w3-display-container">
+                    <a href="{{route('list.cities.led',$city->id)}}">
+                    <div class="w3-display-middle city-text">
+                        {{$city->city}}
+                    </div><img alt="lonodn" class="city-img" src="{{asset('storage/'.$city->icon)}}"></a>
+                </div>
+              </div> 
+              @endforeach
+                    
+              
+              
+            
 
 
             </div>
