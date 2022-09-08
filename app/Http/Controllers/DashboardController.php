@@ -46,7 +46,7 @@ public function payment($id)
                ],
                "description" => "Order #".$order->id,
                "redirectUrl" => route('payment.order.process',$order->id),
-               //"webhookUrl" => route('webhooks.mollie'),
+               "webhookUrl" => route('webhooks.mollie'),
                "metadata" => [
                    "order_id" => $order->id,
                ],
@@ -203,6 +203,8 @@ public function handle(Request $request) {
       ->where('led_id',$id)
       ->where('startDate','>=',Carbon::now()->format('Y-m-d'))
       ->get();
+
+     // var_dump($led->bookingduration);
       
       return view('app-dashboard.detail-page',[
           'led'=>$led,
