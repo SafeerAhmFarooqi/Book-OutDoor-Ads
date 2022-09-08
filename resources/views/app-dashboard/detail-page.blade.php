@@ -61,7 +61,7 @@
                      <div class="det-col">
                         <h2 class="ff-lagufa-n font-18 font-12-sm font-w-600 w3-theme-text">Type</h2>
                         <div class="flex-sb jus-con-center w3-padding-12-top">
-                           <p class="ff-lagufa-n font-16 font-12-sm font-w-400 p-l-5">Multimedia</p>
+                           <p class="ff-lagufa-n font-16 font-12-sm font-w-400 p-l-5">{{$led->multimedia?'Multimedia' : 'Singlemedia'}}</p>
                         </div>
                      </div>
                      <div class="det-col">
@@ -73,7 +73,7 @@
                      <div class="det-col">
                         <h2 class="ff-lagufa-n font-18 font-12-sm font-w-600 w3-theme-text w3-center">Book  </h2>
                         <div class="flex-sb jus-con-center w3-padding-12-top">
-                           <h2 class="ff-lagufa-n font-16 font-12-sm font-w-400 p-l-5">Minimum 3 Days</h2>
+                           <h2 class="ff-lagufa-n font-16 font-12-sm font-w-400 p-l-5">{{$led->bookingduration}}</h2>
                         </div>
                      </div>
                   </div>
@@ -85,12 +85,12 @@
                         {!! preg_replace('#<script(.*?)>(.*?)</script>#is', '', $led->description) !!}
                      </div>
                      <div class="flex-con-sb w3-padding-24-top">
-                        <p class="font-16 font-12-sm w3-theme-text">REF NO:  1</p>
-                        <p class="font-16 font-12-sm w3-theme-text">ADDED ON: 2022-08-14 17:44:17</p>
+                        <p class="font-16 font-12-sm w3-theme-text">REF NO:  {{$led->id}}</p>
+                        <p class="font-16 font-12-sm w3-theme-text">ADDED ON: {{$led->created_at->format('F d,y')}}</p>
                      </div>
                   </div>
                   <hr>
-                  <div class="desc">
+                  <div >
                       
                      <div id="mymap"></div>
                   </div>
@@ -245,7 +245,7 @@
   tinymce.init(options);
   </script>
 <script src="http://maps.google.com/maps/api/js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
 
 
 
@@ -294,16 +294,33 @@
  lng: coordinates.long,
  zoom:6
    });
+
+   const image = {
+    url: "{{asset('storage/'.$image->path)}}",
+    // This marker is 20 pixels wide by 32 pixels high.
+    size: new google.maps.Size(100, 100),
+    // The origin for this image is (0, 0).
+    origin: new google.maps.Point(0, 0),
+    // The anchor for this image is the base of the flagpole at (0, 32).
+    anchor: new google.maps.Point(0, 32),
+  };
    mymap.addMarker({
        //   lat: value.lat,
        //   lng: value.lng,
        lat: coordinates.lat,
-     lng: coordinates.long,
+       lng: coordinates.long,
+       icon: '',
+       title: "{{$led->title}}",
         //  title: value.title,
-       //   click: function(e) {
-       //     alert('This is '+value.status+' : '+increment_2+', gujarat from India.');
-       //   }
+         mouseout: function(e) {
+           this.setIcon('');
+         },
+         mouseover: function(e) {
+          this.setIcon(image);
+         }
        });
+  
+       
 
 
   //  $.each( locations, function( index, value ){

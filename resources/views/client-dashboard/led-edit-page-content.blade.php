@@ -1,16 +1,6 @@
 <div class="container">
     <div class="container">
-       @if (session()->has('message'))
-       <div class="alert alert-success">
-        {{ session()->get('message') }}
-        </div>
-       @endif
-
-       @if (session()->has('error'))
-       <div class="alert alert-danger">
-        {{ session()->get('error') }}
-    </div>            
-       @endif
+       @include('common.validation')
         <div class="card mb-5 mb-xl-10">
             <!--begin::Card header-->
             <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse" data-bs-target="#kt_account_profile_details" aria-expanded="true" aria-controls="kt_account_profile_details">

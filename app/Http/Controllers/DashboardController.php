@@ -204,7 +204,7 @@ public function handle(Request $request) {
       ->where('startDate','>=',Carbon::now()->format('Y-m-d'))
       ->get();
 
-     // var_dump($led->bookingduration);
+    // var_dump($led->bookingduration);
       
       return view('app-dashboard.detail-page',[
           'led'=>$led,
