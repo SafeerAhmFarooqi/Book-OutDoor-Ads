@@ -9,9 +9,7 @@
                </p>
             </div>
             <div class="icon-bar-2 f-h4 w3-padding-32-top">
-               <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
-               <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>  
-               <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+               <a href="#" class="facebook"><i class="fa fa-facebook"></i></a> 
                <a href="#" class="youtube"><i class="fa fa-instagram"></i></a> 
             </div>
             <div class="w3-padding-32-top ">
@@ -22,33 +20,33 @@
          <div class="col-xs-12 col-lg-2 col-md-6 col-sm-12 w3-margin-bottom-30">
             <h4 class="w3-padding-2-top footer-h-text">Take a Tour</h4>
             <div class="w3-padding-32-top ">
-               <p class="footer-p2-text">Properties</p>
-               <p class="footer-p2-text">Advertise</p>
-               <p class="footer-p2-text">Agents</p>
-               <p class="footer-p2-text">Terms</p>
-               <p class="footer-p2-text">Privacy</p>
+               <p class="footer-p2-text">Home</p>
+               <p class="footer-p2-text">IMPRESSUM</p>
+               <p class="footer-p2-text">KONTAKT</p>
+               <p class="footer-p2-text">AGB</p>
+               <p class="footer-p2-text">Privacy Policy</p>
             </div>
          </div>
          <div class=" col-xs-12 col-lg-2 col-md-6 col-sm-12 w3-margin-bottom-30">
             <h4 class="w3-padding-2-top footer-h-text">Our Company</h4>
             <div class=" w3-padding-32-top ">
-               <p class="footer-p2-text">FAQs</p>
-               <p class="footer-p2-text">Blog</p>
+               <p class="footer-p2-text">City Search</p>
+               <p class="footer-p2-text">Map View</p>
                <p class="footer-p2-text">About</p>
                <p class="footer-p2-text">Help Centre</p>
             </div>
          </div>
          <div class="col-xs-12 col-lg-3 col-md-6 col-sm-12 w3-margin-bottom-30">
-            <h4 class="w3-padding-2-top footer-h-text">Subscribe</h4>
+            <h4 class="w3-padding-2-top footer-h-text">Contact</h4>
             <div class="w3-padding-32-top ">
-            <p class="footer-p-text">Subscribe to get latest property, blog news from us
+            <p class="footer-p-text">Dial to get latest LED<br> Space   from us
             </p>
             </div>
             <div class="w3-padding-32-top">
                <div class="wrapper">
                   <div class="box">
-                     <input type="text" name="" class="email-sub" placeholder="Email Address">
-                     <button class="btn-form main-col-bg"><img src="images/arrow-right.png" class="w3-image"></button>
+                    <i class="fa fa-mobile" aria-hidden="true"></i>  &nbsp; &nbsp;
+     <span style="font-size: 25px;font-weight: bold;  clor: #2E3192;"> 026120069568  </span>
                   </div>
                </div>
             </div>
