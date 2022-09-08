@@ -1,194 +1,384 @@
+
 @extends('layouts.led-theme')
 
 @section('content')
-<div class="site-blocks-cover overlay" style="background-image: url({{asset('assets/Led-Theme/images/hero_2.jpg')}});" data-aos="fade" data-stellar-background-ratio="0.5">
-    <div class="container">
-      <div class="row align-items-center justify-content-center text-center">
 
-        <div class="col-md-12">
-          
-          
-          <div class="row justify-content-center mb-4">
-            <div class="col-md-8 text-center">
-              @include('led-theme.top-message')
-            </div>
-          </div>
-
+ 
+    
+    <div class="container-fluid DN-800" id="search-page">
+        <div class="sp-backdrop-bg sp-border">
+            <div class="flex-stretch">
+                <div class="f-g-4 col-sm-4" >
+                    <div class="flex-st">
+                        <p class="margin-right">  <i class="fa fa-map-marker" style="font-size: 25px;"></i></p><input class="cp-input-form" id="search" name="search" placeholder="Enter Search Location" style="border:none; outline:none; font-size:16px;" value="">
+                    </div>
+                </div>
+                <div class="f-g-1 margin-right">
+                    <div class="vr-line"></div>
+                </div>
+                <div class="f-g-2">
+                    <p class="font-lufga-18 dis-none">City</p>
+                    <div class="flex-st">
+                        <div class="dropdown margin-right">
+                            <select aria-labelledby="menu1" id="distance" name="distance" role="menu" style="padding: 8px 32px 8px 0px;border: none;outline: none;text-align: center;color: #8F90A6!important;">
+                                <option value="">
+                                   Koblenz
+                                </option>  
+                                <option value="">
+                                   Koblenz
+                                </option>  
+                                <option value="">
+                                   Koblenz
+                                </option>  
+                                <option value="">
+                                   Koblenz
+                                </option>  
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="f-g-1 margin-right">
+                    <div class="vr-line"></div>
+                </div>
+                <div class="f-g-2">
+                    <p class="font-lufga-18 dis-none">Dates</p>
+                    <div class="flex-st">
+                        <div class="dropdown margin-right">
+                            <select id="property_type" name="property_type" style="padding: 8px 32px 8px 0px;border: none;outline: none;text-align: center;color: #8F90A6!important;">
+                                <option value="">
+                                   1-10-2022 - 10-10-2023
+                                </option> 
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="f-g-1 margin-right">
+                    <div class="vr-line"></div>
+                </div>
          
+                <div class="f-g-2">
+                    <p class="font-lufga-18 dis-none">Price Range</p>
+                    <div class="flex-st">
+                        <div class="dropdown margin-right">
+                            <select id="property_type" name="property_type" style="padding: 8px 32px 8px 0px;border: none;outline: none;text-align: center;color: #8F90A6!important;">
+                                <option value="">
+                                   € 1 - € 10 
+                                </option>
+                                  <option value=""> 
+                                   € 11 - € 30 
+                                </option> 
+                                  <option value=""> 
+                                   € 31 - € 50 
+                                </option> 
+                                  <option value=""> 
+                                   € 51 - € 100 
+                                </option> 
+                                  <option value=""> 
+                                   € 100 - € 150 
+                                </option> 
+                                  <option value=""> 
+                                   € 150 - € 300 
+                                </option> 
+                                  <option value=""> 
+                                   € 300 - € 500 
+                                </option> 
+                                  <option value=""> 
+                                   € 500 +
+                                </option> 
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="f-g-1 margin-right">
+                    <div class="vr-line"></div>
+                </div>
+
+                <div class="f-g-2">
+                    <a href=""> <img src="https://1000logos.net/wp-content/uploads/2021/05/Google-Maps-logo.png" class="img-responsive cursor-on"  style="width:90px">
+                    </a>
+               </div>
+
+
+
+                
+          
+                
+                
+            </div>
         </div>
-      </div>
-    </div>
-  </div>  
-
-  <div class="site-section">
-    <livewire:map-led-search-results />
-</div>
-
-    
-@endsection
-
-@section('Styles')
-@parent
-    <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/owl.carousel.min.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/Led-Theme/fonts/flaticon/font/flaticon.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/Led-Theme/css/style.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/Bootstrap-4-1/bootstrap.min.css')}}">  
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-    
-<style>
-    /*
-    # Welcome
-    --------------------------------*/
-    #mymap {
-      		border:1px solid red;
-      		width: 800px;
-      		height: 500px;
-    	}
-    .symbol.symbol-50px>img{width:50px;height:50px}
-    .symbol-label{display:flex;align-items:center;justify-content:center;font-weight:500;color:#3f4254;background-color:#f5f8fa;background-repeat:no-repeat;background-position:center center;background-size:cover;border-radius:.475rem}
-
-    .home-page-welcome {
-        position: relative;
-        padding: 96px 0;
-        background: url("assets/Led-Theme/images/slide1.jpg") no-repeat center;
-        background-size: cover;
-        z-index: 99;
-    }
-    
-    .home-page-welcome::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: -1;
-        width: 100%;
-        height: 100%;
-        background: rgba(21,21,21,.9);
-    }
-    
-    .welcome-content .entry-title {
-        position: relative;
-        padding-bottom: 24px;
-        font-size: 36px;
-        font-weight: 600;
-        color: #fff;
-    }
-    
-    .welcome-content .entry-title::before {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 64px;
-        height: 4px;
-        border-radius: 2px;
-        background: #2c35da;
-    }
-    
-    .welcome-content .entry-content {
-        font-size: 14px;
-        line-height: 2;
-        color: #b7b7b7;
-    }
-    
-    .home-page-welcome img {
-        display: block;
-        width: 100%;
-    }
-    
-    @media screen and (max-width: 992px){
-        .home-page-welcome img {
-            margin-bottom: 60px;
-        }
-    }
-    
-    /*
-    
-    /*
-    # Home Milestone
-    --------------------------------*/
-    .home-page-limestone {
-        padding: 96px 0;
-    }
-    
-    .home-page-limestone .section-heading .entry-title {
-        padding-bottom: 36px;
-        line-height: 1.6;
-    }
-    
-    .home-page-limestone .section-heading p {
-        font-size: 14px;
-        color: #595858;
-    }
-    .site-footer::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        z-index: -1;
-        width: 100%;
-        height: 101%;
-        background: rgba(22,22,22,.92);
-    }
-    .footeruiclass li a
-    {
-      color: #fff;
-      font-size: 15px;
-    }
-    .footeruiclass
-    {
-        padding-top: 15px;
-    }
-    </style>
-@endsection
+    </div> 
 
 
-@section('modals')
-<div class="modal" id="showLedCalanderModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Modal Heading</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <!-- Modal body -->
-        <div class="modal-body" id="showLedCalander">
-          <!--<input type="text" name="daterange" id="demoDate" class="demo">-->
-        </div>
-        <!-- Modal footer -->
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-@endsection
 
-@section('pageScripts')
-<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-<script src="http://maps.google.com/maps/api/js"></script>
-  	<script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
-<script src="{{asset('assets/Bootstrap-4-1/popper.min.js')}}"></script>
-<script src="{{asset('assets/Bootstrap-4-1/bootstrap.min.js')}}"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyAIeDyz_v1KkoU3ZTRqK5e-9Ax1lNjSIEI"></script>
-<script type="text/javascript">
-    var searchInput = 'googleLocation';
-    
-        $(document).ready(function () {
-            var autocomplete;
-            autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
-                types: ['geocode']
-               
-            });
+
+<div class="container-fluid ">
+      <div class="row w3-padding-56-top">
+       
+             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 w3-margin-bottom-30">
+                 <div class="card h-100">
+             
+
+                <a href="#"><img class="card-img-top" src="http://127.0.0.1:8000/storage/led-images/3/3/xoGRTomYPBPtHt39fWC84DxpMJcViQJrdYZIcEUp.jpg" alt="" style="width:100%;min-height: 200px;;max-height: 200px;"></a>  
+
+
+
+                <div class="card-body viewledlistmainpage" >
+                    <h2 class="card-title alignleft"  >
+                        <a href="#" class="viewledlistmainpageheading"> € 122</a>
+                    </h2>
+                    <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text viewledlistmainpageheading1"  > test</h2>
+
+                    <h2 class="card-title viewledlistmainpageheading2"> location </h4>
+
+                     
+                    <h2 class="card-title alignright"  >
+                        <a href="#"  class="viewledlistmainpageheading3"  >   €  price / <b  class="viewledlistmainpageheading4"  > day</b> </a>
+                    </h2>
+                    
+                    <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text" style="text-align:right"> 
+                        <a href="#" >
+                          <img src="http://127.0.0.1:8000/assets/newtheme2023/images/arrowblue.png"   class="viewledlistmainpageheading6"  > 
+                        </a>
+                    </h2>
+                </div>
+              </div>
+            </div> 
+             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 w3-margin-bottom-30">
+                 <div class="card h-100">
+             
+
+                <a href="#"><img class="card-img-top" src="http://127.0.0.1:8000/storage/led-images/3/3/xoGRTomYPBPtHt39fWC84DxpMJcViQJrdYZIcEUp.jpg" alt="" style="width:100%;min-height: 200px;;max-height: 200px;"></a>  
+
+
+
+                <div class="card-body viewledlistmainpage" >
+                    <h2 class="card-title alignleft"  >
+                        <a href="#" class="viewledlistmainpageheading"> € 122</a>
+                    </h2>
+                    <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text viewledlistmainpageheading1"  > test</h2>
+
+                    <h2 class="card-title viewledlistmainpageheading2"> location </h4>
+
+                     
+                    <h2 class="card-title alignright"  >
+                        <a href="#"  class="viewledlistmainpageheading3"  >   €  price / <b  class="viewledlistmainpageheading4"  > day</b> </a>
+                    </h2>
+                    
+                    <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text" style="text-align:right"> 
+                        <a href="#" >
+                          <img src="http://127.0.0.1:8000/assets/newtheme2023/images/arrowblue.png"   class="viewledlistmainpageheading6"  > 
+                        </a>
+                    </h2>
+                </div>
+              </div>
+            </div> 
+             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 w3-margin-bottom-30">
+                 <div class="card h-100">
+             
+
+                <a href="#"><img class="card-img-top" src="http://127.0.0.1:8000/storage/led-images/3/3/xoGRTomYPBPtHt39fWC84DxpMJcViQJrdYZIcEUp.jpg" alt="" style="width:100%;min-height: 200px;;max-height: 200px;"></a>  
+
+
+
+                <div class="card-body viewledlistmainpage" >
+                    <h2 class="card-title alignleft"  >
+                        <a href="#" class="viewledlistmainpageheading"> € 122</a>
+                    </h2>
+                    <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text viewledlistmainpageheading1"  > test</h2>
+
+                    <h2 class="card-title viewledlistmainpageheading2"> location </h4>
+
+                     
+                    <h2 class="card-title alignright"  >
+                        <a href="#"  class="viewledlistmainpageheading3"  >   €  price / <b  class="viewledlistmainpageheading4"  > day</b> </a>
+                    </h2>
+                    
+                    <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text" style="text-align:right"> 
+                        <a href="#" >
+                          <img src="http://127.0.0.1:8000/assets/newtheme2023/images/arrowblue.png"   class="viewledlistmainpageheading6"  > 
+                        </a>
+                    </h2>
+                </div>
+              </div>
+            </div> 
+             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 w3-margin-bottom-30">
+                 <div class="card h-100">
+             
+
+                <a href="#"><img class="card-img-top" src="http://127.0.0.1:8000/storage/led-images/3/3/xoGRTomYPBPtHt39fWC84DxpMJcViQJrdYZIcEUp.jpg" alt="" style="width:100%;min-height: 200px;;max-height: 200px;"></a>  
+
+
+
+                <div class="card-body viewledlistmainpage" >
+                    <h2 class="card-title alignleft"  >
+                        <a href="#" class="viewledlistmainpageheading"> € 122</a>
+                    </h2>
+                    <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text viewledlistmainpageheading1"  > test</h2>
+
+                    <h2 class="card-title viewledlistmainpageheading2"> location </h4>
+
+                     
+                    <h2 class="card-title alignright"  >
+                        <a href="#"  class="viewledlistmainpageheading3"  >   €  price / <b  class="viewledlistmainpageheading4"  > day</b> </a>
+                    </h2>
+                    
+                    <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text" style="text-align:right"> 
+                        <a href="#" >
+                          <img src="http://127.0.0.1:8000/storage/led-images/3/3/xoGRTomYPBPtHt39fWC84DxpMJcViQJrdYZIcEUp.jpg"   class="viewledlistmainpageheading6"  > 
+                        </a>
+                    </h2>
+                </div>
+              </div>
+            </div> 
+             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 w3-margin-bottom-30">
+                 <div class="card h-100">
+             
+
+                <a href="#"><img class="card-img-top" src="http://127.0.0.1:8000/storage/led-images/3/3/xoGRTomYPBPtHt39fWC84DxpMJcViQJrdYZIcEUp.jpg" alt="" style="width:100%;min-height: 200px;;max-height: 200px;"></a>  
+
+
+
+                <div class="card-body viewledlistmainpage" >
+                    <h2 class="card-title alignleft"  >
+                        <a href="#" class="viewledlistmainpageheading"> € 122</a>
+                    </h2>
+                    <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text viewledlistmainpageheading1"  > test</h2>
+
+                    <h2 class="card-title viewledlistmainpageheading2"> location </h4>
+
+                     
+                    <h2 class="card-title alignright"  >
+                        <a href="#"  class="viewledlistmainpageheading3"  >   €  price / <b  class="viewledlistmainpageheading4"  > day</b> </a>
+                    </h2>
+                    
+                    <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text" style="text-align:right"> 
+                        <a href="#" >
+                          <img src="http://127.0.0.1:8000/storage/led-images/3/3/xoGRTomYPBPtHt39fWC84DxpMJcViQJrdYZIcEUp.jpg"   class="viewledlistmainpageheading6"  > 
+                        </a>
+                    </h2>
+                </div>
+              </div>
+            </div> 
+             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 w3-margin-bottom-30">
+                 <div class="card h-100">
+             
+
+                <a href="#"><img class="card-img-top" src="http://127.0.0.1:8000/storage/led-images/3/3/xoGRTomYPBPtHt39fWC84DxpMJcViQJrdYZIcEUp.jpg" alt="" style="width:100%;min-height: 200px;;max-height: 200px;"></a>  
+
+
+
+                <div class="card-body viewledlistmainpage" >
+                    <h2 class="card-title alignleft"  >
+                        <a href="#" class="viewledlistmainpageheading"> € 122</a>
+                    </h2>
+                    <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text viewledlistmainpageheading1"  > test</h2>
+
+                    <h2 class="card-title viewledlistmainpageheading2"> location </h4>
+
+                     
+                    <h2 class="card-title alignright"  >
+                        <a href="#"  class="viewledlistmainpageheading3"  >   €  price / <b  class="viewledlistmainpageheading4"  > day</b> </a>
+                    </h2>
+                    
+                    <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text" style="text-align:right"> 
+                        <a href="#" >
+                          <img src="http://127.0.0.1:8000/storage/led-images/3/3/xoGRTomYPBPtHt39fWC84DxpMJcViQJrdYZIcEUp.jpg"   class="viewledlistmainpageheading6"  > 
+                        </a>
+                    </h2>
+                </div>
+              </div>
+            </div> 
+             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 w3-margin-bottom-30">
+                 <div class="card h-100">
+             
+
+                <a href="#"><img class="card-img-top" src="http://127.0.0.1:8000/storage/led-images/3/3/xoGRTomYPBPtHt39fWC84DxpMJcViQJrdYZIcEUp.jpg" alt="" style="width:100%;min-height: 200px;;max-height: 200px;"></a>  
+
+
+
+                <div class="card-body viewledlistmainpage" >
+                    <h2 class="card-title alignleft"  >
+                        <a href="#" class="viewledlistmainpageheading"> € 122</a>
+                    </h2>
+                    <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text viewledlistmainpageheading1"  > test</h2>
+
+                    <h2 class="card-title viewledlistmainpageheading2"> location </h4>
+
+                     
+                    <h2 class="card-title alignright"  >
+                        <a href="#"  class="viewledlistmainpageheading3"  >   €  price / <b  class="viewledlistmainpageheading4"  > day</b> </a>
+                    </h2>
+                    
+                    <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text" style="text-align:right"> 
+                        <a href="#" >
+                          <img src="http://127.0.0.1:8000/storage/led-images/3/3/xoGRTomYPBPtHt39fWC84DxpMJcViQJrdYZIcEUp.jpg"   class="viewledlistmainpageheading6"  > 
+                        </a>
+                    </h2>
+                </div>
+              </div>
+            </div> 
+             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 w3-margin-bottom-30">
+                 <div class="card h-100">
+             
+
+                <a href="#"><img class="card-img-top" src="http://127.0.0.1:8000/storage/led-images/3/3/xoGRTomYPBPtHt39fWC84DxpMJcViQJrdYZIcEUp.jpg" alt="" style="width:100%;min-height: 200px;;max-height: 200px;"></a>  
+
+
+
+                <div class="card-body viewledlistmainpage" >
+                    <h2 class="card-title alignleft"  >
+                        <a href="#" class="viewledlistmainpageheading"> € 122</a>
+                    </h2>
+                    <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text viewledlistmainpageheading1"  > test</h2>
+
+                    <h2 class="card-title viewledlistmainpageheading2"> location </h4>
+
+                     
+                    <h2 class="card-title alignright"  >
+                        <a href="#"  class="viewledlistmainpageheading3"  >   €  price / <b  class="viewledlistmainpageheading4"  > day</b> </a>
+                    </h2>
+                    
+                    <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text" style="text-align:right"> 
+                        <a href="#" >
+                          <img src="http://127.0.0.1:8000/storage/led-images/3/3/xoGRTomYPBPtHt39fWC84DxpMJcViQJrdYZIcEUp.jpg"   class="viewledlistmainpageheading6"  > 
+                        </a>
+                    </h2>
+                </div>
+              </div>
+            </div> 
+             <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 w3-margin-bottom-30">
+                 <div class="card h-100">
+             
+
+                <a href="#"><img class="card-img-top" src="http://127.0.0.1:8000/storage/led-images/3/3/xoGRTomYPBPtHt39fWC84DxpMJcViQJrdYZIcEUp.jpg" alt="" style="width:100%;min-height: 200px;;max-height: 200px;"></a>  
+
+
+
+                <div class="card-body viewledlistmainpage" >
+                    <h2 class="card-title alignleft"  >
+                        <a href="#" class="viewledlistmainpageheading"> € 122</a>
+                    </h2>
+                    <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text viewledlistmainpageheading1"  > test</h2>
+
+                    <h2 class="card-title viewledlistmainpageheading2"> location </h4>
+
+                     
+                    <h2 class="card-title alignright"  >
+                        <a href="#"  class="viewledlistmainpageheading3"  >   €  price / <b  class="viewledlistmainpageheading4"  > day</b> </a>
+                    </h2>
+                    
+                    <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text" style="text-align:right"> 
+                        <a href="#" >
+                          <img src="http://127.0.0.1:8000/storage/led-images/3/3/xoGRTomYPBPtHt39fWC84DxpMJcViQJrdYZIcEUp.jpg"   class="viewledlistmainpageheading6"  > 
+                        </a>
+                    </h2>
+                </div>
+              </div>
+            </div> 
         
-            google.maps.event.addListener(autocomplete, 'place_changed', function () {
-                var near_place = autocomplete.getPlace();
-            });
-        });
-</script>
 
+      </div>
+</div>
+<!-- end listing -->
 @endsection
