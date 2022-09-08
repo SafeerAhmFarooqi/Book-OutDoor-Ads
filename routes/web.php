@@ -41,6 +41,7 @@ Route::get('/imprint', [DashboardController::class,'showImprint'])->name('show.i
 Route::get('/contact', [DashboardController::class,'showContact'])->name('show.contact');
 Route::get('/agb', [DashboardController::class,'showAgb'])->name('show.agb');
 Route::get('/policy', [DashboardController::class,'showPolicy'])->name('show.policy');
+Route::get('/about', [DashboardController::class,'showAbout'])->name('show.about');
 Route::get('/list-leds-in-cities/{id?}', [DashboardController::class,'listCitiesLeds'])->name('list.cities.led');
 Route::get('/payment-m', [DashboardController::class,'preparePayment']);
 
