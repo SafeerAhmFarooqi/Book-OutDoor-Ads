@@ -24,7 +24,8 @@ class DashboardController extends AdminController
    //  return view('app-dashboard.order-complete',[
    //             'order'=>$order,
    //          ]);
-   return redirect('/')->with('payment','Thanks for your order,Please check your orders section');
+  // return redirect('/')->with('payment','Thanks for your order,Please check your orders section');
+  return redirect()->route('order.complete',[$id]);
 }
 
 public function payment($id)
@@ -71,7 +72,6 @@ public function handle(Request $request) {
   if ($payment->isPaid()) {
      $order->payment_status=true;
      $order->save();
-     return redirect()->route('order.complete',[$order->id]);
   }
   if (!$payment->isPaid()) {
    $order->payment_status=false;
@@ -508,7 +508,7 @@ public function handle(Request $request) {
          ]);
       } else {
          return redirect('/');
-      }         
+      }           
    }
 
    public function listCitiesLeds($id=false)
