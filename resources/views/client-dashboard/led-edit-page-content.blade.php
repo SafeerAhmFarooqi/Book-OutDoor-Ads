@@ -100,6 +100,22 @@
 
                         <div class="row mb-6">
                             <!--begin::Label-->
+                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Estimated Views</label>
+                            <!--end::Label-->
+                            <!--begin::Col-->
+                            <div class="col-lg-8 fv-row">
+                                <input type="text" name="estviews" class="form-control form-control-lg form-control-solid" placeholder="Estimated Views" value="{{old('estviews')?old('estviews') : $led->estviews}}" />
+                                @error('estviews')
+                                <div class="alert alert-danger">
+                                        {{$message}}
+                                </div>
+                                @enderror
+                            </div>
+                            <!--end::Col-->
+                        </div>
+
+                        <div class="row mb-6">
+                            <!--begin::Label-->
                             <label class="col-lg-4 col-form-label required fw-bold fs-6">Add Led Images</label>
                             <!--end::Label-->
                             <!--begin::Col-->

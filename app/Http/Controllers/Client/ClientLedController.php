@@ -35,6 +35,7 @@ class ClientLedController extends BaseClientController
             'city' => ['required', 'string', 'max:500'],
             'price' => ['required', 'numeric'],
             'tax' => ['required', 'numeric'],
+            'estviews' => ['required', 'string', 'max:255'],
             'images' => 'required',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,bmp|max:20000'
           
@@ -52,6 +53,7 @@ class ClientLedController extends BaseClientController
             'city' => 'City',
             'price' => 'Price',
             'tax' => 'Tax',
+            'estviews' => "Estimated Views",
             'images' => 'Image',
         ]);
 
@@ -65,6 +67,7 @@ class ClientLedController extends BaseClientController
             'city_id' => $request->city,
             'price' => $request->price,
             'tax' => $request->tax,
+            'estviews' => $request->estviews,
         ]);
 
         foreach($request->file('images') as $image)
@@ -122,13 +125,29 @@ class ClientLedController extends BaseClientController
             return redirect()->route('client.led.view');
         }
         $request->validate([
+            //Validation Rules
             'title' => ['required', 'string', 'max:255'],
             'description' => ['required', 'string'],
             'location' => ['required', 'string', 'max:500'],
             'price' => ['required', 'numeric'],
             'tax' => ['required', 'numeric'],
+            'estviews' => ['required', 'string', 'max:255'],
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,bmp|max:20000'
+          
+        ],[
+            //Validation Messages
+            'required'=>':attribute is Required',
+        ],[
+            //Validation Attributes
+            'title' => 'Title',
+            'description' => 'Description',
+            'location' => 'Location',   
+            'price' => 'Price',
+            'tax' => 'Tax',
+            'estviews' => "Estimated Views",
+            'images' => 'Image',
         ]);
+      
         $led->update($request->all());
         if($request->file('images'))
         {
