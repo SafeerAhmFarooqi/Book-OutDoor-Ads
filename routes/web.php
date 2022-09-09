@@ -46,6 +46,8 @@ Route::get('/list-leds-in-cities/{id?}', [DashboardController::class,'listCities
 Route::get('/payment-m', [DashboardController::class,'preparePayment']);
 Route::get('/payment-complete/{id?}', [DashboardController::class,'showPaymentCompletePage'])->name('order.complete');
 
+Route::get('/checkorder/{id?}', [DashboardController::class,'checkOrder']);
+
 Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['auth','verified','admin.dashboard.approved'])->name('dashboard');
 
 Route::group(['middleware' => ['role:User','auth','verified','admin.user.approved']], function () {
