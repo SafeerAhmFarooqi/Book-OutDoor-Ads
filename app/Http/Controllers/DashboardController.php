@@ -500,6 +500,15 @@ public function handle(Request $request) {
       return view('app-dashboard.about');       
    }
 
+   public function checkOrder($id)
+   {
+      return view('email.order-complete-message',[
+         'order'=> Orders::findOrFail($id),
+      ]);
+      return 'safeer'.$id;
+      return view('app-dashboard.about');       
+   }
+
    public function showPaymentCompletePage($id)
    {
       if (Auth::check()&&Auth::user()->hasRole('User')&&Orders::where('user_id',Auth::user()->id)->where('id',$id)->first()) {
