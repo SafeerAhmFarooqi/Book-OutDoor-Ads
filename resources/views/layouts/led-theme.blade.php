@@ -22,7 +22,7 @@
         @include('led-theme.footer')
     @show
 
-
+    @section('scripts')
        @include('led-theme.scripts')
      @show
      @livewireScripts

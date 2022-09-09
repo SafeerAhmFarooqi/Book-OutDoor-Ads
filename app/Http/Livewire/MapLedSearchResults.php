@@ -13,14 +13,15 @@ use Illuminate\Support\Collection;
 class MapLedSearchResults extends Component
 {
     public $find;
-    public $location;
+    public $location='';
     public $selectedCity;
     public $selectedDateRange='';
     public $selectedStartDate='';
     public $selectedEndDate='';
     public $coordinates=[];
-    public $minPriceRange;
-    public $maxPriceRange;
+    public $minPriceRange='';
+    public $maxPriceRange='';
+    public $priceRange='';
     public $count = 0;
  
     public function increment()
@@ -79,42 +80,42 @@ class MapLedSearchResults extends Component
         $loop1=0;
         $save=true;
         $finalLeds = collect();
+        $this->getPriceRange();
         $cities=City::all();
-        $leds=Led::with('subOrders')
-        ->whereBetween('price', [$this->minPriceRange, $this->maxPriceRange])
+        $leds=Led::
+        when($this->priceRange, function($query) {
+            return $query->whereBetween('price', [$this->minPriceRange, $this->maxPriceRange]);
+        })
         ->when($this->selectedCity, function($query) {
             return $query->where('city_id', $this->selectedCity);
-        }) 
-        ->when($this->find, function($query) {
-            return $query->where('title', 'like', '%'.$this->find.'%');
-        })   
+        })
         ->when($this->location, function($query) {
             return $query->where('location', 'like', '%'.$this->location.'%');
-        })   
+        })     
         ->get();
-        if($this->selectedDateRange)
-        {
-            $selectedStartDate=Carbon::parse($this->selectedStartDate)->format('d/m/Y');
-            $selectedEndDate=Carbon::parse($this->selectedEndDate)->format('d/m/Y');
-            foreach ($leds as $led) {
-                $save=true;
-                    foreach ($led->subOrders as $value) {
-                        if(Carbon::parse($value->startDate)->format('d/m/Y')<=$selectedStartDate&& Carbon::parse($value->endDate)->format('d/m/Y')>=$selectedStartDate||Carbon::parse($value->startDate)->format('d/m/Y')<=$selectedEndDate&& Carbon::parse($value->endDate)->format('d/m/Y')>=$selectedEndDate)
-                        {
-                            $loop1++;
-                           $save=false;
-                           break;
+        // if($this->selectedDateRange)
+        // {
+        //     $selectedStartDate=Carbon::parse($this->selectedStartDate)->format('d/m/Y');
+        //     $selectedEndDate=Carbon::parse($this->selectedEndDate)->format('d/m/Y');
+        //     foreach ($leds as $led) {
+        //         $save=true;
+        //             foreach ($led->subOrders as $value) {
+        //                 if(Carbon::parse($value->startDate)->format('d/m/Y')<=$selectedStartDate&& Carbon::parse($value->endDate)->format('d/m/Y')>=$selectedStartDate||Carbon::parse($value->startDate)->format('d/m/Y')<=$selectedEndDate&& Carbon::parse($value->endDate)->format('d/m/Y')>=$selectedEndDate)
+        //                 {
+        //                     $loop1++;
+        //                    $save=false;
+        //                    break;
                                     
-                        }
+        //                 }
                         
-                    }
-                    if($save)
-                    {
-                        $finalLeds->push($led);
-                    }
+        //             }
+        //             if($save)
+        //             {
+        //                 $finalLeds->push($led);
+        //             }
   
-            }
-        }
+        //     }
+        // }
         $this->coordinates=[];
         foreach ($this->selectedDateRange?$finalLeds :$leds as $value) {
             array_push($this->coordinates,$this->geoLocate($value->location,$value->id)); 
@@ -127,5 +128,18 @@ class MapLedSearchResults extends Component
             // 'selectedStartDate'=>$selectedStartDate,
             // 'selectedEndDate'=>$selectedEndDate,
         ]);
+    }
+
+    public function getPriceRange()
+    {
+        if ($this->priceRange) {
+            $this->minPriceRange = strtok($this->priceRange,"-");
+            $this->maxPriceRange = strtok("");
+        }
+        else
+        {
+            $this->minPriceRange='';
+            $this->maxPriceRange='';
+        }
     }
 }
