@@ -67,7 +67,7 @@
                      <div class="det-col">
                         <h2 class="ff-lagufa-n font-18 font-12-sm font-w-600  w3-theme-text">Est Views</h2>
                         <div class="flex-sb jus-con-center w3-padding-12-top">
-                           <h2 class="ff-lagufa-n font-16 font-12-sm font-w-400 p-l-5">1 Million / day</h2>
+                           <h2 class="ff-lagufa-n font-16 font-12-sm font-w-400 p-l-5">-</h2>
                         </div>
                      </div>
                      <div class="det-col">
@@ -211,7 +211,16 @@
     </div>
   </div>
 @endsection
-
+@section('pageStyles')
+    <style>
+      #mymap {
+      		  
+              width: 100%;
+              height: 500px;
+            margin-top: 12%;
+         }
+    </style>
+@endsection
 
 @section('pageScripts')
 <script src="{{ asset('assets/Metronic-Theme/plugins/global/plugins.bundle.js') }}"></script>
