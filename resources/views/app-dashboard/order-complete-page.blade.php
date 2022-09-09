@@ -13,8 +13,12 @@
                 <div class="circle-bg"><img class="w3-image" src="{{asset('assets/newtheme2023/images/enableicon.png')}}"></div>
                 <h2 class="ra-h-24 font-20-sm p-t-10">Success ! </h2>
                 <p class="file-sm-label p-t-10">Thank You !. we recieve your LED Order After Verifing we Will Inform You.. </p>
-                <p class="file-sm-label p-t-10">Order Id : {{$id}}</p>   <a href="{{route('dashboard')}}">
-                <p class="log-forgot-text">Back to Home ?</p></a>
+                <p class="file-sm-label p-t-10">Order Id : {{$id}}</p>   
+                <p class="file-sm-label p-t-10">Check your Order Section</p>
+                <a href="{{route('dashboard')}}">
+                <p class="log-forgot-text">Go to Dashboard</p></a>
+                <a href="/">
+                    <p class="log-forgot-text">Go to Home</p></a>
             </div>
          
     </div> 
