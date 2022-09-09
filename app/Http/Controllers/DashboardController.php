@@ -71,6 +71,7 @@ public function handle(Request $request) {
   if ($payment->isPaid()) {
      $order->payment_status=true;
      $order->save();
+     return redirect()->route('order.complete',[$order->id]);
   }
   if (!$payment->isPaid()) {
    $order->payment_status=false;
@@ -497,6 +498,17 @@ public function handle(Request $request) {
    public function showAbout()
    {
       return view('app-dashboard.about');       
+   }
+
+   public function showPaymentCompletePage($id)
+   {
+      if (Auth::check()&&Auth::user()->hasRole('User')&&Orders::where('user_id',Auth::user()->id)->where('id',$id)->first()) {
+         return view('app-dashboard.order-complete-page',[
+            'id'=>$id,
+         ]);
+      } else {
+         return redirect('/');
+      }         
    }
 
    public function listCitiesLeds($id=false)

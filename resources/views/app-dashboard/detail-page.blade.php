@@ -32,8 +32,8 @@
                            <img src="{{asset('storage/'.$image->path)}}" alt="" class="carousal-img">
                            <div class="w3-padding w3-display-bottomright">
                               <div class="flex-end p-t-10">
-                                 <button  class="like-link m-r-10"><i class="fa fa-camera"></i> 1 Photos</button>
-                                 <a href="" class="like-link"><i class="fa fa-map-marker"></i> See on map</a>
+                                 {{-- <button  class="like-link m-r-10"><i class="fa fa-camera"></i> 1 Photos</button>
+                                 <a href="" class="like-link"><i class="fa fa-map-marker"></i> See on map</a> --}}
                               </div>
                            </div>
                         </div>

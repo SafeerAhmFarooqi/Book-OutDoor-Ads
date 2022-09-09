@@ -44,6 +44,7 @@ Route::get('/policy', [DashboardController::class,'showPolicy'])->name('show.pol
 Route::get('/about', [DashboardController::class,'showAbout'])->name('show.about');
 Route::get('/list-leds-in-cities/{id?}', [DashboardController::class,'listCitiesLeds'])->name('list.cities.led');
 Route::get('/payment-m', [DashboardController::class,'preparePayment']);
+Route::get('/payment-complete/{id?}', [DashboardController::class,'showPaymentCompletePage'])->name('order.complete');
 
 Route::get('/dashboard',[DashboardController::class,'dashboard'])->middleware(['auth','verified','admin.dashboard.approved'])->name('dashboard');
 
