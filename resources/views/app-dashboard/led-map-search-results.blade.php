@@ -17,8 +17,8 @@
     --------------------------------*/
     #mymap {
       		border:1px solid red;
-      		width: 800px;
-      		height: 500px;
+      		width: 100%;
+              height: 500px;
     	}
     </style>
 @endsection
