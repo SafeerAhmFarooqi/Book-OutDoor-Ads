@@ -7,7 +7,7 @@
          <div class="bg-header" style="background-image: url('{{asset('assets/newtheme2023/images/bgimagemainpage.png')}}');">
 
              <h1 class="header-text">Werbung, die gesehen wird!</h1>
-            <p class="header-p-text theme-text-col">500.000 Kontakte pro Tag, preiswert & einfach zu buchen</p>
+            <p class="header-p-text theme-text-col">500.000 Kontakte pro Tag,<br> preiswert & einfach zu buchen</p>
             <br>
             <div class="auto-search-wrapper">
                <div class="search-input">
