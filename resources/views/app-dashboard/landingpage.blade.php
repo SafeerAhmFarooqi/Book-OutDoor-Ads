@@ -60,7 +60,7 @@
         </div> 
 
         <div class="mt-3 d-flex justify-content-end px-2" style="margin-top:10px !important">
-            <a href="{{route('app.led.detail',$led->id)}}" class="btn-submit papularledbtn btn" style="margin-top:0px !important">Book Now</a>
+            <a href="{{route('app.led.detail',$led->id??'')}}" class="btn-submit papularledbtn btn" style="margin-top:0px !important">Book Now</a>
         </div>        
           </div>
         </div>
@@ -108,7 +108,7 @@
         </div> 
 
         <div class="mt-3 d-flex justify-content-end px-2">
-            <a href="{{route('app.led.detail',$led->id)}}" class="btn-submit papularledbtn btn"> Jetzt buchen</a>
+            <a href="{{route('app.led.detail',$led->id??'')}}" class="btn-submit papularledbtn btn"> Jetzt buchen</a>
         </div>        
           </div>
         </div>
@@ -198,13 +198,13 @@
               <!--   <a href="#"><img class="card-img-top" src="{{asset('storage/'.($led->images->first())->path)}}" alt="" style="width:100%"></a> -->
 
 
-                <a href="{{route('app.led.detail',$led->id)}}"><img class="card-img-top" src="{{asset('storage/'.($led->images->first())->path)}}" alt="" style="width:100%;min-height: 200px;;max-height: 200px;"></a>  
+                <a href="{{route('app.led.detail',$led->id??'')}}"><img class="card-img-top" src="{{asset('storage/'.($led->images->first())->path)}}" alt="" style="width:100%;min-height: 200px;;max-height: 200px;"></a>  
 
 
 
                 <div class="card-body viewledlistmainpage" >
                     <h2 class="card-title alignleft"  >
-                        <a href="{{route('app.led.detail',$led->id)}}" class="viewledlistmainpageheading"> € {{$led->price}}</a>
+                        <a href="{{route('app.led.detail',$led->id??'')}}" class="viewledlistmainpageheading"> € {{$led->price}}</a>
                     </h2>
                     <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text viewledlistmainpageheading1"  > {{$led->title}}</h2>
 
@@ -212,11 +212,11 @@
 
                      
                     <h2 class="card-title alignright"  >
-                        <a href="{{route('app.led.detail',$led->id)}}"  class="viewledlistmainpageheading3"  >   € {{$led->price}} / <b  class="viewledlistmainpageheading4"  > day</b> </a>
+                        <a href="{{route('app.led.detail',$led->id??'')}}"  class="viewledlistmainpageheading3"  >   € {{$led->price}} / <b  class="viewledlistmainpageheading4"  > day</b> </a>
                     </h2>
                     
                     <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text" style="text-align:right"> 
-                        <a href="{{route('app.led.detail',$led->id)}}" >
+                        <a href="{{route('app.led.detail',$led->id??'')}}" >
                           <img src="{{asset('assets/newtheme2023/images/arrowblue.png')}}"   class="viewledlistmainpageheading6"  > 
                         </a>
                     </h2>

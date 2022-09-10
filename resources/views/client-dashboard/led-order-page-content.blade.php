@@ -138,7 +138,7 @@
                                 <span class="fw-bolder">{{$subOrder->user->phone??''}}</span>
                             </td>
                             <td class="text-start">
-                                <a href="{{route('app.led.detail',$subOrder->led->id)}}"><span class="fw-bolder">{{$subOrder->led->title??''}}</span></a>
+                                <a href="{{route('app.led.detail',$subOrder->led->id??'')}}"><span class="fw-bolder">{{$subOrder->led->title??''}}</span></a>
                             </td>
                             <td class="text-start">
                                 <span class="fw-bolder">€ {{($subOrder->price??''+$subOrder->tax??'')*$subOrder->no_of_days??''}}</span>
