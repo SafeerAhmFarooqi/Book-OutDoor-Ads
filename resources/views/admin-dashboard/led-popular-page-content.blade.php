@@ -391,7 +391,7 @@
                                 <!--end::Price=-->
                                 <!--begin::Viewed=-->
                                 <td class="text-start pe-0">
-                                    <span>{{$led->price}}</span>
+                                    <span>€ {{$led->price}}</span>
                                 </td>
                                 <!--end::Viewed=-->
                                 <!--begin::Percent=-->

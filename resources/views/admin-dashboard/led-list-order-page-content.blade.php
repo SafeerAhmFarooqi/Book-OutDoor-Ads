@@ -161,7 +161,7 @@
                             <!--end::Price=-->
                             <!--begin::Viewed=-->
                             <td class="text-start pe-0">
-                                <span>{{$subOrder->price}}</span>
+                                <span>€ {{$subOrder->price}}</span>
                             </td>
 
                             <td class="text-start pe-0">

@@ -153,7 +153,7 @@
                                 <span class="fw-bolder">{{$subOrder->led->title}}</span>
                             </td>
                             <td class="text-start">
-                                <span class="fw-bolder">{{$subOrder->price}}</span>
+                                <span class="fw-bolder">€ {{$subOrder->price}}</span>
                             </td>
                             <td class="text-start">
                                 <span class="fw-bolder">{{$subOrder->no_of_days}}</span>
