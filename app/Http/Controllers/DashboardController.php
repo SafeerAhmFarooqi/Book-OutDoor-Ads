@@ -347,6 +347,7 @@ public function handle(Request $request) {
 
            foreach ($cartItems as $value) {
             SubOrders::create([
+               'user_id' => (Led::findOrFail($value->id))->user->id,
                'led_id' => $value->id,
                'order_id' => $order->id,
                'price' => $value->price*$value->noOfDays,
