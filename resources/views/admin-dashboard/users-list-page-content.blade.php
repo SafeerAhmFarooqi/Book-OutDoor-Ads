@@ -162,6 +162,10 @@
                                     @csrf
                                   <button type="submit" class="btn btn-primary" name="user_id" value="{{$user->id}}" style="border:none !important;background:none !important;padding:0"><img src="{{asset('assets/newtheme2023/images/enableicon.png')}}" style="width:35px" title="Enable Account" > </button>
                                 </form>
+                                <form action="{{route('admin.users.list.verify')}}" method="post">
+                                    @csrf
+                                  <button type="submit" class="btn btn-primary" name="user_id" value="{{$user->id}}" style="border:none !important;background:none !important;padding:0"><img src="{{asset('assets/newtheme2023/images/enableicon.png')}}" style="width:35px" title="Verify Email" > </button>
+                                </form>
                                 <form action="{{route('admin.users.list.disable')}}" method="post">
                                     @csrf
                                   <button type="submit" class="btn btn-danger" name="user_id" value="{{$user->id}}" style="border:none !important;background:none !important;padding:0"><img src="{{asset('assets/newtheme2023/images/disableicon.png')}}" style="width:35px" title="Disable Account" ></button>
