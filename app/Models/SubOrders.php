@@ -32,12 +32,7 @@ class SubOrders extends Model
         'cancel_detail',
     ];
 
-    protected static function booted()
-    {
-        static::creating(function ($subOrder) {
-            $subOrder->user_id = Auth::user()->id;
-        });
-    }
+    
 
     public function order()
     {

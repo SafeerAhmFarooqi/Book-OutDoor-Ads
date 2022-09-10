@@ -71,6 +71,7 @@ Route::group(['middleware' => ['role:Client','auth','verified','admin.partner.ap
     Route::post('/client-led-edit-update/{id}', [ClientLedController::class,'updateLed'])->name('client.led.edit.store');
     Route::post('/client-led-image-delete', [ClientLedController::class,'deleteLedImage'])->name('client.led.delete.image');
     Route::get('/client-order-view', [ClientOrderController::class,'viewOrder'])->name('client.order.view');
+    Route::get('/client-order-billing-view', [ClientOrderController::class,'viewBilling'])->name('client.order.billing');
 });
 
 Route::group(['middleware' => ['role:Admin','auth']], function () {

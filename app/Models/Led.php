@@ -51,6 +51,11 @@ class Led extends Model
         return $this->hasMany(Comments::class, 'led_id');
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
     public function setStartAndEndDate($value)
     {
         strtok($value,'*');

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Led;
-use App\Models\Orders;
+use App\Models\SubOrders;
 use App\Models\LedImages;
 use Illuminate\Support\Facades\Storage;
 use App\Models\City;
@@ -21,6 +21,14 @@ class ClientOrderController extends BaseClientController
             'leds'=>$leds,
             'srNo'=>0,
         ]);
+    }
+
+    public function viewBilling()
+    {
+        $subOrders = SubOrders::where('user_id',Auth::user()->id)->get();
+        return view('client-dashboard.billing-status-page',[
+           'subOrders'=>$subOrders,
+          ]);
     }
    
    
