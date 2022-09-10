@@ -104,15 +104,9 @@
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                            <th class="min-w-150px">Sr No</th>  
+                            <th class="min-w-150px">No</th>  
                             <th class="min-w-150px">Title</th>
                             <th class="text-end min-w-100px">Price</th>
-                            <th class="text-end min-w-100px">Date Created</th>
-                            <th class="text-end min-w-100px">Description</th>
-                            
-                            
-                            
-                            
                             <th class="text-end min-w-100px">Actions</th>
                         </tr>
                         <!--end::Table row-->
@@ -131,13 +125,17 @@
                             <td>
                                 <div class="d-flex align-items-center">
                                     <!--begin::Thumbnail-->
-                                    <a href="{{route('client.led.edit',$led->id)}}" class="symbol symbol-50px">
-                                        <span class="symbol-label" style="background-image:url({{asset('storage/'.($led->images->first())->path)}});"></span>
-                                    </a>
+                                   
                                     <!--end::Thumbnail-->
                                     <div class="ms-5">
                                         <!--begin::Title-->
-                                        <a href="{{route('client.led.edit',$led->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$led->title}}</a>
+                                        <a href="{{route('client.led.edit',$led->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$led->title}}<Br>
+
+                                        <span style="font-size:10px">Location : {{$led->location}}</span><br>
+
+                                        <span style="font-size:10px">date : {{$led->created_at->format('F d, Y')}}</span><br>
+
+                                     </a>
                                         <!--end::Title-->
                                     </div>
                                 </div>
@@ -146,16 +144,6 @@
                            
                             <td class="text-end pe-0">
                                 <span>{{$led->price}}</span>
-                            </td>
-                            <td class="text-end pe-0">
-                                <span>{{$led->created_at->format('F d, Y')}}</span>
-                            </td>
-                            <td class="text-end pe-0" data-order="rating-5" data-filter="rating-5">
-                                <div class="rating justify-content-end">
-                                    
-                                    <span class="fw-bolder">{{substr(strip_tags($led->description),0,20)}}...</span>
-                                    
-                                </div>
                             </td>
                             <!--end::Product=-->
                             <!--begin::SKU=-->
