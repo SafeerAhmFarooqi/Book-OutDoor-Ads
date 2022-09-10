@@ -104,7 +104,7 @@
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                            <th class="text-start min-w-100px">Sub Id</th>
+                            <th class="text-start min-w-100px">Sub Id </th>
                             <th class="min-w-150px">User</th>
                             <th class="min-w-150px">Email</th>
                             <th class="min-w-150px">Phone</th>
@@ -137,7 +137,7 @@
                                     <!--end::Thumbnail-->
                                     <div class="ms-5">
                                         <!--begin::Title-->
-                                        <a href="{{route('client.led.edit',$subOrder->user->id??'')}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$subOrder->user->firstname??''.' '.$subOrder->user->lastname??''}}</a>
+                                        <a href="{{route('client.led.edit',$subOrder->user->id??'')}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{($subOrder->user->firstname??'').' '.($subOrder->user->lastname??'')}}</a>
                                         <!--end::Title-->
                                     </div>
                                 </div>
@@ -163,7 +163,7 @@
                                 <div class="d-flex align-items-center">
                                     <!--begin::Thumbnail-->
                                     <a href="{{route('client.led.edit',$subOrder->led->id??'')}}" class="symbol symbol-50px">
-                                        <span class="symbol-label" style="background-image:url('{{asset('storage/'.($subOrder->led->images->first())->path??'')}}');"></span>
+                                        <span class="symbol-label" style="background-image:url('{{asset('storage/'.(($subOrder->led->images??collect())->first())->path??'')}}');"></span>
                                     </a>
                                     <!--end::Thumbnail-->
                                     <div class="ms-5">
