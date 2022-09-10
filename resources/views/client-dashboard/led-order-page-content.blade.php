@@ -104,27 +104,15 @@
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                            <th class="min-w-150px">No</th>
-                            <th class="min-w-150px">Id</th>
-                            <th class="min-w-150px">Sub Id</th>
-                            <th class="min-w-150px">User Email</th>
+                            <th class="text-start min-w-100px">Sub Id</th>
+                            <th class="min-w-150px">User</th>
+                            <th class="min-w-150px">Email</th>
+                            <th class="min-w-150px">Phone</th>
                             <th class="min-w-150px">Led Title</th>
-                            <th class="text-start min-w-100px">Price</th>
-                            <th class="text-start min-w-100px">Days</th>
-                            <th class="text-start min-w-100px">Tax</th>
-                            <th class="text-start min-w-100px">Start Date</th>
-                            <th class="text-start min-w-100px">End Date</th>
-                            <th class="text-start min-w-100px">Book Date</th>
-                            
-                            
-                            
-                            {{-- <th class="text-end min-w-100px">Id</th> --}}
-                            
-                            
-                            
-                            
-                            
-                            <th class="text-end min-w-100px">Actions</th>
+                            <th class="text-start min-w-100px">Total Price</th>
+                            <th class="text-start min-w-100px">Main Id</th>
+                            <th class="text-start min-w-100px">Date</th>
+                            <th class="text-start min-w-100px">Actions</th>
                         </tr>
                         <!--end::Table row-->
                     </thead>
@@ -137,39 +125,33 @@
                         @if ($subOrder->order->payment_status==true)
                         <tr>
                             <!--begin::Product=-->
-                            <td class="text-start">
-                                <span class="fw-bolder">{{++$srNo}}</span>
-                            </td>
-                            <td class="text-start">
-                                <span class="fw-bolder">{{$subOrder->order_id}}</span>
-                            </td>
-                            <td class="text-start">
-                                <span class="fw-bolder">{{$subOrder->id}}</span>
-                            </td>
-                            <td class="text-start">
-                                <span class="fw-bolder">{{$subOrder->user->email}}</span>
-                            </td>
-                            <td class="text-start">
-                                <span class="fw-bolder">{{$subOrder->led->title}}</span>
-                            </td>
-                            <td class="text-start">
-                                <span class="fw-bolder">€ {{$subOrder->price}}</span>
-                            </td>
-                            <td class="text-start">
-                                <span class="fw-bolder">{{$subOrder->no_of_days}}</span>
-                            </td>
-                            <td class="text-start">
-                                <span class="fw-bolder">{{$subOrder->tax}}</span>
-                            </td>
-                            <td class="text-start">
-                                <span class="fw-bolder">{{$subOrder->startDate->format('F d, Y')}}</span>
-                            </td>
-                            <td class="text-start">
-                                <span class="fw-bolder">{{$subOrder->endDate->format('F d, Y')}}</span>
+                            <td class="text-start pe-0">
+                                <span class="fw-bolder">{{$subOrder->id??''}}</span>
                             </td>
                             <td class="text-start pe-0">
-                                <span>{{$subOrder->created_at->format('F d, Y')}}</span>
+                                <span class="fw-bolder">{{$subOrder->user?($subOrder->user->firstname.' '.$subOrder->user->lastname) : ''}}</span>
                             </td>
+                            <td class="text-start">
+                                <span class="fw-bolder">{{$subOrder->user->email??''}}</span>
+                            </td>
+                            <td class="text-start">
+                                <span class="fw-bolder">{{$subOrder->user->phone??''}}</span>
+                            </td>
+                            <td class="text-start">
+                                <span class="fw-bolder">{{$subOrder->led->title??''}}</span>
+                            </td>
+                            <td class="text-start">
+                                <span class="fw-bolder">€ {{($subOrder->price??''+$subOrder->tax??'')*$subOrder->no_of_days??''}}</span>
+                            </td>
+                           
+                            <td class="text-start">
+                                <span class="fw-bolder">{{$subOrder->order->id??''}}</span>
+                            </td>
+                            <td class="text-start">
+                                <span class="fw-bolder">{{$subOrder->created_at->format('F d, Y')??''}}</span>
+                            </td>
+                           
+                           
                             
                             
                             
@@ -195,13 +177,11 @@
                             
                             <td class="text-end pe-0">
                                 <div class="rating justify-content-end">
-                                    {{-- <a class="btn btn-primary" href="{{route('client.led.edit',$led->id)}}">Edit</a>
-                                <form action="{{route('client.led.view.delete')}}" method="post">
-                                    @csrf
-                                  <button type="submit" class="btn btn-danger" name="led_id" value="{{$led->id}}">Delete</button>
-                                </form> --}}
+                                    <a class="btn btn-primary" href="{{route('app.led.detail',$subOrder->led->id??'')}}">Details</a>
+                
                                 </div>
                                 
+                            </td>
                             </td>
                             <!--end::Percent=-->
                         </tr>
