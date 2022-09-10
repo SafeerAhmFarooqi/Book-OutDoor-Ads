@@ -104,7 +104,7 @@
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                            <th class="text-start min-w-100px">Sub Id</th>
+                            <th class="text-start min-w-100px">Sub Id 1 </th>
                             <th class="min-w-150px">User</th>
                             <th class="min-w-150px">Email</th>
                             <th class="min-w-150px">Phone</th>
@@ -163,7 +163,7 @@
                                 <div class="d-flex align-items-center">
                                     <!--begin::Thumbnail-->
                                     <a href="{{route('client.led.edit',$subOrder->led->id??'')}}" class="symbol symbol-50px">
-                                        <span class="symbol-label" style="background-image:url('{{asset('storage/'.($subOrder->led->images->first())->path??'')}}');"></span>
+                                        <span class="symbol-label" style="background-image:url('{{asset('storage/'.'')}}');"></span>
                                     </a>
                                     <!--end::Thumbnail-->
                                     <div class="ms-5">
