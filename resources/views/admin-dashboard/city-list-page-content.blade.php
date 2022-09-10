@@ -1,11 +1,7 @@
 <div class="post d-flex flex-column-fluid" id="kt_post">
     <!--begin::Container-->
     <div id="kt_content_container" class="container-xxl">
-        @if(session()->has('success'))
-        <div class="alert alert-success">
-            {{ session()->get('success') }}
-        </div>
-       @endif
+        @include('common.validation')
         <!--begin::Products-->
         <div class="card card-flush">
             <!--begin::Card header-->
@@ -106,10 +102,9 @@
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                             <th class="min-w-150px">Sr No.</th>
-                            <th class="min-w-150px">City</th>
-                            <th class="text-start min-w-100px">Id</th>
+                            <th class="min-w-150px">City</th> 
                             
-                            <th class="text-start min-w-100px">Actions</th>
+                            <th class="text-start min-w-100px" style="text-align:right !important;">Actions</th>
                         </tr>
                         <!--end::Table row-->
                     </thead>
@@ -126,9 +121,7 @@
                             <td>
                                 <div class="d-flex align-items-center">
                                     <!--begin::Thumbnail-->
-                                    <a href="{{route('client.led.edit',$city->id)}}" class="symbol symbol-50px">
-                                        <span class="symbol-label" style="background-image:url('{{asset('storage/'.$city->icon)}}');"></span>
-                                    </a>
+                                 
                                     <!--end::Thumbnail-->
                                     <div class="ms-5">
                                         <!--begin::Title-->
@@ -137,13 +130,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <!--end::Product=-->
-                            <!--begin::SKU=-->
-                            <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$city->id}}</span>
-                            </td>
-                            <!--end::SKU=-->
-                            <!--begin::Rating-->
+                    
                            
                         
                             <td class="text-end pe-0">
@@ -151,10 +138,10 @@
                                     {{-- <a class="btn btn-primary" href="{{route('client.led.edit',$client->id)}}">Edit</a> --}}
                                 <form action="{{route('admin.city.list.delete')}}" method="post">
                                     @csrf
-                                  <button type="submit" class="btn btn-danger" name="city_id" value="{{$city->id}}">Delete</button>
+                                  <button type="submit" class="btn btn-danger" name="city_id" value="{{$city->id}}"  style="border:none !important;background:none !important;padding:0"><img src="{{asset('assets/newtheme2023/images/deleteicon.png')}}" style="width:35px" title="Delete City" ></button>
                                   
                                 </form>
-                                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_update_address_{{$city->id}}">Update</a>
+                                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_update_address_{{$city->id}}" style="border:none !important;background:none !important;padding:0"><img src="{{asset('assets/newtheme2023/images/updateicon.png')}}" style="width:35px" title="Update City" ></a>
                                 {{-- <button type="submit" class="btn btn-primary" name="client_id" value="{{$city->id}}">Edit</button> --}}
                                 </div>
                                 

@@ -1,11 +1,7 @@
 <div class="post d-flex flex-column-fluid" id="kt_post">
     <!--begin::Container-->
     <div id="kt_content_container" class="container-xxl">
-        @if(session()->has('success'))
-        <div class="alert alert-success">
-            {{ session()->get('success') }}
-        </div>
-       @endif
+        @include('common.validation')
         <!--begin::Products-->
         <div class="card card-flush">
             <!--begin::Card header-->
@@ -104,13 +100,9 @@
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                            <th class="min-w-150px">Sr No.</th>
-                            <th class="min-w-150px">Title</th>
-                            <th class="text-start min-w-100px">Id</th>
-                            <th class="text-start min-w-100px">Description</th>
-                            <th class="text-start min-w-100px">Location</th>
-                            <th class="text-start min-w-100px">Price</th>
-                            <th class="text-start min-w-70px">Tax</th>
+                            <th class="min-w-20px">Sr No.</th>
+                            <th class="min-w-450px">Title</th> 
+                            <th class="text-start min-w-100px">Price</th> 
                             <th class="text-start min-w-100px">Date Created</th>
                             <th class="text-start min-w-100px">Actions</th>
                         </tr>
@@ -142,31 +134,15 @@
                             </td>
                             <!--end::Product=-->
                             <!--begin::SKU=-->
-                            <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$led->id}}</span>
-                            </td>
-                            <!--end::SKU=-->
-                            <!--begin::Rating-->
-                            <td class="text-end pe-0" data-order="rating-5" data-filter="rating-5">
-                                <div class="rating justify-content-start">
-                                    
-                                    <span class="fw-bolder">{{$led->description}}</span>
-                                    
-                                </div>
-                            </td>
-                            <!--end::Rating-->
-                            <!--begin::Price=-->
-                            <td class="text-start pe-0">
-                                <span>{{$led->location}}</span>
-                            </td>
+                       
                             <!--end::Price=-->
                             <!--begin::Viewed=-->
                             <td class="text-start pe-0">
-                                <span>{{$led->price}}</span>
+                                <span>€ {{$led->price}}</span>
                             </td>
                             <!--end::Viewed=-->
                             <!--begin::Percent=-->
-                            <td class="text-start pe-0">{{$led->tax}}</td>
+                            
                             <td class="text-start pe-0">
                                 <span>{{$led->created_at->format('F d, Y')}}</span>
                             </td>
