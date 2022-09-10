@@ -6,8 +6,8 @@
       <div class="container-fluid">
          <div class="bg-header" style="background-image: url('{{asset('assets/newtheme2023/images/bgimagemainpage.png')}}');">
 
-             <h1 class="header-text">Easy way to rent a perfect LED</h1>
-            <p class="header-p-text theme-text-col">We provide a complete service for the LED Advertisement</p>
+             <h1 class="header-text">Werbung, die gesehen wird!</h1>
+            <p class="header-p-text theme-text-col">500.000 Kontakte pro Tag, preiswert & einfach zu buchen</p>
             <br>
             <div class="auto-search-wrapper">
                <div class="search-input">
@@ -86,7 +86,7 @@
 <!-- Trending start -->
 
 <div class="container-fluid padding50up">
-  <h2 class="sub-h2 alignleft" style="font-size:25px">Available in many well-known <br> Papular LED's For Advertisement in Germany</h2>
+  <h2 class="sub-h2 alignleft" style="font-size:25px">Jetzt Verfügbarkeiten an verschiedenen Standorten anfragen <br> <!-- Papular LED's For Advertisement in Germany --></h2>
 <div class="row">
  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 w3-margin-bottom-30">    
     
@@ -101,14 +101,14 @@
              -o-background-size: cover;
              background-size: cover;"> 
         <div class="mt-3">
-            <h2 class="text1 papularledtitle">&nbsp; {{$led->title}} &nbsp;</h2>
+            <h2 class="text1 papularledtitle" style="font-size:20px;border-radius: 5px;">&nbsp; {{$led->title}} &nbsp;</h2>
         </div> 
         <div class="mt-3">
-            <h2 class="text1 papularledprice">&nbsp;  € {{$led->price}} / Day &nbsp;</h2>
+            <h2 class="text1 papularledprice" style="font-size:20px;">&nbsp;  € {{$led->price}} / Day &nbsp;</h2>
         </div> 
 
         <div class="mt-3 d-flex justify-content-end px-2">
-            <a href="{{route('app.led.detail',$led->id)}}" class="btn-submit papularledbtn btn">Book Now</a>
+            <a href="{{route('app.led.detail',$led->id)}}" class="btn-submit papularledbtn btn"> Jetzt buchen</a>
         </div>        
           </div>
         </div>
@@ -129,21 +129,38 @@
 
 
             <div class="row w3-padding-56-top">
-              
-                  @foreach ($cities as $city)
-                  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 w3-margin-bottom-30">
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 w3-margin-bottom-30">
                     <div class="w3-display-container">
-                    <a href="{{route('list.cities.led',$city->id)}}">
-                    <div class="w3-display-middle city-text">
-                        {{$city->city}}
-                    </div><img alt="lonodn" class="city-img" src="{{asset('storage/'.$city->icon)}}"></a>
+                        <a href="/list-leds-in-cities/1">
+                        <div class="w3-display-middle city-text">
+                            Koblenz
+                        </div><img   class="city-img" src="{{asset('assets/newtheme2023/images/cityslide1.png')}}"></a>
                     </div>
-                  </div> 
-                 @endforeach
-                    
-              
-              
-            
+                </div> 
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 w3-margin-bottom-30">
+                    <div class="w3-display-container">
+                        <a href="#">
+                        <div class="w3-display-middle city-text">
+                            Frankfurt
+                        </div><img   class="city-img" src="{{asset('assets/newtheme2023/images/cityslide2.png')}}"></a>
+                    </div>
+                </div> 
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 w3-margin-bottom-30">
+                    <div class="w3-display-container">
+                        <a href="#">
+                        <div class="w3-display-middle city-text">
+                            Köln
+                        </div><img   class="city-img" src="{{asset('assets/newtheme2023/images/cityslide3.png')}}"></a>
+                    </div>
+                </div> 
+                <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 w3-margin-bottom-30">
+                    <div class="w3-display-container">
+                        <a href="#">
+                        <div class="w3-display-middle city-text">
+                            Düsseldorf
+                        </div><img   class="city-img" src="{{asset('assets/newtheme2023/images/cityslide4.png')}}"></a>
+                    </div>
+                </div> 
 
 
             </div>
@@ -161,10 +178,10 @@
             <div class="bg-img-2" style="background-image: url('{{asset('assets/newtheme2023/images/bgimagemainpage2.png')}}');">
                <div class="row">
                  
-            <h2 class="re-text">Find your best LED</h2>
-            <p class="header-p-text theme-text-col">We provide a complete service for the LED Advertisement in your City</p>
+            <h2 class="re-text">Finde deinen LED-Standort</h2>
+            <p class="header-p-text theme-text-col">Wählen Sie ihre LED-Standorte bequem mit nur wenigen Klicks</p>
             <div class="w3-padding-32-top">
-                  <a href="/search-led?googleLocation=&lati=&longi=" class="search-btn"  style="padding:15px" >START MY SEARCH</a>
+                  <a href="/search-led?googleLocation=&lati=&longi=" class="search-btn"  style="padding:15px" >Suche starten</a>
             </div>
       </div>
       </div>
