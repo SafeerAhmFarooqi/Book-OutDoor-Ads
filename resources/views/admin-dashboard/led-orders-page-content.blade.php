@@ -132,7 +132,7 @@
                                 <div class="d-flex align-items-center">
                                     <!--begin::Thumbnail-->
                                     <a href="{{route('client.led.edit',$subOrder->user->id??'')}}" class="symbol symbol-50px">
-                                        <span class="symbol-label" style="background-image:url('{{$subOrder->user->profile_pic?asset('storage/'.$subOrder->user->profile_pic) : asset('assets/Metronic-Theme/media/avatars/blank.png')}}');"></span>
+                                        <span class="symbol-label" style="background-image:url('{{($subOrder->user->profile_pic??'')?asset('storage/'.($subOrder->user->profile_pic??'')) : asset('assets/Metronic-Theme/media/avatars/blank.png')}}');"></span>
                                     </a>
                                     <!--end::Thumbnail-->
                                     <div class="ms-5">
