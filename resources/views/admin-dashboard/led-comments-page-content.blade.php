@@ -164,7 +164,7 @@
                                     <!--end::Thumbnail-->
                                     <div class="ms-5">
                                         <!--begin::Title-->
-                                        <a href="{{route('client.led.edit',$comment->led->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$comment->led->title}}</a>
+                                        <a href="{{route('app.led.detail',$comment->led->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$comment->led->title}}</a>
                                         <!--end::Title-->
                                     </div>
                                 </div>
