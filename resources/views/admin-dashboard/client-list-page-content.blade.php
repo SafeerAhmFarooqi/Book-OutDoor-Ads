@@ -167,7 +167,7 @@
                                 </form>
                                 <form action="{{route('admin.partner.list.verify')}}" method="post">
                                     @csrf
-                                  <button type="submit" class="btn btn-primary" name="user_id" value="{{$client->id}}" style="border:none !important;background:none !important;padding:0"><img src="{{asset('assets/newtheme2023/images/enableicon.png')}}" style="width:35px" title="Verify Account" > </button>
+                                  <button type="submit" class="btn btn-primary" name="user_id" value="{{$client->id}}" style="border:none !important;background:none !important;padding:0"><img src="{{asset('assets/newtheme2023/images/passwordforgot.png')}}" style="width:35px" title="Verify Account" > </button>
                                 </form>
                                 <form action="{{route('admin.partner.list.disable')}}" method="post">
                                     @csrf

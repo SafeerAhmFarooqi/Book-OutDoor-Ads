@@ -35,7 +35,7 @@ class ClientLedController extends BaseClientController
             'city' => ['required', 'string', 'max:500'],
             'price' => ['required', 'numeric'],
             'tax' => ['required', 'numeric'],
-            'estviews' => ['required', 'string', 'max:255'],
+            'estviews' => [ 'string', 'max:255'],
             'images' => 'required',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,bmp|max:20000'
           
@@ -131,7 +131,7 @@ class ClientLedController extends BaseClientController
             'location' => ['required', 'string', 'max:500'],
             'price' => ['required', 'numeric'],
             'tax' => ['required', 'numeric'],
-            'estviews' => ['required', 'string', 'max:255'],
+            'estviews' => ['string', 'max:255'],
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,bmp|max:20000'
           
         ],[
