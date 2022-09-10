@@ -12,6 +12,7 @@ use App\Models\User;
 use App\Mail\UserAccountActivationEmail;
 use App\Mail\UserAccountDeactivationEmail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Carbon;
 
 class AdminClientController extends BaseAdminController
 {
@@ -39,6 +40,16 @@ class AdminClientController extends BaseAdminController
     Mail::to($user->email)->send(new UserAccountActivationEmail());
     return back()->with('success', 'Partner Enabled Successfully and Email Noification has been sent');
  }  
+
+ public function verifyPartner(Request $request)
+ {
+   $user=User::findOrFail($request->user_id);
+   $user->update([
+      'email_verified_at'=>Carbon::now(),
+    ]);
+   // Mail::to($user->email)->send(new UserAccountActivationEmail());
+    return back()->with('success', 'Partner Verified Successfully');
+ }
 
  public function disablePartner(Request $request)
  {
