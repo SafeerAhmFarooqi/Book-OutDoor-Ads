@@ -130,9 +130,7 @@
                             <td>
                                 <div class="d-flex align-items-center">
                                     <!--begin::Thumbnail-->
-                                    <a class="symbol symbol-50px">
-                                        <span class="symbol-label" style="background-image:url('{{asset('storage/'.($subOrder->led->images->first())->path)}}');"></span>
-                                    </a>
+                                    
                                         
                                         
                                     <!--end::Thumbnail-->
