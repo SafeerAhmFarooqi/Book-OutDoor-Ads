@@ -14,6 +14,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Support\Facades\Lang;
 use App\Mail\UserAccountActivationEmail;
 use App\Mail\UserAccountDeactivationEmail;
+use Illuminate\Support\Carbon;
 
 class AdminUsersController extends BaseAdminController
 {
@@ -40,6 +41,16 @@ class AdminUsersController extends BaseAdminController
     ]);
     Mail::to($user->email)->send(new UserAccountActivationEmail());
     return back()->with('success', 'User Enabled Successfully and Email Noification has been sent');
+ }  
+
+ public function verifyUser(Request $request)
+ {
+   $user=User::findOrFail($request->user_id);
+   $user->update([
+      'email_verified_at'=>Carbon::now(),
+    ]);
+    //Mail::to($user->email)->send(new UserAccountActivationEmail());
+    return back()->with('success', 'User Email Verified Successfully');
  }  
 
  public function disableUser(Request $request)
