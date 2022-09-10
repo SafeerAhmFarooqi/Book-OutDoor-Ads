@@ -137,7 +137,7 @@
                                     <!--end::Thumbnail-->
                                     <div class="ms-5">
                                         <!--begin::Title-->
-                                        <a href="{{route('client.led.edit',$subOrder->user->id??'')}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$subOrder->user->firstname??''.' '.$subOrder->user->lastname??''}}</a>
+                                        <a href="{{route('client.led.edit',$subOrder->user->id??'')}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{($subOrder->user->firstname??'').' '.($subOrder->user->lastname??'')}}</a>
                                         <!--end::Title-->
                                     </div>
                                 </div>
