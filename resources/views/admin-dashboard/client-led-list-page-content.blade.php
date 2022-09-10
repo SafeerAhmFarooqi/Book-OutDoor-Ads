@@ -144,11 +144,11 @@
                             </td>
 
                             <td class="text-start pe-0">
-                                <span>{{$led->price}}</span>
+                                <span>€ {{$led->price}}</span>
                             </td>
 
                             <td class="text-start pe-0">
-                                <span>{{$led->price+$led->tax}}</span>
+                                <span>€ {{$led->price+$led->tax}}</span>
                             </td>
 
                             <td class="text-start pe-0">

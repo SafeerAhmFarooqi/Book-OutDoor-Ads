@@ -143,7 +143,7 @@
                            
                            
                             <td class="text-end pe-0">
-                                <span>{{$led->price}}</span>
+                                <span>€ {{$led->price}}</span>
                             </td>
                             <!--end::Product=-->
                             <!--begin::SKU=-->
