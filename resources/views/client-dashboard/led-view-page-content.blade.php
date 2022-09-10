@@ -104,13 +104,10 @@
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                            <th class="min-w-150px">No</th>
-                            <th class="text-start min-w-100px">Date</th>
+                            <th class="min-w-150px">Sr No</th>  
                             <th class="min-w-150px">Title</th>
-                            <th class="text-end min-w-70px">Location</th>
-                            <th class="text-end min-w-100px">Tax</th>
                             <th class="text-end min-w-100px">Price</th>
-                            {{-- <th class="text-end min-w-100px">Id</th> --}}
+                            <th class="text-end min-w-100px">Date Created</th>
                             <th class="text-end min-w-100px">Description</th>
                             
                             
@@ -130,9 +127,7 @@
                             <td class="text-start">
                                 <span class="fw-bolder">{{++$srNo}}</span>
                             </td>
-                            <td class="text-start pe-0">
-                                <span>{{$led->created_at->format('F d, Y')}}</span>
-                            </td>
+                            
                             <td>
                                 <div class="d-flex align-items-center">
                                     <!--begin::Thumbnail-->
@@ -147,12 +142,13 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="text-end pe-0">
-                                <span>{{$led->location}}</span>
-                            </td>
-                            <td class="text-end pe-0">{{$led->tax}}</td>
+                           
+                           
                             <td class="text-end pe-0">
                                 <span>{{$led->price}}</span>
+                            </td>
+                            <td class="text-end pe-0">
+                                <span>{{$led->created_at->format('F d, Y')}}</span>
                             </td>
                             <td class="text-end pe-0" data-order="rating-5" data-filter="rating-5">
                                 <div class="rating justify-content-end">

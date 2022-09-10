@@ -6,7 +6,7 @@
                <span class="icon-bar"></span>
                <span class="icon-bar"></span>                        
                </button>
-               <a class="navbar-brand" href="/" style="font-weight:bold;padding-top:30px">LED Werbeflaechen
+               <a class="navbar-brand" href="/" style="font-weight:bold;padding-top:30px">LED - WERBEFLAECHEN
 
                 <!-- <img src="https://led-werbeflaechen.de/assets/Led-Theme/logo/logo.png" alt="" class="logo-img-style" style="width:200px"> -->
 
