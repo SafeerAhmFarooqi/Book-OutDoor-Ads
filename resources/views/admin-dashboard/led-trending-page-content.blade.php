@@ -364,9 +364,7 @@
                                 <td>
                                     <div class="d-flex align-items-center">
                                         <!--begin::Thumbnail-->
-                                        <a href="{{route('client.led.edit',$led->id)}}" class="symbol symbol-50px">
-                                            <span class="symbol-label" style="background-image:url('{{asset('storage/'.($led->images->first())->path)}}');"></span>
-                                        </a>
+                                        
                                         <!--end::Thumbnail-->
                                         <div class="ms-5">
                                             <!--begin::Title-->
