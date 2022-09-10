@@ -1,11 +1,7 @@
 <div class="post d-flex flex-column-fluid" id="kt_post">
     <!--begin::Container-->
     <div id="kt_content_container" class="container-xxl">
-        @if(session()->has('success'))
-        <div class="alert alert-success">
-            {{ session()->get('success') }}
-        </div>
-       @endif
+        @include('common.validation')
         <!--begin::Products-->
         <div class="card card-flush">
             <!--begin::Card header-->

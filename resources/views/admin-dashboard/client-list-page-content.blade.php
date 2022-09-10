@@ -1,11 +1,7 @@
 <div class="post d-flex flex-column-fluid" id="kt_post">
     <!--begin::Container-->
     <div id="kt_content_container" class="container-xxl">
-        @if(session()->has('success'))
-        <div class="alert alert-success">
-            {{ session()->get('success') }}
-        </div>
-       @endif
+        @include('common.validation')
         <!--begin::Products-->
         <div class="card card-flush">
             <!--begin::Card header-->
@@ -104,17 +100,13 @@
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                            <th class="min-w-150px">Sr No.</th>
-                            <th class="min-w-150px">Name</th>
-                            <th class="text-start min-w-100px">Id</th>
-                            <th class="text-start min-w-100px">Email</th>
-                            <th class="text-start min-w-100px">Status</th>
-                            <th class="text-start min-w-100px">Company</th>
-                            <th class="text-start min-w-70px">Address</th>
-                            <th class="text-start min-w-100px">Phone</th>
-                            <th class="text-start min-w-100px">Postal Code</th>
-                            <th class="text-start min-w-100px">Date Created</th>
+                             <th class="text-start min-w-40px">  Id</th>
+                            <th class="min-w-450px">Name</th> 
+                            <th class="text-start min-w-100px">Status</th>  
+                            <th class="text-start min-w-100px">Company</th>   
                             <th class="text-start min-w-100px">Actions</th>
+
+
                         </tr>
                         <!--end::Table row-->
                     </thead>
@@ -131,32 +123,24 @@
                             <td>
                                 <div class="d-flex align-items-center">
                                     <!--begin::Thumbnail-->
-                                    <a href="{{route('client.led.edit',$client->id)}}" class="symbol symbol-50px">
-                                        <span class="symbol-label" style="background-image:url();"></span>
-                                    </a>
+                                    
                                     <!--end::Thumbnail-->
                                     <div class="ms-5">
                                         <!--begin::Title-->
-                                        <a href="{{route('client.led.edit',$client->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$client->firstname.' '.$client->lastname}}</a>
+                                        <a href="{{route('client.led.edit',$client->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$client->firstname.' '.$client->lastname}}<br>
+                                             <span style="font-size:10px">Email : {{$client->email}}</span><br>
+                                        <span style="font-size:10px">Phone : {{$client->phone}}</span><br>
+                                        <span style="font-size:10px">Address : {{$client->address}}</span><br>
+                                        <span style="font-size:10px">PostalCode : {{$client->postal_code}}</span><br>
+                                        <span style="font-size:10px">Date : {{$client->created_at->format('F d, Y')}}</span><br>
+                                    </a>
                                         <!--end::Title-->
                                     </div>
                                 </div>
                             </td>
                             <!--end::Product=-->
-                            <!--begin::SKU=-->
-                            <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$client->id}}</span>
-                            </td>
-                            <!--end::SKU=-->
-                            <!--begin::Rating-->
-                            <td class="text-end pe-0" data-order="rating-5" data-filter="rating-5">
-                                <div class="rating justify-content-start">
-                                    
-                                    <span class="fw-bolder">{{$client->email}}</span>
-                                    
-                                </div>
-                            </td>
-                            <!--end::Rating-->
+                          
+                          
                             <!--begin::Price=-->
                             <td class="text-start pe-0">
                                 <span>{{$client->status?'Enabled' : 'Disabled'}}</span>
@@ -165,35 +149,27 @@
                                 <span>{{$client->company}}</span>
                             </td>
                             <!--end::Price=-->
-                            <!--begin::Viewed=-->
-                            <td class="text-start pe-0">
-                                <span>{{$client->address}}</span>
-                            </td>
-                            <!--end::Viewed=-->
-                            <!--begin::Percent=-->
-                            <td class="text-start pe-0">{{$client->phone}}</td>
-                            <td class="text-start pe-0">{{$client->postal_code}}</td>
-                            <td class="text-start pe-0">
-                                <span>{{$client->created_at->format('F d, Y')}}</span>
-                            </td>
+                       
                             <td class="text-end pe-0">
                                 <div class="rating justify-content-end">
                                     {{-- <a class="btn btn-primary" href="{{route('client.led.edit',$client->id)}}">Edit</a> --}}
                                 <form action="{{route('admin.client.list.delete')}}" method="post">
                                     @csrf
-                                  <button type="submit" class="btn btn-danger" name="client_id" value="{{$client->id}}">Delete</button>
+                                  <button type="submit" class="btn btn-danger" name="client_id" value="{{$client->id}}" style="border:none !important;background:none !important;padding:0"><img src="{{asset('assets/newtheme2023/images/deleteicon.png')}}" style="width:35px" title="Delete Users" ></button>
                                 </form>
                                 <form action="{{route('admin.client.list.led')}}" method="post">
                                     @csrf
-                                  <button type="submit" class="btn btn-primary" name="client_id" value="{{$client->id}}">Leds</button>
+                                  <button type="submit" class="btn btn-primary" name="client_id" value="{{$client->id}}" style="border:none !important;background:none !important;padding:0"><img src="{{asset('assets/newtheme2023/images/orders.png')}}" style="width:35px" title="View Orders" ></button>
                                 </form>
                                 <form action="{{route('admin.partner.list.enable')}}" method="post">
                                     @csrf
-                                  <button type="submit" class="btn btn-primary" name="user_id" value="{{$client->id}}">Enable</button>
+                                  <button type="submit" class="btn btn-primary" name="user_id" value="{{$client->id}}" style="border:none !important;background:none !important;padding:0"><img src="{{asset('assets/newtheme2023/images/enableicon.png')}}" style="width:35px" title="Enable Account" > </button>
                                 </form>
                                 <form action="{{route('admin.partner.list.disable')}}" method="post">
                                     @csrf
-                                  <button type="submit" class="btn btn-danger" name="user_id" value="{{$client->id}}">Disable</button>
+                                  <button type="submit" class="btn btn-danger" name="user_id" value="{{$client->id}}" style="border:none !important;background:none !important;padding:0"><img src="{{asset('assets/newtheme2023/images/disableicon.png')}}" style="width:35px" title="Disable Account" ></button>
+
+
                                 </form>
                                 </div>
                                 

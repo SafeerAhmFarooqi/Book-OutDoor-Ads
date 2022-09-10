@@ -3,12 +3,8 @@
     
         
        
-    <div id="kt_content_container" class="container-xxl">
-        @if(session()->has('success'))
-        <div class="alert alert-success">
-            {{ session()->get('success') }}
-        </div>
-       @endif
+    <div id="kt_content_container" class="container">
+        @include('common.validation')
        <div class="card card-flush" style="margin-bottom: 1%;">
         <!--begin::Card header-->
         <div class="card-header align-items-center py-5 gap-2 gap-md-5">
@@ -134,13 +130,8 @@
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                             <th class="min-w-150px">Sr No.</th>
-                            <th class="min-w-150px">Title</th>
-                            <th class="text-start min-w-100px">Id</th>
-                            <th class="text-start min-w-100px">Description</th>
-                            <th class="text-start min-w-100px">Location</th>
-                            <th class="text-start min-w-100px">Price</th>
-                            <th class="text-start min-w-70px">Tax</th>
-                            <th class="text-start min-w-100px">Date Created</th>
+                            <th class="min-w-150px">Title</th> 
+                            <th class="text-start min-w-100px">Price</th>  
                             <th class="text-start min-w-100px">Actions</th>
                         </tr>
                         <!--end::Table row-->
@@ -171,35 +162,24 @@
                             </td>
                             <!--end::Product=-->
                             <!--begin::SKU=-->
-                            <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$led->id}}</span>
-                            </td>
+                             
                             <!--end::SKU=-->
                             <!--begin::Rating-->
-                            <td class="text-end pe-0" data-order="rating-5" data-filter="rating-5">
-                                <div class="rating justify-content-start">
-                                    
-                                    <span class="fw-bolder">{{substr(strip_tags($led->description),0,20)}}...</span>
-                                    
-                                </div>
-                            </td>
+                       
                             <!--end::Rating-->
                             <!--begin::Price=-->
-                            <td class="text-start pe-0">
-                                <span>{{$led->location}}</span>
-                            </td>
+                         
                             <!--end::Price=-->
                             <!--begin::Viewed=-->
                             <td class="text-start pe-0">
-                                <span>{{$led->price}}</span>
+                                <span>€ {{$led->price}}</span>
                             </td>
                             <!--end::Viewed=-->
                             <!--begin::Percent=-->
-                            <td class="text-start pe-0">{{$led->tax}}</td>
-                            <td class="text-start pe-0">
-                                <span>{{$led->created_at->format('F d, Y')}}</span>
-                            </td>
+                            
+                             
                             <td class="text-end pe-0">
+                                  <div>{{$led->created_at->format('F d, Y')}}</div>
                                 <div class="rating justify-content-end">
                                     {{-- <a class="btn btn-primary" href="{{route('client.led.edit',$led->id)}}">Edit</a> --}}
                                 <form action="{{route('admin.led.list.delete')}}" method="post">
