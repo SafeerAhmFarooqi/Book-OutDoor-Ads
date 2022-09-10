@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Orders;
 
 class AdminBillingController extends BaseAdminController
 {
@@ -28,7 +29,10 @@ class AdminBillingController extends BaseAdminController
      */
     public function create()
     {
-        //
+        $orders = Orders::where('payment_status',true)->get();
+        return view('admin-dashboard.billing-status-page',[
+           'orders'=>$orders,
+          ]);
     }
 
     /**
@@ -103,8 +107,34 @@ class AdminBillingController extends BaseAdminController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
-        //
+        if ($request->status=='unpaid') {
+            $order=Orders::findOrFail($id)->update([
+                'complete_status' => false,
+            ]);
+            if($order)
+                {
+                    return back()->with('success', 'You have not paid to partner' );
+                }
+                else
+                {
+                    return back()->with('error', 'Unable to update paid to partner status' );
+                }
+            
+        } else {
+            $order=Orders::findOrFail($id)->update([
+                'complete_status' => true,
+            ]);
+            if($order)
+                {
+                    return back()->with('success', 'You have Paid to partner' );
+                }
+                else
+                {
+                    return back()->with('error', 'Unable to update paid to partner status' );
+                }
+        }
+        
     }
 }
