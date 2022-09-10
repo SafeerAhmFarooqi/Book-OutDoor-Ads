@@ -1,4 +1,4 @@
- <footer class="w3-padding-86-top container-fluid w3-margin-bottom-30">
+<footer class="w3-padding-86-top container-fluid w3-margin-bottom-30">
       <div class="row w3-padding-32-top">
          <div class="col-xs-12 col-lg-5 col-md-6 col-sm-12 w3-padding-right-20 w3-margin-bottom-30">
             <div class="w3-center-logo">
@@ -10,8 +10,6 @@
 Mit unseren LED Werbeflächen positionieren Sie Ihre Werbekampagne in die erste Reihe.   <br> 
 
 Präsentieren Sie Ihre Botschaften aufmerksamkeitsstark, multimedial und innovativ. Informieren Sie sich jetzt über die vielfältigen Möglichkeiten, die Ihnen LED-Werbeflächen bieten.<br><br>
-
- 
                </p>
             </div>
             <div class="icon-bar-2 f-h4 w3-padding-32-top">
@@ -26,11 +24,11 @@ Präsentieren Sie Ihre Botschaften aufmerksamkeitsstark, multimedial und innovat
          <div class="col-xs-12 col-lg-2 col-md-6 col-sm-12 w3-margin-bottom-30">
             <h4 class="w3-padding-2-top footer-h-text">Take a Tour</h4>
             <div class="w3-padding-32-top ">
-               <p class="footer-p2-text">Home</p>
-               <p class="footer-p2-text">IMPRESSUM</p>
-               <p class="footer-p2-text">KONTAKT</p>
-               <p class="footer-p2-text">AGB</p>
-               <p class="footer-p2-text">Privacy Policy</p>
+               <a href="/"><p class="footer-p2-text">Home</p></a>
+               <a href="{{route('show.imprint')}}"><p class="footer-p2-text">IMPRESSUM</p></a>
+               <a href="{{route('show.contact')}}"><p class="footer-p2-text">KONTAKT</p></a>
+               <a href="{{route('show.agb')}}"><p class="footer-p2-text">AGB</p></a>
+               <a href="{{route('show.policy')}}"><p class="footer-p2-text">Privacy Policy</p></a>
             </div>
          </div>
          <div class=" col-xs-12 col-lg-2 col-md-6 col-sm-12 w3-margin-bottom-30">
@@ -38,7 +36,7 @@ Präsentieren Sie Ihre Botschaften aufmerksamkeitsstark, multimedial und innovat
             <div class=" w3-padding-32-top ">
                <p class="footer-p2-text">City Search</p>
                <p class="footer-p2-text">Map View</p>
-               <p class="footer-p2-text">About</p>
+               <a href="{{route('show.about')}}"><p class="footer-p2-text">About</p></a>
                <p class="footer-p2-text">Help Centre</p>
             </div>
          </div>
@@ -54,7 +52,12 @@ Präsentieren Sie Ihre Botschaften aufmerksamkeitsstark, multimedial und innovat
                     <i class="fa fa-mobile" aria-hidden="true"></i>  &nbsp; &nbsp;
      <span style="font-size: 25px;font-weight: bold;  clor: #2E3192;"> 026120069568  </span>
                   </div>
+                  <br>
+                 
                </div>
+                <div>
+                    <a href="/client-login" class="btn-submit papularledbtn btn">Partner Login</a> &nbsp;&nbsp;
+                    <a href="/admin-login" class="btn-submit papularledbtn btn">Admin Login</a> </div> 
             </div>
          </div>
       </div>
@@ -75,7 +78,6 @@ Präsentieren Sie Ihre Botschaften aufmerksamkeitsstark, multimedial und innovat
         const icon = searchWrapper.querySelector(".icon");
         let linkTag = searchWrapper.querySelector("a");
         let webLink;
-
     async function getAddress() {
           const value = document.getElementById('search').value;
           var myHeaders = new Headers();
@@ -99,13 +101,11 @@ Präsentieren Sie Ihre Botschaften aufmerksamkeitsstark, multimedial und innovat
             getAddress();
             
         }
-
         function select(element){
             let selectData = element.textContent;
             inputBox.value = selectData;
             searchWrapper.classList.remove("active");
         }
-
         function showSuggestions(result){
             let listData;
             if(!result.length){
@@ -151,9 +151,3 @@ Präsentieren Sie Ihre Botschaften aufmerksamkeitsstark, multimedial und innovat
             });
         });
 </script>
-
-
-
-
- 
- 
