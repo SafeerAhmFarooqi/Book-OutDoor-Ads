@@ -125,19 +125,19 @@
                         <tr>
                             <!--begin::Product=-->
                             <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$subOrder->id}}</span>
+                                <span class="fw-bolder">{{$subOrder->id??''}}</span>
                             </td>
 
                             <td>
                                 <div class="d-flex align-items-center">
                                     <!--begin::Thumbnail-->
-                                    <a href="{{route('client.led.edit',$subOrder->user->id)}}" class="symbol symbol-50px">
+                                    <a href="{{route('client.led.edit',$subOrder->user->id??'')}}" class="symbol symbol-50px">
                                         <span class="symbol-label" style="background-image:url('{{$subOrder->user->profile_pic?asset('storage/'.$subOrder->user->profile_pic) : asset('assets/Metronic-Theme/media/avatars/blank.png')}}');"></span>
                                     </a>
                                     <!--end::Thumbnail-->
                                     <div class="ms-5">
                                         <!--begin::Title-->
-                                        <a href="{{route('client.led.edit',$subOrder->user->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$subOrder->user->firstname.' '.$subOrder->user->lastname}}</a>
+                                        <a href="{{route('client.led.edit',$subOrder->user->id??'')}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$subOrder->user->firstname??''.' '.$subOrder->user->lastname??''}}</a>
                                         <!--end::Title-->
                                     </div>
                                 </div>
@@ -146,7 +146,7 @@
                             <td class="text-end pe-0" data-order="rating-5" data-filter="rating-5">
                                 <div class="rating justify-content-start">
                                     
-                                    <span class="fw-bolder">{{$subOrder->user->email}}</span>
+                                    <span class="fw-bolder">{{$subOrder->user->email??''}}</span>
                                     
                                 </div>
                             </td>
@@ -154,7 +154,7 @@
                             <td class="text-end pe-0" data-order="rating-5" data-filter="rating-5">
                                 <div class="rating justify-content-start">
                                     
-                                    <span class="fw-bolder">{{$subOrder->user->phone}}</span>
+                                    <span class="fw-bolder">{{$subOrder->user->phone??''}}</span>
                                     
                                 </div>
                             </td>
@@ -162,13 +162,13 @@
                             <td>
                                 <div class="d-flex align-items-center">
                                     <!--begin::Thumbnail-->
-                                    <a href="{{route('client.led.edit',$subOrder->led->id)}}" class="symbol symbol-50px">
-                                        <span class="symbol-label" style="background-image:url('{{asset('storage/'.($subOrder->led->images->first())->path)}}');"></span>
+                                    <a href="{{route('client.led.edit',$subOrder->led->id??'')}}" class="symbol symbol-50px">
+                                        <span class="symbol-label" style="background-image:url('{{asset('storage/'.($subOrder->led->images->first())->path??'')}}');"></span>
                                     </a>
                                     <!--end::Thumbnail-->
                                     <div class="ms-5">
                                         <!--begin::Title-->
-                                        <a href="{{route('client.led.edit',$subOrder->led->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$subOrder->led->title}}</a>
+                                        <a href="{{route('client.led.edit',$subOrder->led->id??'')}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$subOrder->led->title??''}}</a>
                                         <!--end::Title-->
                                     </div>
                                 </div>
@@ -177,7 +177,7 @@
                             <td class="text-end pe-0" data-order="rating-5" data-filter="rating-5">
                                 <div class="rating justify-content-start">
                                     
-                                    <span class="fw-bolder">{{($subOrder->price+$subOrder->tax)*$subOrder->no_of_days}}</span>
+                                    <span class="fw-bolder">{{($subOrder->price??''+$subOrder->tax??'')*$subOrder->no_of_days??''}}</span>
                                     
                                 </div>
                             </td>
@@ -185,7 +185,7 @@
                             <td class="text-end pe-0" data-order="rating-5" data-filter="rating-5">
                                 <div class="rating justify-content-start">
                                     
-                                    <span class="fw-bolder">{{$subOrder->order->id}}</span>
+                                    <span class="fw-bolder">{{$subOrder->order->id??''}}</span>
                                     
                                 </div>
                             </td>
@@ -195,11 +195,11 @@
                             
                             
                             <td class="text-start pe-0">
-                                <span>{{$subOrder->created_at->format('F d, Y')}}</span>
+                                <span>{{$subOrder->created_at->format('F d, Y')??''}}</span>
                             </td>
                             <td class="text-end pe-0">
                                 <div class="rating justify-content-end">
-                                    <a class="btn btn-primary" href="{{route('app.led.detail',$subOrder->led->id)}}">Details</a>
+                                    <a class="btn btn-primary" href="{{route('app.led.detail',$subOrder->led->id??'')}}">Details</a>
                 
                                 </div>
                                 
