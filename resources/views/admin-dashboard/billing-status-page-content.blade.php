@@ -28,9 +28,10 @@
                 <!--end::Card title-->
                 <!--begin::Card toolbar-->
                 <div class="card-toolbar flex-row-fluid justify-content-start gap-5">
-                        <h6>Partner Email : {{$client->email}}</h6>
+                   
                 </div>
                 <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
+                    
                     <!--begin::Daterangepicker-->
                     {{-- <input class="form-control form-control-solid w-100 mw-250px" placeholder="Pick date range" id="kt_ecommerce_report_views_daterangepicker" /> --}}
                     <!--end::Daterangepicker-->
@@ -103,14 +104,12 @@
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                            <th class="text-start min-w-100px">Record Id</th>
-                            <th class="min-w-150px">Title</th>
-                            <th class="text-start min-w-70px">Tax</th>
-                            <th class="text-start min-w-100px">Price</th>
+                            <th class="text-start min-w-100px">Order Id</th>
                             <th class="text-start min-w-100px">Total Price</th>
-                            <th class="text-start min-w-100px">Location</th>
-                            <th class="text-start min-w-100px">Date Created</th>    
-                            <th class="text-start min-w-100px">Actions</th>
+                            <th class="text-start min-w-100px">Paid to Partner</th>
+                            <th class="text-start min-w-100px">No of Sub Orders</th>
+                            <th class="text-start min-w-100px">Order Book Date</th>
+                            <th class="text-center min-w-100px">Actions</th>
                         </tr>
                         <!--end::Table row-->
                     </thead>
@@ -118,76 +117,150 @@
                     <!--begin::Table body-->
                     <tbody class="fw-bold text-gray-600">
                         <!--begin::Table row-->
-                        @foreach ($leds as $led)
+                        @foreach ($orders as $order)
+                        @if ($order->payment_status==true)
                         <tr>
                             <!--begin::Product=-->
                             <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$led->id}}</span>
+                                <span class="fw-bolder">{{$order->id}}</span>
                             </td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <!--begin::Thumbnail-->
-                                    
-                                    <!--end::Thumbnail-->
-                                    <div class="ms-5">
-                                        <!--begin::Title-->
-                                        <a href="{{route('app.led.detail',$led->id??'')}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$led->title}}</a>
-                                        <!--end::Title-->
-                                    </div>
-                                </div>
-                            </td>
-
-                            <td class="text-start pe-0">
-                                <span>{{$led->tax}}</span>
-                            </td>
-
-                            <td class="text-start pe-0">
-                                <span>€ {{$led->price}}</span>
-                            </td>
-
-                            <td class="text-start pe-0">
-                                <span>€ {{$led->price+$led->tax}}</span>
-                            </td>
-
-                            <td class="text-start pe-0">
-                                <span>{{$led->location}}</span>
-                            </td>
-
-                            <td class="text-start pe-0">
-                                <span>{{$led->created_at->format('F d, Y')}}</span>
-                            </td>
+                          
                             <!--end::Product=-->
                             <!--begin::SKU=-->
-                            
+                           
                             <!--end::SKU=-->
                             <!--begin::Rating-->
-                          
+                           
                             <!--end::Rating-->
                             <!--begin::Price=-->
-                           
+                            
                             <!--end::Price=-->
                             <!--begin::Viewed=-->
-                            
+                            <td class="text-start pe-0">
+                                <span>€ {{$order->total_price}}</span>
+                            </td>
+
+                            <td class="text-start pe-0">
+                                <span>{{$order->complete_status?'Yes' : 'No'}}</span>
+                            </td>
+
+                            <td class="text-start pe-0">
+                                <span>{{$order->subOrders->count()}}</span>
+                            </td>
+
+                            <td class="text-start pe-0">
+                                <span>{{$order->created_at->format('F d, Y')}}</span>
+                            </td>
                             <!--end::Viewed=-->
                             <!--begin::Percent=-->
-                           
                             
-                            <td class="text-end pe-0">
+                            
+                           
+                            <td class="text-start pe-0">
                                 <div class="rating justify-content-end">
-                                    {{-- <a class="btn btn-primary" href="{{route('client.led.edit',$led->id)}}">Edit</a> --}}
-                                <form action="{{route('admin.led.list.delete')}}" method="post">
-                                    @csrf
-                                  <button type="submit" class="btn btn-danger" name="led_id" value="{{$led->id}}">Delete</button>
-                                </form>
-                                <form action="{{route('admin.led.list.order')}}" method="post">
-                                    @csrf
-                                  <button type="submit" class="btn btn-primary" name="led_id" value="{{$led->id}}">Orders</button>
-                                </form>
+                                    <a class="btn btn-primary" href="javascript:;" style="border:none !important;background:none !important;padding:0"><img src="{{asset('assets/newtheme2023/images/viewicon.png')}}" style="width:35px" title="View Order Details" type="reset" data-bs-toggle="modal" data-bs-target="#kt_modal_details_{{$order->id}}"></a>
+                                  <button type="submit" class="btn btn-danger" style="border:none !important;background:none !important;padding:0"><img src="{{asset('assets/newtheme2023/images/cross.png')}}" style="width:35px" title="Change Status to UnPaid"   type="reset" data-bs-toggle="modal" data-bs-target="#kt_modal_unpaid_{{$order->id}}"></button>
+                                  <button type="submit" class="btn btn-primary" name="user_id" value="{{$user->id??''}}" style="border:none !important;background:none !important;padding:0"><img src="{{asset('assets/newtheme2023/images/enableicon.png')}}" style="width:35px" title="Change Status to Paid"  type="reset" data-bs-toggle="modal" data-bs-target="#kt_modal_paid_{{$order->id}}"></button>
+                                
                                 </div>
                                 
                             </td>
                             <!--end::Percent=-->
                         </tr>
+                        <div class="modal fade" tabindex="-1" id="kt_modal_details_{{$order->id}}">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title">Order Id : {{$order->id}}	</h3>
+                        
+                                        <!--begin::Close-->
+                                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                            <span class="svg-icon svg-icon-1"></span>
+                                        </div>
+                                        <!--end::Close-->
+                                    </div>
+                        
+                                    
+                                        @foreach ($order->subOrders as $subOrder)
+                                                        @if ($subOrder->order->payment_status==true)
+                                                        <div class="modal-body">
+                                                       <p>Sub Order Id : {{$subOrder->id}}</p>
+                                                       <p>Led Title : {{$subOrder->led->title??''}}</p>
+                                                       <p>Price : {{$subOrder->price??''}}</p>
+                                                       <p>Duration : {{$subOrder->no_of_days??''}}</p>
+                                                       <p>Start Date : {{$subOrder->startDate->format('F d, Y')??''}}</p>
+                                                       <p>End Date : {{$subOrder->endDate->format('F d, Y')??''}}</p>
+                                                       <p>Order Date : {{$subOrder->created_at->format('F d, Y')??''}}</p>
+                                                    </div>
+                                                       @endif
+                                                        @endforeach
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" tabindex="-1" id="kt_modal_unpaid_{{$order->id}}">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title">Order Id : {{$order->id}}	</h3>
+                        
+                                        <!--begin::Close-->
+                                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                            <span class="svg-icon svg-icon-1"></span>
+                                        </div>
+                                        <!--end::Close-->
+                                    </div>
+                        
+                                    <div class="modal-body">
+                                        <p>Are you sure you want to Change Status to Unpaid </p>
+                                    </div>
+                        
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                        <form action="{{route('admin.billing.destroy',[ 'billing'=> $order->id ])}}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <input type="hidden" name="status" value="unpaid">
+                                            <button type="submit" class="btn btn-primary" >UnPaid</button>
+                                        </form>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" tabindex="-1" id="kt_modal_paid_{{$order->id}}">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3 class="modal-title">Order Id : {{$order->id}}	</h3>
+                        
+                                        <!--begin::Close-->
+                                        <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                                            <span class="svg-icon svg-icon-1"></span>
+                                        </div>
+                                        <!--end::Close-->
+                                    </div>
+                        
+                                    <div class="modal-body">
+                                        <p>Are you sure you want to Change Status to Paid </p>
+                                    </div>
+                        
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                                        <form action="{{route('admin.billing.destroy',[ 'billing'=> $order->id ])}}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <input type="hidden" name="status" value="paid">
+                                            <button type="submit" class="btn btn-primary" >Paid</button>
+                                        </form>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
                         @endforeach
                         
                         <!--end::Table row-->
