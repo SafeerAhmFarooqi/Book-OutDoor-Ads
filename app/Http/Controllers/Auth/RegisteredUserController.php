@@ -30,11 +30,11 @@ class RegisteredUserController extends Controller
         return view('auth.client-auth.register');
     }
     
-    public function createUser($checkout=null)
+    public function createUser($redirectUrl='')
     {
         View()->share( 'headTitle', 'User Register' );
         return view('auth.user-auth.register',[
-            'checkout'=>$checkout??false,
+            'redirectUrl'=>$redirectUrl,
         ]);
     }
 
@@ -121,7 +121,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        if ($request->checkout) {
+        if ($request->redirectUrl=='checkout') {
             return redirect()->route('cart.list.items');
         }
 

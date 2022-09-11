@@ -382,7 +382,7 @@ public function handle(Request $request) {
             foreach ($cartItems as $value) {
                $request->session()->push('cart.items', $value);       
             }
-            return redirect()->route('user.login',true);
+            return redirect()->route('user.login','checkout');
          } else {
             return redirect()->route('home');
          }
@@ -405,7 +405,7 @@ public function handle(Request $request) {
             foreach ($cartItems as $value) {
                $request->session()->push('cart.items', $value);       
             }
-            return redirect()->route('user.login',true);
+            return redirect()->route('user.login','checkout');
          } else {
             return redirect()->route('home');
          }

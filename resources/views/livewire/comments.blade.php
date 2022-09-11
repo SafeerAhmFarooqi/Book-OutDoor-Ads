@@ -1,16 +1,48 @@
 <div>
     {{-- Knowing others is intelligence; knowing yourself is true wisdom. --}}
+<div wire:poll>
+    @if ($comments->count()>0)
+    <div class="well well-lg" style="background:none">
+        @foreach ($comments as $comment)
+        <div style="margin-bottom: 20px;">
+            <h4 class="media-heading text-uppercase reviews col-sm-6" style="float:left"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/800px-Circle-icons-profile.svg.png" style="width:50px;"> {{($comment->user->firstname??'').' '.($comment->user->lastname??'')}}</h4>
+            <h4 class="media-heading text-uppercase reviews col-sm-6" style="float:left;text-align: right;font-size: 12px;"><span class="fa fa-clock-o"></span> {{$comment->created_at->diffForHumans()}}</h4>
+    
+            <div class="clearfix"></div>
+    
+          
+            <p class="media-comment" style="padding-left: 55px !important;">
+              {{$comment->comment}}
+            </p>
+        </div>
+        @endforeach
+      
+
+       
+       
+        
+    </div> 
+    @else
+        <h6>This led Has no Comments Yet.</h6>
+    @endif
+ 
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <div>
-        @if (session()->has('success'))
-        <div class="alert alert-success">
-            {{ session()->get('success') }}
-        </div>
-        @endif
-        @if (session()->has('error'))
-        <div class="alert alert-danger">
-            {{ session()->get('error') }}
-        </div>
-        @endif
+      @include('common.validation')
     </div>
     <div class="row" style="background:#fff;margin:5px;">
         <form wire:submit.prevent="submit" style="width:100%;padding:20px">

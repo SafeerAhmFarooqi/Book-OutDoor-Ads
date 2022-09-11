@@ -33,11 +33,11 @@ class AuthenticatedSessionController extends Controller
         return view('auth.client-auth.login');
     }
 
-    public function createUser($checkout=null)
+    public function createUser($redirectUrl='')
     {
         View()->share( 'headTitle', 'User Login' );
         return view('auth.user-auth.login',[
-            'checkout'=>$checkout??false,
+            'redirectUrl'=>$redirectUrl,
         ]);
     }
 
@@ -59,8 +59,12 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        if ($request->checkout) {
+        if ($request->redirectUrl=='checkout') {
             return redirect()->route('cart.list.items');
+        }
+
+        if (substr($request->redirectUrl,0,10)=='led-detail') {
+            return redirect()->route('app.led.detail',substr($request->redirectUrl,11));
         }
 
         return redirect()->intended(RouteServiceProvider::HOME);
