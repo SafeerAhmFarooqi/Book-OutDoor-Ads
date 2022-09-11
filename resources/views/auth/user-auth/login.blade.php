@@ -8,9 +8,9 @@
         <div class="container-fluid w3-padding-48-top">
             <div class="row">
                 <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
-                    <h2 class="cp-heading">LOG IN</h2>
+                    <h2 class="cp-heading">LOG IN </h2>
                     <p class="log-info-text">Gain access for the rental LED experience</p>
-                        <a href="{{route('user.register',isset($checkout)?$checkout : false)}}" ><p class="log-forgot-text" style="margin:0 !important">Create New Account</p></a>
+                        <a href="{{route('user.register',($redirectUrl??''))}}" ><p class="log-forgot-text" style="margin:0 !important">Create New Account</p></a>
 
                     <div class="row w3-padding-36-top">
                         <div class="col-md-12">
@@ -30,7 +30,9 @@
                                         <input class="cp-input-form" id="name"type="password" name="password" >
                                     </div>
                                 
-                                    <input type="hidden" name="checkout" value="{{isset($checkout)?$checkout : false}}">
+                                    <input type="hidden" name="redirectUrl" value="{{$redirectUrl??''}}">
+
+                                   
 
 
 

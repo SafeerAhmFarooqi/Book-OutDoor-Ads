@@ -93,13 +93,13 @@
                         </div>
                                 
                            <input type="hidden" name="role" value="user">
-                    <input type="hidden" name="checkout" value="{{isset($checkout)?$checkout : false}}">
+                    <input type="hidden" name="redirectUrl" value="{{$redirectUrl??''}}">
                           
                             <div class="w3-padding-36-top w3-center">
                              <button type="submit" class="cp-login-btn w3-ripple btn btn-lg btn-primary w-100 mb-5">
                             <span class="indicator-label">Create Account</span> 
                         </button>
-                        <a href="{{route('user.login')}}" ><p class="log-forgot-text" >Already Have Account ? Log in </p></a>
+                        <a href="{{route('user.login',($redirectUrl??''))}}" ><p class="log-forgot-text" >Already Have Account ? Log in </p></a>
   </div></form>
                          
                             </div>

@@ -19,6 +19,6 @@
         
        
       @show
-
+      @yield('pageStyles')
  
  

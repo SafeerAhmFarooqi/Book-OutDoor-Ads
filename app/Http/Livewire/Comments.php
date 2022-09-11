@@ -38,6 +38,8 @@ class Comments extends Component
 
     public function render()
     {
-        return view('livewire.comments');
+        return view('livewire.comments',[
+            'comments'=> CommentModel::where('led_id',$this->ledId)->get(),
+        ]);
     }
 }

@@ -95,7 +95,33 @@
                      <div id="mymap"></div>
                   </div>
                  
-                  
+                  <div class="desc">
+                     <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text" style="padding: 50px 50px 10px 0px !important;">Leave Comments </h2>
+                        <div class="media-body">
+                           @if (Auth::check()&&Auth::user()->hasRole('User'))
+                           
+                            <livewire:comments :ledId="$led->id" />
+                        
+                           @else
+                           <div class="alert alert-warning">
+                                    <a href="{{route('user.login','led-detail-'.$led->id)}}" class="btn btn-xs btn-warning pull-right">Login  </a>
+                                    <strong>Warning:</strong> You need to sign in your account for comment 
+                                </div>
+                           @endif
+                              
+
+
+
+
+                            <!--comment -->
+                                    
+                                      <!--end comment -->     
+
+
+                            </div>
+
+
+                  </div>
                    
                </div>
                <!--left-col-->
@@ -223,6 +249,9 @@
 @endsection
 
 @section('pageScripts')
+<script>
+   
+</script>
 <script src="{{ asset('assets/Metronic-Theme/plugins/global/plugins.bundle.js') }}"></script>
 <script src="{{ asset('assets/Metronic-Theme/js/scripts.bundle.js') }}"></script>
 <script src="{{asset('assets/Metronic-Theme/plugins/custom/tinymce/tinymce.bundle.js')}}"></script>
@@ -303,7 +332,7 @@
  lng: coordinates.long,
  zoom:6
    });
-
+   
    const image = {
     url: "{{asset('storage/'.$image->path)}}",
     // This marker is 20 pixels wide by 32 pixels high.
@@ -312,7 +341,8 @@
     origin: new google.maps.Point(0, 0),
     // The anchor for this image is the base of the flagpole at (0, 32).
     anchor: new google.maps.Point(0, 32),
-  };
+  }
+  
    mymap.addMarker({
        //   lat: value.lat,
        //   lng: value.lng,
