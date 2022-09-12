@@ -525,7 +525,7 @@ public function handle(Request $request) {
    {
       if($id)
       {
-         $city=City::find($id);
+         $city=City::findOrFail($id);
          $city??$id=false;
       }
       return view('app-dashboard.list-cities-leds',[
