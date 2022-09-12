@@ -43,14 +43,14 @@ Präsentieren Sie Ihre Botschaften aufmerksamkeitsstark, multimedial und innovat
          <div class="col-xs-12 col-lg-3 col-md-6 col-sm-12 w3-margin-bottom-30">
             <h4 class="w3-padding-2-top footer-h-text">Contact</h4>
             <div class="w3-padding-32-top ">
-            <p class="footer-p-text">Dial to get latest LED<br> Space   from us
+            <p class="footer-p-text">Wir sind für Sie erreichbar 
             </p>
             </div>
             <div class="w3-padding-32-top">
                <div class="wrapper">
                   <div class="box">
                     <i class="fa fa-mobile" aria-hidden="true"></i>  &nbsp; &nbsp;
-     <span style="font-size: 25px;font-weight: bold;  clor: #2E3192;"> 026120069568  </span>
+     <span style="font-size: 25px;font-weight: bold;  clor: #2E3192;"> 017680850725   </span>
                   </div>
                   <br>
                  

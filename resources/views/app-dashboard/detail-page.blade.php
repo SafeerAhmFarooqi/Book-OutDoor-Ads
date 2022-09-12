@@ -50,7 +50,7 @@
                   <!--details-->
                   <div class="flex-con-sb w3-padding-48-top">
                      <h2 class="ff-lagufa-n font-20 font-16-sm font-w-600 w3-theme-text">LED Details</h2>
-                     <h2 class="ff-lagufa-n font-30 font-w-600 font-18-sm p-l-5">€ {{$led->price}}</h2>
+                     <h2 class="ff-lagufa-n font-30 font-w-600 font-18-sm p-l-5"> {{$led->price}} €</h2>
 
                   </div>
                    <h3><i class="fa fa-map-marker"></i> {{$led->location}} </h3>
@@ -59,19 +59,19 @@
                   <hr>
                   <div class="flex-con-sb flex-col-600">
                      <div class="det-col">
-                        <h2 class="ff-lagufa-n font-18 font-12-sm font-w-600 w3-theme-text">Type</h2>
+                        <h2 class="ff-lagufa-n font-18 font-12-sm font-w-600 w3-theme-text">Typ </h2>
                         <div class="flex-sb jus-con-center w3-padding-12-top">
                            <p class="ff-lagufa-n font-16 font-12-sm font-w-400 p-l-5">{{$led->multimedia?'Multimedia' : 'Singlemedia'}}</p>
                         </div>
                      </div>
                      <div class="det-col">
-                        <h2 class="ff-lagufa-n font-18 font-12-sm font-w-600  w3-theme-text">Est Views</h2>
+                        <h2 class="ff-lagufa-n font-18 font-12-sm font-w-600  w3-theme-text">Sichtkontakte </h2>
                         <div class="flex-sb jus-con-center w3-padding-12-top">
                            <h2 class="ff-lagufa-n font-16 font-12-sm font-w-400 p-l-5">{{$led->estviews??'-'}}</h2> 
                         </div>
                      </div>
                      <div class="det-col">
-                        <h2 class="ff-lagufa-n font-18 font-12-sm font-w-600 w3-theme-text w3-center">Book  </h2>
+                        <h2 class="ff-lagufa-n font-18 font-12-sm font-w-600 w3-theme-text w3-center">Buchen   </h2>
                         <div class="flex-sb jus-con-center w3-padding-12-top">
                            <h2 class="ff-lagufa-n font-16 font-12-sm font-w-400 p-l-5">{{$led->bookingduration}}</h2>
                         </div>
@@ -79,7 +79,7 @@
                   </div>
                   <hr>
                   <div class="desc">
-                     <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text">Features and description</h2>
+                     <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text">Beschreibung</h2>
                      
                      <div class="w3-padding-24-top font-18 font-12-sm theme-light-gray">
                         {!! preg_replace('#<script(.*?)>(.*?)</script>#is', '', $led->description) !!}
@@ -141,7 +141,7 @@
                   <input required="" name="price" type="hidden" class="form-control" id="price">
                  <input required="" name="selected_date_array" value="" type="hidden" class="form-control" id="selected_date_array">
                   <input type="hidden" value="booking2" name="redirectFile">
-                                  <label for="booking-daterange">Booking Dates</label>
+                                  <label for="booking-daterange">Buchungszeitraum wählen</label>
 
 
 
@@ -167,7 +167,7 @@
 
 
                           <ul class="list-group" style="padding:2px;font-size:13px;">
-                          <li class="list-group-item listordertaking" style="background:none;border:none;padding:0;padding-top:10px"> <span id="per_booking_cost" style="font-weight:bold;color:#333"> € </span> <span id="id_x" style="font-weight:bold;color:#333">€ {{$led->price}} </span><span style="font-weight:bold;color:#333" id="multiply_show"></span> <span style="font-weight:bold;color:#333" id="total_days"></span><span id="days_show"></span> <span id="days_id"></span> <span class=" pull-right" id="total_cost">  </span></li>
+                          <li class="list-group-item listordertaking" style="background:none;border:none;padding:0;padding-top:10px"> <span id="per_booking_cost" style="font-weight:bold;color:#333"> <!-- € --> </span> <span id="id_x" style="font-weight:bold;color:#333"> {{$led->price}} € </span><span style="font-weight:bold;color:#333" id="multiply_show"></span> <span style="font-weight:bold;color:#333" id="total_days"></span><span id="days_show"></span> <span id="days_id"></span> <span class=" pull-right" id="total_cost">  </span></li>
                           <!--   <li class="list-group-item listordertaking"> 25 &euro; x  <span class="badge pull-right" >12</span></li>
                           --> </ul>
 
@@ -179,14 +179,14 @@
 
 
                                       <tr>
-                                          <th style="text-align: left;"> <span style="line-height: 45px;color:#333;font-weight:bold"> Total Price </span></th>
+                                          <th style="text-align: left;"> <span style="line-height: 45px;color:#333;font-weight:bold"> Gesamtpreis </span></th>
                                           <td style="text-align: right;"><strong id="total_price">                                        </strong><b> €</b> </td>
                                       </tr>
                                   </tbody>
                               </table>
                         <div style="text-align: center;">
                           <button type="submit" class="buttonsubmit btn btn-default" name="led_id" value="{{$led->id}}" style="font-size:15px">
-                          Book Now                           </button>
+                         jetzt buchen                         </button>
                       </div>
                           </form>
                             

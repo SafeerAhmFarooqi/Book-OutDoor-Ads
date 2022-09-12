@@ -14,7 +14,7 @@
                 <form method="get" action="{{route('find.led')}}">
               {{-- @csrf --}}
                  <a href="#" target="_blank" hidden></a>
-                 <input type="text" class="w3-cus-input" placeholder="Where do you want to Advertisement?" id="googleLocation" name="googleLocation">
+                 <input type="text" class="w3-cus-input" placeholder="Wo möchten Sie werben?" id="googleLocation" name="googleLocation">
 
                     <input type="hidden" class="hide" name="lati" id="lati" />
                     <input type="hidden" class="hide" name="longi" id="longi" />
@@ -85,7 +85,7 @@
 
 <!-- Trending start -->
 
-<div class="container-fluid padding50up">
+<div class="container-fluid padding50up" style="padding-bottom: 100px;">
   <h2 class="sub-h2 alignleft" style="font-size:25px">Jetzt Verfügbarkeiten an verschiedenen Standorten anfragen <br> <!-- Papular LED's For Advertisement in Germany --></h2>
 <div class="row">
  <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 w3-margin-bottom-30">    
@@ -95,20 +95,17 @@
     <div class="row">
        @foreach ($trendingLeds as $led)
         <div class="col-md-6">
-            <div class="card1 mt-3 p-3 g-2" style="background-image: url('{{asset('storage/'.($led->images->first())->path)}}'); 
-             -webkit-background-size: cover;
-             -moz-background-size: cover;
-             -o-background-size: cover;
-             background-size: cover;"> 
-        <div class="mt-3">
-            <h2 class="text1 papularledtitle" style="font-size:20px;border-radius: 5px;">&nbsp; {{$led->title}} &nbsp;</h2>
+            <div class="card1 mt-3 p-3 g-2"  >
+            <img src="{{asset('storage/'.($led->images->first())->path)}}" style="width:100%;height:100%"> 
+        <div  style="padding: 30px 50px 0px 0px"  >
+            <h2 class="text1 papularledtitle" style="color: #585981 ;background: none;font-size:20px;border-radius: 5px;">  {{$led->title}} &nbsp;</h2>
         </div> 
-        <div class="mt-3">
+       <!--  <div class="mt-3">
             <h2 class="text1 papularledprice" style="font-size:20px;">&nbsp;  € {{$led->price}} / Day &nbsp;</h2>
-        </div> 
+        </div>  -->
 
         <div class="mt-3 d-flex justify-content-end px-2">
-            <a href="{{route('app.led.detail',$led->id??'')}}" class="btn-submit papularledbtn btn"> Jetzt buchen</a>
+            <a href="{{route('app.led.detail',$led->id??'')}}" class="btn-submit papularledbtn btn" style="margin:0 !important"> Jetzt buchen</a>
         </div>        
           </div>
         </div>
@@ -124,8 +121,8 @@
  
     <section id="city">
         <div class="container-fluid w3-h-padding-top">
-            <h2 class="sub-h2">We are available in many<br>
-            well-known cities of Germany</h2>
+            <h2 class="sub-h2"> Für Sie an verschiedenen Standorten verfügbar
+             </h2>
 
 
             <div class="row w3-padding-56-top">
@@ -212,7 +209,7 @@
 
                      
                     <h2 class="card-title alignright"  >
-                        <a href="{{route('app.led.detail',$led->id??'')}}"  class="viewledlistmainpageheading3"  >   € {{$led->price}} / <b  class="viewledlistmainpageheading4"  > day</b> </a>
+                        <a href="{{route('app.led.detail',$led->id??'')}}"  class="viewledlistmainpageheading3"  >    {{$led->price}} € / <b  class="viewledlistmainpageheading4"  > day</b> </a>
                     </h2>
                     
                     <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text" style="text-align:right"> 

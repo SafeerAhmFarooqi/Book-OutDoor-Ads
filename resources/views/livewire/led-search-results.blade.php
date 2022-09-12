@@ -113,15 +113,15 @@
 
    <div class="card-body viewledlistmainpage" >
        <h2 class="card-title alignleft"  >
-           <a href="#" class="viewledlistmainpageheading">Price : €{{$led->price}}/day</a>
+           <a href="#" class="viewledlistmainpageheading">Preis : {{$led->price}} € /Tag   </a>
        </h2>
-       <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text viewledlistmainpageheading1"  > {{$led->title}}</h2>
+       <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text viewledlistmainpageheading1"  style="font-size: 16px !important"> {{$led->title}}</h2>
 
        <h2 class="card-title viewledlistmainpageheading2"> {{($cities->where('id',$led->city_id)->first())->city}} </h4>
 
         
        <h2 class="card-title alignright"  >
-           <a href="#"  class="viewledlistmainpageheading3"  > Price : €{{$led->price}} / <b  class="viewledlistmainpageheading4"  > day</b> </a>
+           <a href="#"  class="viewledlistmainpageheading3"  > Price : {{$led->price}} € / <b  class="viewledlistmainpageheading4"  > Tag   </b> </a>
        </h2>
        
        <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text" style="text-align:right"> 
