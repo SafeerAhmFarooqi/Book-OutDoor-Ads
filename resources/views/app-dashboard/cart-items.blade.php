@@ -33,7 +33,7 @@
                             <form action="{{route('cart.list.led.delete')}}" method="post">
                                 @csrf        
                             
-                            &euro; {{$item->price}}/day <button type="submit" name="led_id" value="{{$item->id}}" class="close">&#10005;</button>
+                            &euro; {{$item->price}}/Tag <button type="submit" name="led_id" value="{{$item->id}}" class="close">&#10005;</button>
                         </form>
                         </div>
                     
