@@ -415,6 +415,7 @@ jQuery(function($) {
     var dateToday = new Date();
       $('input[name="book_dates"]').daterangepicker({
         opens: 'left',
+        //singleDatePicker: true,
         minDate: dateToday,
         isInvalidDate: function(date) {
           // var dateRanges = [
