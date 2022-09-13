@@ -16,7 +16,12 @@
 
       <script src="{{asset('assets/newtheme2023/assets/jquery-3.6.min.js')}}"></script>
       <script src="{{asset('assets/newtheme2023/assets/bootstrap.min.js')}}"></script>
-        
+        <style type="text/css">
+          .disabled
+          {
+            color: red !important;
+          }
+        </style>
        
       @show
       @yield('pageStyles')

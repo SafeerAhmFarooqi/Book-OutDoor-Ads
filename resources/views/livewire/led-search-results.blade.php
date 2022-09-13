@@ -7,18 +7,18 @@
         <div class="flex-stretch">
             <div class="f-g-4 col-sm-4" >
                 <div class="flex-st">
-                    <p class="margin-right">  <i class="fa fa-map-marker" style="font-size: 25px;"></i></p><input class="cp-input-form"   placeholder="Enter Search Location" style="border:none; outline:none; font-size:16px;"  wire:model='location'>
+                    <p class="margin-right">  <i class="fa fa-map-marker" style="font-size: 25px;"></i></p><input class="cp-input-form"   placeholder=" Standort suchen" style="border:none; outline:none; font-size:16px;"  wire:model='location'>
                 </div>
             </div>
             <div class="f-g-1 margin-right">
                 <div class="vr-line"></div>
             </div>
             <div class="f-g-2">
-                <p class="font-lufga-18 dis-none">City</p>
+                <p class="font-lufga-18 dis-none">Stadt</p>
                 <div class="flex-st">
                     <div class="dropdown margin-right">
                         <select aria-labelledby="menu1" wire:model='selectedCity' style="padding: 8px 32px 8px 0px;border: none;outline: none;text-align: center;color: #8F90A6!important;">
-                          <option value="">All Cities</option>
+                          <option value="">alle Städte</option>
                           @foreach ($cities as $city)
                           <option value="{{$city->id}}" selected="">{{$city->city}}</option>
                           @endforeach
@@ -30,7 +30,7 @@
                 <div class="vr-line"></div>
             </div>
             <div class="f-g-2">
-                <p class="font-lufga-18 dis-none">Dates</p>
+                <p class="font-lufga-18 dis-none">Datum </p>
                 <div class="flex-st">
                     <div class="dropdown margin-right">
                         <select id="property_type" name="property_type" style="padding: 8px 32px 8px 0px;border: none;outline: none;text-align: center;color: #8F90A6!important;">
@@ -46,12 +46,12 @@
             </div>
      
             <div class="f-g-2">
-                <p class="font-lufga-18 dis-none">Price Range</p>
+                <p class="font-lufga-18 dis-none">Preisspanne</p>
                 <div class="flex-st">
                     <div class="dropdown margin-right">
                         <select  wire:model='priceRange' style="padding: 8px 32px 8px 0px;border: none;outline: none;text-align: center;color: #8F90A6!important;">
                           <option value="">
-                            Select Price Range...
+                            Preisspanne auswählen
                          </option>  
                           <option value="1-10">
                                € 1 - € 10 

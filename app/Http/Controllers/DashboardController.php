@@ -30,7 +30,7 @@ class DashboardController extends AdminController
 
 public function payment($id)
    {
-            $order=Orders::find($id);
+            $order=Orders::findOrFail($id);
             //return $price;
             //return $order->total_price; 
             // $order->payment_status=true;
@@ -135,7 +135,7 @@ public function handle(Request $request) {
       $cartItems=[];
       if (session()->has('cart.items')) {
          foreach (session()->get('cart.items') as $value) {
-            array_push($cartItems,Led::find(strtok($value,'*')));
+            array_push($cartItems,Led::findOrFail(strtok($value,'*')));
          }
       }
        return view('app-dashboard.landingpage',[
@@ -187,6 +187,66 @@ public function handle(Request $request) {
       return back();
    }
 
+   public static array $bookingDurations = [
+      '1' => 'All',
+      '2' => '3 Days',
+      '3' => '1 Week',
+      '4' => '1 Month',
+      '5' => '3 Month',
+      '6' => '6 Month',
+  ];
+
+  public function getSequentialDisableDates($id)
+  {
+   $led=Led::findOrFail($id);
+
+   switch ($led->bookingduration) {
+      case "All":
+         $sequentialDisableDates=new SubOrders([
+            'startDate' => Carbon::now(),
+            'endDate' => Carbon::now(),
+         ]);
+        return $sequentialDisableDates;
+        break;
+      case "3 Days":
+         $dates=array();
+         //dd($sequentialDisableDates);
+         for ($i=0; $i < 100; $i+=3) { 
+            $sequentialDisableDates=new SubOrders([
+               'startDate' => $led->created_at->addDays($i+1),
+               'endDate' => $led->created_at->addDays($i+1),
+            ]);
+            array_push($dates,$sequentialDisableDates);
+        }
+        //dd($sequentialDisableDates);
+        return $dates;
+        break;
+      case "Edit":
+        echo Auth::user()->colorsetting[2];
+        break;
+      case "Forward Onto":
+        echo Auth::user()->colorsetting[3];
+        break;
+      case "Waiting":
+        echo Auth::user()->colorsetting[4];
+        break;
+      case "Order Completed":
+        echo Auth::user()->colorsetting[5];
+        break;
+      case "Invoice":
+        echo Auth::user()->colorsetting[6];
+        break;
+      case "Ready to Return":
+        echo Auth::user()->colorsetting[7];
+        break;
+      case "Collection/Shipment":
+        echo Auth::user()->colorsetting[8];
+        break;
+      default:
+        echo "#000000";
+    }
+  }
+
    public function ledDetail($id)
    {
       $led=Led::findOrFail($id);
@@ -194,7 +254,7 @@ public function handle(Request $request) {
       $cartItems=[];
       if (session()->has('cart.items')) {
          foreach (session()->get('cart.items') as $value) {
-            array_push($cartItems,Led::find(strtok($value,'*')));
+            array_push($cartItems,Led::findOrFail(strtok($value,'*')));
          }
       }
       $disableDates=SubOrders::with(['order'])
@@ -204,6 +264,24 @@ public function handle(Request $request) {
       ->where('led_id',$id)
       ->where('startDate','>=',Carbon::now()->format('Y-m-d'))
       ->get();
+      //dd($led->bookingduration=='1 Week');
+     // dd($led->bookingduration);
+      // $sequentialDisableDates=new SubOrders([
+      //    'startDate' => Carbon::now()->addDays(0),
+      //    'endDate' => Carbon::now()->addDays(0),
+      // ]);
+      foreach ($this->getSequentialDisableDates($id) as $value) {
+         $disableDates->push($value);   
+      }
+      
+      //dd($disableDates);
+      //dd($sequentialDisableDates);
+      //dd($disableDates);
+      // $disableDates->push([
+      //    'startDate' => Carbon::now()->format('Y-m-d'),
+      //    'endDate' => Carbon::now()->format('Y-m-d'),
+      // ]);
+      // dd($disableDates);
 
     // var_dump($led->bookingduration);
       

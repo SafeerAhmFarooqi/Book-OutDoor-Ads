@@ -76,6 +76,10 @@ class RegisteredUserController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ]);
+
+            //User assign role goes here
+            $user->assignRole('Client');
+            
         }
 
         if($request->role=='user')
@@ -102,22 +106,13 @@ class RegisteredUserController extends Controller
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
             ]);
+
+            //User assign role goes here
+            $user->assignRole('User');
+            
         }
         
         event(new Registered($user));
-
-        //User assign role goes here
-        if($request->role=='client')
-        {
-            $user->assignRole('Client');
-        }
-
-        //User assign role goes here
-        if($request->role=='user')
-        {
-            $user->assignRole('User');
-        }
-
 
         Auth::login($user);
 
