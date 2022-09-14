@@ -47,7 +47,7 @@ public function payment($id)
                ],
                "description" => "Order #".$order->id,
                "redirectUrl" => route('payment.order.process',$order->id),
-               "webhookUrl" => route('webhooks.mollie'),
+               //"webhookUrl" => route('webhooks.mollie'),
                "metadata" => [
                    "order_id" => $order->id,
                ],
@@ -377,9 +377,14 @@ public function handle(Request $request) {
          }
          $price=0;
          $totalTax=0;
-         foreach ($cartItems as $value) {
+         foreach ($cartItems as $key=>$value) {
             $price+=$value->price*$value->noOfDays;
-            $totalTax+=$value->tax*$value->noOfDays;
+            //$key==1?dd($price) : '';
+            //$key==0?dd(($price/100)*$value->tax) : '';
+            $tax=$value->price*$value->noOfDays;
+            //$key==1?dd($tax) : '';
+            $totalTax+=(($tax/100)*$value->tax);
+            //$key==1?dd($totalTax) : '';
          }
          $totalPrice=$price+$totalTax;
          return view('app-dashboard.cart-items',[
@@ -408,7 +413,7 @@ public function handle(Request $request) {
             $totalTax=0;
             foreach ($cartItems as $value) {
                $price+=$value->price*$value->noOfDays;
-               $totalTax+=$value->tax*$value->noOfDays;
+               $totalTax+=($price/100)*$value->tax;
             }
             $totalPrice=$price+$totalTax;
             // return view('app-dashboard.cart-items',[

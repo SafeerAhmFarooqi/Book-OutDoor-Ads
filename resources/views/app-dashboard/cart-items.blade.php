@@ -18,14 +18,16 @@
                         <div class="row text-muted">{{$item->title}}</div>
                         <div class="row">{{substr(strip_tags($item->description),0,20)}}...</div>
                     </div>
-                    <div class="col">
+                    {{-- <div class="col">
                         <div class="row text-muted">Tax</div>
-                        <div class="row">&euro; {{$item->tax}}</div>
-                    </div>
+                        <div class="row">    {{$item->tax}}%</div>
+                    </div> --}}
                     <div class="col">
                         <div class="row text-muted">From : {{\Carbon\Carbon::parse($item->startDate)->format('F d, Y') }}</div>
                         <div class="row text-muted">To : {{\Carbon\Carbon::parse($item->endDate)->format('F d, Y')}}</div>
-                        <div class="row text-muted">Total Days : {{$item->noOfDays}}</div>
+                    </div>
+                    <div class="col">
+                        <div class="row"> {{$item->noOfDays}} Tag(s)</div>
                     </div>
                     
                     
@@ -33,7 +35,7 @@
                             <form action="{{route('cart.list.led.delete')}}" method="post">
                                 @csrf        
                             
-                            &euro; {{$item->price}}/Tag <button type="submit" name="led_id" value="{{$item->id}}" class="close">&#10005;</button>
+                             {{$item->price}} &euro;/Tag <button type="submit" name="led_id" value="{{$item->id}}" class="close">&#10005;</button>
                         </form>
                         </div>
                     
@@ -63,16 +65,17 @@
                 <input id="code" placeholder="Enter your code">
             </form> --}}
             <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
-                <div class="col">Tax</div>
-                <div class="col text-right">&euro; {{$totalTax}}</div>
+                <div class="col"> PRICE</div>
+                <div class="col text-right">{{$price}} &euro;</div>
             </div>
             <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
-                <div class="col"> PRICE</div>
-                <div class="col text-right">&euro; {{$price}}</div>
+                <div class="col">Tax</div>
+                <div class="col text-right">&euro;{{$totalTax}} &euro;</div>
             </div>
+         
             <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                 <div class="col"> TOTAL PRICE</div>
-                <div class="col text-right">&euro; {{$totalPrice}}</div>
+                <div class="col text-right">{{$totalPrice}} &euro;</div>
             </div>
             <a href="{{route('led.checkout')}}" class="btn">Pay Now</a>
             
