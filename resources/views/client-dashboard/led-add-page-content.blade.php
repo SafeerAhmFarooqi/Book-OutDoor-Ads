@@ -181,11 +181,11 @@
                         </div>
                         <div class="row mb-6">
                             <!--begin::Label-->
-                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Tax</label>
+                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Tax Percentage</label>
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
-                                <input type="text" name="tax" class="form-control form-control-lg form-control-solid" placeholder="Tax" value="{{old('tax')}}" />
+                                <input type="number" name="tax" class="form-control form-control-lg form-control-solid" placeholder="Tax" value="{{old('tax')}}" />
                                 @error('tax')
                                 <div class="alert alert-danger">
                                         {{$message}}
