@@ -70,7 +70,7 @@
             </div>
             <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
                 <div class="col">Tax</div>
-                <div class="col text-right">&euro;{{$totalTax}} &euro;</div>
+                <div class="col text-right">{{$totalTax}} &euro;</div>
             </div>
          
             <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
