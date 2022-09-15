@@ -190,7 +190,7 @@
 
                      
                     <h2 class="card-title alignright"  >
-                        <a href="{{route('app.led.detail',$led->id??'')}}"  class="viewledlistmainpageheading3"  >    {{$led->price}} € / <b  class="viewledlistmainpageheading4"  > day</b> </a>
+                        <a href="{{route('app.led.detail',$led->id??'')}}"  class="viewledlistmainpageheading3"  >    {{$led->price}} € / <b  class="viewledlistmainpageheading4"  > Tag</b> </a>
                     </h2>
                     
                     <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text" style="text-align:right"> 
