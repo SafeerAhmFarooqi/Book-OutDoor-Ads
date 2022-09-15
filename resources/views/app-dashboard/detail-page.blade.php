@@ -141,7 +141,7 @@
                   <input required="" name="price" type="hidden" class="form-control" id="price">
                  <input required="" name="selected_date_array" value="" type="hidden" class="form-control" id="selected_date_array">
                   <input type="hidden" value="booking2" name="redirectFile">
-                                  <label for="booking-daterange">Buchungszeitraum wählen</label>
+                                  <label for="booking-daterange">Buchungszeitraum wählen-{{$led->bookingduration}}</label>
 
 
 
@@ -379,158 +379,226 @@
 
  </script>
 
-
-
-  <script>
-jQuery(function($) {
-    $("#daterange").daterangepicker({
-        isInvalidDate: function(date) {
-            var dateRanges = [
-                { 'start': moment('2017-10-10'), 'end': moment('2017-10-15') },
-                { 'start': moment('2017-10-25'), 'end': moment('2017-10-30') },
-                { 'start': moment('2017-11-10'), 'end': moment('2017-11-15') },
-                { 'start': moment('2017-11-25'), 'end': moment('2017-11-30') },
-                { 'start': moment('2017-12-10'), 'end': moment('2017-12-15') },
-                { 'start': moment('2017-12-25'), 'end': moment('2017-12-30') },
-                { 'start': moment('2018-01-10'), 'end': moment('2018-01-15') },
-                { 'start': moment('2018-01-25'), 'end': moment('2018-01-30') },
-                { 'start': moment('2018-02-10'), 'end': moment('2018-02-15') },
-                { 'start': moment('2018-02-25'), 'end': moment('2018-02-30') }
-            ];
-            return dateRanges.reduce(function(bool, range) {
-                return bool || (date >= range.start && date <= range.end);
-            }, false);
-        }
-    });
+@if ($led->bookingduration=='All')
+<script>
+   jQuery(function($) {
+       $("#daterange").daterangepicker({
+           isInvalidDate: function(date) {
+               var dateRanges = [
+                   { 'start': moment('2017-10-10'), 'end': moment('2017-10-15') },
+                   { 'start': moment('2017-10-25'), 'end': moment('2017-10-30') },
+                   { 'start': moment('2017-11-10'), 'end': moment('2017-11-15') },
+                   { 'start': moment('2017-11-25'), 'end': moment('2017-11-30') },
+                   { 'start': moment('2017-12-10'), 'end': moment('2017-12-15') },
+                   { 'start': moment('2017-12-25'), 'end': moment('2017-12-30') },
+                   { 'start': moment('2018-01-10'), 'end': moment('2018-01-15') },
+                   { 'start': moment('2018-01-25'), 'end': moment('2018-01-30') },
+                   { 'start': moment('2018-02-10'), 'end': moment('2018-02-15') },
+                   { 'start': moment('2018-02-25'), 'end': moment('2018-02-30') }
+               ];
+               return dateRanges.reduce(function(bool, range) {
+                   return bool || (date >= range.start && date <= range.end);
+               }, false);
+           }
+       });
+   });
+   
+   
+       $(function() {
+         var a = moment("2022-06-10");
+       var b = moment("2022-06-12");
+       var x = moment("2022-07-20");
+       var y = moment("2022-07-25");
+       var dates=@json($disableDates);
+       var dateRanges=@json($disableDates);
+       var dateToday = new Date();
+         $('input[name="book_dates"]').daterangepicker({
+           opens: 'left',
+           //singleDatePicker: true,
+           minDate: dateToday,
+           isInvalidDate: function(date) {
+             // var dateRanges = [
+             //       { 'start': moment('2022-06-10'), 'end': moment('2022-06-12') },
+             //       { 'start': moment('2022-07-20'), 'end': moment('2022-07-25') },
+             //   ];
+               return dateRanges.reduce(function(bool, range) {
+                   startDateObject=new Date(range.startDate);
+                   startDate=startDateObject.getFullYear()+'-'+(startDateObject.getMonth() + 1)+'-'+startDateObject.getDate();
+                   endDateObject=new Date(range.endDate);
+                   endDate=endDateObject.getFullYear()+'-'+(endDateObject.getMonth() + 1)+'-'+endDateObject.getDate();
+                   return bool || (date >= moment(startDate) && date <= moment(endDate));
+               }, false);
+           }
+         }, function(start, end, label) {
+           var date1 = new Date(start);
+   var date2 = new Date(end);
+   var disableDays=0;
+   var a=0,b=0;
+   dateRanges.forEach(range => {
+             startDateObject=new Date(range.startDate);
+                   startDate=new Date(startDateObject.getFullYear()+'-'+(startDateObject.getMonth() + 1)+'-'+startDateObject.getDate());
+                   endDateObject=new Date(range.endDate);
+                   endDate=new Date(endDateObject.getFullYear()+'-'+(endDateObject.getMonth() + 1)+'-'+endDateObject.getDate());
+             //alert(startDate+' : '+endDate);
+            // alert(picker.startDate.format('YYYY-MM-DD')+' : '+picker.endDate.format('YYYY-MM-DD'));
+            //alert(pickerStartDate.getTime()+' : '+startDate.getTime());
+             if(date1.getTime()<startDate.getTime()&&date2.getTime()>endDate.getTime())
+             {
+               a=startDate.getTime() - endDate.getTime();
+               disableDays=Math.round(a / (1000 * 3600 * 24)); 
+               disableDays=(disableDays-1)*-1;
+             }
+           });
+   // dateRanges.reduce(function(bool, range) {
+   //                 startDateObject=new Date(range.startDate);
+   //                 endDateObject=new Date(range.endDate);
+   //                 if(date1.getTime()<startDateObject.getTime()&&date2.getTime()>endDateObject.getTime())
+   //                 {
+                       
+   //                 }
+   //             }
+             
+   var Difference_In_Time = date2.getTime() - date1.getTime();
+   var Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24));
+   Difference_In_Days=Difference_In_Days-disableDays;
+           document.getElementById("total_days").innerHTML = Difference_In_Days;
+           document.getElementById("multiply_show").innerHTML =  'X';
+           document.getElementById("days_show").innerHTML =  ' Days';
+           document.getElementById("total_price").innerHTML =  Difference_In_Days*{{$led->price}};
+           document.getElementById("alert").innerHTML =  ''; 
+           document.getElementById("no_of_days").value = Difference_In_Days;
+          // alert(start.format('YYYY-MM-DD'));
+         });
+   
+   //       $('input[name="book_dates"]').on('apply.daterangepicker', function(ev, picker) {
+   //         var pickerStartDate=new Date(picker.startDate.format('YYYY-MM-DD'));
+   //         var pickerEndDate=new Date(picker.endDate.format('YYYY-MM-DD'));
+   //         dateRanges.forEach(range => {
+   //           startDateObject=new Date(range.startDate);
+   //                 startDate=new Date(startDateObject.getFullYear()+'-'+(startDateObject.getMonth() + 1)+'-'+startDateObject.getDate());
+   //                 endDateObject=new Date(range.endDate);
+   //                 endDate=new Date(endDateObject.getFullYear()+'-'+(endDateObject.getMonth() + 1)+'-'+endDateObject.getDate());
+   //           //alert(startDate+' : '+endDate);
+   //          // alert(picker.startDate.format('YYYY-MM-DD')+' : '+picker.endDate.format('YYYY-MM-DD'));
+   //          //alert(pickerStartDate.getTime()+' : '+startDate.getTime());
+   //           if(pickerStartDate.getTime()<startDate.getTime()&&pickerEndDate.getTime()>endDate.getTime())
+   //           {
+   //            // alert('Invalid Date Choosen');
+   //      $('input[name="book_dates"]').val('');  
+   //      doument.getElementById("alert").innerHTML =  'Invalid Date';     
+   //           }
+   //         });
+   //         var today = new Date();
+   
+   // var todayDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+   //   //  if(picker.startDate.format('YYYY-MM-DD')<todayDate)
+   //   //  {
+   //   //    alert('Invalid Date Choosen');
+   //   //    $('input[name="book_dates"]').val(''); 
+   //   //  }   
+   //   //do something, like clearing an input
+   //  // alert(picker.startDate.format('YYYY-MM-DD'));
+   //   //$('#daterange').val('');
+   // });
+   //       $('input[name="book_dates"]').on('apply.daterangepicker', function(ev, picker) {
+   //         var pickerStartDate=new Date(picker.startDate.format('YYYY-MM-DD'));
+   //         var pickerEndDate=new Date(picker.endDate.format('YYYY-MM-DD'));
+   //         dateRanges.forEach(range => {
+   //           startDateObject=new Date(range.startDate);
+   //                 startDate=new Date(startDateObject.getFullYear()+'-'+(startDateObject.getMonth() + 1)+'-'+startDateObject.getDate());
+   //                 endDateObject=new Date(range.endDate);
+   //                 endDate=new Date(endDateObject.getFullYear()+'-'+(endDateObject.getMonth() + 1)+'-'+endDateObject.getDate());
+   //           //alert(startDate+' : '+endDate);
+   //          // alert(picker.startDate.format('YYYY-MM-DD')+' : '+picker.endDate.format('YYYY-MM-DD'));
+   //          //alert(pickerStartDate.getTime()+' : '+startDate.getTime());
+   //           if(pickerStartDate.getTime()<startDate.getTime()&&pickerEndDate.getTime()>endDate.getTime())
+   //           {
+   //            // alert('Invalid Date Choosen');
+   //      $('input[name="book_dates"]').val('');  
+   //      document.getElementById("alert").innerHTML =  'Invalid Date';     
+   //           }
+   //         });
+   //         var today = new Date();
+   
+   // var todayDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+   //   //  if(picker.startDate.format('YYYY-MM-DD')<todayDate)
+   //   //  {
+   //   //    alert('Invalid Date Choosen');
+   //   //    $('input[name="book_dates"]').val(''); 
+   //   //  }   
+   //   //do something, like clearing an input
+   //  // alert(picker.startDate.format('YYYY-MM-DD'));
+   //   //$('#daterange').val('');
+   // });
+       });
+       </script>
+@else
+<script>
+   var dateRanges=@json($disableDates);
+   $('input[name="book_dates"]').daterangepicker({
+    singleDatePicker: true,
+    minDate: new Date(),
+    "locale": {
+        format: 'YYYY-M-D'
+    },
+   isInvalidDate: function(date) {
+             // var dateRanges = [
+             //       { 'start': moment('2022-06-10'), 'end': moment('2022-06-12') },
+             //       { 'start': moment('2022-07-20'), 'end': moment('2022-07-25') },
+             //   ];
+               return dateRanges.reduce(function(bool, range) {
+                   startDateObject=new Date(range.startDate);
+                   startDate=startDateObject.getFullYear()+'-'+(startDateObject.getMonth() + 1)+'-'+startDateObject.getDate();
+                   endDateObject=new Date(range.endDate);
+                   endDate=endDateObject.getFullYear()+'-'+(endDateObject.getMonth() + 1)+'-'+endDateObject.getDate();
+                   return bool || (date >= moment(startDate) && date <= moment(endDate));
+               }, false);
+           }
+         
 });
+$('input[name="book_dates"]').on('apply.daterangepicker', function(ev, picker) {
+   var date1 = new Date(picker.startDate);
+   var date2 = new Date(picker.startDate);
+   if('{{$led->bookingduration}}'=='3 Days')
+   {
+      date2.setDate(date2.getDate()+3);
+   }
+   if('{{$led->bookingduration}}'=='1 Week')
+   {
+      date2.setDate(date2.getDate()+7);
+   }
+   if('{{$led->bookingduration}}'=='1 Month')
+   {
+      date2.setDate(date2.getDate()+30);
+   }
+   if('{{$led->bookingduration}}'=='3 Month')
+   {
+      date2.setDate(date2.getDate()+90);
+   }
+   if('{{$led->bookingduration}}'=='6 Month')
+   {
+      date2.setDate(date2.getDate()+180);
+   }
+   var a=0,b=0;
+   
+  
+             
+   var Difference_In_Time = date2.getTime() - date1.getTime();
+   var Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24));
+   Difference_In_Days=Difference_In_Days;
+           document.getElementById("total_days").innerHTML = Difference_In_Days;
+           document.getElementById("multiply_show").innerHTML =  'X';
+           document.getElementById("days_show").innerHTML =  ' Days';
+           document.getElementById("total_price").innerHTML =  Difference_In_Days*{{$led->price}};
+           document.getElementById("alert").innerHTML =  ''; 
+           document.getElementById("no_of_days").value = Difference_In_Days;
+ // console.log(picker.startDate.format('YYYY-MM-DD'));
+ // console.log(picker.endDate.format('YYYY-MM-DD'));
+ // alert(picker.startDate.format('YYYY-MM-DD')+' : '+'{{$led->bookingduration}}'+' : '+picker.endDate.format('YYYY-MM-DD'));
+});
+//alert('safeer');
+       </script>
+@endif
 
-
-    $(function() {
-      var a = moment("2022-06-10");
-    var b = moment("2022-06-12");
-    var x = moment("2022-07-20");
-    var y = moment("2022-07-25");
-    var dates=@json($disableDates);
-    var dateRanges=@json($disableDates);
-    var dateToday = new Date();
-      $('input[name="book_dates"]').daterangepicker({
-        opens: 'left',
-        //singleDatePicker: true,
-        minDate: dateToday,
-        isInvalidDate: function(date) {
-          // var dateRanges = [
-          //       { 'start': moment('2022-06-10'), 'end': moment('2022-06-12') },
-          //       { 'start': moment('2022-07-20'), 'end': moment('2022-07-25') },
-          //   ];
-            return dateRanges.reduce(function(bool, range) {
-                startDateObject=new Date(range.startDate);
-                startDate=startDateObject.getFullYear()+'-'+(startDateObject.getMonth() + 1)+'-'+startDateObject.getDate();
-                endDateObject=new Date(range.endDate);
-                endDate=endDateObject.getFullYear()+'-'+(endDateObject.getMonth() + 1)+'-'+endDateObject.getDate();
-                return bool || (date >= moment(startDate) && date <= moment(endDate));
-            }, false);
-        }
-      }, function(start, end, label) {
-        var date1 = new Date(start);
-var date2 = new Date(end);
-var disableDays=0;
-var a=0,b=0;
-dateRanges.forEach(range => {
-          startDateObject=new Date(range.startDate);
-                startDate=new Date(startDateObject.getFullYear()+'-'+(startDateObject.getMonth() + 1)+'-'+startDateObject.getDate());
-                endDateObject=new Date(range.endDate);
-                endDate=new Date(endDateObject.getFullYear()+'-'+(endDateObject.getMonth() + 1)+'-'+endDateObject.getDate());
-          //alert(startDate+' : '+endDate);
-         // alert(picker.startDate.format('YYYY-MM-DD')+' : '+picker.endDate.format('YYYY-MM-DD'));
-         //alert(pickerStartDate.getTime()+' : '+startDate.getTime());
-          if(date1.getTime()<startDate.getTime()&&date2.getTime()>endDate.getTime())
-          {
-            a=startDate.getTime() - endDate.getTime();
-            disableDays=Math.round(a / (1000 * 3600 * 24)); 
-            disableDays=(disableDays-1)*-1;
-          }
-        });
-// dateRanges.reduce(function(bool, range) {
-//                 startDateObject=new Date(range.startDate);
-//                 endDateObject=new Date(range.endDate);
-//                 if(date1.getTime()<startDateObject.getTime()&&date2.getTime()>endDateObject.getTime())
-//                 {
-                    
-//                 }
-//             }
-          
-var Difference_In_Time = date2.getTime() - date1.getTime();
-var Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24));
-Difference_In_Days=Difference_In_Days-disableDays;
-        document.getElementById("total_days").innerHTML = Difference_In_Days;
-        document.getElementById("multiply_show").innerHTML =  'X';
-        document.getElementById("days_show").innerHTML =  ' Days';
-        document.getElementById("total_price").innerHTML =  Difference_In_Days*{{$led->price}};
-        document.getElementById("alert").innerHTML =  ''; 
-        document.getElementById("no_of_days").value = Difference_In_Days;
-       // alert(start.format('YYYY-MM-DD'));
-      });
-
-//       $('input[name="book_dates"]').on('apply.daterangepicker', function(ev, picker) {
-//         var pickerStartDate=new Date(picker.startDate.format('YYYY-MM-DD'));
-//         var pickerEndDate=new Date(picker.endDate.format('YYYY-MM-DD'));
-//         dateRanges.forEach(range => {
-//           startDateObject=new Date(range.startDate);
-//                 startDate=new Date(startDateObject.getFullYear()+'-'+(startDateObject.getMonth() + 1)+'-'+startDateObject.getDate());
-//                 endDateObject=new Date(range.endDate);
-//                 endDate=new Date(endDateObject.getFullYear()+'-'+(endDateObject.getMonth() + 1)+'-'+endDateObject.getDate());
-//           //alert(startDate+' : '+endDate);
-//          // alert(picker.startDate.format('YYYY-MM-DD')+' : '+picker.endDate.format('YYYY-MM-DD'));
-//          //alert(pickerStartDate.getTime()+' : '+startDate.getTime());
-//           if(pickerStartDate.getTime()<startDate.getTime()&&pickerEndDate.getTime()>endDate.getTime())
-//           {
-//            // alert('Invalid Date Choosen');
-//      $('input[name="book_dates"]').val('');  
-//      doument.getElementById("alert").innerHTML =  'Invalid Date';     
-//           }
-//         });
-//         var today = new Date();
-
-// var todayDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-//   //  if(picker.startDate.format('YYYY-MM-DD')<todayDate)
-//   //  {
-//   //    alert('Invalid Date Choosen');
-//   //    $('input[name="book_dates"]').val(''); 
-//   //  }   
-//   //do something, like clearing an input
-//  // alert(picker.startDate.format('YYYY-MM-DD'));
-//   //$('#daterange').val('');
-// });
-//       $('input[name="book_dates"]').on('apply.daterangepicker', function(ev, picker) {
-//         var pickerStartDate=new Date(picker.startDate.format('YYYY-MM-DD'));
-//         var pickerEndDate=new Date(picker.endDate.format('YYYY-MM-DD'));
-//         dateRanges.forEach(range => {
-//           startDateObject=new Date(range.startDate);
-//                 startDate=new Date(startDateObject.getFullYear()+'-'+(startDateObject.getMonth() + 1)+'-'+startDateObject.getDate());
-//                 endDateObject=new Date(range.endDate);
-//                 endDate=new Date(endDateObject.getFullYear()+'-'+(endDateObject.getMonth() + 1)+'-'+endDateObject.getDate());
-//           //alert(startDate+' : '+endDate);
-//          // alert(picker.startDate.format('YYYY-MM-DD')+' : '+picker.endDate.format('YYYY-MM-DD'));
-//          //alert(pickerStartDate.getTime()+' : '+startDate.getTime());
-//           if(pickerStartDate.getTime()<startDate.getTime()&&pickerEndDate.getTime()>endDate.getTime())
-//           {
-//            // alert('Invalid Date Choosen');
-//      $('input[name="book_dates"]').val('');  
-//      document.getElementById("alert").innerHTML =  'Invalid Date';     
-//           }
-//         });
-//         var today = new Date();
-
-// var todayDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-//   //  if(picker.startDate.format('YYYY-MM-DD')<todayDate)
-//   //  {
-//   //    alert('Invalid Date Choosen');
-//   //    $('input[name="book_dates"]').val(''); 
-//   //  }   
-//   //do something, like clearing an input
-//  // alert(picker.startDate.format('YYYY-MM-DD'));
-//   //$('#daterange').val('');
-// });
-    });
-    </script>
+ 
 @endsection

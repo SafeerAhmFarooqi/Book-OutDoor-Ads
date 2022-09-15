@@ -13,6 +13,8 @@ class Led extends Model
 
     protected $table = 'led';
 
+    protected $dates = ['startDate','endDate'];
+
     protected $fillable = ['user_id','city_id', 'title','multimedia','multimediaquantity','bookingduration','description', 'location', 'price', 'tax', 'estviews', 'city', 'popular', 'trending'];
 
     protected static function booted()
@@ -58,10 +60,90 @@ class Led extends Model
 
     public function setStartAndEndDate($value)
     {
+       
         strtok($value,'*');
-        $startDate=strtok('-');
-        $endDate=strtok('*');
-        $noOfDays=strtok('');
+        if ($this->bookingduration=='All') {
+            $startDate=strtok('-');
+            //dd($startDate);
+            $endDate=strtok('*');
+            $noOfDays=strtok('');
+        }
+         if ($this->bookingduration=='3 Days') {
+            $year=strtok('-');
+            $month=strtok('-');
+            $day=strtok('*');
+            $noOfDays=strtok('');
+            //dd($noOfDays);
+            //dd($year.$month.$day);
+            $startDate=Carbon::parse($year.'-'.$month.'-'.$day);
+            //dd($startDate);
+            $endDate=Carbon::parse($startDate);
+            $endDate->addDays(2);
+            //dd($endDate);
+            //dd($startDate);
+        }
+
+        if ($this->bookingduration=='1 Week') {
+            $year=strtok('-');
+            $month=strtok('-');
+            $day=strtok('*');
+            $noOfDays=strtok('');
+            //dd($noOfDays);
+            //dd($year.$month.$day);
+            $startDate=Carbon::parse($year.'-'.$month.'-'.$day);
+            //dd($startDate);
+            $endDate=Carbon::parse($startDate);
+            $endDate->addDays(6);
+            //dd($endDate);
+            //dd($startDate);
+        }
+
+        if ($this->bookingduration=='1 Month') {
+            $year=strtok('-');
+            $month=strtok('-');
+            $day=strtok('*');
+            $noOfDays=strtok('');
+            //dd($noOfDays);
+            //dd($year.$month.$day);
+            $startDate=Carbon::parse($year.'-'.$month.'-'.$day);
+            //dd($startDate);
+            $endDate=Carbon::parse($startDate);
+            $endDate->addDays(29);
+            //dd($endDate);
+            //dd($startDate);
+        }
+
+        if ($this->bookingduration=='3 Month') {
+            $year=strtok('-');
+            $month=strtok('-');
+            $day=strtok('*');
+            $noOfDays=strtok('');
+            //dd($noOfDays);
+            //dd($year.$month.$day);
+            $startDate=Carbon::parse($year.'-'.$month.'-'.$day);
+            //dd($startDate);
+            $endDate=Carbon::parse($startDate);
+            $endDate->addDays(89);
+            //dd($endDate);
+            //dd($startDate);
+        }
+
+        if ($this->bookingduration=='6 Month') {
+            $year=strtok('-');
+            $month=strtok('-');
+            $day=strtok('*');
+            $noOfDays=strtok('');
+            //dd($noOfDays);
+            //dd($year.$month.$day);
+            $startDate=Carbon::parse($year.'-'.$month.'-'.$day);
+            //dd($startDate);
+            $endDate=Carbon::parse($startDate);
+            $endDate->addDays(179);
+            //dd($endDate);
+            //dd($startDate);
+        }
+        
+      // dd($startDate);
         $this->attributes['startDate'] = $startDate;
         $this->attributes['endDate'] = $endDate;
         $this->attributes['noOfDays'] = $noOfDays;

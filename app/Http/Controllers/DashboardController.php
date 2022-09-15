@@ -47,7 +47,7 @@ public function payment($id)
                ],
                "description" => "Order #".$order->id,
                "redirectUrl" => route('payment.order.process',$order->id),
-               "webhookUrl" => route('webhooks.mollie'),
+               //"webhookUrl" => route('webhooks.mollie'),
                "metadata" => [
                    "order_id" => $order->id,
                ],
@@ -163,6 +163,7 @@ public function handle(Request $request) {
          //Validation Attributes
          'no_of_days' =>'Booking Date',
      ]);
+     // dd($request->book_dates);
       $request->session()->push('cart.items', $request->led_id.'*'.$request->book_dates.'*'.$request->no_of_days);
       return back()->with('message', 'Item Added to Cart Successfully' );
    }
@@ -211,39 +212,71 @@ public function handle(Request $request) {
       case "3 Days":
          $dates=array();
          //dd($sequentialDisableDates);
-         for ($i=0; $i < 100; $i+=3) { 
+         for ($i=0; $i < 9999; $i+=3) { 
             $sequentialDisableDates=new SubOrders([
                'startDate' => $led->created_at->addDays($i+1),
-               'endDate' => $led->created_at->addDays($i+1),
+               'endDate' => $led->created_at->addDays($i+2),
             ]);
             array_push($dates,$sequentialDisableDates);
         }
         //dd($sequentialDisableDates);
         return $dates;
         break;
-      case "Edit":
-        echo Auth::user()->colorsetting[2];
+        case "1 Week":
+         $dates=array();
+         //dd($sequentialDisableDates);
+         for ($i=0; $i < 9999; $i+=7) { 
+            $sequentialDisableDates=new SubOrders([
+               'startDate' => $led->created_at->addDays($i+1),
+               'endDate' => $led->created_at->addDays($i+6),
+            ]);
+            array_push($dates,$sequentialDisableDates);
+        }
+        //dd($sequentialDisableDates);
+        return $dates;
         break;
-      case "Forward Onto":
-        echo Auth::user()->colorsetting[3];
+        case "1 Month":
+         $dates=array();
+         //dd($sequentialDisableDates);
+         for ($i=0; $i < 9999; $i+=30) { 
+            $sequentialDisableDates=new SubOrders([
+               'startDate' => $led->created_at->addDays($i+1),
+               'endDate' => $led->created_at->addDays($i+29),
+            ]);
+            array_push($dates,$sequentialDisableDates);
+        }
+        //dd($sequentialDisableDates);
+        return $dates;
         break;
-      case "Waiting":
-        echo Auth::user()->colorsetting[4];
+        case "3 Month":
+         $dates=array();
+         //dd($sequentialDisableDates);
+         for ($i=0; $i < 9999; $i+=90) { 
+            $sequentialDisableDates=new SubOrders([
+               'startDate' => $led->created_at->addDays($i+1),
+               'endDate' => $led->created_at->addDays($i+89),
+            ]);
+            array_push($dates,$sequentialDisableDates);
+        }
+        //dd($sequentialDisableDates);
+        return $dates;
         break;
-      case "Order Completed":
-        echo Auth::user()->colorsetting[5];
+        case "6 Month":
+         $dates=array();
+         //dd($sequentialDisableDates);
+         for ($i=0; $i < 9999; $i+=180) { 
+            $sequentialDisableDates=new SubOrders([
+               'startDate' => $led->created_at->addDays($i+1),
+               'endDate' => $led->created_at->addDays($i+179),
+            ]);
+            array_push($dates,$sequentialDisableDates);
+        }
+        //dd($sequentialDisableDates);
+        return $dates;
         break;
-      case "Invoice":
-        echo Auth::user()->colorsetting[6];
-        break;
-      case "Ready to Return":
-        echo Auth::user()->colorsetting[7];
-        break;
-      case "Collection/Shipment":
-        echo Auth::user()->colorsetting[8];
-        break;
+     
       default:
-        echo "#000000";
+        return;
     }
   }
 
@@ -379,8 +412,6 @@ public function handle(Request $request) {
          $totalTax=0;
          foreach ($cartItems as $key=>$value) {
             $price+=$value->price*$value->noOfDays;
-            //$key==1?dd($price) : '';
-            //$key==0?dd(($price/100)*$value->tax) : '';
             $tax=$value->price*$value->noOfDays;
             //$key==1?dd($tax) : '';
             $totalTax+=(($tax/100)*$value->tax);
@@ -413,7 +444,8 @@ public function handle(Request $request) {
             $totalTax=0;
             foreach ($cartItems as $value) {
                $price+=$value->price*$value->noOfDays;
-               $totalTax+=($price/100)*$value->tax;
+               $tax=$value->price*$value->noOfDays;
+               $totalTax+=(($tax/100)*$value->tax);
             }
             $totalPrice=$price+$totalTax;
             // return view('app-dashboard.cart-items',[
