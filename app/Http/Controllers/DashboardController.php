@@ -154,14 +154,16 @@ public function handle(Request $request) {
       //return $request->no_of_days;
       $request->validate([
          //Validation Rules
-         'no_of_days' => ['required'],
+         //'no_of_days' => ['required'],
+         'book_dates' => ['required','date'],
        
      ],[
          //Validation Messages
          'required'=>':attribute is Required',
      ],[
          //Validation Attributes
-         'no_of_days' =>'Booking Date',
+        // 'no_of_days' =>'Booking Date',
+         'book_dates' =>'Booking Date',
      ]);
      // dd($request->book_dates);
       $request->session()->push('cart.items', $request->led_id.'*'.$request->book_dates.'*'.$request->no_of_days);
@@ -303,10 +305,21 @@ public function handle(Request $request) {
       //    'startDate' => Carbon::now()->addDays(0),
       //    'endDate' => Carbon::now()->addDays(0),
       // ]);
-      foreach ($this->getSequentialDisableDates($id) as $value) {
-         $disableDates->push($value);   
-      }
+
+
+
+
+
+      //Code for Sequential Disable Dates
+      // foreach ($this->getSequentialDisableDates($id) as $value) {
+      //    $disableDates->push($value);   
+      // }
       
+
+
+
+
+
       //dd($disableDates);
       //dd($sequentialDisableDates);
       //dd($disableDates);
