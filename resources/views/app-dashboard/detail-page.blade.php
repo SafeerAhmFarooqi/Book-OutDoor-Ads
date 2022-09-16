@@ -534,7 +534,8 @@
        </script>
 @else
 <script>
-   var dateRanges=@json($disableDates);
+    jQuery(function($) {
+      var dateRanges=@json($disableDates);
    $('#book_dates').daterangepicker({
     singleDatePicker: true,
     autoUpdateInput: false,
@@ -629,7 +630,9 @@ $(document).ready(function(){
 });
 
 //alert('safeer');
-$('#book_dates').val('Select Date'); 
+$('#book_dates').val('Select Date');
+   });
+  
        </script> 
 @endif
 
