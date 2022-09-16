@@ -624,7 +624,7 @@ $('input[name="book_dates"]').on('apply.daterangepicker', function(ev, picker) {
  // alert(picker.startDate.format('YYYY-MM-DD')+' : '+'{{$led->bookingduration}}'+' : '+picker.endDate.format('YYYY-MM-DD'));
 });
 //alert('safeer');
-$('input[name="book_dates"]').val('Select Date'); 
+//$('input[name="book_dates"]').val('Select Date'); 
        </script>
 @endif
 
