@@ -157,7 +157,8 @@
                                       </div>
                                       <form action="{{route('cart.led.add')}}" method="post">
                                         @csrf
-                                      <input type="text" class="form-control" name="book_dates" id="book_dates" />
+                                      <input type="text" class="form-control" name="book_dates" id="book_dates" placeholder="Select Date" />
+                                      <input type="hidden" name="error" id="error">
                                       <h6 id="alert" style="color: red;"></h6>
                                       <input type="hidden" id="no_of_days" name="no_of_days">
                                   </div>
@@ -530,20 +531,25 @@
    //  // alert(picker.startDate.format('YYYY-MM-DD'));
    //   //$('#daterange').val('');
    // });
+   $('#book_dates').val('');
        });
        </script>
 @else
 <script>
-    jQuery(function($) {
-      var dateRanges=@json($disableDates);
-   $('#book_dates').daterangepicker({
-    singleDatePicker: true,
-    autoUpdateInput: false,
-    minDate: new Date(),
-    "locale": {
-        format: 'YYYY-M-D'
-    },
-   isInvalidDate: function(date) {
+      $(function() {
+         var a = moment("2022-06-10");
+       var b = moment("2022-06-12");
+       var x = moment("2022-07-20");
+       var y = moment("2022-07-25");
+       var dates=@json($disableDates);
+       var dateRanges=@json($disableDates);
+       var dateToday = new Date();
+         $('input[name="book_dates"]').daterangepicker({
+           opens: 'left',
+           singleDatePicker: true,
+           autoApply : true,
+           minDate: dateToday,
+           isInvalidDate: function(date) {
              // var dateRanges = [
              //       { 'start': moment('2022-06-10'), 'end': moment('2022-06-12') },
              //       { 'start': moment('2022-07-20'), 'end': moment('2022-07-25') },
@@ -556,15 +562,11 @@
                    return bool || (date >= moment(startDate) && date <= moment(endDate));
                }, false);
            }
-         
-});
-
-$(document).ready(function(){
-  // alert('check 1');
-   $('#book_dates').on('apply.daterangepicker', function(ev, picker) {
-   var date1 = new Date(picker.startDate);
-   var date2 = new Date(picker.startDate);
-   var date3 = new Date(picker.startDate);
+         }, function(start, end, label) {
+          //  alert(start)
+            var date1 = new Date(start);
+   var date2 = new Date(start);
+   var date3 = new Date(start);
    if('{{$led->bookingduration}}'=='3 Days')
    {
       date2.setDate(date2.getDate()+3);
@@ -605,10 +607,12 @@ $(document).ready(function(){
                    if ((startDateObject >= date1 && startDateObject <= date3)||(date1 >= startDateObject && date1 <= endDateObject))  {
                     // alert('clash');
                     document.getElementById("alert").innerHTML =  'Invalid Date Please Select Again'; 
-                    $('#book_dates').val(''); 
+                   // $('#book_dates').val('');
+                    $('#error').val('true'); 
                    }else{
                      document.getElementById("alert").innerHTML =  '';
-                     $('#book_dates').val(picker.startDate.format('YYYY-MM-DD')); 
+                     $('#error').val('false');
+                    // $('#book_dates').val(start); 
                    }
                    //return bool || (date >= moment(startDate) && date <= moment(endDate));
                }, false);
@@ -623,15 +627,15 @@ $(document).ready(function(){
            document.getElementById("total_price").innerHTML =  Difference_In_Days*{{$led->price}};
            //document.getElementById("alert").innerHTML =  ''; 
            document.getElementById("no_of_days").value = Difference_In_Days;
- // console.log(picker.startDate.format('YYYY-MM-DD'));
- // console.log(picker.endDate.format('YYYY-MM-DD'));
- // alert(picker.startDate.format('YYYY-MM-DD')+' : '+'{{$led->bookingduration}}'+' : '+picker.endDate.format('YYYY-MM-DD'));
-});
-});
+          // alert('check 1');
 
-//alert('safeer');
-$('#book_dates').val('Select Date');
-   });
+
+
+
+         });
+   
+         $('#book_dates').val('');
+       });
   
        </script> 
 @endif

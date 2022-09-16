@@ -152,17 +152,25 @@ public function handle(Request $request) {
    {
       //return  strtok($request->led_id.'*'.$request->book_dates,'*');
       //return $request->no_of_days;
+      //dd($request->book_dates);
+      //dd($request->no_of_days);
+      if($request->error=='true')
+      {
+         return back()->with([
+            'error'=>'Invalid Date Selection',
+         ]);
+      }
       $request->validate([
          //Validation Rules
-         //'no_of_days' => ['required'],
-         'book_dates' => ['required','date'],
+         //'no_of_days' => ['required','string'],
+         'book_dates' => ['required'],
        
      ],[
          //Validation Messages
          'required'=>':attribute is Required',
      ],[
          //Validation Attributes
-        // 'no_of_days' =>'Booking Date',
+         'no_of_days' =>'Booking Date',
          'book_dates' =>'Booking Date',
      ]);
      // dd($request->book_dates);
