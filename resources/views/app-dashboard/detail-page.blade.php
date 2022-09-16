@@ -157,7 +157,7 @@
                                       </div>
                                       <form action="{{route('cart.led.add')}}" method="post">
                                         @csrf
-                                      <input type="text" class="form-control" name="book_dates" />
+                                      <input type="text" class="form-control" name="book_dates" id="book_dates" />
                                       <h6 id="alert" style="color: red;"></h6>
                                       <input type="hidden" id="no_of_days" name="no_of_days">
                                   </div>
@@ -535,7 +535,7 @@
 @else
 <script>
    var dateRanges=@json($disableDates);
-   $('input[name="book_dates"]').daterangepicker({
+   $('#book_dates').daterangepicker({
     singleDatePicker: true,
     autoUpdateInput: false,
     minDate: new Date(),
@@ -557,7 +557,10 @@
            }
          
 });
-$('input[name="book_dates"]').on('apply.daterangepicker', function(ev, picker) {
+
+$(document).ready(function(){
+  // alert('check 1');
+   $('#book_dates').on('apply.daterangepicker', function(ev, picker) {
    var date1 = new Date(picker.startDate);
    var date2 = new Date(picker.startDate);
    var date3 = new Date(picker.startDate);
@@ -601,10 +604,10 @@ $('input[name="book_dates"]').on('apply.daterangepicker', function(ev, picker) {
                    if ((startDateObject >= date1 && startDateObject <= date3)||(date1 >= startDateObject && date1 <= endDateObject))  {
                     // alert('clash');
                     document.getElementById("alert").innerHTML =  'Invalid Date Please Select Again'; 
-                    $('input[name="book_dates"]').val(''); 
+                    $('#book_dates').val(''); 
                    }else{
                      document.getElementById("alert").innerHTML =  '';
-                     $('input[name="book_dates"]').val(picker.startDate.format('YYYY-MM-DD')); 
+                     $('#book_dates').val(picker.startDate.format('YYYY-MM-DD')); 
                    }
                    //return bool || (date >= moment(startDate) && date <= moment(endDate));
                }, false);
@@ -623,8 +626,10 @@ $('input[name="book_dates"]').on('apply.daterangepicker', function(ev, picker) {
  // console.log(picker.endDate.format('YYYY-MM-DD'));
  // alert(picker.startDate.format('YYYY-MM-DD')+' : '+'{{$led->bookingduration}}'+' : '+picker.endDate.format('YYYY-MM-DD'));
 });
+});
+
 //alert('safeer');
-//$('input[name="book_dates"]').val('Select Date'); 
+$('#book_dates').val('Select Date'); 
        </script> 
 @endif
 
