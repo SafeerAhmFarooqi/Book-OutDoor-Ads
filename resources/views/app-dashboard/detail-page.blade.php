@@ -557,7 +557,10 @@
            }
          
 });
-$('input[name="book_dates"]').on('apply.daterangepicker', function(ev, picker) {
+
+$(document).ready(function(){
+  // alert('check 1');
+   $('input[name="book_dates"]').on('apply.daterangepicker', function(ev, picker) {
    var date1 = new Date(picker.startDate);
    var date2 = new Date(picker.startDate);
    var date3 = new Date(picker.startDate);
@@ -623,8 +626,10 @@ $('input[name="book_dates"]').on('apply.daterangepicker', function(ev, picker) {
  // console.log(picker.endDate.format('YYYY-MM-DD'));
  // alert(picker.startDate.format('YYYY-MM-DD')+' : '+'{{$led->bookingduration}}'+' : '+picker.endDate.format('YYYY-MM-DD'));
 });
+});
+
 //alert('safeer');
-//$('input[name="book_dates"]').val('Select Date'); 
+$('input[name="book_dates"]').val('Select Date'); 
        </script> 
 @endif
 
