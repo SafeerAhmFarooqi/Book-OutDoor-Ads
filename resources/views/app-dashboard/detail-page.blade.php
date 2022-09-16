@@ -625,7 +625,7 @@ $('input[name="book_dates"]').on('apply.daterangepicker', function(ev, picker) {
 });
 //alert('safeer');
 //$('input[name="book_dates"]').val('Select Date'); 
-       </script>
+       </script> 
 @endif
 
  
