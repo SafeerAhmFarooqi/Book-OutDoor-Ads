@@ -134,7 +134,7 @@
                       <div class=" ">
                           <div class="topbookingform"> 
                           <div class="order-body">
-                              
+                              @include('common.validation')
                               <div class="form-group">
 
                   <input required="" name="product_id" type="hidden" value="3" class="form-control" id="product_id">
@@ -157,7 +157,7 @@
                                       </div>
                                       <form action="{{route('cart.led.add')}}" method="post">
                                         @csrf
-                                      <input type="text" class="form-control" name="book_dates" value="{{\Carbon\Carbon::now()}}" />
+                                      <input type="text" class="form-control" name="book_dates" />
                                       <h6 id="alert" style="color: red;"></h6>
                                       <input type="hidden" id="no_of_days" name="no_of_days">
                                   </div>
@@ -537,6 +537,7 @@
    var dateRanges=@json($disableDates);
    $('input[name="book_dates"]').daterangepicker({
     singleDatePicker: true,
+    autoUpdateInput: false,
     minDate: new Date(),
     "locale": {
         format: 'YYYY-M-D'
@@ -559,28 +560,54 @@
 $('input[name="book_dates"]').on('apply.daterangepicker', function(ev, picker) {
    var date1 = new Date(picker.startDate);
    var date2 = new Date(picker.startDate);
+   var date3 = new Date(picker.startDate);
    if('{{$led->bookingduration}}'=='3 Days')
    {
       date2.setDate(date2.getDate()+3);
+      date3.setDate(date3.getDate()+2);
+      date3.setTime(date3.getTime() + (6*60*60*1000));
    }
    if('{{$led->bookingduration}}'=='1 Week')
    {
       date2.setDate(date2.getDate()+7);
+      date3.setDate(date3.getDate()+6);
+      date3.setTime(date3.getTime() + (6*60*60*1000));
    }
    if('{{$led->bookingduration}}'=='1 Month')
    {
       date2.setDate(date2.getDate()+30);
+      date3.setDate(date3.getDate()+29);
+      date3.setTime(date3.getTime() + (6*60*60*1000));
    }
    if('{{$led->bookingduration}}'=='3 Month')
    {
       date2.setDate(date2.getDate()+90);
+      date3.setDate(date3.getDate()+89);
+      date3.setTime(date3.getTime() + (6*60*60*1000));
    }
    if('{{$led->bookingduration}}'=='6 Month')
    {
       date2.setDate(date2.getDate()+180);
+      date3.setDate(date3.getDate()+179);
+      date3.setTime(date3.getTime() + (6*60*60*1000));
    }
-   var a=0,b=0;
-   
+ 
+                  dateRanges.reduce(function(bool, range) {
+                   startDateObject=new Date(range.startDate);
+                   startDate=startDateObject.getFullYear()+'-'+(startDateObject.getMonth() + 1)+'-'+startDateObject.getDate();
+                   endDateObject=new Date(range.endDate);
+                   endDate=endDateObject.getFullYear()+'-'+(endDateObject.getMonth() + 1)+'-'+endDateObject.getDate();
+                   //alert('date1 : '+date1+'date2 : '+date3+'date3 : '+startDateObject+'date4 : '+endDateObject);
+                   if ((startDateObject >= date1 && startDateObject <= date3)||(date1 >= startDateObject && date1 <= endDateObject))  {
+                    // alert('clash');
+                    document.getElementById("alert").innerHTML =  'Invalid Date Please Select Again'; 
+                    $('input[name="book_dates"]').val(''); 
+                   }else{
+                     document.getElementById("alert").innerHTML =  '';
+                     $('input[name="book_dates"]').val(picker.startDate.format('YYYY-MM-DD')); 
+                   }
+                   //return bool || (date >= moment(startDate) && date <= moment(endDate));
+               }, false);
   
              
    var Difference_In_Time = date2.getTime() - date1.getTime();
@@ -590,13 +617,14 @@ $('input[name="book_dates"]').on('apply.daterangepicker', function(ev, picker) {
            document.getElementById("multiply_show").innerHTML =  'X';
            document.getElementById("days_show").innerHTML =  ' Days';
            document.getElementById("total_price").innerHTML =  Difference_In_Days*{{$led->price}};
-           document.getElementById("alert").innerHTML =  ''; 
+           //document.getElementById("alert").innerHTML =  ''; 
            document.getElementById("no_of_days").value = Difference_In_Days;
  // console.log(picker.startDate.format('YYYY-MM-DD'));
  // console.log(picker.endDate.format('YYYY-MM-DD'));
  // alert(picker.startDate.format('YYYY-MM-DD')+' : '+'{{$led->bookingduration}}'+' : '+picker.endDate.format('YYYY-MM-DD'));
 });
 //alert('safeer');
+$('input[name="book_dates"]').val('Select Date'); 
        </script>
 @endif
 
