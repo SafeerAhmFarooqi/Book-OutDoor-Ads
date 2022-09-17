@@ -417,6 +417,7 @@
            opens: 'left',
            //singleDatePicker: true,
            minDate: dateToday,
+           autoApply : true,
            isInvalidDate: function(date) {
              // var dateRanges = [
              //       { 'start': moment('2022-06-10'), 'end': moment('2022-06-12') },
@@ -443,11 +444,20 @@
              //alert(startDate+' : '+endDate);
             // alert(picker.startDate.format('YYYY-MM-DD')+' : '+picker.endDate.format('YYYY-MM-DD'));
             //alert(pickerStartDate.getTime()+' : '+startDate.getTime());
-             if(date1.getTime()<startDate.getTime()&&date2.getTime()>endDate.getTime())
+             //if(!(date1.getTime()<startDate.getTime()&&date2.getTime()>endDate.getTime()))
+               if((startDate.getTime() >= date1.getTime() && startDate.getTime() <= date2.getTime())||(date1.getTime() >= startDate.getTime() && date1.getTime() <= endDate.getTime())) 
              {
+               //alert('wrong');
+               document.getElementById("alert").innerHTML =  'Invalid Date Please Select Again'; 
+                   // $('#book_dates').val('');
+                    $('#error').val('true'); 
+             }
+             else{
                a=startDate.getTime() - endDate.getTime();
                disableDays=Math.round(a / (1000 * 3600 * 24)); 
                disableDays=(disableDays-1)*-1;
+               document.getElementById("alert").innerHTML =  ''; 
+               $('#error').val('false');
              }
            });
    // dateRanges.reduce(function(bool, range) {
@@ -461,12 +471,12 @@
              
    var Difference_In_Time = date2.getTime() - date1.getTime();
    var Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24));
-   Difference_In_Days=Difference_In_Days-disableDays;
+   Difference_In_Days=Difference_In_Days-disableDays+2;
            document.getElementById("total_days").innerHTML = Difference_In_Days;
            document.getElementById("multiply_show").innerHTML =  'X';
            document.getElementById("days_show").innerHTML =  ' Days';
            document.getElementById("total_price").innerHTML =  Difference_In_Days*{{$led->price}};
-           document.getElementById("alert").innerHTML =  ''; 
+           
            document.getElementById("no_of_days").value = Difference_In_Days;
           // alert(start.format('YYYY-MM-DD'));
          });
