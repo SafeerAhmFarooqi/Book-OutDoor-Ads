@@ -13,6 +13,7 @@ use App\Models\LedImages;
 use App\Models\City;
 use App\Models\Orders;
 use App\Models\SubOrders;
+use App\Models\BookingDates;
 use Mollie\Laravel\Facades\Mollie;
 
 class DashboardController extends AdminController
@@ -482,7 +483,7 @@ public function handle(Request $request) {
            ]);
 
            foreach ($cartItems as $value) {
-            SubOrders::create([
+            $subOrder=SubOrders::create([
                'user_id' => (Led::findOrFail($value->id))->user->id,
                'led_id' => $value->id,
                'order_id' => $order->id,
@@ -493,6 +494,17 @@ public function handle(Request $request) {
                'endDate' => $value->endDate,
                'order_id' => $order->id,
            ]);
+           $totalDays=$subOrder->startDate->diffInDays($subOrder->endDate)+1;
+           for ($i=0; $i < $totalDays; $i++) { 
+            BookingDates::create([
+               'user_id' => (Led::findOrFail($value->id))->user->id,
+               'led_id' => $value->id,
+               'order_id' => $order->id,
+               'suborder_id' => $subOrder->id,
+               'bookdate' => $subOrder->startDate->addDays($i),
+           ]);
+           }
+          
            }
            $request->session()->forget('cart.items');
            return redirect()->route('led.order.payment',$order->id);
