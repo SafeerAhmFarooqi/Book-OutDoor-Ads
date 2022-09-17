@@ -554,9 +554,33 @@
        var dates=@json($disableDates);
        var dateRanges=@json($disableDates);
        var dateToday = new Date();
+       var maxSpan=0;
+       if('{{$led->bookingduration}}'=='3 Days')
+   {
+      maxSpan=2;
+   }
+   if('{{$led->bookingduration}}'=='1 Week')
+   {
+      maxSpan=6;
+   }
+   if('{{$led->bookingduration}}'=='1 Month')
+   {
+      maxSpan=29;
+   }
+   if('{{$led->bookingduration}}'=='3 Month')
+   {
+      maxSpan=89;
+   }
+   if('{{$led->bookingduration}}'=='6 Month')
+   {
+      maxSpan=179;
+   }
          $('input[name="book_dates"]').daterangepicker({
            opens: 'left',
-           singleDatePicker: true,
+          // singleDatePicker: true,
+          "maxSpan": {
+               "days": maxSpan
+                           },
            autoApply : true,
            minDate: dateToday,
            isInvalidDate: function(date) {
@@ -614,6 +638,8 @@
                    endDateObject=new Date(range.endDate);
                    endDate=endDateObject.getFullYear()+'-'+(endDateObject.getMonth() + 1)+'-'+endDateObject.getDate();
                    //alert('date1 : '+date1+'date2 : '+date3+'date3 : '+startDateObject+'date4 : '+endDateObject);
+                  var maxSpanTime=date2.getTime() - date1.getTime();
+                  var maxSpanCheck=Math.round(maxSpanTime / (1000 * 3600 * 24));
                    if ((startDateObject >= date1 && startDateObject <= date3)||(date1 >= startDateObject && date1 <= endDateObject))  {
                     // alert('clash');
                     document.getElementById("alert").innerHTML =  'Invalid Date Please Select Again'; 

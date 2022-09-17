@@ -71,45 +71,50 @@ class Led extends Model
          if ($this->bookingduration=='3 Days') {
             strtok($value2,'*');
             $date=strtok('*');
-            $startDate=Carbon::parse($date);
-            $endDate=Carbon::parse($startDate);
-            $endDate->addDays(2);
+            $start=strtok($date,'-');
+            $end=strtok('');
+            $startDate=Carbon::parse($start);
+            $endDate=Carbon::parse($end);
             $noOfDays=3;      
         }
 
         if ($this->bookingduration=='1 Week') {
             strtok($value2,'*');
             $date=strtok('*');
-            $startDate=Carbon::parse($date);
-            $endDate=Carbon::parse($startDate);
-            $endDate->addDays(6);
+            $start=strtok($date,'-');
+            $end=strtok('');
+            $startDate=Carbon::parse($start);
+            $endDate=Carbon::parse($end);
             $noOfDays=7;   
         }
 
         if ($this->bookingduration=='1 Month') {
             strtok($value2,'*');
             $date=strtok('*');
-            $startDate=Carbon::parse($date);
-            $endDate=Carbon::parse($startDate);
-            $endDate->addDays(29);
+            $start=strtok($date,'-');
+            $end=strtok('');
+            $startDate=Carbon::parse($start);
+            $endDate=Carbon::parse($end);
             $noOfDays=30;   
         }
 
         if ($this->bookingduration=='3 Month') {
             strtok($value2,'*');
             $date=strtok('*');
-            $startDate=Carbon::parse($date);
-            $endDate=Carbon::parse($startDate);
-            $endDate->addDays(89);
+            $start=strtok($date,'-');
+            $end=strtok('');
+            $startDate=Carbon::parse($start);
+            $endDate=Carbon::parse($end);
             $noOfDays=90;   
         }
 
         if ($this->bookingduration=='6 Month') {
             strtok($value2,'*');
             $date=strtok('*');
-            $startDate=Carbon::parse($date);
-            $endDate=Carbon::parse($startDate);
-            $endDate->addDays(179);
+            $start=strtok($date,'-');
+            $end=strtok('');
+            $startDate=Carbon::parse($start);
+            $endDate=Carbon::parse($end);
             $noOfDays=180;   
         }
         
