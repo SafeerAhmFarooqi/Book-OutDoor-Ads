@@ -541,7 +541,7 @@
    //  // alert(picker.startDate.format('YYYY-MM-DD'));
    //   //$('#daterange').val('');
    // });
-   $('#book_dates').val('');
+ 
        });
        </script>
 @else
@@ -670,7 +670,7 @@
 
          });
    
-         $('#book_dates').val('');
+        
        });
   
        </script> 
