@@ -555,6 +555,7 @@
        var dateRanges=@json($disableDates);
        var dateToday = new Date();
        var maxSpan=0;
+       $('#error').val('true'); 
        if('{{$led->bookingduration}}'=='3 Days')
    {
       maxSpan=2;
@@ -601,6 +602,7 @@
             var date1 = new Date(start);
    var date2 = new Date(start);
    var date3 = new Date(start);
+   var date4 = new Date(end);
    if('{{$led->bookingduration}}'=='3 Days')
    {
       date2.setDate(date2.getDate()+3);
@@ -638,9 +640,23 @@
                    endDateObject=new Date(range.endDate);
                    endDate=endDateObject.getFullYear()+'-'+(endDateObject.getMonth() + 1)+'-'+endDateObject.getDate();
                    //alert('date1 : '+date1+'date2 : '+date3+'date3 : '+startDateObject+'date4 : '+endDateObject);
-                  var maxSpanTime=date2.getTime() - date1.getTime();
-                  var maxSpanCheck=Math.round(maxSpanTime / (1000 * 3600 * 24));
-                   if ((startDateObject >= date1 && startDateObject <= date3)||(date1 >= startDateObject && date1 <= endDateObject))  {
+                  //var maxSpanTime=date4.getTime() - date1.getTime();
+                  // const maxSpanTime = Math.abs(date4 - date1);
+                  // const maxSpanCheck = Math.ceil(maxSpanTime / (1000 * 60 * 60 * 24)); 
+                  // //var maxSpanCheck=Math.round(maxSpanTime / (1000 * 3600 * 24));
+                   const _MS_PER_DAY = 1000 * 60 * 60 * 24;
+
+// a and b are javascript Date objects
+function dateDiffInDays(a, b) {
+  // Discard the time and time-zone information.
+  const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+  const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+
+  return Math.floor((utc2 - utc1) / _MS_PER_DAY);
+}
+var maxSpanCheck=dateDiffInDays(date1, date4)+1;
+                  //alert(dateDiffInDays(date1, date4)+1);
+                   if ((startDateObject >= date1 && startDateObject <= date3)||(date1 >= startDateObject && date1 <= endDateObject)||(maxSpanCheck!=maxSpan+1))  {
                     // alert('clash');
                     document.getElementById("alert").innerHTML =  'Invalid Date Please Select Again'; 
                    // $('#book_dates').val('');
@@ -657,6 +673,7 @@
    var Difference_In_Time = date2.getTime() - date1.getTime();
    var Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24));
    Difference_In_Days=Difference_In_Days;
+  // alert(Difference_In_Days);
            document.getElementById("total_days").innerHTML = Difference_In_Days;
            document.getElementById("multiply_show").innerHTML =  'X';
            document.getElementById("days_show").innerHTML =  ' Days';
