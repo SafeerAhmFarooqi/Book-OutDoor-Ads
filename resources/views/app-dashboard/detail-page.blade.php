@@ -659,6 +659,7 @@ var maxSpanCheck=dateDiffInDays(date1, date4)+1;
                    if ((startDateObject >= date1 && startDateObject <= date3)||(date1 >= startDateObject && date1 <= endDateObject)||(maxSpanCheck!=maxSpan+1))  {
                     // alert('clash');
                     document.getElementById("alert").innerHTML =  'Invalid Date Please Select Again'; 
+                    
                    // $('#book_dates').val('');
                     $('#error').val('true'); 
                    }else{
@@ -680,6 +681,9 @@ var maxSpanCheck=dateDiffInDays(date1, date4)+1;
            document.getElementById("total_price").innerHTML =  Difference_In_Days*{{$led->price}};
            //document.getElementById("alert").innerHTML =  ''; 
            document.getElementById("no_of_days").value = Difference_In_Days;
+           if ($('#error').val()=='true') {
+            document.getElementById("total_days").innerHTML = '';
+           }
           // alert('check 1');
 
 
