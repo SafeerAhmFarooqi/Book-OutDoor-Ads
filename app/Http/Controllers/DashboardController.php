@@ -436,7 +436,8 @@ public function handle(Request $request) {
             $price+=$value->price*$value->noOfDays;
             $tax=$value->price*$value->noOfDays;
             //$key==1?dd($tax) : '';
-            $totalTax+=(($tax/100)*$value->tax);
+           // dd($value);
+            $totalTax+=(($tax/100)*($value->country->tax->tax??0));
             //$key==1?dd($totalTax) : '';
          }
          $totalPrice=$price+$totalTax;
@@ -467,7 +468,7 @@ public function handle(Request $request) {
             foreach ($cartItems as $value) {
                $price+=$value->price*$value->noOfDays;
                $tax=$value->price*$value->noOfDays;
-               $totalTax+=(($tax/100)*$value->tax);
+               $totalTax+=(($tax/100)*($value->country->tax->tax??0));
             }
             $totalPrice=$price+$totalTax;
             // return view('app-dashboard.cart-items',[
@@ -489,7 +490,7 @@ public function handle(Request $request) {
                'order_id' => $order->id,
                'price' => $value->price*$value->noOfDays,
                'no_of_days' => $value->noOfDays,
-               'tax' => $value->tax*$value->noOfDays,
+               'tax' => ($value->country->tax->tax??0)*$value->noOfDays,
                'startDate' => $value->startDate,
                'endDate' => $value->endDate,
                'order_id' => $order->id,
@@ -594,7 +595,7 @@ public function handle(Request $request) {
          $totalTax=0;
             foreach ($cartItems as $value) {
                $price+=$value->price*$value->noOfDays;
-            $totalTax+=$value->tax*$value->noOfDays;
+            $totalTax+=($value->country->tax->tax??0)*$value->noOfDays;
             }
             $totalPrice=$price+$totalTax;
             return view('app-dashboard.cart-items',[

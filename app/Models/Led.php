@@ -15,7 +15,7 @@ class Led extends Model
 
     protected $dates = ['startDate','endDate'];
 
-    protected $fillable = ['user_id','city_id', 'title','multimedia','multimediaquantity','bookingduration','description', 'location', 'price', 'tax', 'estviews', 'city', 'popular', 'trending'];
+    protected $fillable = ['user_id','city_id','country_id', 'title','multimedia','multimediaquantity','bookingduration','description', 'location', 'price', 'tax', 'estviews', 'city', 'popular', 'trending'];
 
     protected static function booted()
     {
@@ -56,6 +56,11 @@ class Led extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function country()
+    {
+        return $this->belongsTo(Country::class, 'country_id');
     }
 
     public function setStartAndEndDate($value)
