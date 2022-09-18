@@ -555,7 +555,7 @@
        var dateToday = new Date();
        var maxSpan=0;
        //$('#error').val('true'); 
-       document.getElementById("error").value = 'true';
+      // document.getElementById("error").value = 'true';
        if('{{$led->bookingduration}}'=='3 Days')
    {
       maxSpan=2;
@@ -618,6 +618,7 @@
                if((startDate.getDate() >= date1.getDate() && startDate.getDate() <= date2.getDate())||(date1.getDate() >= startDate.getDate() && date1.getDate() <= endDate.getDate())||(Difference_In_Days!=(maxSpan+1))) 
              {
                //alert('wrong');
+               alert('Invalid Date Selection');
                document.getElementById("alert").innerHTML =  'Invalid Date Please Select Again'; 
                    // $('#book_dates').val('');
                     //$('#error').val('true'); 
