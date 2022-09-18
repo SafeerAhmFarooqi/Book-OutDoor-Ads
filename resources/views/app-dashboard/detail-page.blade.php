@@ -599,39 +599,40 @@
          }, function(start, end, label) {
           //  alert(start)
             var date1 = new Date(start);
-   var date2 = new Date(start);
-   var date3 = new Date(start);
-   var date4 = new Date(end);
-   if('{{$led->bookingduration}}'=='3 Days')
-   {
-      date2.setDate(date2.getDate()+3);
-      date3.setDate(date3.getDate()+2);
-      date3.setTime(date3.getTime() + (6*60*60*1000));
-   }
-   if('{{$led->bookingduration}}'=='1 Week')
-   {
-      date2.setDate(date2.getDate()+7);
-      date3.setDate(date3.getDate()+6);
-      date3.setTime(date3.getTime() + (6*60*60*1000));
-   }
-   if('{{$led->bookingduration}}'=='1 Month')
-   {
-      date2.setDate(date2.getDate()+30);
-      date3.setDate(date3.getDate()+29);
-      date3.setTime(date3.getTime() + (6*60*60*1000));
-   }
-   if('{{$led->bookingduration}}'=='3 Month')
-   {
-      date2.setDate(date2.getDate()+90);
-      date3.setDate(date3.getDate()+89);
-      date3.setTime(date3.getTime() + (6*60*60*1000));
-   }
-   if('{{$led->bookingduration}}'=='6 Month')
-   {
-      date2.setDate(date2.getDate()+180);
-      date3.setDate(date3.getDate()+179);
-      date3.setTime(date3.getTime() + (6*60*60*1000));
-   }
+   var date2 = new Date(end);
+   //alert(date2.getDate());
+  // var date3 = new Date(end);
+  // var date4 = new Date(end);
+   // if('{{$led->bookingduration}}'=='3 Days')
+   // {
+   //    date2.setDate(date2.getDate()+3);
+   //    date3.setDate(date3.getDate()+2);
+   //    date3.setTime(date3.getTime() + (6*60*60*1000));
+   // }
+   // if('{{$led->bookingduration}}'=='1 Week')
+   // {
+   //    date2.setDate(date2.getDate()+7);
+   //    date3.setDate(date3.getDate()+6);
+   //    date3.setTime(date3.getTime() + (6*60*60*1000));
+   // }
+   // if('{{$led->bookingduration}}'=='1 Month')
+   // {
+   //    date2.setDate(date2.getDate()+30);
+   //    date3.setDate(date3.getDate()+29);
+   //    date3.setTime(date3.getTime() + (6*60*60*1000));
+   // }
+   // if('{{$led->bookingduration}}'=='3 Month')
+   // {
+   //    date2.setDate(date2.getDate()+90);
+   //    date3.setDate(date3.getDate()+89);
+   //    date3.setTime(date3.getTime() + (6*60*60*1000));
+   // }
+   // if('{{$led->bookingduration}}'=='6 Month')
+   // {
+   //    date2.setDate(date2.getDate()+180);
+   //    date3.setDate(date3.getDate()+179);
+   //    date3.setTime(date3.getTime() + (6*60*60*1000));
+   // }
  
                   dateRanges.reduce(function(bool, range) {
                    startDateObject=new Date(range.startDate);
@@ -643,19 +644,10 @@
                   // const maxSpanTime = Math.abs(date4 - date1);
                   // const maxSpanCheck = Math.ceil(maxSpanTime / (1000 * 60 * 60 * 24)); 
                   // //var maxSpanCheck=Math.round(maxSpanTime / (1000 * 3600 * 24));
-                   const _MS_PER_DAY = 1000 * 60 * 60 * 24;
-
-// a and b are javascript Date objects
-function dateDiffInDays(a, b) {
-  // Discard the time and time-zone information.
-  const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
-  const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
-
-  return Math.floor((utc2 - utc1) / _MS_PER_DAY);
-}
-var maxSpanCheck=dateDiffInDays(date1, date4)+1;
+                  
+var maxSpanCheck=(date2.getDate() - date1.getDate())+1;
                   //alert(dateDiffInDays(date1, date4)+1);
-                   if ((startDateObject >= date1 && startDateObject <= date3)||(date1 >= startDateObject && date1 <= endDateObject)||(maxSpanCheck!=maxSpan+1))  {
+                   if ((startDateObject.getDate() >= date1.getDate() && startDateObject.getDate() <= date2.getDate())||(date1.getDate() >= startDateObject.getDate() && date1.getDate() <= endDateObject.getDate())||(maxSpanCheck!=maxSpan+1))  {
                     // alert('clash');
                     document.getElementById("alert").innerHTML =  'Invalid Date Please Select Again'; 
                     
@@ -670,9 +662,8 @@ var maxSpanCheck=dateDiffInDays(date1, date4)+1;
                }, false);
   
              
-   var Difference_In_Time = date2.getTime() - date1.getTime();
-   var Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24));
-   Difference_In_Days=Difference_In_Days;
+   var Difference_In_Days = date2.getDate() - date1.getDate();
+   Difference_In_Days=Difference_In_Days+1;
   // alert(Difference_In_Days);
            document.getElementById("total_days").innerHTML = Difference_In_Days;
            document.getElementById("multiply_show").innerHTML =  'X';
