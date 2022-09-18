@@ -554,7 +554,8 @@
        var dateRanges=@json($disableDates);
        var dateToday = new Date();
        var maxSpan=0;
-       $('#error').val('true'); 
+       //$('#error').val('true'); 
+       document.getElementById("error").value = 'true';
        if('{{$led->bookingduration}}'=='3 Days')
    {
       maxSpan=2;
@@ -597,84 +598,55 @@
                }, false);
            }
          }, function(start, end, label) {
-          //  alert(start)
             var date1 = new Date(start);
    var date2 = new Date(end);
-   //alert(date2.getDate());
-  // var date3 = new Date(end);
-  // var date4 = new Date(end);
-   // if('{{$led->bookingduration}}'=='3 Days')
-   // {
-   //    date2.setDate(date2.getDate()+3);
-   //    date3.setDate(date3.getDate()+2);
-   //    date3.setTime(date3.getTime() + (6*60*60*1000));
-   // }
-   // if('{{$led->bookingduration}}'=='1 Week')
-   // {
-   //    date2.setDate(date2.getDate()+7);
-   //    date3.setDate(date3.getDate()+6);
-   //    date3.setTime(date3.getTime() + (6*60*60*1000));
-   // }
-   // if('{{$led->bookingduration}}'=='1 Month')
-   // {
-   //    date2.setDate(date2.getDate()+30);
-   //    date3.setDate(date3.getDate()+29);
-   //    date3.setTime(date3.getTime() + (6*60*60*1000));
-   // }
-   // if('{{$led->bookingduration}}'=='3 Month')
-   // {
-   //    date2.setDate(date2.getDate()+90);
-   //    date3.setDate(date3.getDate()+89);
-   //    date3.setTime(date3.getTime() + (6*60*60*1000));
-   // }
-   // if('{{$led->bookingduration}}'=='6 Month')
-   // {
-   //    date2.setDate(date2.getDate()+180);
-   //    date3.setDate(date3.getDate()+179);
-   //    date3.setTime(date3.getTime() + (6*60*60*1000));
-   // }
- 
-                  dateRanges.reduce(function(bool, range) {
-                   startDateObject=new Date(range.startDate);
-                   startDate=startDateObject.getFullYear()+'-'+(startDateObject.getMonth() + 1)+'-'+startDateObject.getDate();
-                   endDateObject=new Date(range.endDate);
-                   endDate=endDateObject.getFullYear()+'-'+(endDateObject.getMonth() + 1)+'-'+endDateObject.getDate();
-                   //alert('date1 : '+date1+'date2 : '+date3+'date3 : '+startDateObject+'date4 : '+endDateObject);
-                  //var maxSpanTime=date4.getTime() - date1.getTime();
-                  // const maxSpanTime = Math.abs(date4 - date1);
-                  // const maxSpanCheck = Math.ceil(maxSpanTime / (1000 * 60 * 60 * 24)); 
-                  // //var maxSpanCheck=Math.round(maxSpanTime / (1000 * 3600 * 24));
-                  
-var maxSpanCheck=(date2.getDate() - date1.getDate())+1;
-                  //alert(dateDiffInDays(date1, date4)+1);
-                   if ((startDateObject.getDate() >= date1.getDate() && startDateObject.getDate() <= date2.getDate())||(date1.getDate() >= startDateObject.getDate() && date1.getDate() <= endDateObject.getDate())||(maxSpanCheck!=maxSpan+1))  {
-                    // alert('clash');
-                    document.getElementById("alert").innerHTML =  'Invalid Date Please Select Again'; 
-                    
-                   // $('#book_dates').val('');
-                    $('#error').val('true'); 
-                   }else{
-                     document.getElementById("alert").innerHTML =  '';
-                     $('#error').val('false');
-                    // $('#book_dates').val(start); 
-                   }
-                   //return bool || (date >= moment(startDate) && date <= moment(endDate));
-               }, false);
-  
-             
-   var Difference_In_Days = date2.getDate() - date1.getDate();
+   var disableDays=0;
+   var a=0,b=0;
+   
+   var Difference_In_Days =date2.getDate() - date1.getDate();
    Difference_In_Days=Difference_In_Days+1;
-  // alert(Difference_In_Days);
+   //alert(Difference_In_Days);
+   dateRanges.forEach(range => {
+             startDateObject=new Date(range.startDate);
+                   startDate=new Date(startDateObject.getFullYear()+'-'+(startDateObject.getMonth() + 1)+'-'+startDateObject.getDate());
+                   endDateObject=new Date(range.endDate);
+                   endDate=new Date(endDateObject.getFullYear()+'-'+(endDateObject.getMonth() + 1)+'-'+endDateObject.getDate());
+             //alert(startDate+' : '+endDate);
+            // alert(picker.startDate.format('YYYY-MM-DD')+' : '+picker.endDate.format('YYYY-MM-DD'));
+            //alert(pickerStartDate.getTime()+' : '+startDate.getTime());
+             //if(!(date1.getTime()<startDate.getTime()&&date2.getTime()>endDate.getTime()))
+               if((startDate.getDate() >= date1.getDate() && startDate.getDate() <= date2.getDate())||(date1.getDate() >= startDate.getDate() && date1.getDate() <= endDate.getDate())||(Difference_In_Days!=(maxSpan+1))) 
+             {
+               //alert('wrong');
+               document.getElementById("alert").innerHTML =  'Invalid Date Please Select Again'; 
+                   // $('#book_dates').val('');
+                    //$('#error').val('true'); 
+                    document.getElementById("error").value = 'true';
+             }
+             else{
+             
+               document.getElementById("alert").innerHTML =  ''; 
+              // $('#error').val('false');
+               document.getElementById("error").value = 'false';
+             }
+           });
+   // dateRanges.reduce(function(bool, range) {
+   //                 startDateObject=new Date(range.startDate);
+   //                 endDateObject=new Date(range.endDate);
+   //                 if(date1.getTime()<startDateObject.getTime()&&date2.getTime()>endDateObject.getTime())
+   //                 {
+                       
+   //                 }
+   //             }
+             
+   
+   
            document.getElementById("total_days").innerHTML = Difference_In_Days;
            document.getElementById("multiply_show").innerHTML =  'X';
            document.getElementById("days_show").innerHTML =  ' Days';
            document.getElementById("total_price").innerHTML =  Difference_In_Days*{{$led->price}};
-           //document.getElementById("alert").innerHTML =  ''; 
+           
            document.getElementById("no_of_days").value = Difference_In_Days;
-         //   if ($('#error').val()=='true') {
-         //    document.getElementById("total_days").innerHTML = '';
-         //   }
-          // alert('check 1');
 
 
 
