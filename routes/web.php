@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\AdminClientController;
 use App\Http\Controllers\Admin\AdminLedController;
 use App\Http\Controllers\Admin\AdminCityController;
 use App\Http\Controllers\Admin\AdminBillingController;
+use App\Http\Controllers\Admin\AdminCountryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -106,6 +107,9 @@ Route::group(['middleware' => ['role:Admin','auth']], function () {
     Route::post('/admin-led-comment-deactivate', [AdminLedController::class,'deactivateLedComment'])->name('admin.led.comment.deactivate');
     Route::post('/admin-led-comment-delete', [AdminLedController::class,'deleteLedComment'])->name('admin.led.comment.delete');
     Route::resource('billing', AdminBillingController::class, [
+        'as' => 'admin'
+    ]);
+    Route::resource('country', AdminCountryController::class, [
         'as' => 'admin'
     ]);
 });

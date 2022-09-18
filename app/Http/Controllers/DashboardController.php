@@ -399,7 +399,7 @@ public function handle(Request $request) {
          $subOrders=SubOrders::all();
          $orderCount=0;
          foreach ($subOrders as $subOrder) {
-            if($subOrder->order->payment_status==true)
+            if($subOrder->order->payment_status)
             {
                $orderCount++;
             }
