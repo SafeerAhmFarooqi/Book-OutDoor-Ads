@@ -436,6 +436,7 @@
    var date2 = new Date(end);
    var disableDays=0;
    var a=0,b=0;
+   //alert(date2.getDate());
    dateRanges.forEach(range => {
              startDateObject=new Date(range.startDate);
                    startDate=new Date(startDateObject.getFullYear()+'-'+(startDateObject.getMonth() + 1)+'-'+startDateObject.getDate());
@@ -445,7 +446,7 @@
             // alert(picker.startDate.format('YYYY-MM-DD')+' : '+picker.endDate.format('YYYY-MM-DD'));
             //alert(pickerStartDate.getTime()+' : '+startDate.getTime());
              //if(!(date1.getTime()<startDate.getTime()&&date2.getTime()>endDate.getTime()))
-               if((startDate.getTime() >= date1.getTime() && startDate.getTime() <= date2.getTime())||(date1.getTime() >= startDate.getTime() && date1.getTime() <= endDate.getTime())) 
+               if((startDate.getDate() >= date1.getDate() && startDate.getDate() <= date2.getDate())||(date1.getDate() >= startDate.getDate() && date1.getDate() <= endDate.getDate())) 
              {
                //alert('wrong');
                document.getElementById("alert").innerHTML =  'Invalid Date Please Select Again'; 
@@ -453,9 +454,7 @@
                     $('#error').val('true'); 
              }
              else{
-               a=startDate.getTime() - endDate.getTime();
-               disableDays=Math.round(a / (1000 * 3600 * 24)); 
-               disableDays=(disableDays-1)*-1;
+             
                document.getElementById("alert").innerHTML =  ''; 
                $('#error').val('false');
              }
@@ -469,9 +468,9 @@
    //                 }
    //             }
              
-   var Difference_In_Time = date2.getTime() - date1.getTime();
-   var Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24));
-   Difference_In_Days=Difference_In_Days-disableDays+2;
+   
+   var Difference_In_Days =date2.getDate() - date1.getDate();
+   Difference_In_Days=Difference_In_Days+1;
            document.getElementById("total_days").innerHTML = Difference_In_Days;
            document.getElementById("multiply_show").innerHTML =  'X';
            document.getElementById("days_show").innerHTML =  ' Days';
