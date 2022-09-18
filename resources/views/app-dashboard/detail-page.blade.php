@@ -671,9 +671,9 @@ var maxSpanCheck=(date2.getDate() - date1.getDate())+1;
            document.getElementById("total_price").innerHTML =  Difference_In_Days*{{$led->price}};
            //document.getElementById("alert").innerHTML =  ''; 
            document.getElementById("no_of_days").value = Difference_In_Days;
-           if ($('#error').val()=='true') {
-            document.getElementById("total_days").innerHTML = '';
-           }
+         //   if ($('#error').val()=='true') {
+         //    document.getElementById("total_days").innerHTML = '';
+         //   }
           // alert('check 1');
 
 
