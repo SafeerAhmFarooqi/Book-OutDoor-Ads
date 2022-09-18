@@ -9,6 +9,7 @@ use App\Models\Led;
 use App\Models\LedImages;
 use Illuminate\Support\Facades\Storage;
 use App\Models\City;
+use App\Models\Country;
 
 class ClientLedController extends BaseClientController
 {
@@ -16,7 +17,9 @@ class ClientLedController extends BaseClientController
     public function addLed()
     {
         $cities=City::all();
+        $countries=Country::where('status',true)->get();
         return view('client-dashboard.led-add-page',[
+            'countries'=>$countries,
             'cities'=>$cities,
             'bookingDurations'=>Led::$bookingDurations,
         ]);
@@ -28,13 +31,13 @@ class ClientLedController extends BaseClientController
             //Validation Rules
             'title' => ['required', 'string', 'max:255'],
             'description' => ['required'],
+            'country' => ['required', 'string', 'max:500'],
             'location' => ['required', 'string', 'max:500'],
             'ledtype' => ['required'],
             'multimediaquantity' => $request->ledtype==2?['required', 'integer'] : '',
             'bookingduration' => ['required'],
             'city' => ['required', 'string', 'max:500'],
             'price' => ['required', 'numeric'],
-            'tax' => ['required', 'numeric'],
             'estviews' => [ 'string','nullable', 'max:255'],
             'images' => 'required',
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,bmp|max:20000'
@@ -51,8 +54,8 @@ class ClientLedController extends BaseClientController
             'multimediaquantity' => 'Multimedia Quantity',
             'bookingduration' => 'Booking Duration',
             'city' => 'City',
+            'country' => 'Country',
             'price' => 'Price',
-            'tax' => 'Tax',
             'estviews' => "Estimated Views",
             'images' => 'Image',
         ]);
@@ -65,8 +68,8 @@ class ClientLedController extends BaseClientController
             'multimediaquantity' => $request->ledtype==2?$request->multimediaquantity : null,
             'bookingduration' => $request->bookingduration,
             'city_id' => $request->city,
+            'country_id' => $request->country,
             'price' => $request->price,
-            'tax' => $request->tax,
             'estviews' => $request->estviews,
         ]);
 
@@ -114,7 +117,10 @@ class ClientLedController extends BaseClientController
         {
             $led=Led::with('images')->where('id',$id)->first();
         }
-        return view('client-dashboard.led-edit-page',['led' => $led]);
+        return view('client-dashboard.led-edit-page',[
+            'led' => $led,
+            'countries' => Country::where('status',true)->get(),
+        ]);
     }
 
     public function updateLed(Request $request,$id)
@@ -127,10 +133,10 @@ class ClientLedController extends BaseClientController
         $request->validate([
             //Validation Rules
             'title' => ['required', 'string', 'max:255'],
+            'country_id' => ['required', 'string'],
             'description' => ['required', 'string'],
             'location' => ['required', 'string', 'max:500'],
             'price' => ['required', 'numeric'],
-            'tax' => ['required', 'numeric'],
             'estviews' => ['string','nullable', 'max:255'],
             'images.*' => 'image|mimes:jpeg,png,jpg,gif,svg,bmp|max:20000'
           
@@ -141,9 +147,9 @@ class ClientLedController extends BaseClientController
             //Validation Attributes
             'title' => 'Title',
             'description' => 'Description',
+            'country_id' => 'Country',   
             'location' => 'Location',   
             'price' => 'Price',
-            'tax' => 'Tax',
             'estviews' => "Estimated Views",
             'images' => 'Image',
         ]);

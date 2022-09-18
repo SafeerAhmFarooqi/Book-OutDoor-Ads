@@ -54,6 +54,31 @@
                         </div>
                         <div class="row mb-6">
                             <!--begin::Label-->
+                            <label class="col-lg-4 col-form-label fw-bold fs-6">
+                                <span class="required">Country</span>
+                                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Location of Led"></i>
+                            </label>
+                            <!--end::Label-->
+                            <!--begin::Col-->
+                            <div class="col-lg-8 fv-row">
+                                <select name="country_id" aria-label="Select a Country" data-control="select2" data-placeholder="Select a Country..." class="form-select form-select-solid form-select-lg fw-bold">
+                                    <option value="">Select a Country...</option>
+                                    @foreach ($countries as $country)
+                                    <option data-kt-flag="flags/afghanistan.svg" value="{{$country->id}}" {{$led->country_id==$country->id? 'Selected' : ''}}>{{$country->country}}</option>                                        
+                                    @endforeach
+
+                                    {{-- <option data-kt-flag="flags/aland-islands.svg" value="AX">Aland Islands</option> --}}
+                                </select>
+                                @error('country')
+                                <div class="alert alert-danger">
+                                        {{$message}}
+                                </div>
+                                @enderror
+                            </div>
+                            <!--end::Col-->
+                        </div>
+                        <div class="row mb-6">
+                            <!--begin::Label-->
                             <label class="col-lg-4 col-form-label required fw-bold fs-6">Location</label>
                             <!--end::Label-->
                             <!--begin::Col-->
@@ -82,21 +107,7 @@
                             </div>
                             <!--end::Col-->
                         </div>
-                        <div class="row mb-6">
-                            <!--begin::Label-->
-                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Tax</label>
-                            <!--end::Label-->
-                            <!--begin::Col-->
-                            <div class="col-lg-8 fv-row">
-                                <input type="text" name="tax" class="form-control form-control-lg form-control-solid" placeholder="Tax" value="{{old('tax')?old('tax') : $led->tax}}" />
-                                @error('tax')
-                                <div class="alert alert-danger">
-                                        {{$message}}
-                                </div>
-                                @enderror
-                            </div>
-                            <!--end::Col-->
-                        </div>
+                     
 
                         <div class="row mb-6">
                             <!--begin::Label-->
