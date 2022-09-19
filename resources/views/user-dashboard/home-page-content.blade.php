@@ -11,7 +11,7 @@
                 <div class="card-header pt-5">
                    
                     <div class="card-body p-9">
-                        <div class="fs-4 fw-bold text-gray-600 mb-7">Orders</div>
+                        <div class="fs-4 fw-bold text-gray-600 mb-7">Aufträge</div>
                         <div class="fs-2hx fw-bolder">{{$subOrdersCount}}</div>
                         
                     </div>
@@ -33,7 +33,7 @@
                 <div class="card-header pt-5">
                    
                     <div class="card-body p-9">
-                        <div class="fs-4 fw-bold text-gray-600 mb-7">Completed Orders</div>
+                        <div class="fs-4 fw-bold text-gray-600 mb-7">Abgeschlossene Bestellungen</div>
                         <div class="fs-2hx fw-bolder">{{$completedSubOrdersCount}}</div>
                     </div>
                    

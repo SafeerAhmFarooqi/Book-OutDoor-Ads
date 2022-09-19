@@ -158,7 +158,7 @@ public function handle(Request $request) {
       if($request->error=='true')
       {
          return back()->with([
-            'error'=>'Invalid Date Selection',
+            'error'=>'Ungültige Datumsauswahl',
          ]);
       }
       $request->validate([
@@ -168,7 +168,7 @@ public function handle(Request $request) {
        
      ],[
          //Validation Messages
-         'required'=>':attribute is Required',
+         'required'=>':-Attribut ist erforderlich',
      ],[
          //Validation Attributes
          'no_of_days' =>'Booking Date',
@@ -176,7 +176,7 @@ public function handle(Request $request) {
      ]);
      // dd($request->book_dates);
       $request->session()->push('cart.items', $request->led_id.'*'.$request->book_dates.'*'.$request->no_of_days);
-      return back()->with('message', 'Item Added to Cart Successfully' );
+      return back()->with('message', 'Artikel erfolgreich in den Einkaufswagen gelegt' );
    }
 
    public function deleteLedFromCart(Request $request)
@@ -194,7 +194,7 @@ public function handle(Request $request) {
          unset($cartArray[$index]);
          $cartArray=array_values($cartArray);
          $request->session()->put('cart.items',$cartArray);
-         return back()->with('message', 'Item Deleted from Cart Successfully' );
+         return back()->with('message', 'Artikel wurde erfolgreich aus dem Einkaufswagen gelöscht' );
       }
       return back();
    }

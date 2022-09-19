@@ -6,7 +6,7 @@
             <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse" data-bs-target="#kt_account_profile_details" aria-expanded="true" aria-controls="kt_account_profile_details">
                 <!--begin::Card title-->
                 <div class="card-title m-0">
-                    <h3 class="fw-bolder m-0">Add Led</h3>
+                    <h3 class="fw-bolder m-0">Fügen Sie eine neue LED hinzu </h3>
                 </div>
                 <!--end::Card title-->
             </div>
@@ -23,7 +23,7 @@
                         <div class="row mb-6">
                             <!--begin::Label-->
                             <label class="col-lg-4 col-form-label fw-bold fs-6">
-                                <span class="required">Led Type</span>
+                                <span class="required">Led Typ</span>
                                 <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Location of Led"></i>
                             </label>
                             <!--end::Label-->
@@ -44,11 +44,11 @@
 
                         <div class="row mb-6" id="multimediaquantitydropdown">
                             <!--begin::Label-->
-                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Booking Per Day</label>
+                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Buchung pro Tag</label>
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
-                                <input type="number" name="multimediaquantity" class="form-control form-control-lg form-control-solid" placeholder="Enter Number ( This field appear only when multimedia selected" value="{{old('multimediaquantity')}}" />
+                                <input type="number" name="multimediaquantity" class="form-control form-control-lg form-control-solid" placeholder="Wie viel Zeit buchen Sie das?" value="{{old('multimediaquantity')}}" />
                                 @error('multimediaquantity')
                                 <div class="alert alert-danger">
                                         {{$message}}
@@ -60,7 +60,7 @@
 
                         <div class="row mb-6" id="multimediaquantitydropdown">
                             <!--begin::Label-->
-                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Booking Duration</label>
+                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Buchungsdauer</label>
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
@@ -80,7 +80,7 @@
 
                         <div class="row mb-6">
                             <!--begin::Label-->
-                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Title</label>
+                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Titel</label>
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
@@ -97,7 +97,7 @@
 
                         <div class="row mb-6">
                             <!--begin::Label-->
-                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Description</label>
+                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Beschreibung</label>
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
@@ -120,8 +120,8 @@
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
-                                <select name="country" aria-label="Select a Country" data-control="select2" data-placeholder="Select a Country..." class="form-select form-select-solid form-select-lg fw-bold">
-                                    <option value="">Select a Country...</option>
+                                <select name="country" aria-label="Select a Country" data-control="select2" data-placeholder="Wähle ein Country..." class="form-select form-select-solid form-select-lg fw-bold">
+                                    <option value="">Wähle ein Country...</option>
                                     @foreach ($countries as $country)
                                     <option data-kt-flag="flags/afghanistan.svg" value="{{$country->id}}">{{$country->country}}</option>                                        
                                     @endforeach
@@ -138,11 +138,11 @@
                         </div>
                         <div class="row mb-6">
                             <!--begin::Label-->
-                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Location</label>
+                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Ort</label>
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
-                                <input type="text" name="location" class="form-control form-control-lg form-control-solid" placeholder="Location" value="{{old('location')}}" id="myAddress"/>
+                                <input type="text" name="location" class="form-control form-control-lg form-control-solid" placeholder="Ort" value="{{old('location')}}" id="myAddress"/>
                                 @error('location')
                                 <div class="alert alert-danger">
                                         {{$message}}
@@ -158,14 +158,14 @@
                         <div class="row mb-6">
                             <!--begin::Label-->
                             <label class="col-lg-4 col-form-label fw-bold fs-6">
-                                <span class="required">City</span>
+                                <span class="required">Stadt</span>
                                 <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Location of Led"></i>
                             </label>
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
-                                <select name="city" aria-label="Select a City" data-control="select2" data-placeholder="Select a City..." class="form-select form-select-solid form-select-lg fw-bold">
-                                    <option value="">Select a City...</option>
+                                <select name="city" aria-label="Select a City" data-control="select2" data-placeholder="Wählen Sie eine Stadt aus ..." class="form-select form-select-solid form-select-lg fw-bold">
+                                    <option value="">Wählen Sie eine Stadt aus...</option>
                                     @foreach ($cities as $city)
                                     <option data-kt-flag="flags/afghanistan.svg" value="{{$city->id}}">{{$city->city}}</option>                                        
                                     @endforeach
@@ -191,11 +191,11 @@
                         </div>
                         <div class="row mb-6">
                             <!--begin::Label-->
-                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Price</label>
+                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Preis</label>
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
-                                <input type="text" name="price" class="form-control form-control-lg form-control-solid" placeholder="Price" value="{{old('price')}}" />
+                                <input type="text" name="price" class="form-control form-control-lg form-control-solid" placeholder="Preis" value="{{old('price')}}" />
                                 @error('price')
                                 <div class="alert alert-danger">
                                         {{$message}}
@@ -208,11 +208,11 @@
 
                         <div class="row mb-6">
                             <!--begin::Label-->
-                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Estimated Views</label>
+                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Geschätzte Aufrufe</label>
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
-                                <input type="text" name="estviews" class="form-control form-control-lg form-control-solid" placeholder="Estimated Views" value="{{old('estviews')}}" />
+                                <input type="text" name="estviews" class="form-control form-control-lg form-control-solid" placeholder="Geschätzte Aufrufe" value="{{old('estviews')}}" />
                                 @error('estviews')
                                 <div class="alert alert-danger">
                                         {{$message}}
@@ -224,7 +224,7 @@
 
                         <div class="row mb-6">
                             <!--begin::Label-->
-                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Led Images</label>
+                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Geführte Bilder</label>
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
@@ -246,9 +246,11 @@
                     <!--end::Card body-->
                     <!--begin::Actions-->
                     <div class="card-footer d-flex justify-content-end py-6 px-9">
-                        <a href="{{route('dashboard')}}" class="btn btn-light btn-active-light-primary me-2">Back</a>
-                        <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button>
-                        <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Save Changes</button>
+                        <a href="{{route('dashboard')}}" class="btn btn-light btn-active-light-primary me-2">Der Rücken
+</a>
+                        <button type="reset" class="btn btn-light btn-active-light-primary me-2">Verwerfen
+</button>
+                        <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Änderungen speichern</button>
                     </div>
                     <!--end::Actions-->
                 </form>

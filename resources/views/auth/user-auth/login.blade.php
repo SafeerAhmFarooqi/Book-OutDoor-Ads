@@ -9,8 +9,8 @@
             <div class="row">
                 <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
                     <h2 class="cp-heading">LOG IN </h2>
-                    <p class="log-info-text">Gain access for the rental LED experience</p>
-                        <a href="{{route('user.register',($redirectUrl??''))}}" ><p class="log-forgot-text" style="margin:0 !important">Create New Account</p></a>
+                    <p class="log-info-text">Erhalten Sie Zugang zum Miet-LED-Erlebnis</p>
+                        <a href="{{route('user.register',($redirectUrl??''))}}" ><p class="log-forgot-text" style="margin:0 !important">Neuen Account erstellen</p></a>
 
                     <div class="row w3-padding-36-top">
                         <div class="col-md-12">
@@ -48,7 +48,7 @@
                     </div>
                 </div>
                 <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
-                  <img src="{{asset('assets/newtheme2023/images/loginledimage.jpg')}}" class="cp-img w3-hide-small w3-hide-medium w3-right w3-padding-right">
+                  <img src="{{asset('assets/newtheme2023/images/loginledimage3.jpeg')}}" class="cp-img w3-hide-small w3-hide-medium w3-right w3-padding-right" >
                 </div>
             </div>
         </div>

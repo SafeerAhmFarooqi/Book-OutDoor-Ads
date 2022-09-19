@@ -33,7 +33,7 @@
                 <div class="card-header pt-5">
                    
                     <div class="card-body p-9">
-                        <div class="fs-4 fw-bold text-gray-600 mb-7">Orders</div>
+                        <div class="fs-4 fw-bold text-gray-600 mb-7">Aufträge</div>
                         <div class="fs-2hx fw-bolder">{{$ordersCount}}</div>
                     </div>
                    
@@ -54,8 +54,8 @@
                 <div class="card-header pt-5">
                    
                     <div class="card-body p-9">
-                        <div class="fs-4 fw-bold text-gray-600 mb-7">Income</div>
-                        <div class="fs-2hx fw-bolder">€ {{$totalIncome}}</div>
+                        <div class="fs-4 fw-bold text-gray-600 mb-7">Einkommen</div>
+                        <div class="fs-2hx fw-bolder"> {{$totalIncome}} €</div>
                     </div>
                    
                     <div class="card-toolbar">

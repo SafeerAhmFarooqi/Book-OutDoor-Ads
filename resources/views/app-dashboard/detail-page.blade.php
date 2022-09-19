@@ -85,8 +85,8 @@
                         {!! preg_replace('#<script(.*?)>(.*?)</script>#is', '', $led->description) !!}
                      </div>
                      <div class="flex-con-sb w3-padding-24-top">
-                        <p class="font-16 font-12-sm w3-theme-text">REF NO:  {{$led->id}}</p>
-                        <p class="font-16 font-12-sm w3-theme-text">ADDED ON: {{$led->created_at->format('F d,y')}}</p>
+                        <p class="font-16 font-12-sm w3-theme-text">Referenznummer :  {{$led->id}}</p>
+                        <p class="font-16 font-12-sm w3-theme-text">Erstellungsdatum : {{$led->created_at->format('F d,y')}}</p>
                      </div>
                   </div>
                   <hr>
@@ -96,7 +96,7 @@
                   </div>
                  
                   <div class="desc">
-                     <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text" style="padding: 50px 50px 10px 0px !important;">Leave Comments </h2>
+                     <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text" style="padding: 50px 50px 10px 0px !important;">Hinterlasse einen Kommentar </h2>
                         <div class="media-body">
                            @if (Auth::check()&&Auth::user()->hasRole('User'))
                            
@@ -105,7 +105,9 @@
                            @else
                            <div class="alert alert-warning">
                                     <a href="{{route('user.login','led-detail-'.$led->id)}}" class="btn btn-xs btn-warning pull-right">Login  </a>
-                                    <strong>Warning:</strong> You need to sign in your account for comment 
+                                    <strong>Warnung
+:</strong> Sie müssen sich zum Kommentieren in Ihr Konto einloggen
+
                                 </div>
                            @endif
                               
@@ -449,7 +451,7 @@
                if((startDate.getDate() >= date1.getDate() && startDate.getDate() <= date2.getDate())||(date1.getDate() >= startDate.getDate() && date1.getDate() <= endDate.getDate())) 
              {
                //alert('wrong');
-               document.getElementById("alert").innerHTML =  'Invalid Date Please Select Again'; 
+               document.getElementById("alert").innerHTML =  'Ungültiges Datum Bitte erneut auswählen'; 
                    // $('#book_dates').val('');
                     $('#error').val('true'); 
              }
@@ -619,7 +621,7 @@
              {
                //alert('wrong');
               // alert('Invalid Date Selection');
-               document.getElementById("alert").innerHTML =  'Invalid Date Please Select Again'; 
+               document.getElementById("alert").innerHTML =  'Ungültiges Datum Bitte erneut auswählen'; 
                    // $('#book_dates').val('');
                     //$('#error').val('true'); 
                     document.getElementById("error").value = 'true';
@@ -635,7 +637,7 @@
              {
                //alert('wrong');
               // alert('Invalid Date Selection');
-               document.getElementById("alert").innerHTML =  'Invalid Date Please Select Again'; 
+               document.getElementById("alert").innerHTML =  'Ungültiges Datum Bitte erneut auswählen'; 
                    // $('#book_dates').val('');
                     //$('#error').val('true'); 
                     document.getElementById("error").value = 'true';
