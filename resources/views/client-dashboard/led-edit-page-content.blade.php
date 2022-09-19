@@ -6,7 +6,8 @@
             <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse" data-bs-target="#kt_account_profile_details" aria-expanded="true" aria-controls="kt_account_profile_details">
                 <!--begin::Card title-->
                 <div class="card-title m-0">
-                    <h3 class="fw-bolder m-0">Edit Led</h3>
+                    <h3 class="fw-bolder m-0">LED bearbeiten
+</h3>
                 </div>
                 <!--end::Card title-->
             </div>
@@ -21,7 +22,7 @@
                         <!--begin::Input group-->
                         <div class="row mb-6">
                             <!--begin::Label-->
-                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Title</label>
+                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Titel</label>
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
@@ -38,7 +39,7 @@
 
                         <div class="row mb-6">
                             <!--begin::Label-->
-                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Description</label>
+                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Beschreibung</label>
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
@@ -79,11 +80,11 @@
                         </div>
                         <div class="row mb-6">
                             <!--begin::Label-->
-                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Location</label>
+                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Ort</label>
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
-                                <input type="text" name="location" class="form-control form-control-lg form-control-solid" placeholder="Location" value="{{old('location')?old('location') : $led->location}}" id="myAddress"/>
+                                <input type="text" name="location" class="form-control form-control-lg form-control-solid" placeholder="Ort" value="{{old('location')?old('location') : $led->location}}" id="myAddress"/>
                                 @error('location')
                                 <div class="alert alert-danger">
                                         {{$message}}
@@ -94,11 +95,11 @@
                         </div>
                         <div class="row mb-6">
                             <!--begin::Label-->
-                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Price</label>
+                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Preis</label>
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
-                                <input type="text" name="price" class="form-control form-control-lg form-control-solid" placeholder="Price" value="{{old('price')?old('price') : $led->price}}" />
+                                <input type="text" name="price" class="form-control form-control-lg form-control-solid" placeholder="Preis" value="{{old('price')?old('price') : $led->price}}" />
                                 @error('price')
                                 <div class="alert alert-danger">
                                         {{$message}}
@@ -111,7 +112,8 @@
 
                         <div class="row mb-6">
                             <!--begin::Label-->
-                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Estimated Views</label>
+                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Geschätzte Aufrufe
+</label>
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
@@ -127,7 +129,8 @@
 
                         <div class="row mb-6">
                             <!--begin::Label-->
-                            <label class="col-lg-4 col-form-label required fw-bold fs-6">Add Led Images</label>
+                            <label class="col-lg-4 col-form-label required fw-bold fs-6">LED-Bilder hinzufügen
+</label>
                             <!--end::Label-->
                             <!--begin::Col-->
                             <div class="col-lg-8 fv-row">
@@ -149,9 +152,11 @@
                     <!--end::Card body-->
                     <!--begin::Actions-->
                     <div class="card-footer d-flex justify-content-end py-6 px-9">
-                        <a href="{{route('dashboard')}}" class="btn btn-light btn-active-light-primary me-2">Back</a>
-                        <button type="reset" class="btn btn-light btn-active-light-primary me-2">Discard</button>
-                        <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Save Changes</button>
+                        <a href="{{route('dashboard')}}" class="btn btn-light btn-active-light-primary me-2">Der Rücken
+</a>
+                        <button type="reset" class="btn btn-light btn-active-light-primary me-2">Verwerfen</button>
+                        <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Änderungen speichern
+</button>
                     </div>
                     <!--end::Actions-->
                 </form>
@@ -171,8 +176,9 @@
                     <!--begin::Header-->
                     <div class="card-header align-items-center border-0 mt-4">
                         <h3 class="card-title align-items-start flex-column">
-                            <span class="fw-bolder text-dark">Led Images</span>
-                            <span class="text-muted mt-1 fw-bold fs-7">Total Number of Images : {{count($led->images)}}</span>
+                            <span class="fw-bolder text-dark">Geführte Bilder
+</span>
+                            <span class="text-muted mt-1 fw-bold fs-7">Gesamtzahl der Bilder : {{count($led->images)}}</span>
                         </h3>
                       
                     </div>
@@ -206,7 +212,7 @@
     <div class="modal-dialog modal-fullscreen">
         <div class="modal-content shadow-none">
             <div class="modal-header">
-                <h5 class="modal-title">Image Preview</h5>
+                <h5 class="modal-title">Bildvorschau</h5>
 
                 <!--begin::Close-->
                 <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
