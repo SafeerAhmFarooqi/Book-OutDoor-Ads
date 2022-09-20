@@ -28,8 +28,8 @@
     <div class="container">
       <div class="row justify-content-center mb-5">
         <div class="col-md-7 text-center border-primary">
-          <h2 class="font-weight-light text-primary">Approval Pending</h2>
-          <p class="color-black-opacity-5">{{ __('You are not authorized by admin to log in wait for approval email nitification or contact the administration') }}</p>
+          <h2 class="font-weight-light text-primary">Bestätigung ausstehend</h2>
+          <p class="color-black-opacity-5">{{ __('Sie sind vom Administrator nicht berechtigt, sich anzumelden, auf Genehmigung per E-Mail zu warten oder die Verwaltung zu kontaktieren') }}</p>
         </div>
       </div>
       <div class="row justify-content-center mb-1">

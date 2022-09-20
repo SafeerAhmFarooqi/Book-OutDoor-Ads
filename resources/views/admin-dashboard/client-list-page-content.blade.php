@@ -18,7 +18,7 @@
                             </svg>
                         </span>
                         <!--end::Svg Icon-->
-                        <input type="text" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Search Report" />
+                        <input type="text" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Suche" />
                     </div>
                     <!--end::Search-->
                     <!--begin::Export buttons-->
@@ -62,27 +62,27 @@
                             <path d="M18.75 8.25H17.75C17.1977 8.25 16.75 8.69772 16.75 9.25C16.75 9.80228 17.1977 10.25 17.75 10.25C18.3023 10.25 18.75 10.6977 18.75 11.25V18.25C18.75 18.8023 18.3023 19.25 17.75 19.25H5.75C5.19772 19.25 4.75 18.8023 4.75 18.25V11.25C4.75 10.6977 5.19771 10.25 5.75 10.25C6.30229 10.25 6.75 9.80228 6.75 9.25C6.75 8.69772 6.30229 8.25 5.75 8.25H4.75C3.64543 8.25 2.75 9.14543 2.75 10.25V19.25C2.75 20.3546 3.64543 21.25 4.75 21.25H18.75C19.8546 21.25 20.75 20.3546 20.75 19.25V10.25C20.75 9.14543 19.8546 8.25 18.75 8.25Z" fill="#C4C4C4" />
                         </svg>
                     </span>
-                    <!--end::Svg Icon-->Export Report</button>
+                    <!--end::Svg Icon-->Liste exportieren</button>
                     <!--begin::Menu-->
                     <div id="kt_ecommerce_report_views_export_menu" class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-200px py-4" data-kt-menu="true">
                         <!--begin::Menu item-->
-                        <div class="menu-item px-3">
-                            <a href="#" class="menu-link px-3" data-kt-ecommerce-export="copy">Copy to clipboard</a>
+                    <div class="menu-item px-3">
+                            <a href="#" class="menu-link px-3" data-kt-ecommerce-export="copy">In die Zwischenablage kopieren</a>
                         </div>
                         <!--end::Menu item-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-3">
-                            <a href="#" class="menu-link px-3" data-kt-ecommerce-export="excel">Export as Excel</a>
+                            <a href="#" class="menu-link px-3" data-kt-ecommerce-export="excel">Als Excel exportieren</a>
                         </div>
                         <!--end::Menu item-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-3">
-                            <a href="#" class="menu-link px-3" data-kt-ecommerce-export="csv">Export as CSV</a>
+                            <a href="#" class="menu-link px-3" data-kt-ecommerce-export="csv">Als CSV exportieren</a>
                         </div>
                         <!--end::Menu item-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-3">
-                            <a href="#" class="menu-link px-3" data-kt-ecommerce-export="pdf">Export as PDF</a>
+                            <a href="#" class="menu-link px-3" data-kt-ecommerce-export="pdf">Als PDF exportieren</a>
                         </div>
                         <!--end::Menu item-->
                     </div>
@@ -100,11 +100,11 @@
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                             <th class="text-start min-w-40px">  Id</th>
-                            <th class="min-w-450px">Name</th> 
-                            <th class="text-start min-w-100px">Status</th>  
+                             <th class="text-start min-w-30px">  Id</th>
+                            <th class="min-w-250px">Name</th> 
                             <th class="text-start min-w-100px">Company</th>   
-                            <th class="text-start min-w-100px">Actions</th>
+                            <th class="text-start min-w-100px">Status</th>  
+                            <th class="text-start min-w-100px">Aktion</th>
 
 
                         </tr>
@@ -140,42 +140,53 @@
                             </td>
                             <!--end::Product=-->
                           
-                          
+                           <td class="text-start pe-0">
+                                <span style="font-size:10px">{{$client->company}}</span>
+                            </td>
                             <!--begin::Price=-->
                             <td class="text-start pe-0">
                                 <span>{{$client->status?'Enabled' : 'Disabled'}}</span>
                             </td>
-                            <td class="text-start pe-0">
-                                <span>{{$client->company}}</span>
-                            </td>
+                           
                             <!--end::Price=-->
                        
                             <td class="text-end pe-0">
-                                <div class="rating justify-content-end">
+                               
                                     {{-- <a class="btn btn-primary" href="{{route('client.led.edit',$client->id)}}">Edit</a> --}}
-                                <form action="{{route('admin.client.list.delete')}}" method="post">
+                                <form action="{{route('admin.client.list.led')}}" method="post" style="float:left">
                                     @csrf
-                                  <button type="submit" class="btn btn-danger" name="client_id" value="{{$client->id}}" style="border:none !important;background:none !important;padding:0"><img src="{{asset('assets/newtheme2023/images/deleteicon.png')}}" style="width:35px" title="Delete Users" ></button>
+                                  <button type="submit"class="badge badge-light-success fs-8 fw-bold my-2"  name="user_id" value="{{$client->id}}" style="border:none">    Partnergeführte Liste  </button>
                                 </form>
-                                <form action="{{route('admin.client.list.led')}}" method="post">
+
+                                <form action="{{route('admin.client.list.delete')}}" method="post" style="float:left">
                                     @csrf
-                                  <button type="submit" class="btn btn-primary" name="client_id" value="{{$client->id}}" style="border:none !important;background:none !important;padding:0"><img src="{{asset('assets/newtheme2023/images/orders.png')}}" style="width:35px" title="View Orders" ></button>
+                                  <button type="submit" class="badge badge-light-danger fs-8 fw-bold my-2" name="user_id" value="{{$client->id}}"  style="border:none">       löschen </button>
+                                </form> 
+                                <form action="{{route('admin.partner.list.verify')}}" method="post" style="float:left">
+                                    @csrf
+                                  <button type="submit" class="badge badge-light-warning fs-8 fw-bold my-2"  name="user_id" value="{{$client->id}}" style="border:none"> E-Mail bestätigen</button>
+                                </form> <br><br>
+
+                               
+                                <form action="{{route('admin.partner.list.enable')}}" method="post" style="float:left">
+                                    @csrf
+                                  <button type="submit" class="badge badge-light-primary fs-8 fw-bold my-2"  name="user_id" value="{{$client->id}}"  style="border:none" >aktives Konto
+ </button>
                                 </form>
-                                <form action="{{route('admin.partner.list.enable')}}" method="post">
+                              
+                                <form action="{{route('admin.partner.list.disable')}}" method="post" style="float:left">
                                     @csrf
-                                  <button type="submit" class="btn btn-primary" name="user_id" value="{{$client->id}}" style="border:none !important;background:none !important;padding:0"><img src="{{asset('assets/newtheme2023/images/enableicon.png')}}" style="width:35px" title="Enable Account" > </button>
+                                  <button type="submit" class="badge badge-light-danger fs-8 fw-bold my-2"  name="user_id" value="{{$client->id}}" style="border:none"> Konto deaktivieren
+</button>
                                 </form>
-                                <form action="{{route('admin.partner.list.verify')}}" method="post">
-                                    @csrf
-                                  <button type="submit" class="btn btn-primary" name="user_id" value="{{$client->id}}" style="border:none !important;background:none !important;padding:0"><img src="{{asset('assets/newtheme2023/images/passwordforgot.png')}}" style="width:35px" title="Verify Account" > </button>
-                                </form>
-                                <form action="{{route('admin.partner.list.disable')}}" method="post">
-                                    @csrf
-                                  <button type="submit" class="btn btn-danger" name="user_id" value="{{$client->id}}" style="border:none !important;background:none !important;padding:0"><img src="{{asset('assets/newtheme2023/images/disableicon.png')}}" style="width:35px" title="Disable Account" ></button>
+                                 
+
+ 
+                             
 
 
                                 </form>
-                                </div>
+                                 
                                 
                             </td>
                             <!--end::Percent=-->
