@@ -18,7 +18,7 @@
                             </svg>
                         </span>
                         <!--end::Svg Icon-->
-                        <input type="text" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Search Report" />
+                        <input type="text" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Suche" />
                     </div>
                     <!--end::Search-->
                     <!--begin::Export buttons-->
@@ -62,27 +62,27 @@
                             <path d="M18.75 8.25H17.75C17.1977 8.25 16.75 8.69772 16.75 9.25C16.75 9.80228 17.1977 10.25 17.75 10.25C18.3023 10.25 18.75 10.6977 18.75 11.25V18.25C18.75 18.8023 18.3023 19.25 17.75 19.25H5.75C5.19772 19.25 4.75 18.8023 4.75 18.25V11.25C4.75 10.6977 5.19771 10.25 5.75 10.25C6.30229 10.25 6.75 9.80228 6.75 9.25C6.75 8.69772 6.30229 8.25 5.75 8.25H4.75C3.64543 8.25 2.75 9.14543 2.75 10.25V19.25C2.75 20.3546 3.64543 21.25 4.75 21.25H18.75C19.8546 21.25 20.75 20.3546 20.75 19.25V10.25C20.75 9.14543 19.8546 8.25 18.75 8.25Z" fill="#C4C4C4" />
                         </svg>
                     </span>
-                    <!--end::Svg Icon-->Export Report</button>
+                    <!--end::Svg Icon-->Liste exportieren</button>
                     <!--begin::Menu-->
                     <div id="kt_ecommerce_report_views_export_menu" class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-200px py-4" data-kt-menu="true">
                         <!--begin::Menu item-->
-                        <div class="menu-item px-3">
-                            <a href="#" class="menu-link px-3" data-kt-ecommerce-export="copy">Copy to clipboard</a>
+                     <div class="menu-item px-3">
+                            <a href="#" class="menu-link px-3" data-kt-ecommerce-export="copy">In die Zwischenablage kopieren</a>
                         </div>
                         <!--end::Menu item-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-3">
-                            <a href="#" class="menu-link px-3" data-kt-ecommerce-export="excel">Export as Excel</a>
+                            <a href="#" class="menu-link px-3" data-kt-ecommerce-export="excel">Als Excel exportieren</a>
                         </div>
                         <!--end::Menu item-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-3">
-                            <a href="#" class="menu-link px-3" data-kt-ecommerce-export="csv">Export as CSV</a>
+                            <a href="#" class="menu-link px-3" data-kt-ecommerce-export="csv">Als CSV exportieren</a>
                         </div>
                         <!--end::Menu item-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-3">
-                            <a href="#" class="menu-link px-3" data-kt-ecommerce-export="pdf">Export as PDF</a>
+                            <a href="#" class="menu-link px-3" data-kt-ecommerce-export="pdf">Als PDF exportieren</a>
                         </div>
                         <!--end::Menu item-->
                     </div>
@@ -100,11 +100,10 @@
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                            <th class="min-w-20px">Sr No.</th>
+                            <th class="min-w-20px">  No.</th>
                             <th class="min-w-450px">Title</th> 
-                            <th class="text-start min-w-100px">Price</th> 
-                            <th class="text-start min-w-100px">Date Created</th>
-                            <th class="text-start min-w-100px">Actions</th>
+                            <th class="text-start min-w-100px">Preis</th>  
+                            <th class="text-start min-w-100px">Aktion</th>
                         </tr>
                         <!--end::Table row-->
                     </thead>
@@ -125,7 +124,9 @@
                                     <!--end::Thumbnail-->
                                     <div class="ms-5">
                                         <!--begin::Title-->
-                                        <a href="{{route('app.led.detail',$led->id??'')}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$led->title}}</a>
+                                        <a href="{{route('app.led.detail',$led->id??'')}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$led->title}}</a><br>
+
+                                <span style="font-size:10px">{{$led->created_at->format('F d, Y')}}</span>
                                         <!--end::Title-->
                                     </div>
                                 </div>
@@ -136,20 +137,18 @@
                             <!--end::Price=-->
                             <!--begin::Viewed=-->
                             <td class="text-start pe-0">
-                                <span>€ {{$led->price}}</span>
+                                <span> {{$led->price}} €</span>
                             </td>
                             <!--end::Viewed=-->
                             <!--begin::Percent=-->
                             
-                            <td class="text-start pe-0">
-                                <span>{{$led->created_at->format('F d, Y')}}</span>
-                            </td>
+                           
                             <td class="text-end pe-0">
                                 <div class="rating justify-content-end">
                                     {{-- <a class="btn btn-primary" href="{{route('client.led.edit',$led->id)}}">Edit</a> --}}
                                 <form action="{{route('admin.led.list.delete')}}" method="post">
                                     @csrf
-                                  <button type="submit" class="btn btn-danger" name="led_id" value="{{$led->id}}">Delete</button>
+                                  <button type="submit" class="btn btn-danger" name="led_id" value="{{$led->id}}">Löschen</button>
                                 </form>
                                 </div>
                                 

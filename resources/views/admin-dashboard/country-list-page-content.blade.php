@@ -18,7 +18,7 @@
                             </svg>
                         </span>
                         <!--end::Svg Icon-->
-                        <input type="text" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Search Report" />
+                        <input type="text" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Suche" />
                     </div>
                     <!--end::Search-->
                     <!--begin::Export buttons-->
@@ -63,27 +63,27 @@
                             <path d="M18.75 8.25H17.75C17.1977 8.25 16.75 8.69772 16.75 9.25C16.75 9.80228 17.1977 10.25 17.75 10.25C18.3023 10.25 18.75 10.6977 18.75 11.25V18.25C18.75 18.8023 18.3023 19.25 17.75 19.25H5.75C5.19772 19.25 4.75 18.8023 4.75 18.25V11.25C4.75 10.6977 5.19771 10.25 5.75 10.25C6.30229 10.25 6.75 9.80228 6.75 9.25C6.75 8.69772 6.30229 8.25 5.75 8.25H4.75C3.64543 8.25 2.75 9.14543 2.75 10.25V19.25C2.75 20.3546 3.64543 21.25 4.75 21.25H18.75C19.8546 21.25 20.75 20.3546 20.75 19.25V10.25C20.75 9.14543 19.8546 8.25 18.75 8.25Z" fill="#C4C4C4" />
                         </svg>
                     </span>
-                    <!--end::Svg Icon-->Export Report</button>
+                    <!--end::Svg Icon-->Liste exportieren</button>
                     <!--begin::Menu-->
                     <div id="kt_ecommerce_report_views_export_menu" class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-200px py-4" data-kt-menu="true">
                         <!--begin::Menu item-->
-                        <div class="menu-item px-3">
-                            <a href="#" class="menu-link px-3" data-kt-ecommerce-export="copy">Copy to clipboard</a>
+                <div class="menu-item px-3">
+                            <a href="#" class="menu-link px-3" data-kt-ecommerce-export="copy">In die Zwischenablage kopieren</a>
                         </div>
                         <!--end::Menu item-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-3">
-                            <a href="#" class="menu-link px-3" data-kt-ecommerce-export="excel">Export as Excel</a>
+                            <a href="#" class="menu-link px-3" data-kt-ecommerce-export="excel">Als Excel exportieren</a>
                         </div>
                         <!--end::Menu item-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-3">
-                            <a href="#" class="menu-link px-3" data-kt-ecommerce-export="csv">Export as CSV</a>
+                            <a href="#" class="menu-link px-3" data-kt-ecommerce-export="csv">Als CSV exportieren</a>
                         </div>
                         <!--end::Menu item-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-3">
-                            <a href="#" class="menu-link px-3" data-kt-ecommerce-export="pdf">Export as PDF</a>
+                            <a href="#" class="menu-link px-3" data-kt-ecommerce-export="pdf">Als PDF exportieren</a>
                         </div>
                         <!--end::Menu item-->
                     </div>
@@ -101,12 +101,11 @@
                     <thead>
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                            <th class="min-w-150px">Sr No.</th>
-                            <th class="min-w-150px">Id</th>
+                            <th class="min-w-150px">  No.</th> 
                             <th class="min-w-150px">country</th> 
                             <th class="min-w-150px">Status</th> 
                             <th class="min-w-150px">Tax %</th> 
-                            <th class="text-start min-w-100px" style="text-align:right !important;">Actions</th>
+                            <th class="text-start min-w-100px" style="text-align:right !important;">Aktionen</th>
                         </tr>
                         <!--end::Table row-->
                     </thead>
@@ -120,9 +119,7 @@
                             <td class="text-start">
                                 <span class="fw-bolder">{{$loop->iteration}}</span>
                             </td>
-                            <td class="text-start">
-                                <span class="fw-bolder">{{$country->id}}</span>
-                            </td>
+                        
                             <td>
                                 <span class="fw-bolder">{{$country->country}}</span>
                             </td>
@@ -140,16 +137,16 @@
                                     @csrf
                                     @method('delete')
                                     <input type="hidden" name="action" value="disable">
-                                  <button type="submit" class="btn btn-danger" name="country_id" value="{{$country->id}}"  style="border:none !important;background:none !important;padding:0"><img src="{{asset('assets/newtheme2023/images/deleteicon.png')}}" style="width:35px" title="Disable Country" ></button>
+                                  <button type="submit"   name="country_id" value="{{$country->id}}"  class="badge badge-light-danger fs-8 fw-bold my-2" style="border:none" > disable </button>
                                   
                                 </form>
                                 <form action="{{route('admin.country.destroy',['country' => $country->id])}}" method="post">
                                     @csrf
                                     @method('delete')
                                     <input type="hidden" name="action" value="enable">
-                                  <button type="submit" class="btn btn-primary" name="country_id" value="{{$country->id}}" style="border:none !important;background:none !important;padding:0"><img src="{{asset('assets/newtheme2023/images/enableicon.png')}}" style="width:35px" title="Enable Country" > </button>
+                                  <button type="submit"   name="country_id" value="{{$country->id}}" class="badge badge-light-warning fs-8 fw-bold my-2" style="border:none"  title="Enable Country" > enable </button>
                                 </form>
-                                <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_update_tax_{{$country->id}}" style="border:none !important;background:none !important;padding:0"><img src="{{asset('assets/newtheme2023/images/dollaricon.png')}}" style="width:35px" title="Update country Tax" ></a>
+                                <a href="#"   data-bs-toggle="modal" data-bs-target="#kt_modal_update_tax_{{$country->id}}" class="badge badge-light-primary fs-8 fw-bold my-2" style="border:none"   title="Update country Tax" > update </a>
                                 {{-- <button type="submit" class="btn btn-primary" name="client_id" value="{{$country->id}}">Edit</button> --}}
                                 </div>
                                 

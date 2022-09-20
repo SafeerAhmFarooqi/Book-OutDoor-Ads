@@ -18,7 +18,7 @@
                             </svg>
                         </span>
                         <!--end::Svg Icon-->
-                        <input type="text" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Search Report" />
+                        <input type="text" data-kt-ecommerce-order-filter="search" class="form-control form-control-solid w-250px ps-14" placeholder="Suche" />
                     </div>
                     <!--end::Search-->
                     <!--begin::Export buttons-->
@@ -66,27 +66,27 @@
                             <path d="M18.75 8.25H17.75C17.1977 8.25 16.75 8.69772 16.75 9.25C16.75 9.80228 17.1977 10.25 17.75 10.25C18.3023 10.25 18.75 10.6977 18.75 11.25V18.25C18.75 18.8023 18.3023 19.25 17.75 19.25H5.75C5.19772 19.25 4.75 18.8023 4.75 18.25V11.25C4.75 10.6977 5.19771 10.25 5.75 10.25C6.30229 10.25 6.75 9.80228 6.75 9.25C6.75 8.69772 6.30229 8.25 5.75 8.25H4.75C3.64543 8.25 2.75 9.14543 2.75 10.25V19.25C2.75 20.3546 3.64543 21.25 4.75 21.25H18.75C19.8546 21.25 20.75 20.3546 20.75 19.25V10.25C20.75 9.14543 19.8546 8.25 18.75 8.25Z" fill="#C4C4C4" />
                         </svg>
                     </span>
-                    <!--end::Svg Icon-->Export Report</button>
+                    <!--end::Svg Icon-->Liste exportieren</button>
                     <!--begin::Menu-->
                     <div id="kt_ecommerce_report_views_export_menu" class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-200px py-4" data-kt-menu="true">
                         <!--begin::Menu item-->
-                        <div class="menu-item px-3">
-                            <a href="#" class="menu-link px-3" data-kt-ecommerce-export="copy">Copy to clipboard</a>
+                  <div class="menu-item px-3">
+                            <a href="#" class="menu-link px-3" data-kt-ecommerce-export="copy">In die Zwischenablage kopieren</a>
                         </div>
                         <!--end::Menu item-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-3">
-                            <a href="#" class="menu-link px-3" data-kt-ecommerce-export="excel">Export as Excel</a>
+                            <a href="#" class="menu-link px-3" data-kt-ecommerce-export="excel">Als Excel exportieren</a>
                         </div>
                         <!--end::Menu item-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-3">
-                            <a href="#" class="menu-link px-3" data-kt-ecommerce-export="csv">Export as CSV</a>
+                            <a href="#" class="menu-link px-3" data-kt-ecommerce-export="csv">Als CSV exportieren</a>
                         </div>
                         <!--end::Menu item-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-3">
-                            <a href="#" class="menu-link px-3" data-kt-ecommerce-export="pdf">Export as PDF</a>
+                            <a href="#" class="menu-link px-3" data-kt-ecommerce-export="pdf">Als PDF exportieren</a>
                         </div>
                         <!--end::Menu item-->
                     </div>
@@ -105,14 +105,10 @@
                         <!--begin::Table row-->
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                             <th class="text-start min-w-100px">Id</th>
-                            <th class="min-w-150px">User</th>
-                            <th class="min-w-150px">Email</th>
-                            <th class="min-w-150px">Phone</th>
-                            <th class="min-w-150px">Led Title</th>
-                            <th class="min-w-150px">Comment</th>
-                            <th class="min-w-150px">Status</th>
-                            <th class="text-start min-w-100px">Date</th>
-                            <th class="text-start min-w-100px">Actions</th>
+                            <th class="min-w-150px">Led  </th>
+                            <th class="min-w-150px">informationen</th> 
+                            <th class="min-w-150px">Comment</th> 
+                            <th class="text-start min-w-100px">Aktionen</th>
                         </tr>
                         <!--end::Table row-->
                     </thead>
@@ -125,8 +121,22 @@
                         <tr>
                             <!--begin::Product=-->
                             <td class="text-start pe-0">
-                                <span class="fw-bolder">{{$comment->id}}</span>
+                                <span class="fw-bolder">{{$comment->id}}</span><br> 
+                                 <span style="font-size:10px">{{$comment->created_at->format('F d, Y')}}</span>
                             </td>
+        <td>
+                                <div class="d-flex align-items-center">
+                                    <!--begin::Thumbnail-->
+                                    
+                                    <!--end::Thumbnail-->
+                                    <div class="ms-5">
+                                        <!--begin::Title-->
+                                        <a href="{{route('app.led.detail',$comment->led->id??'')}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name" target="_blank">{{$comment->led->title}}</a>
+                                        <!--end::Title-->
+                                    </div>
+                                </div>
+                            </td>
+
 
                             <td>
                                 <div class="d-flex align-items-center">
@@ -135,56 +145,18 @@
                                     <!--end::Thumbnail-->
                                     <div class="ms-5">
                                         <!--begin::Title-->
-                                        <a href="{{route('client.led.edit',$comment->user->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$comment->user->firstname.' '.$comment->user->lastname}}</a>
+                                        <a href="{{route('client.led.edit',$comment->user->id)}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$comment->user->firstname.' '.$comment->user->lastname}}</a><br>
+                                         <span class="fw-bolder">{{$comment->user->email}}</span><br>
+                                          <span class="fw-bolder">{{$comment->user->phone}}</span>
                                         <!--end::Title-->
                                     </div>
                                 </div>
                             </td>
+ 
 
-                            <td class="text-end pe-0" data-order="rating-5" data-filter="rating-5">
-                                <div class="rating justify-content-start">
-                                    
-                                    <span class="fw-bolder">{{$comment->user->email}}</span>
-                                    
-                                </div>
-                            </td>
+                    
 
-                            <td class="text-end pe-0" data-order="rating-5" data-filter="rating-5">
-                                <div class="rating justify-content-start">
-                                    
-                                    <span class="fw-bolder">{{$comment->user->phone}}</span>
-                                    
-                                </div>
-                            </td>
-
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <!--begin::Thumbnail-->
-                                    
-                                    <!--end::Thumbnail-->
-                                    <div class="ms-5">
-                                        <!--begin::Title-->
-                                        <a href="{{route('app.led.detail',$comment->led->id??'')}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name">{{$comment->led->title}}</a>
-                                        <!--end::Title-->
-                                    </div>
-                                </div>
-                            </td>
-
-                            {{-- <td class="text-end pe-0" data-order="rating-5" data-filter="rating-5">
-                                <div class="rating justify-content-start">
-                                    
-                                    <span class="fw-bolder">{{($subOrder->price+$subOrder->tax)*$subOrder->no_of_days}}</span>
-                                    
-                                </div>
-                            </td>
-
-                            <td class="text-end pe-0" data-order="rating-5" data-filter="rating-5">
-                                <div class="rating justify-content-start">
-                                    
-                                    <span class="fw-bolder">{{$subOrder->order->id}}</span>
-                                    
-                                </div>
-                            </td> --}}
+                   
                           
                             <!--end::Viewed=-->
                             <!--begin::Percent=-->
@@ -196,36 +168,16 @@
                                 </div>
                             </td>
 
-                            <td class="text-end pe-0" data-order="rating-5" data-filter="rating-5">
-                                <div class="rating justify-content-start">
-                                    @if ($comment->status)
-                                    <span class="badge py-3 px-4 fs-7 badge-light-success">Active</span>
-                                    @else
-                                    <span class="badge py-3 px-4 fs-7 badge-light-danger">De-Active</span>                                        
-                                    @endif
-
-                                    
-                                    
-                                </div>
-                            </td>
+             
                             
-                            <td class="text-start pe-0">
-                                <span>{{$comment->created_at->format('F d, Y')}}</span>
-                            </td>
+                           
                             <td class="text-end">
                                 <div class="rating justify-content-end">
-                                    <form action="{{route('admin.led.comment.activate')}}" method="post">
-                                        @csrf
-                                            <button type="submit" name="comment_id" value="{{$comment->id}}" class="btn btn-success">Activate</button>    
-                                    </form>
-                                    <form action="{{route('admin.led.comment.deactivate')}}" method="post">
-                                        @csrf
-                                            <button type="submit" name="comment_id" value="{{$comment->id}}" class="btn btn-danger ">De-Activate</button>    
-                                    </form>
+                      
 
                                     <form action="{{route('admin.led.comment.delete')}}" method="post">
                                         @csrf
-                                            <button type="submit" name="comment_id" value="{{$comment->id}}" class="btn btn-danger ">Delete</button>    
+                                            <button type="submit" name="comment_id" value="{{$comment->id}}"  class="badge badge-light-danger fs-8 fw-bold my-2" style="border:none">Löschen</button>    
                                     </form>
                                     {{-- <a class="btn btn-primary" href="{{route('app.led.detail',$comment->led->id)}}">Details</a> --}}
                 

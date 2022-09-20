@@ -63,8 +63,8 @@
             <input type="hidden" name="token" value="{{ $request->route('token') }}">
             <div class="middle w3-container">
                 <div class="circle-bg"><img class="w3-image" src="{{asset('assets/newtheme2023/images/passwordforgot.png')}}"></div>
-                <h2 class="ra-h-24 font-20-sm p-t-10">Password Reset</h2>
-                <p class="file-sm-label p-t-10">{{ __('Enter New Password') }}  |  No worrie we will send you reset instruction</p><label class="d-label w3-left w3-theme-text">Email</label>
+                <h2 class="ra-h-24 font-20-sm p-t-10">Passwort zurücksetzen</h2>
+                <p class="file-sm-label p-t-10">{{ __('Neues Passwort eingeben') }}  |  Keine Sorge, wir senden Ihnen Anweisungen zum Zurücksetzen </p><label class="d-label w3-left w3-theme-text">Email</label>
  
 
  <input type="hidden" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" type="email" name="email" value="{{old('email', $request->email)}}" required autofocus >

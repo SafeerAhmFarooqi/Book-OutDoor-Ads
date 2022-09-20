@@ -11,7 +11,7 @@
                 <div class="card-header pt-5">
                    
                     <div class="card-body p-9">
-                        <div class="fs-4 fw-bold text-gray-600 mb-7">All Users</div>
+                        <div class="fs-4 fw-bold text-gray-600 mb-7">Alle Konten </div>
                         <div class="fs-2hx fw-bolder">{{$usersCount+$clientCount}}</div>
                     </div>
                    
@@ -31,7 +31,7 @@
                 <div class="card-header pt-5">
                    
                     <div class="card-body p-9">
-                        <div class="fs-4 fw-bold text-gray-600 mb-7">Users</div>
+                        <div class="fs-4 fw-bold text-gray-600 mb-7">Alle Käufer</div>
                         <div class="fs-2hx fw-bolder">{{$usersCount}}</div>
                     </div>
                    
@@ -51,7 +51,7 @@
                 <div class="card-header pt-5">
                    
                     <div class="card-body p-9">
-                        <div class="fs-4 fw-bold text-gray-600 mb-7">Partners</div>
+                        <div class="fs-4 fw-bold text-gray-600 mb-7">Alle Partner</div>
                         <div class="fs-2hx fw-bolder">{{$clientCount}}</div>
                     </div>
                    
@@ -107,7 +107,7 @@
                 <!--begin::Card header-->
                 <div class="card-header pt-5"> 
                     <div class="card-body p-9">
-                        <div class="fs-4 fw-bold text-gray-600 mb-7">Cities</div>
+                        <div class="fs-4 fw-bold text-gray-600 mb-7">Ort</div>
                         <div class="fs-2hx fw-bolder">{{$cityCount}}</div>
                     </div>
                     <div class="card-toolbar">   

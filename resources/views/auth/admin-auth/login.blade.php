@@ -9,7 +9,7 @@
             <div class="row">
                 <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
                     <h2 class="cp-heading">LOG IN</h2>
-                    <p class="log-info-text">Admin Have All experience Access</p>
+                    <p class="log-info-text">Administrator haben Zugriff auf alle Erfahrungen</p>
                          
 
                     <div class="row w3-padding-36-top">

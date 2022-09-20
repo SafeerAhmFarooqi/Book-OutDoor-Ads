@@ -8,9 +8,10 @@
         <div class="container-fluid w3-padding-48-top">
             <div class="row">
                 <div class="col-sm-12 col-xs-12 col-md-6 col-lg-6">
-                    <h2 class="cp-heading">Reigster Your Account</h2>
-                    <p class="log-info-text">Gain access for the rental LED experience</p>
-                        <a href="{{route('user.login')}}" ><p class="log-forgot-text" style="margin:0 !important">Already Have Account ? Log in </p></a>
+                    <h2 class="cp-heading">Account registrieren
+</h2>
+                    <p class="log-info-text">Erhalten Sie Zugang zum Miet-LED-Erlebnis</p>
+                        <a href="{{route('user.login')}}" ><p class="log-forgot-text" style="margin:0 !important">Haben Sie bereits ein Konto ? Log in </p></a>
 
                     <div class="row w3-padding-36-top">
                         <div class="col-md-12">
@@ -56,7 +57,7 @@
 
                     </div> 
                     <div class="col-sm-6 form-group">
-                        <label>Phone</label> <input class="cp-input-form"   type="text" placeholder="" name="phone" value="{{old('phone')}}">
+                        <label>Telefon</label> <input class="cp-input-form"   type="text" placeholder="" name="phone" value="{{old('phone')}}">
                           @error('phone')
                         <div class="alert alert-danger">
                                 {{$message}}
@@ -65,7 +66,8 @@
                     </div> 
                   
                     <div class="col-sm-12 form-group">
-                        <label>address</label> 
+                        <label>die Anschrift
+</label> 
                         <input class="cp-input-form" type="text" placeholder="" name="address" value="{{old('address')}}"  id="myAddress" >
                             @error('address')
                         <div class="alert alert-danger">
@@ -99,7 +101,7 @@
                              <button type="submit" class="cp-login-btn w3-ripple btn btn-lg btn-primary w-100 mb-5">
                             <span class="indicator-label">Create Account</span> 
                         </button>
-                        <a href="{{route('user.login',($redirectUrl??''))}}" ><p class="log-forgot-text" >Already Have Account ? Log in </p></a>
+                        <a href="{{route('user.login',($redirectUrl??''))}}" ><p class="log-forgot-text" >Haben Sie bereits ein Konto ? Log in </p></a>
   </div></form>
                          
                             </div>

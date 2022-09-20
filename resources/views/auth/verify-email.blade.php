@@ -52,12 +52,12 @@
             
             <div class="middle w3-container">
                 <div class="circle-bg"><img class="w3-image" src="{{asset('assets/newtheme2023/images/emailicon.png')}}"></div>
-                <h2 class="ra-h-24 font-20-sm p-t-10">Email Verification</h2>
-                <p class="file-sm-label p-t-10">{{ __('A new verification link has been sent to the email address you provided during registration.') }}</p>
+                <h2 class="ra-h-24 font-20-sm p-t-10">E-Mail-Verifizierung</h2>
+                <p class="file-sm-label p-t-10">{{ __('Ein neuer Bestätigungslink wurde an die E-Mail-Adresse gesendet, die Sie bei der Registrierung angegeben haben.') }}</p>
 
    <form method="POST" action="{{ route('verification.send') }}">
             @csrf
-            <button type="submit" class="theme-bg forget-btn btn btnNext">{{ __('Resend Verification Email') }}</button>
+            <button type="submit" class="theme-bg forget-btn btn btnNext">{{ __('Bestätigungsmail erneut senden') }}</button>
           </form>
 <div class="clearfix"></div>
 <br>

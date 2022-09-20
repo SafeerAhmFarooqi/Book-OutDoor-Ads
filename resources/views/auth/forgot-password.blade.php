@@ -49,12 +49,12 @@
               @include('common.validation')
             <div class="middle w3-container">
                 <div class="circle-bg"><img class="w3-image" src="{{asset('assets/newtheme2023/images/passwordforgot.png')}}"></div>
-                <h2 class="ra-h-24 font-20-sm p-t-10">Forget Password</h2>
-                <p class="file-sm-label p-t-10">No worrie we will send you reset instruction</p><label class="d-label w3-left w3-theme-text">Email</label> <input class="d-input-form w3-white theme-border-col" placeholder="Enter email" type="email" name="email" value="{{old('email')}}" required  ><br>
+                <h2 class="ra-h-24 font-20-sm p-t-10">Passwort vergessen</h2>
+                <p class="file-sm-label p-t-10">Keine Sorge, wir senden Ihnen Anweisungen zum Zurücksetzen</p><label class="d-label w3-left w3-theme-text">Email</label> <input class="d-input-form w3-white theme-border-col" placeholder="Enter email" type="email" name="email" value="{{old('email')}}" required  ><br>
                 <a href="check-email.html">
-                    <button type="submit" class="theme-bg forget-btn btn btnNext">{{ __('Email Password Reset Link') }}</button>
+                    <button type="submit" class="theme-bg forget-btn btn btnNext">{{ __('Link zum Zurücksetzen des Passworts per E-Mail') }}</button>
                    </a> <a href="{{route('user.login')}}">
-                <p class="log-forgot-text">Back to Login?</p></a>
+                <p class="log-forgot-text">Zurück zur Anmeldung?</p></a>
             </div>
         </form>
     </div> 
