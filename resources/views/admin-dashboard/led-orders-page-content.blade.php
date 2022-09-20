@@ -155,7 +155,7 @@
                             <td class="text-end pe-0" data-order="rating-5" data-filter="rating-5">
                                 <div class="rating justify-content-start">
                                     
-                                    <span class="fw-bolder"> {{($subOrder->price??''+$subOrder->tax??'')*$subOrder->no_of_days??''}} €</span>
+                                    <span class="fw-bolder"> {{($subOrder->price??0*$subOrder->no_of_days??0)+((($subOrder->price??0*$subOrder->no_of_days??0)/100)*$subOrder->led->country->tax->tax??0)}} €</span>
                                     
                                 </div>
                             </td>

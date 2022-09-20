@@ -108,7 +108,7 @@
                             <th class="min-w-150px">Led Title</th>
                             <th class="text-start min-w-100px">Order Id</th>
                             <th class="text-start min-w-100px">Price</th>
-                            <th class="text-start min-w-70px">Days</th>
+                            <th class="text-start min-w-70px">Tags</th>
                             <th class="text-start min-w-100px">Start Date</th>
                             <th class="text-start min-w-100px">End Date</th>
                             <th class="text-start min-w-100px">Order Date</th>

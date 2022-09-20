@@ -475,7 +475,7 @@
    Difference_In_Days=Difference_In_Days+1;
            document.getElementById("total_days").innerHTML = Difference_In_Days;
            document.getElementById("multiply_show").innerHTML =  'X';
-           document.getElementById("days_show").innerHTML =  ' Days';
+           document.getElementById("days_show").innerHTML =  ' Tag(s)';
            document.getElementById("total_price").innerHTML =  Difference_In_Days*{{$led->price}};
            
            document.getElementById("no_of_days").value = Difference_In_Days;
