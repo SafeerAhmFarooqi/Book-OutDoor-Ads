@@ -50,7 +50,9 @@ class MapLedSearchResults extends Component
                         'status' => true,
                         'lat' => $lat, 
                         'long' => $lng,
-                        'id'=>$id, 
+                        'id'=>$id,
+                        'title' => (Led::find($id))->title,
+                        'price' => (Led::find($id))->price, 
                         'google_place_id' => $data->results[0]->place_id
                     );
                 }

@@ -183,13 +183,14 @@
         
         
             $.each( locations, function( index, value ){
+              //alert(value.title+' : '+value.price);
                 // increment_2++;
                 mymap.addMarker({
                 //   lat: value.lat,
                 //   lng: value.lng,
                 lat: value.lat,
               lng: value.long,
-                  title: value.title,
+                  title: value.title+" Pries "+ value.price +"€/Tag",
                   click: function(e) {
                     let url = "{{ route('app.led.detail', ':value.id') }}";
                     url = url.replace(':value.id', value.id);
@@ -239,7 +240,7 @@
            
               lat: value.lat,
               lng: value.long,
-              title: value.title,
+              title: value.title+" Pries "+ value.price +"€/Tag",
               click: function(e) {
                // alert('This is second '+value.id+', gujarat from India.');
                 let url = "{{ route('app.led.detail', ':value.id') }}";

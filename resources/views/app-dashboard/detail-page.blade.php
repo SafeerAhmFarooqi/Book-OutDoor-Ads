@@ -352,13 +352,13 @@
        lat: coordinates.lat,
        lng: coordinates.long,
        icon: '',
-       title: "{{$led->title}}",
+       title: "{{$led->title}} Pries {{$led->price}} €/Tag",
         //  title: value.title,
          mouseout: function(e) {
            this.setIcon('');
          },
          mouseover: function(e) {
-          this.setIcon(image);
+          this.setIcon('');
          }
        });
   
