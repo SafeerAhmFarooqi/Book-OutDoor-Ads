@@ -31,7 +31,7 @@
             </div>
             <div class="f-g-2">
                 {{-- <p class="font-lufga-18 dis-none">Datum -{{$selectedStartDate}} - {{$selectedEndDate}}- {{$selectedDateRange}}</p> --}}
-                <p class="font-lufga-18 dis-none">Datum</p>
+                <p class="font-lufga-18 dis-none">Datum-{{$selectedStartDate}}-{{$selectedEndDate}}</p>
                 <div class="flex-st">
                     <div class="dropdown margin-right">
                       <input type="text" class="form-control" name="book_dates" id="book_dates" placeholder="Select Date" />
@@ -174,9 +174,10 @@
 </script>
 <script>
   $(function() {
+    var dateToday = new Date();
     $('input[name="book_dates"]').daterangepicker({
       opens: 'left',
-     // minDate: dateToday,
+      minDate: dateToday,
        autoApply : true
     }, function(start, end, label) {
       //alert('safeer');

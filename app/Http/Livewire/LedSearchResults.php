@@ -7,6 +7,7 @@ use Livewire\Component;
 use App\Models\City;
 use App\Models\Led;
 use App\Models\SubOrders;
+use App\Models\BookingDates;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 
@@ -38,11 +39,46 @@ class LedSearchResults extends Component
         ->when($this->priceRange, function($query) {
                 return $query->whereBetween('price', [$this->minPriceRange, $this->maxPriceRange]);
             })
-            ->when(Carbon::parse($this->selectedEndDate)>=Carbon::now()&&$this->selectedEndDate, function($query) {
-               // dd('safeer');
-                return $query->whereBetween('price', [$this->minPriceRange, $this->maxPriceRange]);
-            })
+            // ->when(Carbon::parse($this->selectedEndDate)>=Carbon::now()&&$this->selectedEndDate, function($query) {
+            //    // dd('safeer');
+            //     return $query->whereBetween('price', [$this->minPriceRange, $this->maxPriceRange]);
+            // })
         ->get();
+//dd($leds);
+       if($this->selectedStartDate&&$this->selectedEndDate&&Carbon::parse($this->selectedStartDate)<=Carbon::parse($this->selectedEndDate)&&Carbon::parse($this->selectedEndDate)>=Carbon::now()->format('Y-m-d'))
+       {
+           foreach ($leds as $led) {
+            $bookingDates=BookingDates::
+            where('led_id',$led->id)
+            ->whereRelation('order', 'payment_status', true)->get();
+            //dd($bookingDates);
+            //dd(Carbon::parse($this->selectedEndDate));
+            $startDate=Carbon::parse($this->selectedStartDate);
+            $endDate=Carbon::parse($this->selectedEndDate);
+            $differenceInRangeDates=$startDate->diffInDays($endDate)+1;  
+          //  dd($differenceInRangeDates);       
+            $exist=$bookingDates->whereBetween('bookdate',[$startDate,$endDate]);
+                   $totalBookingDates=$bookingDates->count();
+                   $bookingDatesInsideRange=$exist->count();
+                  // dd($bookingDatesInsideRange);
+                   //dd($differenceInRangeDates.' : '.$bookingDatesInsideRange); 
+                    if($differenceInRangeDates>$bookingDatesInsideRange)
+                    {
+                        $finalLeds->push($led);            
+                    }
+                     
+           }
+       }elseif ($this->selectedEndDate&&Carbon::parse($this->selectedEndDate)<Carbon::now()->format('Y-m-d')) {
+        $finalLeds = collect();
+       }else {
+        foreach ($leds as $led) {
+            $finalLeds->push($led);    
+        }  
+       }
+      // dd($finalLeds);
+
+        
+        //$bookingDates=BookingDates::
         // $leds=Led::with('subOrders')
         // ->whereBetween('price', [$this->minPriceRange, $this->maxPriceRange])
         // ->when($this->selectedCity, function($query) {
@@ -80,7 +116,7 @@ class LedSearchResults extends Component
         // }
         return view('livewire.led-search-results',[
             'cities'=>$cities,
-            'leds'=>$this->selectedDateRange?$finalLeds :$leds ,
+            'leds'=>$finalLeds,
             'loop1'=>$loop1,
             // 'selectedStartDate'=>$selectedStartDate,
             // 'selectedEndDate'=>$selectedEndDate,
