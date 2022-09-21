@@ -38,6 +38,10 @@ class LedSearchResults extends Component
         ->when($this->priceRange, function($query) {
                 return $query->whereBetween('price', [$this->minPriceRange, $this->maxPriceRange]);
             })
+            ->when(Carbon::parse($this->selectedEndDate)>=Carbon::now()&&$this->selectedEndDate, function($query) {
+               // dd('safeer');
+                return $query->whereBetween('price', [$this->minPriceRange, $this->maxPriceRange]);
+            })
         ->get();
         // $leds=Led::with('subOrders')
         // ->whereBetween('price', [$this->minPriceRange, $this->maxPriceRange])
