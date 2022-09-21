@@ -63,6 +63,11 @@ class Led extends Model
         return $this->belongsTo(Country::class, 'country_id');
     }
 
+    public function bookingDates()
+    {
+        return $this->hasMany(BookingDates::class, 'led_id');
+    }
+
     public function setStartAndEndDate($value)
     {
        $value2=$value;
