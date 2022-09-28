@@ -68,6 +68,62 @@ class Led extends Model
         return $this->hasMany(BookingDates::class, 'led_id');
     }
 
+    public function getPrice()
+    {
+        //dd($this->bookingduration);
+
+        switch ($this->bookingduration) {
+            case "All":
+              echo $this->price;
+              break;
+            case "3 Days":
+              echo $this->price*3;
+              break;
+            case "1 Week":
+              echo $this->price*7;
+              break;
+            case "1 Month":
+              echo $this->price*30;
+              break;
+            case "3 Month":
+              echo $this->price*90;
+              break;
+            case "6 Month":
+              echo $this->price*180;
+              break;
+            default:
+              echo $this->price;
+          }
+    }
+
+    public function getBookingDurationName()
+    {
+        //dd($this->bookingduration);
+
+        switch ($this->bookingduration) {
+            case "All":
+              echo 'Tag';
+              break;
+            case "3 Days":
+              echo '3 Tags';
+              break;
+            case "1 Week":
+              echo 'Woche';
+              break;
+            case "1 Month":
+              echo 'Monat';
+              break;
+            case "3 Month":
+              echo '3 Monat';
+              break;
+            case "6 Month":
+              echo '6 Monat';
+              break;
+            default:
+              echo 'Tag';
+          }
+    }
+
     public function setStartAndEndDate($value)
     {
        $value2=$value;

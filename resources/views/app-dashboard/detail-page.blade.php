@@ -50,7 +50,7 @@
                   <!--details-->
                   <div class="flex-con-sb w3-padding-48-top">
                      <h2 class="ff-lagufa-n font-20 font-16-sm font-w-600 w3-theme-text">LED Details</h2>
-                     <h2 class="ff-lagufa-n font-30 font-w-600 font-18-sm p-l-5"> {{$led->price}} €</h2>
+                     <h2 class="ff-lagufa-n font-30 font-w-600 font-18-sm p-l-5"> {{$led->getPrice()}} €</h2>
 
                   </div>
                    <h3><i class="fa fa-map-marker"></i> {{$led->location}} </h3>
@@ -73,7 +73,7 @@
                      <div class="det-col">
                         <h2 class="ff-lagufa-n font-18 font-12-sm font-w-600 w3-theme-text w3-center">Buchen   </h2>
                         <div class="flex-sb jus-con-center w3-padding-12-top">
-                           <h2 class="ff-lagufa-n font-16 font-12-sm font-w-400 p-l-5">{{$led->bookingduration}}</h2>
+                           <h2 class="ff-lagufa-n font-16 font-12-sm font-w-400 p-l-5">{{$led->getBookingDurationName()}}</h2>
                         </div>
                      </div>
                   </div>
@@ -143,7 +143,7 @@
                   <input required="" name="price" type="hidden" class="form-control" id="price">
                  <input required="" name="selected_date_array" value="" type="hidden" class="form-control" id="selected_date_array">
                   <input type="hidden" value="booking2" name="redirectFile">
-                                  <label for="booking-daterange">Buchungszeitraum wählen-{{$led->bookingduration}}</label>
+                                  <label for="booking-daterange">Buchungszeitraum wählen-{{$led->getBookingDurationName()}}</label>
 
 
 
@@ -170,7 +170,7 @@
 
 
                           <ul class="list-group" style="padding:2px;font-size:13px;">
-                          <li class="list-group-item listordertaking" style="background:none;border:none;padding:0;padding-top:10px"> <span id="per_booking_cost" style="font-weight:bold;color:#333"> <!-- € --> </span> <span id="id_x" style="font-weight:bold;color:#333"> {{$led->price}} € </span><span style="font-weight:bold;color:#333" id="multiply_show"></span> <span style="font-weight:bold;color:#333" id="total_days"></span><span id="days_show"></span> <span id="days_id"></span> <span class=" pull-right" id="total_cost">  </span></li>
+                          <li class="list-group-item listordertaking" style="background:none;border:none;padding:0;padding-top:10px"> <span id="per_booking_cost" style="font-weight:bold;color:#333"> <!-- € --> </span> <span id="id_x" style="font-weight:bold;color:#333"> {{$led->getPrice()}} € </span><span style="font-weight:bold;color:#333" id="multiply_show"></span> <span style="font-weight:bold;color:#333" id="total_days"></span><span id="days_show"></span> <span id="days_id"></span> <span class=" pull-right" id="total_cost">  </span></li>
                           <!--   <li class="list-group-item listordertaking"> 25 &euro; x  <span class="badge pull-right" >12</span></li>
                           --> </ul>
 
@@ -660,8 +660,8 @@
    
    
            document.getElementById("total_days").innerHTML = Difference_In_Days;
-           document.getElementById("multiply_show").innerHTML =  'X';
-           document.getElementById("days_show").innerHTML =  ' Days';
+           document.getElementById("multiply_show").innerHTML =  'zum';
+           document.getElementById("days_show").innerHTML =  ' Tag(s)';
            document.getElementById("total_price").innerHTML =  Difference_In_Days*{{$led->price}};
            
            document.getElementById("no_of_days").value = Difference_In_Days;
