@@ -182,7 +182,7 @@
 
                 <div class="card-body viewledlistmainpage" >
                     <h2 class="card-title alignleft"  >
-                        <a href="{{route('app.led.detail',$led->id??'')}}" class="viewledlistmainpageheading"> € {{$led->price}}</a>
+                        <a href="{{route('app.led.detail',$led->id??'')}}" class="viewledlistmainpageheading"> € {{$led->getPrice()}}</a>
                     </h2>
                     <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text viewledlistmainpageheading1"  > {{$led->title}}</h2>
 
@@ -190,7 +190,7 @@
 
                      
                     <h2 class="card-title alignright"  >
-                        <a href="{{route('app.led.detail',$led->id??'')}}"  class="viewledlistmainpageheading3"  >    {{$led->price}} € / <b  class="viewledlistmainpageheading4"  > Tag</b> </a>
+                        <a href="{{route('app.led.detail',$led->id??'')}}"  class="viewledlistmainpageheading3"  >    {{$led->getPrice()}} € / <b  class="viewledlistmainpageheading4"  > {{$led->getBookingDurationName()}}</b> </a>
                     </h2>
                     
                     <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text" style="text-align:right"> 
