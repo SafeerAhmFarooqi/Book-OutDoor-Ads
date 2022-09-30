@@ -1,5 +1,5 @@
 <div>
-  {{-- The whole world belongs to you. --}}
+ 
 <div>
 <div class="container-fluid DN-800" id="search-page">
       
@@ -137,6 +137,28 @@
  <div >
                       
   <div id="mymap"></div>
+  @foreach ($coordinates as $coordinate)
+  <div wire:ignore class="modal fade" id="exampleModal-{{$coordinate['id']}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{$coordinate['title']}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  @endforeach
+ 
 </div>
 </div>
 </div>
@@ -144,8 +166,31 @@
       
 </div>
 
-@section('scripts')
-    @parent
+@section('pageScripts')
+
+<script src="http://maps.google.com/maps/api/js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
+
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyAIeDyz_v1KkoU3ZTRqK5e-9Ax1lNjSIEI"></script>
+<script type="text/javascript">
+    var searchInput = 'googleLocation';
+    
+        $(document).ready(function () {
+            var autocomplete;
+            autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+                types: ['geocode']
+               
+            });
+        
+            google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                var near_place = autocomplete.getPlace();
+            });
+        });
+</script>
     <script>
       $(function() {
         $('input[name="book_dates"]').daterangepicker({
@@ -176,8 +221,8 @@
     
             var mymap = new GMaps({
               el: '#mymap',
-              lat: 50.3569,
-          lng: 7.5890,
+              lat: locations[0].lat,
+          lng: locations[0].long,
           zoom:6
             });
         
@@ -185,9 +230,9 @@
              
             $.each( locations, function( index, value ){
               var markerLabel = 'GO!';
-              alert(value.image);
+              //alert(value.image);
               var infowindow = new google.maps.InfoWindow({
-               content: "<div style='max-width:220px'><div style='float:left;width:100%'><img src='"+value.image+"' style='max-width:220px;max-height:180px' ></div><div style='float:left; padding: 10px;'><b>"+value.title+"</b><br/> <h2>"+value.price +"€</h2> </div> <div style='float:right'><img src='https://www.freeiconspng.com/uploads/calendar-icon-png-4.png' style='width:50px;padding:10px;'> </div></div>"
+               content: "<div style='max-width:220px'><div style='float:left;width:100%'><img src='"+value.image+"' style='max-width:220px;max-height:180px' ></div><div style='float:left; padding: 10px;'><b>"+value.title+"</b><br/> <h2>"+value.price +"€</h2> </div> <div style='float:right'><a href='javascript:;' data-toggle='modal' data-target='#exampleModal-"+value.id+"'> <img src='https://www.freeiconspng.com/uploads/calendar-icon-png-4.png' style='width:50px;padding:10px;'></a> </div></div>"
             });
               //alert(value.title+' : '+value.price);
                 // increment_2++;
