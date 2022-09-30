@@ -182,16 +182,19 @@
             });
         
               //alert(value.title+' : '+value.price);
-              var infowindow = new google.maps.InfoWindow({
-               content: "<div style='max-width:220px'><div style='float:left;width:100%'><img src='https://led-werbeflaechen.de/storage/led-images/11/10/AdDcH7zIfxqUOUUJUexgmxJpHIYaDPHjBBvLdyke.jpg' style='max-width:220px;max-height:180px' ></div><div style='float:left; padding: 10px;'><b>Led Title Show Here</b><br/> <h2> 100  €</h2> </div> <div style='float:right'><img src='https://www.freeiconspng.com/uploads/calendar-icon-png-4.png' style='width:50px;padding:10px;'> </div></div>"
-            });
+             
             $.each( locations, function( index, value ){
-              
+              var markerLabel = 'GO!';
+              alert(value.image);
+              var infowindow = new google.maps.InfoWindow({
+               content: "<div style='max-width:220px'><div style='float:left;width:100%'><img src='"+value.image+"' style='max-width:220px;max-height:180px' ></div><div style='float:left; padding: 10px;'><b>"+value.title+"</b><br/> <h2>"+value.price +"€</h2> </div> <div style='float:right'><img src='https://www.freeiconspng.com/uploads/calendar-icon-png-4.png' style='width:50px;padding:10px;'> </div></div>"
+            });
               //alert(value.title+' : '+value.price);
                 // increment_2++;
                 var marker = mymap.addMarker({
                 //   lat: value.lat,
                 //   lng: value.lng,
+                
                 lat: value.lat,
               lng: value.long,
                   title: value.title+" Pries "+ value.price +"€/Tag",
@@ -202,6 +205,7 @@
                     // document.location.href=url;
                   },
                 });
+                marker.setLabel(markerLabel);
            });
         
           </script>
