@@ -264,7 +264,12 @@
          window.addEventListener('getLocation', event => {
             //  alert(JSON.stringify(event.detail.name));
             //   alert("Hello! I am an alert box!");
-            
+        
+ 
+
+
+
+
               var locations = event.detail.name;
         // alert('check 1');
         // var increment=0;
@@ -279,8 +284,8 @@
     
             var mymap = new GMaps({
           el: '#mymap',
-          lat: 50.3569,
-          lng: 7.5890,
+          lat: locations[0].lat,
+          lng: locations[0].long,
           zoom:6
         });
         
@@ -289,21 +294,27 @@
     
     
         $.each( locations, function( index, value ){
-            
-            mymap.addMarker({
+          var markerLabel = 'GO!';
+              //alert(value.image);
+              var infowindow = new google.maps.InfoWindow({
+               content: "<div style='max-width:220px'><div style='float:left;width:100%'><img src='"+value.image+"' style='max-width:220px;max-height:180px' ></div><div style='float:left; padding: 10px;'><b>"+value.title+"</b><br/> <h2>"+value.price +"€</h2> </div> <div style='float:right'><a href='javascript:;' data-toggle='modal' data-target='#exampleModal-"+value.id+"'> <img src='https://www.freeiconspng.com/uploads/calendar-icon-png-4.png' style='width:50px;padding:10px;'></a> </div></div>"
+            });
+            var marker= mymap.addMarker({
            
               lat: value.lat,
               lng: value.long,
               title: value.title+" Pries "+ value.price +"€/Tag",
               click: function(e) {
                // alert('This is second '+value.id+', gujarat from India.');
-                let url = "{{ route('app.led.detail', ':value.id') }}";
-                    url = url.replace(':value.id', value.id);
-                    document.location.href=url;
+                infowindow.open(mymap,marker);
+              //   let url = "{{ route('app.led.detail', ':value.id') }}";
+              //       url = url.replace(':value.id', value.id);
+              //       document.location.href=url;
                    // window.open(url,'_self');
                // window.open("https://www.w3schools.com",'_self');
               }
             });
+            marker.setLabel(markerLabel);
        });
     })
     </script>  
