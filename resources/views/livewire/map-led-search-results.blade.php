@@ -148,11 +148,92 @@
           </button>
         </div>
         <div class="modal-body">
-          ...
+          
+                  
+            <div class="w3-margin-48-top  box-shad" id="stick">
+             
+             <!-- right side booking -->
+                    <div class="order-booking">
+              <div class=" ">
+                  <div class="topbookingform"> 
+                  <div class="order-body">
+                      @include('common.validation')
+                      <div class="form-group">
+
+          <input required="" name="product_id" type="hidden" value="3" class="form-control" id="product_id">
+          <input required="" name="price" type="hidden" class="form-control" id="price">
+         <input required="" name="selected_date_array" value="" type="hidden" class="form-control" id="selected_date_array">
+          <input type="hidden" value="booking2" name="redirectFile">
+                          <label for="booking-daterange">Buchungszeitraum wählen-{{$coordinate['led']->getBookingDurationName()}}</label>
+
+
+
+                          <div class="input-group" style="width:100%">
+                              <div class="input-group-prepend cticon">
+                              <!--     <span class="input-group-text">
+                                        <img src="images/calandericon.png" style="
+                            width: 20px;
+                            color: #fff !important;
+                            /* background: #fff; */
+                          ">
+                                  </span> -->
+                              </div>
+                              <form action="{{route('cart.led.add')}}" method="post">
+                                @csrf
+                              <input type="text" class="form-control" name="book_dates" id="book_dates" placeholder="Select Date" />
+                              <input type="hidden" name="error" id="error">
+                              <h6 id="alert" style="color: red;"></h6>
+                              <input type="hidden" id="no_of_days" name="no_of_days">
+                          </div>
+                          
+
+                      </div>
+
+
+                  <ul class="list-group" style="padding:2px;font-size:13px;">
+                  <li class="list-group-item listordertaking" style="background:none;border:none;padding:0;padding-top:10px"> <span id="per_booking_cost" style="font-weight:bold;color:#333"> <!-- € --> </span> <span id="id_x" style="font-weight:bold;color:#333"> {{$coordinate['led']->getPrice()}} € </span><span style="font-weight:bold;color:#333" id="multiply_show"></span> <span style="font-weight:bold;color:#333" id="total_days"></span><span id="days_show"></span> <span id="days_id"></span> <span class=" pull-right" id="total_cost">  </span></li>
+                  <!--   <li class="list-group-item listordertaking"> 25 &euro; x  <span class="badge pull-right" >12</span></li>
+                  --> </ul>
+
+                   
+
+                      <table class="table" style="width:100%">
+                          <tbody>
+
+
+
+                              <tr>
+                                  <th style="text-align: left;"> <span style="line-height: 45px;color:#333;font-weight:bold"> Gesamtpreis </span></th>
+                                  <td style="text-align: right;"><strong id="total_price">                                        </strong><b> €</b> </td>
+                              </tr>
+                          </tbody>
+                      </table>
+                <div style="text-align: center;">
+                  <button type="submit" class="buttonsubmit btn btn-default" name="led_id" value="{{$coordinate['led']->id}}" style="font-size:15px">
+                 jetzt buchen                         </button>
+              </div>
+                  </form>
+                    
+                  <hr>
+                  <p id="underactionbutton" style="font-size:16px;text-align: center"> Geben Sie Ihren Buchungszeitraum ein, um den Gesamtpreis pro Tag zu sehen. </p>
+                       
+                  </div>
+
+              </div>
+          </div>
+
+
+          <!-- end right side booking -->
+              
+             
+          </div>
+       </div>
+       <!--right-col-->
+  
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
         </div>
       </div>
     </div>
@@ -173,7 +254,8 @@
 
 
 
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
 
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyAIeDyz_v1KkoU3ZTRqK5e-9Ax1lNjSIEI"></script>
 <script type="text/javascript">
