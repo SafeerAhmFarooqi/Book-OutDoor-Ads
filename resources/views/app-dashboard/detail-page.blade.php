@@ -128,9 +128,9 @@
                </div>
                <!--left-col-->
                <div class="col-sm-12 col-xs-12 col-md-5 col-lg-5">
+                  
                     <div class="w3-margin-48-top  box-shad" id="stick">
                      
-
                      <!-- right side booking -->
                             <div class="order-booking">
                       <div class=" ">
