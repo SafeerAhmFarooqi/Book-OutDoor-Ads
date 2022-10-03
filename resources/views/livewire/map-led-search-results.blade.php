@@ -137,7 +137,7 @@
  <div >
                       
   <div id="mymap"></div>
-  @foreach ($coordinates as $coordinate)
+  {{-- @foreach ($coordinates as $coordinate)
   <div wire:ignore class="modal fade" id="exampleModal-{{$coordinate['id']}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -233,12 +233,12 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+    
         </div>
       </div>
     </div>
   </div>
-  @endforeach
+  @endforeach --}}
  
 </div>
 </div>
@@ -311,10 +311,10 @@
               //alert(value.title+' : '+value.price);
              
             $.each( locations, function( index, value ){
-              var markerLabel = 'GO!';
+              var markerLabel = '€ '+value.price;
               //alert(value.image);
               var infowindow = new google.maps.InfoWindow({
-               content: "<div style='max-width:220px'><div style='float:left;width:100%'><img src='"+value.image+"' style='max-width:220px;max-height:180px' ></div><div style='float:left; padding: 10px;'><b>"+value.title+"</b><br/> <h2>"+value.price +"€</h2> </div> <div style='float:right'><a href='javascript:;' data-toggle='modal' data-target='#exampleModal-"+value.id+"'> <img src='https://www.freeiconspng.com/uploads/calendar-icon-png-4.png' style='width:50px;padding:10px;'></a> </div></div>"
+               content: "<div style='max-width:220px'><div style='float:left;width:100%'><img src='"+value.image+"' style='max-width:220px;max-height:180px' ></div><div style='float:left; padding: 10px;'><b>"+value.title+"</b><br/> <h2>"+value.price +"€</h2> </div> <div style='float:right'><a href='led-detail/"+value.id+"' > <img src='https://www.freeiconspng.com/uploads/calendar-icon-png-4.png' style='width:50px;padding:10px;'></a> </div></div>"
             });
               //alert(value.title+' : '+value.price);
                 // increment_2++;
