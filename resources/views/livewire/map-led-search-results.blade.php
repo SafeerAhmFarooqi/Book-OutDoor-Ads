@@ -272,6 +272,19 @@
         border: none;
         color: rgb(0, 0, 0);
       }
+      .my-custom-class-for-label {
+  width: 50px; 
+  height: 20px;
+
+  border: 1px solid #eb3a44;
+  border-radius: 5px;
+  background: #fee1d7;
+  text-align: center;
+  line-height: 20px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #eb3a44;
+}
     </style>
 @endsection
 
@@ -548,7 +561,7 @@ var date2 = new Date(end);
              
             $.each( locations, function( index, value ){
               
-              var markerLabel = 'GO!';
+              var markerLabel = "€"+ value.price;
               //alert(value.image);
               var infowindow = new google.maps.InfoWindow({
                content: "<div style='max-width:220px'><div style='float:left;width:100%'><img src='"+value.image+"' style='max-width:220px;max-height:180px' ></div><div style='float:left; padding: 10px;'><b>"+value.title+"</b><br/> <h2>"+value.price +"€</h2> </div> <div style='float:right'><a href='javascript:;' data-toggle='modal' data-target='#exampleModal-"+value.id+"'> <img src='https://www.freeiconspng.com/uploads/calendar-icon-png-4.png' style='width:50px;padding:10px;'></a> </div></div>"
@@ -568,8 +581,10 @@ var date2 = new Date(end);
                     // url = url.replace(':value.id', value.id);
                     // document.location.href=url;
                   },
+                
                 });
                 marker.setLabel(markerLabel);
+               
            });
         
           </script>
@@ -596,7 +611,7 @@ zoom:6
 
 
 $.each( locations, function( index, value ){
-var markerLabel = 'GO!';
+var markerLabel ="€"+ value.price;
   //alert(value.image);
   var infowindow = new google.maps.InfoWindow({
    content: "<div style='max-width:220px'><div style='float:left;width:100%'><img src='"+value.image+"' style='max-width:220px;max-height:180px' ></div><div style='float:left; padding: 10px;'><b>"+value.title+"</b><br/> <h2>"+value.price +"€</h2> </div> <div style='float:right'><a href='javascript:;' data-toggle='modal' data-target='#exampleModal-"+value.id+"'> <img src='https://www.freeiconspng.com/uploads/calendar-icon-png-4.png' style='width:50px;padding:10px;'></a> </div></div>"
