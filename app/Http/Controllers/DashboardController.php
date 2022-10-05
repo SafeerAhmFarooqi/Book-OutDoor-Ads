@@ -48,7 +48,7 @@ public function payment($id)
                ],
                "description" => "Order #".$order->id,
                "redirectUrl" => route('payment.order.process',$order->id),
-               "webhookUrl" => route('webhooks.mollie'),
+              // "webhookUrl" => route('webhooks.mollie'),
                "metadata" => [
                    "order_id" => $order->id,
                ],
@@ -484,6 +484,7 @@ public function handle(Request $request) {
            ]);
 
            foreach ($cartItems as $value) {
+           // dd(Led::findOrFail($value->id));
             $subOrder=SubOrders::create([
                'user_id' => (Led::findOrFail($value->id))->user->id,
                'led_id' => $value->id,
@@ -615,15 +616,30 @@ public function handle(Request $request) {
 
    public function searchLed(Request $request)
    {
+      $cartItems=[];
+      if (session()->has('cart.items')) {
+         foreach (session()->get('cart.items') as $value) {
+            array_push($cartItems,Led::findOrFail(strtok($value,'*')));
+         }
+      }
       return view('app-dashboard.led-search-results',[
          'location'=>$request->location,
          'find'=>$request->find,
+         'cartItems'=>$cartItems,
       ]);       
    }
 
    public function searchMapLed()
    {
-      return view('app-dashboard.led-map-search-results');       
+      $cartItems=[];
+      if (session()->has('cart.items')) {
+         foreach (session()->get('cart.items') as $value) {
+            array_push($cartItems,Led::findOrFail(strtok($value,'*')));
+         }
+      }
+      return view('app-dashboard.led-map-search-results',[
+         'cartItems'=>$cartItems,
+      ]);       
    }
    public function showImprint()
    {
