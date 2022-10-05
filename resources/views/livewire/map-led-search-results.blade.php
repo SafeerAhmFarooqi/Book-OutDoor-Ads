@@ -552,7 +552,7 @@ var date2 = new Date(end);
               el: '#mymap',
               lat: locations.length==0?51 :locations[0].lat ,
               lng: locations.length==0?10 :locations[0].long,
-          zoom:6
+          zoom:10
             });
         
               //alert(value.title+' : '+value.price);
@@ -603,7 +603,7 @@ var mymap = new GMaps({
 el: '#mymap',
 lat: locations.length==0?51 :locations[0].lat ,
 lng: locations.length==0?10 :locations[0].long,
-zoom:6
+zoom:10
 });
 
 
