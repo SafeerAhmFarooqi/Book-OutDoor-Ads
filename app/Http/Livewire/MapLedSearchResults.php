@@ -9,6 +9,7 @@ use App\Models\Led;
 use App\Models\SubOrders;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Session;
 
 class MapLedSearchResults extends Component
 {
@@ -23,6 +24,13 @@ class MapLedSearchResults extends Component
     public $maxPriceRange='';
     public $priceRange='';
     public $count = 0;
+    public $bookingDates=[];
+    public $alert=[];
+    public $error=[];
+    public $totalDays=[];
+    public $totalPrice=[];
+    public $sessionFlash=[];
+    public $sessionFlashSuccess=[];
  
     public function increment()
     {
@@ -77,6 +85,25 @@ class MapLedSearchResults extends Component
     {
        // $this->dispatchBrowserEvent('getLocation');
         $this->dispatchBrowserEvent('getLocation',['name'=>$this->coordinates] );
+    }
+
+    // public function applyFilter()
+    // {
+    //    // $this->dispatchBrowserEvent('getLocation');
+    //     $this->dispatchBrowserEvent('getLocation',['name'=>$this->coordinates] );
+    // }
+
+    public function SubmitBookDates($id)
+    {
+        //dd($id);
+        if (!$this->error[$id]&&$this->bookingDates[$id]) {
+            session()->push('cart.items', $id.'*'.$this->bookingDates[$id].'*'.$this->totalDays[$id]);
+            $this->sessionFlashSuccess[$id]="Artikel erfolgreich in den Einkaufswagen gelegt";
+            return redirect()->route('find.map.led');
+        } else {
+            $this->sessionFlash[$id]="Ungültiges Datum Bitte erneut auswählen";
+        }
+        
     }
 
     public function render()

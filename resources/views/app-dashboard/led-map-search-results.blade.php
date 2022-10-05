@@ -9,18 +9,6 @@
 <!-- end listing -->
 @endsection
 
-@section('Styles')
-@parent
-<style>
-    /*
-    # Welcome
-    --------------------------------*/
-    #mymap {
-      		border:1px solid red;
-      		width: 100%;
-              height: 500px;
-    	}
-    </style>
-@endsection
+
 
 
