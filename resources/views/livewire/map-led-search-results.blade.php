@@ -30,17 +30,14 @@
               <div class="vr-line"></div>
           </div>
           <div class="f-g-2">
-              <p class="font-lufga-18 dis-none">Datum </p>
-              <div class="flex-st">
-                  <div class="dropdown margin-right">
-                      <select id="property_type" name="property_type" style="padding: 8px 32px 8px 0px;border: none;outline: none;text-align: center;color: #8F90A6!important;">
-                          <option value="">
-                             1-10-2022 - 10-10-2023
-                          </option> 
-                      </select>
-                  </div>
-              </div>
-          </div>
+            {{-- <p class="font-lufga-18 dis-none">Datum -{{$selectedStartDate}} - {{$selectedEndDate}}- {{$selectedDateRange}}</p> --}}
+            <p class="font-lufga-18 dis-none">Datum</p>
+            <div class="flex-st">
+                <div class="dropdown margin-right">
+                  <input type="text" class="form-control"  id="searchdates" placeholder="Select Date" />
+                </div>
+            </div>
+        </div>
           <div class="f-g-1 margin-right">
               <div class="vr-line"></div>
           </div>
@@ -304,7 +301,30 @@
             });
         });
 </script>
-   
+<script>
+  $(function() {
+    var dateToday = new Date();
+    $('#searchdates').daterangepicker({
+      opens: 'left',
+      minDate: dateToday,
+       autoApply : true
+    }, function(start, end, label) {
+      //alert('safeer');
+      var date1 = new Date(start);
+var date2 = new Date(end);
+      @this.set('selectedStartDate', date1.getFullYear()+'/'+(date1.getMonth()+1)+'/'+date1.getDate());
+      @this.set('selectedEndDate', date2.getFullYear()+'/'+(date2.getMonth()+1)+'/'+date2.getDate());
+      @this.set('selectedDateRange', (date1.getMonth()+1)+'/'+date1.getDate()+'/'+date1.getFullYear()+' - '+(date2.getMonth()+1)+'/'+date2.getDate()+'/'+date2.getFullYear());
+      // alert(start.format('YYYY-MM-DD'));
+    });
+
+    $('#searchdates').on('cancel.daterangepicker', function(ev, picker) {
+  //do something, like clearing an input
+  @this.set('selectedDateRange', '');
+  $('#searchdates').val('Select Date Range');
+});
+  });
+  </script>
 
       @foreach ($coordinates as $coordinate)
       @php

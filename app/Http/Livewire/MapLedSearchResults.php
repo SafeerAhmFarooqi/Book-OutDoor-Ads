@@ -7,6 +7,7 @@ use Livewire\Component;
 use App\Models\City;
 use App\Models\Led;
 use App\Models\SubOrders;
+use App\Models\BookingDates;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Session;
@@ -147,8 +148,38 @@ class MapLedSearchResults extends Component
   
         //     }
         // }
+        if($this->selectedStartDate&&$this->selectedEndDate&&Carbon::parse($this->selectedStartDate)<=Carbon::parse($this->selectedEndDate)&&Carbon::parse($this->selectedEndDate)>=Carbon::now()->format('Y-m-d'))
+        {
+            foreach ($leds as $led) {
+             $bookingDates=BookingDates::
+             where('led_id',$led->id)
+             ->whereRelation('order', 'payment_status', true)->get();
+             //dd($bookingDates);
+             //dd(Carbon::parse($this->selectedEndDate));
+             $startDate=Carbon::parse($this->selectedStartDate);
+             $endDate=Carbon::parse($this->selectedEndDate);
+             $differenceInRangeDates=$startDate->diffInDays($endDate)+1;  
+           //  dd($differenceInRangeDates);       
+             $exist=$bookingDates->whereBetween('bookdate',[$startDate,$endDate]);
+                    $totalBookingDates=$bookingDates->count();
+                    $bookingDatesInsideRange=$exist->count();
+                   // dd($bookingDatesInsideRange);
+                    //dd($differenceInRangeDates.' : '.$bookingDatesInsideRange); 
+                     if($differenceInRangeDates>$bookingDatesInsideRange)
+                     {
+                         $finalLeds->push($led);            
+                     }
+                      
+            }
+        }elseif ($this->selectedEndDate&&Carbon::parse($this->selectedEndDate)<Carbon::now()->format('Y-m-d')) {
+         $finalLeds = collect();
+        }else {
+         foreach ($leds as $led) {
+             $finalLeds->push($led);    
+         }  
+        }
         $this->coordinates=[];
-        foreach ($this->selectedDateRange?$finalLeds :$leds as $value) {
+        foreach ($finalLeds  as $value) {
             array_push($this->coordinates,$this->geoLocate($value->location,$value->id)); 
         }
         return view('livewire.map-led-search-results',[
