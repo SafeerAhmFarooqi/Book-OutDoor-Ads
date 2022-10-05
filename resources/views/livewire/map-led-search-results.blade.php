@@ -621,6 +621,12 @@ var marker= mymap.addMarker({
   lat: value.lat,
   lng: value.long,
   title: value.title+" Pries "+ value.price +"€/Tag",
+  icon: {
+			url: "images/markers/svg/Arrows.svg",
+			origin: new google.maps.Point(96, 0),
+			size: new google.maps.Size(96, 96),
+			scaledSize: new google.maps.Size(192, 96)
+		},
   click: function(e) {
    // alert('This is second '+value.id+', gujarat from India.');
     infowindow.open(mymap,marker);
