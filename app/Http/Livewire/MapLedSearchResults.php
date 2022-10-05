@@ -97,7 +97,7 @@ class MapLedSearchResults extends Component
     public function SubmitBookDates($id)
     {
         //dd($id);
-        if (!$this->error[$id]&&$this->bookingDates[$id]??false) {
+        if (!$this->error[$id]&&@$this->bookingDates[$id]) {
             session()->push('cart.items', $id.'*'.$this->bookingDates[$id].'*'.$this->totalDays[$id]);
             $this->sessionFlashSuccess[$id]="Artikel erfolgreich in den Einkaufswagen gelegt";
             return redirect()->route('find.map.led');
