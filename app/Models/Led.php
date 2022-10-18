@@ -146,7 +146,7 @@ class Led extends Model
             $end=strtok('');
             $startDate=Carbon::parse($start);
             $endDate=Carbon::parse($end);
-            $noOfDays=3;      
+            $noOfDays=$startDate->diffInDays($endDate)+1;      
         }
 
         if ($this->bookingduration=='1 Week') {
@@ -156,7 +156,7 @@ class Led extends Model
             $end=strtok('');
             $startDate=Carbon::parse($start);
             $endDate=Carbon::parse($end);
-            $noOfDays=7;   
+            $noOfDays=$startDate->diffInDays($endDate)+1;   
         }
 
         if ($this->bookingduration=='1 Month') {
@@ -166,7 +166,7 @@ class Led extends Model
             $end=strtok('');
             $startDate=Carbon::parse($start);
             $endDate=Carbon::parse($end);
-            $noOfDays=30;   
+            $noOfDays=$startDate->diffInDays($endDate)+1;   
         }
 
         if ($this->bookingduration=='3 Month') {
@@ -176,7 +176,7 @@ class Led extends Model
             $end=strtok('');
             $startDate=Carbon::parse($start);
             $endDate=Carbon::parse($end);
-            $noOfDays=90;   
+            $noOfDays=$startDate->diffInDays($endDate)+1;   
         }
 
         if ($this->bookingduration=='6 Month') {
@@ -186,7 +186,7 @@ class Led extends Model
             $end=strtok('');
             $startDate=Carbon::parse($start);
             $endDate=Carbon::parse($end);
-            $noOfDays=180;   
+            $noOfDays=$startDate->diffInDays($endDate)+1;   
         }
         
       // dd($startDate);
