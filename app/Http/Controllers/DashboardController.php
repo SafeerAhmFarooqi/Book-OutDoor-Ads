@@ -88,7 +88,7 @@ public function handle(Request $request) {
    // }
 }
 
-   public function geoLocate($address)
+   public function geoLocate($address,$id=null)
     {
         try {
             $lat = 0;
@@ -106,10 +106,15 @@ public function handle(Request $request) {
     
                 if($lat && $lng) {
                     return array(
-                        'status' => true,
-                        'lat' => $lat, 
-                        'long' => $lng, 
-                        'google_place_id' => $data->results[0]->place_id
+                     'status' => true,
+                     'lat' => $lat, 
+                     'long' => $lng,
+                     'id'=>$id,
+                     'title' => (Led::find($id))->title,
+                     'price' => (Led::find($id))->price, 
+                     'image' => asset('storage/'.((Led::find($id))->image->path)),
+                     'led' => Led::find($id),
+                     'google_place_id' => $data->results[0]->place_id
                     );
                 }
             }
@@ -629,16 +634,51 @@ public function handle(Request $request) {
       ]);       
    }
 
-   public function searchMapLed()
+   public function searchMapLed(Request $request)
    {
+      //dd($request->searchdates);
       $cartItems=[];
       if (session()->has('cart.items')) {
          foreach (session()->get('cart.items') as $value) {
             array_push($cartItems,Led::findOrFail(strtok($value,'*')));
          }
       }
+
+      $minPriceRange='';
+      $maxPriceRange='';
+      if ($request->pricerange) {
+         $minPriceRange = strtok($request->pricerange,"-");
+         $maxPriceRange = strtok("");
+     }
+     else
+     {
+      $minPriceRange = '';
+      $maxPriceRange = '';
+     }
+     $city=$request->city;
+     $location=$request->location;
+     $leds=Led::
+     when($request->pricerange, function($query) use ($minPriceRange,$maxPriceRange) {
+         return $query->whereBetween('price', [$minPriceRange, $maxPriceRange]);
+     })
+     ->when($city, function($query,$city) {
+         return $query->where('city_id', $city);
+     })
+     ->when($location, function($query,$location) {
+         return $query->where('location', 'like', '%'.$location.'%');
+     })     
+     ->get();
+
+     $coordinates=[];
+     foreach ($leds  as $value) {
+         array_push($coordinates,$this->geoLocate($value->location,$value->id)); 
+     }
+
       return view('app-dashboard.led-map-search-results',[
-         'cartItems'=>$cartItems,
+         'cartItems' => $cartItems,
+         'cities' => City::all(),
+         'coordinates'=>$coordinates,
+         //'coordinates'=>json_encode($coordinates),
       ]);       
    }
    public function showImprint()
