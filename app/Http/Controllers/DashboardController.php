@@ -48,7 +48,7 @@ public function payment($id)
                ],
                "description" => "Order #".$order->id,
                "redirectUrl" => route('payment.order.process',$order->id),
-              // "webhookUrl" => route('webhooks.mollie'),
+               "webhookUrl" => route('webhooks.mollie'),
                "metadata" => [
                    "order_id" => $order->id,
                ],
@@ -228,10 +228,10 @@ public function handle(Request $request) {
       case "3 Days":
          $dates=array();
          //dd($sequentialDisableDates);
-         for ($i=0; $i < 9999; $i+=3) { 
+         for ($i=0; $i < 9999; $i+=2) { 
             $sequentialDisableDates=new SubOrders([
                'startDate' => $led->created_at->addDays($i+1),
-               'endDate' => $led->created_at->addDays($i+2),
+               'endDate' => $led->created_at->addDays($i+1),
             ]);
             array_push($dates,$sequentialDisableDates);
         }
@@ -241,10 +241,10 @@ public function handle(Request $request) {
         case "1 Week":
          $dates=array();
          //dd($sequentialDisableDates);
-         for ($i=0; $i < 9999; $i+=7) { 
+         for ($i=0; $i < 9999; $i+=6) { 
             $sequentialDisableDates=new SubOrders([
                'startDate' => $led->created_at->addDays($i+1),
-               'endDate' => $led->created_at->addDays($i+6),
+               'endDate' => $led->created_at->addDays($i+5),
             ]);
             array_push($dates,$sequentialDisableDates);
         }
@@ -254,10 +254,10 @@ public function handle(Request $request) {
         case "1 Month":
          $dates=array();
          //dd($sequentialDisableDates);
-         for ($i=0; $i < 9999; $i+=30) { 
+         for ($i=0; $i < 9999; $i+=29) { 
             $sequentialDisableDates=new SubOrders([
                'startDate' => $led->created_at->addDays($i+1),
-               'endDate' => $led->created_at->addDays($i+29),
+               'endDate' => $led->created_at->addDays($i+28),
             ]);
             array_push($dates,$sequentialDisableDates);
         }
@@ -267,10 +267,10 @@ public function handle(Request $request) {
         case "3 Month":
          $dates=array();
          //dd($sequentialDisableDates);
-         for ($i=0; $i < 9999; $i+=90) { 
+         for ($i=0; $i < 9999; $i+=89) { 
             $sequentialDisableDates=new SubOrders([
                'startDate' => $led->created_at->addDays($i+1),
-               'endDate' => $led->created_at->addDays($i+89),
+               'endDate' => $led->created_at->addDays($i+88),
             ]);
             array_push($dates,$sequentialDisableDates);
         }
@@ -280,10 +280,10 @@ public function handle(Request $request) {
         case "6 Month":
          $dates=array();
          //dd($sequentialDisableDates);
-         for ($i=0; $i < 9999; $i+=180) { 
+         for ($i=0; $i < 9999; $i+=179) { 
             $sequentialDisableDates=new SubOrders([
                'startDate' => $led->created_at->addDays($i+1),
-               'endDate' => $led->created_at->addDays($i+179),
+               'endDate' => $led->created_at->addDays($i+178),
             ]);
             array_push($dates,$sequentialDisableDates);
         }
@@ -313,6 +313,13 @@ public function handle(Request $request) {
       ->where('led_id',$id)
       ->where('startDate','>=',Carbon::now()->format('Y-m-d'))
       ->get();
+      $disableDates2=SubOrders::with(['order'])
+      ->whereHas('order', function($q) {
+      $q->where('payment_status',true);
+      })
+      ->where('led_id',$id)
+      ->where('startDate','>=',Carbon::now()->format('Y-m-d'))
+      ->get();
       //dd($led->bookingduration=='1 Week');
      // dd($led->bookingduration);
       // $sequentialDisableDates=new SubOrders([
@@ -325,9 +332,9 @@ public function handle(Request $request) {
 
 
       //Code for Sequential Disable Dates
-      // foreach ($this->getSequentialDisableDates($id) as $value) {
-      //    $disableDates->push($value);   
-      // }
+      foreach ($this->getSequentialDisableDates($id) as $value) {
+         $disableDates->push($value);   
+      }
       
 
 
@@ -350,7 +357,8 @@ public function handle(Request $request) {
           'increment'=>0,
           'cartItems'=>$cartItems,
           'disableDates'=>$disableDates,
-          'coordinates'=>json_encode($this->geoLocate($led->location)),
+          'disableDates2'=>$disableDates2,
+          'coordinates'=>json_encode($this->geoLocate($led->location,$id)),
          ]);
    }
 

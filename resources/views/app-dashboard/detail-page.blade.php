@@ -554,6 +554,7 @@
        var y = moment("2022-07-25");
        var dates=@json($disableDates);
        var dateRanges=@json($disableDates);
+       var dateRanges2=@json($disableDates2);
        var dateToday = new Date();
        var maxSpan=0;
        //$('#error').val('true'); 
@@ -581,9 +582,9 @@
          $('input[name="book_dates"]').daterangepicker({
            opens: 'left',
           // singleDatePicker: true,
-          "maxSpan": {
-               "days": maxSpan
-                           },
+         //  "maxSpan": {
+         //       "days": maxSpan
+         //                   },
            autoApply : true,
            minDate: dateToday,
            isInvalidDate: function(date) {
@@ -600,6 +601,7 @@
                }, false);
            }
          }, function(start, end, label) {
+           
             var date1 = new Date(start);
    var date2 = new Date(end);
    var disableDays=0;
@@ -608,7 +610,9 @@
    var Difference_In_Days =date2.getDate() - date1.getDate();
    Difference_In_Days=Difference_In_Days+1;
    //alert(Difference_In_Days);
-   dateRanges.forEach(range => {
+   document.getElementById("alert").innerHTML =  ''; 
+   document.getElementById("error").value = 'false';
+   dateRanges2.forEach(range => {
              startDateObject=new Date(range.startDate);
                    startDate=new Date(startDateObject.getFullYear()+'-'+(startDateObject.getMonth() + 1)+'-'+startDateObject.getDate());
                    endDateObject=new Date(range.endDate);
@@ -619,6 +623,7 @@
              //if(!(date1.getTime()<startDate.getTime()&&date2.getTime()>endDate.getTime()))
                if((startDate.getDate() >= date1.getDate() && startDate.getDate() <= date2.getDate())||(date1.getDate() >= startDate.getDate() && date1.getDate() <= endDate.getDate())||(Difference_In_Days!=(maxSpan+1))) 
              {
+          
                //alert('wrong');
               // alert('Invalid Date Selection');
                document.getElementById("alert").innerHTML =  'Ungültiges Datum Bitte erneut auswählen'; 
@@ -627,27 +632,27 @@
                     document.getElementById("error").value = 'true';
              }
              else{
-             
+           
                document.getElementById("alert").innerHTML =  ''; 
               // $('#error').val('false');
                document.getElementById("error").value = 'false';
              }
            });
-           if(Difference_In_Days!=(maxSpan+1)) 
-             {
-               //alert('wrong');
-              // alert('Invalid Date Selection');
-               document.getElementById("alert").innerHTML =  'Ungültiges Datum Bitte erneut auswählen'; 
-                   // $('#book_dates').val('');
-                    //$('#error').val('true'); 
-                    document.getElementById("error").value = 'true';
-             }
-             else{
+         //   if(Difference_In_Days!=(maxSpan+1)) 
+         //     {
+         //       //alert('wrong');
+         //      // alert('Invalid Date Selection');
+         //       document.getElementById("alert").innerHTML =  'Ungültiges Datum Bitte erneut auswählen'; 
+         //           // $('#book_dates').val('');
+         //            //$('#error').val('true'); 
+         //            document.getElementById("error").value = 'true';
+         //     }
+         //     else{
              
-               document.getElementById("alert").innerHTML =  ''; 
-              // $('#error').val('false');
-               document.getElementById("error").value = 'false';
-             }
+         //       document.getElementById("alert").innerHTML =  ''; 
+         //      // $('#error').val('false');
+         //       document.getElementById("error").value = 'false';
+         //     }
    // dateRanges.reduce(function(bool, range) {
    //                 startDateObject=new Date(range.startDate);
    //                 endDateObject=new Date(range.endDate);
