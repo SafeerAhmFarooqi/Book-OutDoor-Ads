@@ -29,7 +29,7 @@
 
 
                         <div class="item {{$increment==1?'active' : ''}}">
-                           <img src="{{asset('storage/'.$image->path)}}" alt="" class="carousal-img">
+                           <img src="{{asset('storage/'.($image->path??''))}}" alt="" class="carousal-img">
                            <div class="w3-padding w3-display-bottomright">
                               <div class="flex-end p-t-10">
                                  {{-- <button  class="like-link m-r-10"><i class="fa fa-camera"></i> 1 Photos</button>
@@ -337,7 +337,7 @@
    });
    
    const image = {
-    url: "{{asset('storage/'.$image->path)}}",
+    url: "{{asset('storage/'.($image->path??''))}}",
     // This marker is 20 pixels wide by 32 pixels high.
     size: new google.maps.Size(100, 100),
     // The origin for this image is (0, 0).

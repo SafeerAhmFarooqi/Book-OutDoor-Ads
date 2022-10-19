@@ -112,7 +112,7 @@ public function handle(Request $request) {
                      'id'=>$id,
                      'title' => (Led::find($id))->title,
                      'price' => (Led::find($id))->price, 
-                     'image' => asset('storage/'.((Led::find($id))->image->path)),
+                     'image' => asset('storage/'.((Led::find($id))->image->path??'')),
                      'led' => Led::find($id),
                      'google_place_id' => $data->results[0]->place_id
                     );
