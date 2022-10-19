@@ -332,9 +332,9 @@ public function handle(Request $request) {
 
 
       //Code for Sequential Disable Dates
-      foreach ($this->getSequentialDisableDates($id) as $value) {
-         $disableDates->push($value);   
-      }
+      // foreach ($this->getSequentialDisableDates($id) as $value) {
+      //    $disableDates->push($value);   
+      // }
       
 
 

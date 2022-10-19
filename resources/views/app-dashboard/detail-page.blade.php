@@ -255,9 +255,9 @@
 <script>
    
 </script>
-<script src="{{ asset('assets/Metronic-Theme/plugins/global/plugins.bundle.js') }}"></script>
-<script src="{{ asset('assets/Metronic-Theme/js/scripts.bundle.js') }}"></script>
-<script src="{{asset('assets/Metronic-Theme/plugins/custom/tinymce/tinymce.bundle.js')}}"></script>
+{{-- <script src="{{ asset('assets/Metronic-Theme/plugins/global/plugins.bundle.js') }}"></script> --}}
+{{-- <script src="{{ asset('assets/Metronic-Theme/js/scripts.bundle.js') }}"></script>
+<script src="{{asset('assets/Metronic-Theme/plugins/custom/tinymce/tinymce.bundle.js')}}"></script> --}}
 <script>
   //     var options = {selector: "#kt_docs_tinymce_basic",
   //   menubar: false,
@@ -265,25 +265,25 @@
   //   toolbar: false,
   //   readonly: 1,
   //                     };
-  var options = {selector: "#kt_docs_tinymce_basic",
-  //theme : 'advanced',
-  plugins : 'autoresize',
-  width: '100%',
-  height: '25%',
-  autoresize_min_height: 400,
-  autoresize_max_height: 800,
-  menubar: false,
-    statusbar: false,
-    toolbar: false,
-    readonly: 1,
-                      };
+//   var options = {selector: "#kt_docs_tinymce_basic",
+//   //theme : 'advanced',
+//   plugins : 'autoresize',
+//   width: '100%',
+//   height: '25%',
+//   autoresize_min_height: 400,
+//   autoresize_max_height: 800,
+//   menubar: false,
+//     statusbar: false,
+//     toolbar: false,
+//     readonly: 1,
+//                       };
   
-  if (KTApp.isDarkMode()) {
-      options["skin"] = "oxide-dark";
-      options["content_css"] = "dark";
-  }
+//   if (KTApp.isDarkMode()) {
+//       options["skin"] = "oxide-dark";
+//       options["content_css"] = "dark";
+//   }
   
-  tinymce.init(options);
+//   tinymce.init(options);
   </script>
 <script src="http://maps.google.com/maps/api/js"></script>
   	<script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
@@ -309,7 +309,8 @@
 {{-- <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script> --}}
 
 <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+{{-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> --}}
+<script src="{{asset('assets/daterangepicker/daterangepicker.js')}}"></script>
 
 {{-- <script>
   $(function() {
@@ -547,6 +548,19 @@
        </script>
 @else
 <script>
+   function isDecimal(n)
+{
+   var result = (n - Math.floor(n)) !== 0; 
+   
+  if (result)
+  //alert('Number has a decimal place.');
+    //return 'Number has a decimal place.';
+    return true;
+   else
+   //alert('It is a whole number.');
+     //return 'It is a whole number.';
+     return false;
+  }
       $(function() {
          var a = moment("2022-06-10");
        var b = moment("2022-06-12");
@@ -561,23 +575,23 @@
        document.getElementById("error").value = 'true';
        if('{{$led->bookingduration}}'=='3 Days')
    {
-      maxSpan=2;
+      minSpan=2;
    }
    if('{{$led->bookingduration}}'=='1 Week')
    {
-      maxSpan=6;
+      minSpan=6;
    }
    if('{{$led->bookingduration}}'=='1 Month')
    {
-      maxSpan=29;
+      minSpan=29;
    }
    if('{{$led->bookingduration}}'=='3 Month')
    {
-      maxSpan=89;
+      minSpan=89;
    }
    if('{{$led->bookingduration}}'=='6 Month')
    {
-      maxSpan=179;
+      minSpan=179;
    }
          $('input[name="book_dates"]').daterangepicker({
            opens: 'left',
@@ -585,6 +599,9 @@
          //  "maxSpan": {
          //       "days": maxSpan
          //                   },
+           "minSpan": {
+               "days": minSpan
+                           },
            autoApply : true,
            minDate: dateToday,
            isInvalidDate: function(date) {
@@ -606,6 +623,7 @@
    var date2 = new Date(end);
    var disableDays=0;
    var a=0,b=0;
+   
    
    var Difference_In_Days =date2.getDate() - date1.getDate();
    Difference_In_Days=Difference_In_Days+1;
@@ -638,6 +656,16 @@
                document.getElementById("error").value = 'false';
              }
            });
+           if (isDecimal(Difference_In_Days/(minSpan+1))) {
+            document.getElementById("alert").innerHTML =  'Ungültiges Datum Bitte erneut auswählen'; 
+                   // $('#book_dates').val('');
+                    //$('#error').val('true'); 
+                    document.getElementById("error").value = 'true';
+           } else {
+            document.getElementById("alert").innerHTML =  ''; 
+              // $('#error').val('false');
+               document.getElementById("error").value = 'false';
+           }
          //   if(Difference_In_Days!=(maxSpan+1)) 
          //     {
          //       //alert('wrong');
