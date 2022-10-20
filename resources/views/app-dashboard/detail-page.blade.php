@@ -472,7 +472,7 @@
    //             }
              
    
-   var Difference_In_Days =date2.getDate() - date1.getDate();
+   var Difference_In_Days =parseInt((date2 - date1) / (1000 * 60 * 60 * 24), 10); 
    Difference_In_Days=Difference_In_Days+1;
            document.getElementById("total_days").innerHTML = Difference_In_Days;
            document.getElementById("multiply_show").innerHTML =  'X';
@@ -625,7 +625,7 @@
    var a=0,b=0;
    
    
-   var Difference_In_Days =date2.getDate() - date1.getDate();
+   var Difference_In_Days =parseInt((date2 - date1) / (1000 * 60 * 60 * 24), 10); 
    Difference_In_Days=Difference_In_Days+1;
    //alert(Difference_In_Days);
    document.getElementById("alert").innerHTML =  ''; 
