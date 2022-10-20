@@ -12,8 +12,8 @@
                 @foreach ($leds as $led)
                 <div class="col-lg-4">  
                     <div class="d-block d-md-flex listing vertical">
-                      <img src="{{asset('storage/'.($led->images->first())->path)}}" style="width: 100%;min-height: 250px;max-height: 250px;">
-                      <a href="{{route('app.led.detail',$led->id??'')}}" class="img d-block" style="background-image: url('{{asset('storage/'.($led->images->first())->path)}}')"></a>
+                      <img src="{{asset('storage/'.(($led->images->first())->path??''))}}" style="width: 100%;min-height: 250px;max-height: 250px;">
+                      <a href="{{route('app.led.detail',$led->id??'')}}" class="img d-block" style="background-image: url('{{asset('storage/'.(($led->images->first())->path??''))}}')"></a>
                       <div class="lh-content">
                         <span class="category">{{($cities->where('id',$led->city_id)->first())->city}}</span>
                         <span class="category">Price : €{{$led->price}}/Tag</span>
