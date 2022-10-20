@@ -194,7 +194,7 @@
                                     <div class="symbol-label" style="background-image:url({{asset('storage/'.($image)->path)}});"></div>
                                     
                                     
-                                    {{-- style="background-image:url({{'storage/'.($led->images->first())->path}});" --}}
+                                    {{-- style="background-image:url({{'storage/'.(($led->images->first())->path??'')}});" --}}
                                 </div>
                                 <!--end::Symbol-->
                                 <!--begin::Title-->

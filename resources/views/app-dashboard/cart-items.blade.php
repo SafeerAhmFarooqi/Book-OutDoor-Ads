@@ -13,7 +13,7 @@
             @foreach ($cartItems as $item)
             <div class="row border-top border-bottom">
                 <div class="row main align-items-center">
-                    <div class="col-2"><img class="img-fluid" src="{{asset('storage/'.($item->images->first())->path)}}"></div>
+                    <div class="col-2"><img class="img-fluid" src="{{asset('storage/'.(($item->images->first())->path??''))}}"></div>
                     <div class="col">
                         <div class="row text-muted">{{$item->title}}</div>
                         <div class="row">{{substr(strip_tags($item->description),0,20)}}...</div>

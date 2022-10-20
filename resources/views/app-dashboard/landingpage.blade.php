@@ -46,12 +46,12 @@
 
   <div class="py-4 container min-vh-100 d-flex justify-content-center align-items-center">
     <div class="row">
- @foreach ($popularLeds as $led)
+ {{-- @foreach ($popularLeds as $led)
         <div class="col-md-4">
 
 
             <div class="card1 mt-3 p-3 g-2">
-                <img src="{{asset('storage/'.($led->images->first())->path)}}" style="width:100%;max-height:150px"> 
+                <img src="{{asset('storage/'.(($led->images->first())->path??''))}}" style="width:100%;max-height:150px"> 
         <div class="mt-3" style="margin-top:10px !important">
             <h2 class="text1 papularledtitle" style="font-size:16px;background:none">{{$led->title}}</h2>
         </div> 
@@ -64,7 +64,7 @@
         </div>        
           </div>
         </div>
-      @endforeach
+      @endforeach --}}
     </div>    
   </div>
 </div> 
@@ -96,7 +96,7 @@
        @foreach ($trendingLeds as $led)
         <div class="col-md-6">
             <div class="card1 mt-3 p-3 g-2"  >
-            <img src="{{asset('storage/'.($led->images->first())->path)}}" style="width:100%;height:100%"> 
+            <img src="{{asset('storage/'.(($led->images->first())->path??''))}}" style="width:100%;height:100%"> 
         <div  style="padding: 30px 50px 0px 0px"  >
             <h2 class="text1 papularledtitle" style="color: #585981 ;background: none;font-size:20px;border-radius: 5px;">  {{$led->title}} &nbsp;</h2>
         </div> 
@@ -173,7 +173,7 @@
         @foreach ($leds as $led) 
              <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 w3-margin-bottom-30">
                  <div class="card h-100">
-              {{-- <!--   <a href="#"><img class="card-img-top" src="{{asset('storage/'.($led->images->first())->path)}}" alt="" style="width:100%"></a> --> --}}
+              {{-- <!--   <a href="#"><img class="card-img-top" src="{{asset('storage/'.(($led->images->first())->path??''))}}" alt="" style="width:100%"></a> --> --}}
 
 
                 <a href="{{route('app.led.detail',$led->id??'')}}"><img class="card-img-top" src="{{asset('storage/'.(($led->images->first())->path??''))}}" alt="" style="width:100%;min-height: 200px;;max-height: 200px;"></a>  
