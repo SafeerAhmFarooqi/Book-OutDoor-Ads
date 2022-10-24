@@ -211,6 +211,29 @@
             </div>
          </div>
       </section>
+       <div class="modal fade" style="top: 200px;" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+         <div class="modal-dialog" role="document">
+           <div class="modal-content">
+             <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+               <h4 class="modal-title" id="myModalLabel">Error</h4>
+             </div>
+             <div class="modal-body">
+               <h3>Please Select Date in Periods of {{$led->bookingduration??''}}</h3>
+               <h6>Example : 
+                  {{$led->bookingduration=='3 Days'?'1 to 3,1 to 6,12 to 15,20 to 23 etc' : ''}}
+                  {{$led->bookingduration=='1 Week'?'1 to 7,1 to 14,12 to 19,20 to 27 etc' : ''}}
+                  {{$led->bookingduration=='1 Month'?'1 to 30,1 to next consecutive 60 dyas,12 to next consecutive 30 days etc' : ''}}
+                  {{$led->bookingduration=='3 Month'?'1 to next consecutive 90 days,12 to next consecutive 90 days etc' : ''}}
+                  {{$led->bookingduration=='3 Month'?'1 to next consecutive 180 days,12 to next consecutive 180 days etc' : ''}}
+               </h6>
+             </div>
+             <div class="modal-footer">
+               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+             </div>
+           </div>
+         </div>
+       </div>
      
       @endsection
 
@@ -239,6 +262,11 @@
       </div>
     </div>
   </div>
+
+<!-- Button trigger modal -->
+
+ <!-- Modal -->
+ 
 @endsection
 @section('pageStyles')
     <style>
@@ -618,7 +646,6 @@
                }, false);
            }
          }, function(start, end, label) {
-           
             var date1 = new Date(start);
    var date2 = new Date(end);
    var disableDays=0;
@@ -639,10 +666,10 @@
             // alert(picker.startDate.format('YYYY-MM-DD')+' : '+picker.endDate.format('YYYY-MM-DD'));
             //alert(pickerStartDate.getTime()+' : '+startDate.getTime());
              //if(!(date1.getTime()<startDate.getTime()&&date2.getTime()>endDate.getTime()))
-               if((startDate.getDate() >= date1.getDate() && startDate.getDate() <= date2.getDate())||(date1.getDate() >= startDate.getDate() && date1.getDate() <= endDate.getDate())||(Difference_In_Days!=(maxSpan+1))) 
+               if((startDate.getDate() >= date1.getDate() && startDate.getDate() <= date2.getDate())||(date1.getDate() >= startDate.getDate() && date1.getDate() <= endDate.getDate())) 
              {
           
-               //alert('wrong');
+              // alert('wrong');
               // alert('Invalid Date Selection');
                document.getElementById("alert").innerHTML =  'Ungültiges Datum Bitte erneut auswählen'; 
                    // $('#book_dates').val('');
@@ -654,18 +681,22 @@
                document.getElementById("alert").innerHTML =  ''; 
               // $('#error').val('false');
                document.getElementById("error").value = 'false';
-             }
-           });
-           if (isDecimal(Difference_In_Days/(minSpan+1))) {
+               if (isDecimal(Difference_In_Days/(minSpan+1))) {
             document.getElementById("alert").innerHTML =  'Ungültiges Datum Bitte erneut auswählen'; 
                    // $('#book_dates').val('');
                     //$('#error').val('true'); 
                     document.getElementById("error").value = 'true';
+                    $('#myModal').modal('show');
            } else {
             document.getElementById("alert").innerHTML =  ''; 
               // $('#error').val('false');
                document.getElementById("error").value = 'false';
            }
+             }
+           });
+           
+          
+          
          //   if(Difference_In_Days!=(maxSpan+1)) 
          //     {
          //       //alert('wrong');
