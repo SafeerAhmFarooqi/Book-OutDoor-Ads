@@ -191,7 +191,7 @@
                             <div class="d-flex align-items-sm-center mb-7">
                                 <!--begin::Symbol-->
                                 <div class="symbol symbol-60px symbol-2by3 me-4">
-                                    <div class="symbol-label" style="background-image:url({{asset('storage/'.($image)->path)}});"></div>
+                                    <div class="symbol-label" style="background-image:url({{asset('storage/'.($image)->path??'')}});"></div>
                                     
                                     
                                     {{-- style="background-image:url({{'storage/'.(($led->images->first())->path??'')}});" --}}
@@ -223,7 +223,7 @@
 
             <div class="modal-body">
                 <div class="container">
-                        <img src="{{asset('storage/'.($image)->path)}}" style="width: 100%;" alt="">
+                        <img src="{{asset('storage/'.($image)->path??'')}}" style="width: 100%;" alt="">
                 </div>
             </div>
 
