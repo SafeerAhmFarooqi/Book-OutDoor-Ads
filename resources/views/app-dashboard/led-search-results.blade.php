@@ -6,3 +6,9 @@
     
 <!-- end listing -->
 @endsection
+
+<style type="text/css">
+	footer{
+		display: none !important;
+	}
+</style>
