@@ -295,8 +295,8 @@
 
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-
+    {{-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script> --}}
+    <script src="{{asset('assets/daterangepicker/daterangepicker.js')}}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyAIeDyz_v1KkoU3ZTRqK5e-9Ax1lNjSIEI"></script>
 <script type="text/javascript">
     var searchInput = 'googleLocation';
@@ -435,7 +435,7 @@ $q->where('payment_status',true);
    //             }
              
    
-   var Difference_In_Days =date2.getDate() - date1.getDate();
+   var Difference_In_Days =parseInt((date2 - date1) / (1000 * 60 * 60 * 24), 10); 
    Difference_In_Days=Difference_In_Days+1;
            document.getElementById("total_days-{{$coordinate['led']->id}}").innerHTML = Difference_In_Days;
            document.getElementById("multiply_show-{{$coordinate['led']->id}}").innerHTML =  'X';
@@ -524,29 +524,32 @@ $q->where('payment_status',true);
        document.getElementById("error-{{$coordinate['led']->id}}").value = 'true';
        if('{{$coordinate["led"]->bookingduration}}'=='3 Days')
    {
-      maxSpan=2;
+      minSpan=2;
    }
    if('{{$coordinate["led"]->bookingduration}}'=='1 Week')
    {
-      maxSpan=6;
+      minSpan=6;
    }
    if('{{$coordinate["led"]->bookingduration}}'=='1 Month')
    {
-      maxSpan=29;
+      minSpan=29;
    }
    if('{{$coordinate["led"]->bookingduration}}'=='3 Month')
    {
-      maxSpan=89;
+      minSpan=89;
    }
    if('{{$coordinate["led"]->bookingduration}}'=='6 Month')
    {
-      maxSpan=179;
+      minSpan=179;
    }
          $('#book_dates-{{$coordinate["led"]->id}}').daterangepicker({
            opens: 'left',
           // singleDatePicker: true,
-          "maxSpan": {
-               "days": maxSpan
+          // "maxSpan": {
+          //      "days": maxSpan
+          //                  },
+          "minSpan": {
+               "days": minSpan
                            },
            autoApply : true,
            minDate: dateToday,
@@ -569,7 +572,7 @@ $q->where('payment_status',true);
    var disableDays=0;
    var a=0,b=0;
    
-   var Difference_In_Days =date2.getDate() - date1.getDate();
+   var Difference_In_Days =parseInt((date2 - date1) / (1000 * 60 * 60 * 24), 10); 
    Difference_In_Days=Difference_In_Days+1;
    //alert(Difference_In_Days);
    dateRanges.forEach(range => {
@@ -581,7 +584,7 @@ $q->where('payment_status',true);
             // alert(picker.startDate.format('YYYY-MM-DD')+' : '+picker.endDate.format('YYYY-MM-DD'));
             //alert(pickerStartDate.getTime()+' : '+startDate.getTime());
              //if(!(date1.getTime()<startDate.getTime()&&date2.getTime()>endDate.getTime()))
-               if((startDate.getDate() >= date1.getDate() && startDate.getDate() <= date2.getDate())||(date1.getDate() >= startDate.getDate() && date1.getDate() <= endDate.getDate())||(Difference_In_Days!=(maxSpan+1))) 
+               if((startDate.getDate() >= date1.getDate() && startDate.getDate() <= date2.getDate())||(date1.getDate() >= startDate.getDate() && date1.getDate() <= endDate.getDate())) 
              {
                //alert('wrong');
               // alert('Invalid Date Selection');
@@ -597,21 +600,7 @@ $q->where('payment_status',true);
                document.getElementById("error-{{$coordinate['led']->id}}").value = 'false';
              }
            });
-           if(Difference_In_Days!=(maxSpan+1)) 
-             {
-               //alert('wrong');
-              // alert('Invalid Date Selection');
-               document.getElementById("alert-{{$coordinate['led']->id}}").innerHTML =  'Ungültiges Datum Bitte erneut auswählen'; 
-                   // $('#book_dates').val('');
-                    //$('#error').val('true'); 
-                    document.getElementById("error-{{$coordinate['led']->id}}").value = 'true';
-             }
-             else{
-             
-               document.getElementById("alert-{{$coordinate['led']->id}}").innerHTML =  ''; 
-              // $('#error').val('false');
-               document.getElementById("error-{{$coordinate['led']->id}}").value = 'false';
-             }
+          
    // dateRanges.reduce(function(bool, range) {
    //                 startDateObject=new Date(range.startDate);
    //                 endDateObject=new Date(range.endDate);
