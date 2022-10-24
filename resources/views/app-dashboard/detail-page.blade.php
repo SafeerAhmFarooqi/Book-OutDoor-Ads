@@ -366,7 +366,7 @@
    });
    
    const image = {
-    url: "{{asset('storage/'.($image->path??''))}}",
+    url: "{{asset('assets/led-map-marker/map marker.png')}}",
     // This marker is 20 pixels wide by 32 pixels high.
     size: new google.maps.Size(100, 100),
     // The origin for this image is (0, 0).
@@ -380,7 +380,7 @@
        //   lng: value.lng,
        lat: coordinates.lat,
        lng: coordinates.long,
-       icon: '',
+       icon: image,
        title: "{{$led->title}} Pries {{$led->price}} €/Tag",
         //  title: value.title,
          mouseout: function(e) {
