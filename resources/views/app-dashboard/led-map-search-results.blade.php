@@ -5,7 +5,10 @@
 {{-- <livewire:map-led-search-results /> --}}
  
 <form action="{{route('find.map.led')}}" method="get">
-    <div class="container-fluid DN-800" id="search-page">
+    <div class="container-fluid DN-800" id="search-page" style="position: absolute;
+    z-index: 999;
+    padding-top: -3%;
+    margin-left: 10%;">
       
         <div class="sp-backdrop-bg sp-border">
             <div class="flex-stretch">
@@ -260,15 +263,29 @@
 @section('Styles')
 @parent
 <style>
+ 
+ 
     /*
     # Welcome
     --------------------------------*/
-    #mymap {
-      		border:1px solid red;
-      		width: 100%;
-              height: 500px;
-    	}
+    #mymap { 
+              height: 800px;
+                 width: 115% !important;
+    margin-left: -50px !important;
+    margin-top: -55px !important;
+    border: none !important ;
+    margin-top: -15% !important ;
+     } 
+    footer{
+        display: none;
+    }
+
+     
+
+
     </style>
+
+
 @endsection
 
 @section('pageScripts')
@@ -648,8 +665,12 @@ $q->where('payment_status',true);
          var markerLabel = "€"+ value.price;
          //alert(value.image);
          var infowindow = new google.maps.InfoWindow({
-          content: "<div style='max-width:220px'><div style='float:left;width:100%'><img src='"+value.image+"' style='max-width:220px;max-height:180px' ></div><div style='float:left; padding: 10px;'><b>"+value.title+"</b><br/> <h2>"+value.price +"€</h2> </div> <div style='float:right'><a href='javascript:;' data-toggle='modal' data-target='#exampleModal-"+value.id+"'> <img src='https://www.freeiconspng.com/uploads/calendar-icon-png-4.png' style='width:50px;padding:10px;'></a> </div></div>"
+          content: "<div style='max-width:220px'><div style='float:left;width:100%'><img src='"+value.image+"' style='max-width:220px;max-height:180px' ></div><div style='float:left; padding: 10px;color:#fff'><b>"+value.title+"</b><br/> <h2>"+value.price +"€</h2> </div> <div style='float:right'><a href='javascript:;' data-toggle='modal' data-target='#exampleModal-"+value.id+"'> <img src='https://www.freeiconspng.com/uploads/calendar-icon-png-4.png' style='width:50px;padding:10px;'></a> </div></div>", 
+          
        });
+       
+ 
+
          //alert(value.title+' : '+value.price);
            // increment_2++;
            var marker = mymap.addMarker({

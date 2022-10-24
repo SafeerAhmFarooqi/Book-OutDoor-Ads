@@ -1,3 +1,6 @@
+ 
+
+
 /* LED City LIST Page*/
 
 .listing.vertical {
@@ -253,31 +256,31 @@ height:300px;
   
 }
 @font-face {
-	font-family: 'lufga';
-	src: url(fonts/dalot/LufgaBlack.ttf);
+  font-family: 'lufga';
+  src: url(fonts/dalot/LufgaBlack.ttf);
 }
 @font-face {
-	font-family: 'lufga regular';
-	src: url(fonts/dalot/LufgaRegular.ttf);
+  font-family: 'lufga regular';
+  src: url(fonts/dalot/LufgaRegular.ttf);
 }
 @font-face {
-	font-family: 'lufga bold';
-	src: url(fonts/dalot/LufgaBold.ttf);
+  font-family: 'lufga bold';
+  src: url(fonts/dalot/LufgaBold.ttf);
 }
 @font-face {
-	font-family: 'lufga 500 medium';
-	src: url(fonts/dalot/LufgaMedium.ttf);
+  font-family: 'lufga 500 medium';
+  src: url(fonts/dalot/LufgaMedium.ttf);
 }
 @font-face {
-	font-family: 'lufga semibold';
-	src: url(fonts/dalot/LufgaSemiBold.ttf);
+  font-family: 'lufga semibold';
+  src: url(fonts/dalot/LufgaSemiBold.ttf);
 }
 @font-face{
   font-family: 'lufga medium';
   src:url(fonts/dalot/LufgaMedium.ttf);
 }
 body {
-	font-family: 'lufga regular';
+  font-family: 'lufga regular';
   font-weight: 400;
 }
 h1,h2,h3,h4,h5,h6,p{
@@ -399,7 +402,7 @@ line-height:none!important;
 }
 .navbar {
     margin-bottom: none;
-	background-color: #fff!important;
+  background-color: #fff!important;
     z-index: 9999;
     border: 0;
     line-height: 1.42857143 !important;
@@ -742,7 +745,7 @@ font-size: 16px!important;
 .wrapper{
   display: flex;
   justify-content: center;
-  align-items: center;	
+  align-items: center;  
   border:2px solid #D0D0E3;border-radius:14px;
   }
   .box{
@@ -1132,6 +1135,8 @@ border-radius: 5px;
   }
 }
 @media (min-width: 0px) and (max-width: 330px) {
+ 
+
   .sp-h-24{
     font-size: 13px!important;
   }
@@ -1252,6 +1257,7 @@ margin-right:5px!important;
   }
 }
 @media (min-width: 330px) and (max-width: 430px) {
+
   .sp-text{
     font-size:12px!important;
   }
@@ -1352,7 +1358,46 @@ margin-right:5px!important;
     font-size:16px!important;
   }
 }
+
+.filterbtn{
+  display: none;
+}
 @media (min-width: 430px) and (max-width: 600px) {
+.filterbtn{
+  display: inline-block;
+}
+  .responsiveadjust{
+    padding-top: 30px;
+  }
+  .mapresponsiveclass{
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 999;
+      width: 100%;
+      height: 23px;
+      }
+
+    .mediaqueryproductslistshow{
+        background: #fff;
+        z-index: 1000;
+        margin-top: 50%;
+      }
+
+      .daterangepicker .drp-calendar {
+    display: none;
+    max-width: 231px !important;
+    float: left;
+    padding-right: 10px !important;
+}
+.daterangepicker 
+{
+  width: 100% !important;
+}
+
+
+     
+
   .sp-btn{ 
     padding:6px 20px!important;
     border-radius: 6px!important;
@@ -1435,6 +1480,37 @@ margin-right:5px!important;
   }
 }
 @media (min-width: 600px) and (max-width: 768px) {
+
+    .responsiveadjust{
+    padding-top: 30px;
+  }
+  .mapresponsiveclass{
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 999;
+      width: 100%;
+      height: 23px;
+      }
+
+    .mediaqueryproductslistshow{
+        background: #fff;
+        z-index: 1000;
+        margin-top: 50%;
+      }
+
+      .daterangepicker .drp-calendar {
+    display: none;
+    max-width: 231px !important;
+    float: left;
+    padding-right: 10px !important;
+}
+.daterangepicker 
+{
+  width: 100% !important;
+}
+
+
   .m-b-sm-dp{
     margin-bottom: 25px!important;
   }
@@ -1532,6 +1608,37 @@ margin-right:5px!important;
         }
 }
 @media screen and (max-width: 690px){
+    .responsiveadjust{
+    padding-top: 30px;
+  }
+  .mapresponsiveclass{
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 999;
+      width: 100%;
+      height: 23px;
+      }
+
+    .mediaqueryproductslistshow{
+        background: #fff;
+        z-index: 1000;
+        margin-top: 50%;
+      }
+
+      .daterangepicker .drp-calendar {
+    display: none;
+    max-width: 231px !important;
+    float: left;
+    padding-right: 10px !important;
+}
+.daterangepicker 
+{
+  width: 100% !important;
+}
+
+
+
   .sr-input-form{
     width: 100% !important;
       }
@@ -1571,6 +1678,42 @@ margin-right:5px!important;
   }
 }
 @media screen and (max-width: 630px) {
+    .responsiveadjust{
+    padding-top: 30px;
+  }
+  .mapresponsiveclass{
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 999;
+      width: 100%;
+      height: 23px;
+      }
+
+    .mediaqueryproductslistshow{
+        background: #fff;
+        z-index: 1000;
+        margin-top: 50%;
+      }
+
+      .daterangepicker .drp-calendar {
+    display: none;
+    max-width: 231px !important;
+    float: left;
+    padding-right: 10px !important;
+}
+.daterangepicker 
+{
+  width: 100% !important;
+}
+
+
+
+
+
+
+
+
   .sett-notif-bg{
     padding:20px 15px 30px 15px;
     width: 100% !important;
@@ -1594,6 +1737,36 @@ margin-right:5px!important;
   }
 }
 @media screen and (max-width: 370px) {
+    .responsiveadjust{
+    padding-top: 30px;
+  }
+  .mapresponsiveclass{
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 999;
+      width: 100%;
+      height: 23px;
+      }
+
+    .mediaqueryproductslistshow{
+        background: #fff;
+        z-index: 1000;
+        margin-top: 50%;
+      }
+
+      .daterangepicker .drp-calendar {
+    display: none;
+    max-width: 231px !important;
+    float: left;
+    padding-right: 10px !important;
+}
+.daterangepicker 
+{
+  width: 100% !important;
+}
+
+
   .font-12-xs{
     font-size:12px!important;
   }
