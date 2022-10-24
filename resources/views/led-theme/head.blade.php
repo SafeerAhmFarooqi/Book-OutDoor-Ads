@@ -2,11 +2,11 @@
 <meta charset="utf-8">
       <title>{{ config('app.title') }} - {{ $headTitle ?? '' }}</title>
       <meta charset="utf-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta content="width=device-width, initial-scale=1" name="viewport" />
       @section('Styles')
       <link rel="stylesheet" href="{{asset('assets/newtheme2023/assets/bootstrap.min.css')}} ">
       <link rel=icon href="{{asset('assets/newtheme2023/images/assets/fav.svg')}} " sizes="16x16" type="image/jpef">
-      <link rel="stylesheet" href="{{asset('assets/newtheme2023/assets/style.css')}}">
+      <link rel="stylesheet" href="{{asset('assets/newtheme2023/assets/style2.css')}}">
       <link rel="stylesheet" href="{{asset('assets/newtheme2023/assets/w3.css')}}">
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -19,7 +19,7 @@
         <style type="text/css">
           .disabled
           {
-            color: red !important;
+            color: #ccc !important;
           }
         </style>
        

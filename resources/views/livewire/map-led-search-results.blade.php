@@ -3,8 +3,10 @@
 <div>
   {{-- The whole world belongs to you. --}}
 <div>
-<div class="container-fluid DN-800" id="search-page">
-      
+<div class="container-fluid DN-800 mapsearchpage" id="search-page" style="position: absolute;
+    z-index: 999;
+    padding-top: 8%;
+    margin-left: 10%;">      
   <div class="sp-backdrop-bg sp-border">
       <div class="flex-stretch">
           <div class="f-g-4 col-sm-4" >
@@ -19,7 +21,7 @@
               <p class="font-lufga-18 dis-none">Stadt</p>
               <div class="flex-st">
                   <div class="dropdown margin-right">
-                      <select aria-labelledby="menu1" wire:model='selectedCity' style="padding: 8px 32px 8px 0px;border: none;outline: none;text-align: center;color: #8F90A6!important;">
+                        <select aria-labelledby="menu1" wire:model='selectedCity' style="padding: 8px 32px 8px 0px;border: none;outline: none;text-align: left;color: #8F90A6!important;padding-left:10px">
                         <option value="">alle Städte</option>
                         @foreach ($cities as $city)
                         <option value="{{$city->id}}" selected="">{{$city->city}}</option>
@@ -51,7 +53,7 @@
               <p class="font-lufga-18 dis-none">Preisspanne</p>
               <div class="flex-st">
                   <div class="dropdown margin-right">
-                      <select  wire:model='priceRange' style="padding: 8px 32px 8px 0px;border: none;outline: none;text-align: center;color: #8F90A6!important;">
+                        <select  wire:model='priceRange' style="padding: 8px 32px 8px 0px;border: none;outline: none;text-align: left;color: #8F90A6!important;padding-left: 10px;">
                         <option value="">
                            Preisspanne auswählen
                        </option>  
