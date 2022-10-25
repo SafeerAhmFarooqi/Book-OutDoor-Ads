@@ -197,13 +197,14 @@
 
 
 <div class="col-sm-6 mapresponsiveclass" style="">
-   <div id="map"  style="width:100%;height:500px;"></div>
+   {{-- <div id="map"  style="width:100%;height:500px;"></div> --}}
+   <div id="mymap"></div>
 </div>  
 
 
 
   <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyAIeDyz_v1KkoU3ZTRqK5e-9Ax1lNjSIEI"></script>
- <script type="text/javascript">
+ {{-- <script type="text/javascript">
     //adapted from http://gmaps-samples-v3.googlecode.com/svn/trunk/overlayview/custommarker.html
 function CustomMarker(latlng, map, imageSrc) {
     this.latlng_ = latlng;
@@ -274,7 +275,7 @@ var data = [{
 for(var i=0;i<data.length;i++){
 new CustomMarker(new google.maps.LatLng(data[i].pos[0],data[i].pos[1]), map,  data[i].profileImage)
 }
- </script>
+ </script> --}}
 
 
 
@@ -297,161 +298,29 @@ new CustomMarker(new google.maps.LatLng(data[i].pos[0],data[i].pos[1]), map,  da
 
 @section('Styles')
 @parent
+<style>
+  /*
+  # Welcome
+  --------------------------------*/
+  #mymap { 
+            height: 500px;
+               width: 100% !important;
 
-<Style>
-
-
-
-
-  #map{
-    margin-top: -55px;
-    width: 117% !important;
-  }
-     
-  /* Functional styling;
-   * These styles are required for noUiSlider to function.
-   * You don't need to change these rules to apply your design.
-   */
-  .noUi-target,.noUi-target * {
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -ms-touch-action: none;
-    touch-action: none;
-    -ms-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-  
-  .noUi-target {
-    position: relative;
-    direction: ltr;
-  }
-  
-  .noUi-base {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    z-index: 1;
-  /* Fix 401 */
-  }
-  
-  .noUi-origin {
-    position: absolute;
-    right: 0;
-    top: 0;
-    left: 0;
-    bottom: 0;
-  }
-  
-  .noUi-handle {
-    position: relative;
-    z-index: 1;
-  }
-  
-  .noUi-stacking .noUi-handle {
-  /* This class is applied to the lower origin when
-     its values is > 50%. */
-    z-index: 10;
-  }
-  
-  .noUi-state-tap .noUi-origin {
-    -webkit-transition: left 0.3s,top .3s;
-    transition: left 0.3s,top .3s;
-  }
-  
-  .noUi-state-drag * {
-    cursor: inherit !important;
-  }
-  
-  /* Painting and performance;
-   * Browsers can paint handles in their own layer.
-   */
-  .noUi-base,.noUi-handle {
-    -webkit-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
-  }
-  
-  /* Slider size and handle placement;
-   */
-  .noUi-horizontal {
-    height: 4px;
-  }
-  
-  .noUi-horizontal .noUi-handle {
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    left: -7px;
-    top: -7px;
-    background-color: #345DBB;
-  }
-  
-  /* Styling;
-   */
-  .noUi-background {
-    background: #D6D7D9;
-  }
-  
-  .noUi-connect {
-    background: #345DBB;
-    -webkit-transition: background 450ms;
-    transition: background 450ms;
-  }
-  
-  .noUi-origin {
-    border-radius: 2px;
-  }
-  
-  .noUi-target {
-    border-radius: 2px;
-  }
-  
-  .noUi-target.noUi-connect {
-  }
-  
-  /* Handles and cursors;
-   */
-  .noUi-draggable {
-    cursor: w-resize;
-  }
-  
-  .noUi-vertical .noUi-draggable {
-    cursor: n-resize;
-  }
-  
-  .noUi-handle {
-    cursor: default;
-    -webkit-box-sizing: content-box !important;
-    -moz-box-sizing: content-box !important;
-    box-sizing: content-box !important;
-  }
-  
-  .noUi-handle:active {
-    border: 8px solid #345DBB;
-    border: 8px solid rgba(53,93,187,0.38);
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    left: -14px;
-    top: -14px;
-  }
-  
-  /* Disabled state;
-   */
-  [disabled].noUi-connect,[disabled] .noUi-connect {
-    background: #B8B8B8;
-  }
-  
-  [disabled].noUi-origin,[disabled] .noUi-handle {
-    cursor: not-allowed;
-  }
-
-
-
-  </Style>
-
-
+  border: none !important !important;
+   } 
+footer{
+  display: none !important;
+}
+.filterbtn{
+  display: none;
+ 
+}
+@media (min-width: 430px) and (max-width: 600px) {
+.filterbtn{
+display: inline-block;
+}
+}
+</style>
 @endsection
 
 @section('scripts')
@@ -497,8 +366,63 @@ var date2 = new Date(end);
 $('input[name="book_dates"]').val('Select Date Range');
 });
 });
+
+
 </script>
+<script src="http://maps.google.com/maps/api/js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyAIeDyz_v1KkoU3ZTRqK5e-9Ax1lNjSIEI"></script>
+<script type="text/javascript">
+    
+    
+  var locations = @json($coordinates);
+
+ // var increment=0;
+ // var increment_2=0;
+
+ var mymap = new GMaps({
+   el: '#mymap',
+   lat: locations.length==0?51 :locations[0].lat ,
+   lng: locations.length==0?10 :locations[0].long,
+zoom:15
+ });
+
+   //alert(value.title+' : '+value.price);
+
+  
+  
+ $.each( locations, function( index, value ){
+   
+   var markerLabel = "€"+ value.price;
+   //alert(value.image);
+   var infowindow = new google.maps.InfoWindow({
+    content: "<div style='max-width:220px'><div style='float:left;width:100%'><img src='"+value.image+"' style='max-width:220px;max-height:180px' ></div><div style='float:left; padding: 10px;color:#fff'><b>"+value.title+"</b><br/> <h2>"+value.price +"€</h2> </div> <div style='float:right'><a href='javascript:;' data-toggle='modal' data-target='#exampleModal-"+value.id+"'> <img src='https://www.freeiconspng.com/uploads/calendar-icon-png-4.png' style='width:50px;padding:10px;'></a> </div></div>", 
+    
+ });
+ 
 
 
+   //alert(value.title+' : '+value.price);
+     // increment_2++;
+     var marker = mymap.addMarker({
+     //   lat: value.lat,
+     //   lng: value.lng,
+     
+     lat: value.lat,
+   lng: value.long,
+       title: value.title+" Pries "+ value.price +"€/Tag",
+       click: function(e) {
+         infowindow.open(mymap,marker);
+         // let url = "{{ route('app.led.detail', ':value.id') }}";
+         // url = url.replace(':value.id', value.id);
+         // document.location.href=url;
+       },
+     
+     });
+     marker.setLabel(markerLabel);
+    
+});
+
+</script>
   
 @endsection

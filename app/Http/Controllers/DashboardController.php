@@ -635,10 +635,40 @@ public function handle(Request $request) {
             array_push($cartItems,Led::findOrFail(strtok($value,'*')));
          }
       }
+
+      $minPriceRange='';
+      $maxPriceRange='';
+      if ($request->pricerange) {
+         $minPriceRange = strtok($request->pricerange,"-");
+         $maxPriceRange = strtok("");
+     }
+     else
+     {
+      $minPriceRange = '';
+      $maxPriceRange = '';
+     }
+     $city=$request->city;
+     $location=$request->location;
+     $leds=Led::
+     when($request->pricerange, function($query) use ($minPriceRange,$maxPriceRange) {
+         return $query->whereBetween('price', [$minPriceRange, $maxPriceRange]);
+     })
+     ->when($city, function($query,$city) {
+         return $query->where('city_id', $city);
+     })
+     ->when($location, function($query,$location) {
+         return $query->where('location', 'like', '%'.$location.'%');
+     })     
+     ->get();
+
+     $coordinates=[];
+     foreach ($leds  as $value) {
+         array_push($coordinates,$this->geoLocate($value->location,$value->id)); 
+     }
       return view('app-dashboard.led-search-results',[
-         'location'=>$request->location,
-         'find'=>$request->find,
-         'cartItems'=>$cartItems,
+         'cartItems' => $cartItems,
+         'cities' => City::all(),
+         'coordinates'=>$coordinates,
       ]);       
    }
 
