@@ -17,11 +17,56 @@ class LedSearchResults extends Component
     public $location='';
     public $selectedCity='';
     public $selectedDateRange='';
+    public $coordinates=[];
     public $selectedStartDate='';
     public $selectedEndDate='';
     public $minPriceRange='';
     public $maxPriceRange='';
     public $priceRange='';
+
+    function geoLocate($address,$id=null)
+    {
+        try {
+            $lat = 0;
+            $lng = 0;
+    
+            $data_location = "https://maps.google.com/maps/api/geocode/json?key=AIzaSyAIeDyz_v1KkoU3ZTRqK5e-9Ax1lNjSIEI&address=".str_replace(" ", "+", $address)."&sensor=false";
+            $data = file_get_contents($data_location);
+            usleep(200000);
+            // turn this on to see if we are being blocked
+            // echo $data;
+            $data = json_decode($data);
+            if ($data->status=="OK") {
+                $lat = $data->results[0]->geometry->location->lat;
+                $lng = $data->results[0]->geometry->location->lng;
+    
+                if($lat && $lng) {
+                    return array(
+                        'status' => true,
+                        'lat' => $lat, 
+                        'long' => $lng,
+                        'id'=>$id,
+                        'title' => (Led::find($id))->title,
+                        'price' => (Led::find($id))->price, 
+                        'image' => asset('storage/'.((Led::find($id))->image->path??'')),
+                        'led' => Led::find($id),
+                        'google_place_id' => $data->results[0]->place_id
+                    );
+                }
+            }
+            if($data->status == 'OVER_QUERY_LIMIT') {
+                return array(
+                    'status' => false, 
+                    'message' => 'Google Amp API OVER_QUERY_LIMIT, Please update your google map api key or try tomorrow'
+                );
+            }
+    
+        } catch (Exception $e) {
+    
+        }
+    
+        return array('lat' => null, 'long' => null, 'status' => false);
+    }
 
     public function render()
     {
@@ -114,10 +159,15 @@ class LedSearchResults extends Component
   
         //     }
         // }
+        $this->coordinates=[];
+        foreach ($finalLeds  as $value) {
+            array_push($this->coordinates,$this->geoLocate($value->location,$value->id)); 
+        }
         return view('livewire.led-search-results',[
             'cities'=>$cities,
             'leds'=>$finalLeds,
             'loop1'=>$loop1,
+            'coordinates'=>json_encode($this->coordinates),
             // 'selectedStartDate'=>$selectedStartDate,
             // 'selectedEndDate'=>$selectedEndDate,
         ]);

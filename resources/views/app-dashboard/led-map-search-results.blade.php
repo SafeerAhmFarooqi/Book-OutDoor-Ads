@@ -248,6 +248,29 @@
           </div>
         </div>
       </div>
+      <div class="modal fade" style="top: 200px;" id="myModal-{{$coordinate['led']->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Error</h4>
+            </div>
+            <div class="modal-body">
+              <h3>Please Select Date in Periods of {{$coordinate['led']->bookingduration??''}}</h3>
+              <h6>Example : 
+                 {{$coordinate['led']->bookingduration=='3 Days'?'1 to 3,1 to 6,12 to 15,20 to 23 etc' : ''}}
+                 {{$coordinate['led']->bookingduration=='1 Week'?'1 to 7,1 to 14,12 to 19,20 to 27 etc' : ''}}
+                 {{$coordinate['led']->bookingduration=='1 Month'?'1 to 30,1 to next consecutive 60 dyas,12 to next consecutive 30 days etc' : ''}}
+                 {{$coordinate['led']->bookingduration=='3 Month'?'1 to next consecutive 90 days,12 to next consecutive 90 days etc' : ''}}
+                 {{$coordinate['led']->bookingduration=='6 Month'?'1 to next consecutive 180 days,12 to next consecutive 180 days etc' : ''}}
+              </h6>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
       @endforeach
      
     </div>
@@ -511,6 +534,19 @@ $q->where('payment_status',true);
        </script>
 @else
 <script>
+  function isDecimal(n)
+{
+   var result = (n - Math.floor(n)) !== 0; 
+   
+  if (result)
+  //alert('Number has a decimal place.');
+    //return 'Number has a decimal place.';
+    return true;
+   else
+   //alert('It is a whole number.');
+     //return 'It is a whole number.';
+     return false;
+  }
       $(function() {
          var a = moment("2022-06-10");
        var b = moment("2022-06-12");
@@ -575,7 +611,8 @@ $q->where('payment_status',true);
    var Difference_In_Days =parseInt((date2 - date1) / (1000 * 60 * 60 * 24), 10); 
    Difference_In_Days=Difference_In_Days+1;
    //alert(Difference_In_Days);
-   dateRanges.forEach(range => {
+   if (dateRanges.length>0) {
+    dateRanges.forEach(range => {
              startDateObject=new Date(range.startDate);
                    startDate=new Date(startDateObject.getFullYear()+'-'+(startDateObject.getMonth() + 1)+'-'+startDateObject.getDate());
                    endDateObject=new Date(range.endDate);
@@ -598,8 +635,34 @@ $q->where('payment_status',true);
                document.getElementById("alert-{{$coordinate['led']->id}}").innerHTML =  ''; 
               // $('#error').val('false');
                document.getElementById("error-{{$coordinate['led']->id}}").value = 'false';
+
+               if (isDecimal(Difference_In_Days/(minSpan+1))) {
+            document.getElementById("alert-{{$coordinate['led']->id}}").innerHTML =  'Ungültiges Datum Bitte erneut auswählen'; 
+                   // $('#book_dates').val('');
+                    //$('#error').val('true'); 
+                    document.getElementById("error-{{$coordinate['led']->id}}").value = 'true';
+                    $("#myModal-{{$coordinate['led']->id}}").modal('show');
+           } else {
+            document.getElementById("alert-{{$coordinate['led']->id}}").innerHTML =  ''; 
+              // $('#error').val('false');
+               document.getElementById("error-{{$coordinate['led']->id}}").value = 'false';
+           }
              }
            });
+   } else {
+    if (isDecimal(Difference_In_Days/(minSpan+1))) {
+            document.getElementById("alert-{{$coordinate['led']->id}}").innerHTML =  'Ungültiges Datum Bitte erneut auswählen'; 
+                   // $('#book_dates').val('');
+                    //$('#error').val('true'); 
+                    document.getElementById("error-{{$coordinate['led']->id}}").value = 'true';
+                    $("#myModal-{{$coordinate['led']->id}}").modal('show');
+           } else {
+            document.getElementById("alert-{{$coordinate['led']->id}}").innerHTML =  ''; 
+              // $('#error').val('false');
+               document.getElementById("error-{{$coordinate['led']->id}}").value = 'false';
+           }
+   }
+  
           
    // dateRanges.reduce(function(bool, range) {
    //                 startDateObject=new Date(range.startDate);

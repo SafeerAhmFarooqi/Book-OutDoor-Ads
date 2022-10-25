@@ -657,7 +657,10 @@
    //alert(Difference_In_Days);
    document.getElementById("alert").innerHTML =  ''; 
    document.getElementById("error").value = 'false';
-   dateRanges2.forEach(range => {
+   
+   if (dateRanges2.length>0) {
+    //alert(dateRanges2.length);
+    dateRanges2.forEach(range => {
              startDateObject=new Date(range.startDate);
                    startDate=new Date(startDateObject.getFullYear()+'-'+(startDateObject.getMonth() + 1)+'-'+startDateObject.getDate());
                    endDateObject=new Date(range.endDate);
@@ -693,7 +696,22 @@
                document.getElementById("error").value = 'false';
            }
              }
-           });
+           }); 
+   } else {
+   // alert('zero');
+   if (isDecimal(Difference_In_Days/(minSpan+1))) {
+            document.getElementById("alert").innerHTML =  'Ungültiges Datum Bitte erneut auswählen'; 
+                   // $('#book_dates').val('');
+                    //$('#error').val('true'); 
+                    document.getElementById("error").value = 'true';
+                    $('#myModal').modal('show');
+           } else {
+            document.getElementById("alert").innerHTML =  ''; 
+              // $('#error').val('false');
+               document.getElementById("error").value = 'false';
+           }
+   }
+   
            
           
           
