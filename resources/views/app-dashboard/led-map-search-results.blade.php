@@ -357,7 +357,9 @@
   });
     });
     </script>
-
+ <script>
+  const minSpan = [];
+</script>
     @foreach ($coordinates as $coordinate)
     @php
     $disableDates=App\Models\SubOrders::with(['order'])
@@ -560,23 +562,25 @@ $q->where('payment_status',true);
        document.getElementById("error-{{$coordinate['led']->id}}").value = 'true';
        if('{{$coordinate["led"]->bookingduration}}'=='3 Days')
    {
-      minSpan=2;
+      minSpan['{{$coordinate["led"]->id}}']=2;
    }
    if('{{$coordinate["led"]->bookingduration}}'=='1 Week')
    {
-      minSpan=6;
+      minSpan['{{$coordinate["led"]->id}}']=6;
+     // alert(minSpan);
    }
    if('{{$coordinate["led"]->bookingduration}}'=='1 Month')
    {
-      minSpan=29;
+      minSpan['{{$coordinate["led"]->id}}']=29;
+     // alert(minSpan);
    }
    if('{{$coordinate["led"]->bookingduration}}'=='3 Month')
    {
-      minSpan=89;
+      minSpan['{{$coordinate["led"]->id}}']=89;
    }
    if('{{$coordinate["led"]->bookingduration}}'=='6 Month')
    {
-      minSpan=179;
+      minSpan['{{$coordinate["led"]->id}}']=179;
    }
          $('#book_dates-{{$coordinate["led"]->id}}').daterangepicker({
            opens: 'left',
@@ -585,7 +589,7 @@ $q->where('payment_status',true);
           //      "days": maxSpan
           //                  },
           "minSpan": {
-               "days": minSpan
+               "days": minSpan['{{$coordinate["led"]->id}}']
                            },
            autoApply : true,
            minDate: dateToday,
@@ -636,7 +640,7 @@ $q->where('payment_status',true);
               // $('#error').val('false');
                document.getElementById("error-{{$coordinate['led']->id}}").value = 'false';
 
-               if (isDecimal(Difference_In_Days/(minSpan+1))) {
+               if (isDecimal(Difference_In_Days/(minSpan['{{$coordinate["led"]->id}}']+1))) {
             document.getElementById("alert-{{$coordinate['led']->id}}").innerHTML =  'Ungültiges Datum Bitte erneut auswählen'; 
                    // $('#book_dates').val('');
                     //$('#error').val('true'); 
@@ -650,7 +654,7 @@ $q->where('payment_status',true);
              }
            });
    } else {
-    if (isDecimal(Difference_In_Days/(minSpan+1))) {
+    if (isDecimal(Difference_In_Days/(minSpan['{{$coordinate["led"]->id}}']+1))) {
             document.getElementById("alert-{{$coordinate['led']->id}}").innerHTML =  'Ungültiges Datum Bitte erneut auswählen'; 
                    // $('#book_dates').val('');
                     //$('#error').val('true'); 
