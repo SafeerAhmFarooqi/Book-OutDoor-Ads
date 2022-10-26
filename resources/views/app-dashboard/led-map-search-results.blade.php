@@ -200,7 +200,7 @@
 
 
                       <ul class="list-group" style="padding:2px;font-size:13px;">
-                      <li class="list-group-item listordertaking" style="background:none;border:none;padding:0;padding-top:10px"> <span id="per_booking_cost" style="font-weight:bold;color:#333"> <!-- € --> </span> <span id="id_x" style="font-weight:bold;color:#333"> {{$coordinate['led']->getPrice()}} € </span><span style="font-weight:bold;color:#333" id="multiply_show-{{$coordinate['led']->id}}"></span> <span style="font-weight:bold;color:#333" id="total_days-{{$coordinate['led']->id}}"></span><span id="days_show-{{$coordinate['led']->id}}"></span> <span id="days_id"></span> <span class=" pull-right" id="total_cost">  </span></li>
+                      <li class="list-group-item listordertaking" style="background:none;border:none;padding:0;padding-top:10px"> <span id="per_booking_cost" style="font-weight:bold;color:#333"> <!-- € --> </span> <span id="id_x" style="font-weight:bold;color:#333"> {{$coordinate['led']->price??''}} € </span><span style="font-weight:bold;color:#333" id="multiply_show-{{$coordinate['led']->id}}"></span> <span style="font-weight:bold;color:#333" id="total_days-{{$coordinate['led']->id}}"></span><span id="days_show-{{$coordinate['led']->id}}"></span> <span id="days_id"></span> <span class=" pull-right" id="total_cost">  </span></li>
                       <!--   <li class="list-group-item listordertaking"> 25 &euro; x  <span class="badge pull-right" >12</span></li>
                       --> </ul>
 
@@ -680,8 +680,8 @@ $q->where('payment_status',true);
    
    
            document.getElementById("total_days-{{$coordinate['led']->id}}").innerHTML = Difference_In_Days;
-           document.getElementById("multiply_show-{{$coordinate['led']->id}}").innerHTML =  'zum';
-           document.getElementById("days_show-{{$coordinate['led']->id}}").innerHTML =  ' Tag(s)';
+           document.getElementById("multiply_show-{{$coordinate['led']->id}}").innerHTML =  'X';
+           document.getElementById("days_show-{{$coordinate['led']->id}}").innerHTML =  ' Tag(e)';
            document.getElementById("total_price-{{$coordinate['led']->id}}").innerHTML =  Difference_In_Days*"{{$coordinate['led']->price}}";
            
            document.getElementById("no_of_days-{{$coordinate['led']->id}}").value = Difference_In_Days;

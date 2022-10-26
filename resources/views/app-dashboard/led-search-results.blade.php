@@ -15,14 +15,14 @@
  
 
   <div style="text-align: right;padding-right: 15px;"> 
-      <img src="https://freeiconshop.com/wp-content/uploads/edd/list-round-flat.png" class="filterbtn" data-toggle="modal" data-target="#myModal" style="z-index: 1002;
+      <img src="https://freeiconshop.com/wp-content/uploads/edd/list-round-flat.png" class="filterbtn" data-toggle="modal" data-target="#mobile-filter" style="z-index: 1002;
     position: relative;
     max-width: 60px;margin-top: -20px;">
     </div>
 
 
     <!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
+<div id="mobile-filter" class="modal fade" role="dialog">
   <div class="modal-dialog" style="width:100%:margin:0">
 
     <!-- Modal content-->
@@ -32,31 +32,92 @@
         <h4 class="modal-title">Modal Header</h4>
       </div>
       <div class="modal-body" style="padding:15%">
+        <form action="{{route('find.led')}}" method="get">
+          <div class="f-g-4 col-sm-4" >
+            <div class="flex-st">
+                <p class="margin-right"> <a href="{{route('find.map.led')}}"><i class="fa fa-map-marker" style="font-size: 25px;"></i></a> </p><input class="cp-input-form"   placeholder="EStandort suchen" style="border:none; outline:none; font-size:16px;" name="location">
+            </div>
+        </div>
+        <div class="f-g-1 margin-right">
+            <div class="vr-line"></div>
+        </div>
+        <div class="f-g-2">
+            <p class="font-lufga-18 dis-none">Stadt</p>
+            <div class="flex-st">
+                <div class="dropdown margin-right">
+                    <select aria-labelledby="menu1" name="city" style="padding: 8px 32px 8px 0px;border: none;outline: none;text-align: left;color: #8F90A6!important;padding-left:10px">
+                      <option value="">alle Städte</option>
+                      @foreach ($cities as $city)
+                      <option value="{{$city->id}}">{{$city->city}}</option>
+                      @endforeach
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="f-g-1 margin-right">
+            <div class="vr-line"></div>
+        </div>
+        <div class="f-g-2">
+          {{-- <p class="font-lufga-18 dis-none">Datum -{{$selectedStartDate}} - {{$selectedEndDate}}- {{$selectedDateRange}}</p> --}}
+          <p class="font-lufga-18 dis-none">Datum</p>
+          <div class="flex-st">
+              <div class="dropdown margin-right">
+                <input type="text" class="form-control" name="searchdates" id="searchdates" placeholder="Select Date" style="padding: 8px 32px 8px 0px;border: none;outline: none;text-align: center;color: #8F90A6!important;box-shadow: none;" />
+              </div>
+          </div>
+      </div>
+        <div class="f-g-1 margin-right">
+            <div class="vr-line"></div>
+        </div>
+ 
+        <div class="f-g-2">
+            <p class="font-lufga-18 dis-none">Preisspanne</p>
+            <div class="flex-st">
+                <div class="dropdown margin-right">
+                    <select  name="pricerange" style="padding: 8px 32px 8px 0px;border: none;outline: none;text-align: left;color: #8F90A6!important;padding-left:10px">
+                      <option value="">
+                         Preisspanne auswählen
+                     </option>  
+                      <option value="1-10">
+                           € 1 - € 10 
+                        </option>
+                          <option value="11-30"> 
+                           € 11 - € 30 
+                        </option> 
+                          <option value="31-50"> 
+                           € 31 - € 50 
+                        </option> 
+                          <option value="51-100"> 
+                           € 51 - € 100 
+                        </option> 
+                          <option value="100-150"> 
+                           € 100 - € 150 
+                        </option> 
+                          <option value="150-300"> 
+                           € 150 - € 300 
+                        </option> 
+                          <option value="300-500"> 
+                           € 300 - € 500 
+                        </option> 
+                          <option value="500-999999999999999999"> 
+                           € 500 +
+                        </option> 
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="f-g-1 margin-right">
+            <div class="vr-line"></div>
+        </div>
+        <div class="f-g-2">
+          {{-- <a href=""> <img src="https://1000logos.net/wp-content/uploads/2021/05/Google-Maps-logo.png" class="img-responsive cursor-on"  style="width:90px">
+          </a> --}}
+          <button type="submit" class="btn btn-danger">Filter anwenden</button>
+     </div>
+        </form>
         
-        <div class="form-group">
-            <label for="sel1">City</label>
-            <select class="form-control" id="sel1">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-            </select>
-          </div>
 
-
-        <div class="form-group">
-            <label for="sel1">Price</label>
-            <select class="form-control" id="sel1">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-            </select>
-          </div>
-
-          <div style="text-align: center;">
-           <input type="subit" name="" class="btn btn-primary" value="Search">
-          </div>
+        
 
 
 
@@ -187,12 +248,12 @@
           <div class="col-sm-6 responsiveadjust" style="padding-bottom:10px">
          <div class="card h-100">
        
-       <span class="product-new-label btn btn-danger" style="
+       <span class="product-new-label btn btn-{{$coordinate['led']->multimedia?'primary' : 'danger'}}" style="
     position: absolute;
     padding: 10px;
     margin-top: 10px;
     margin-left: 10px;
-">Multimedia</span>
+">{{$coordinate['led']->multimedia?'Multimedia' : 'Singlemedia'}}</span>
         <a href="{{route('app.led.detail',$coordinate['led']->id??'')}}"><img class="card-img-top" src="{{asset('storage/'.(($coordinate['led']->images->first())->path??''))}}" alt="" style="width:100%;min-height: 200px;;max-height: 200px;"></a>  
        
        
@@ -202,14 +263,14 @@
 
 
             <h2 class="card-title alignleft"  >
-                <a href="#" class="viewledlistmainpageheading" style="font-size:16px">Preis : {{$coordinate['led']->price??''}}€ / Tag   </a>
+                <a href="#" class="viewledlistmainpageheading" style="font-size:16px">Preis : {{$coordinate['led']->getPrice()??''}}€ / <b  class="viewledlistmainpageheading4"  > {{$coordinate['led']->bookingduration=='All'?'Tag' : $coordinate['led']->bookingduration}}   </b>   </a>
             </h2>
        
             <h2 class="card-title viewledlistmainpageheading2"><i class="fa fa-map-marker" style="font-size: 20px;"></i>  {{($cities->where('id',$coordinate['led']->city_id)->first())->city}} </h4>
        
              
             <h2 class="card-title alignright"  >
-                <a href="#"  class="viewledlistmainpageheading3"  > Price : {{$coordinate['led']->price??''}}€ / <b  class="viewledlistmainpageheading4"  > Tag   </b> </a>
+                <a href="#"  class="viewledlistmainpageheading3"  > Price : {{$coordinate['led']->getPrice()??''}}€ / <b  class="viewledlistmainpageheading4"  > {{$coordinate['led']->bookingduration=='All'?'Tag' : $coordinate['led']->bookingduration}}   </b> </a>
             </h2>
             
             <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text" style="text-align:right"> 
@@ -279,7 +340,7 @@
 
 
                       <ul class="list-group" style="padding:2px;font-size:13px;">
-                      <li class="list-group-item listordertaking" style="background:none;border:none;padding:0;padding-top:10px"> <span id="per_booking_cost" style="font-weight:bold;color:#333"> <!-- € --> </span> <span id="id_x" style="font-weight:bold;color:#333"> {{$coordinate['led']->getPrice()}} € </span><span style="font-weight:bold;color:#333" id="multiply_show-{{$coordinate['led']->id}}"></span> <span style="font-weight:bold;color:#333" id="total_days-{{$coordinate['led']->id}}"></span><span id="days_show-{{$coordinate['led']->id}}"></span> <span id="days_id"></span> <span class=" pull-right" id="total_cost">  </span></li>
+                      <li class="list-group-item listordertaking" style="background:none;border:none;padding:0;padding-top:10px"> <span id="per_booking_cost" style="font-weight:bold;color:#333"> <!-- € --> </span> <span id="id_x" style="font-weight:bold;color:#333"> {{$coordinate['led']->price??''}} € </span><span style="font-weight:bold;color:#333" id="multiply_show-{{$coordinate['led']->id}}"></span> <span style="font-weight:bold;color:#333" id="total_days-{{$coordinate['led']->id}}"></span><span id="days_show-{{$coordinate['led']->id}}"></span> <span id="days_id"></span> <span class=" pull-right" id="total_cost">  </span></li>
                       <!--   <li class="list-group-item listordertaking"> 25 &euro; x  <span class="badge pull-right" >12</span></li>
                       --> </ul>
 
@@ -360,6 +421,11 @@
     
     
     </div>
+    <div class="row w3-padding-56-top">
+      <h3>
+        {!! $leds->links() !!}
+      </h3>
+    </div>
 
 
 
@@ -369,6 +435,7 @@
 
 @section('Styles')
 @parent
+{{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet"> --}}
 <style>
  
  
@@ -771,8 +838,8 @@ $q->where('payment_status',true);
    
    
            document.getElementById("total_days-{{$coordinate['led']->id}}").innerHTML = Difference_In_Days;
-           document.getElementById("multiply_show-{{$coordinate['led']->id}}").innerHTML =  'zum';
-           document.getElementById("days_show-{{$coordinate['led']->id}}").innerHTML =  ' Tag(s)';
+           document.getElementById("multiply_show-{{$coordinate['led']->id}}").innerHTML =  'X';
+           document.getElementById("days_show-{{$coordinate['led']->id}}").innerHTML =  ' Tag(e)';
            document.getElementById("total_price-{{$coordinate['led']->id}}").innerHTML =  Difference_In_Days*"{{$coordinate['led']->price}}";
            
            document.getElementById("no_of_days-{{$coordinate['led']->id}}").value = Difference_In_Days;

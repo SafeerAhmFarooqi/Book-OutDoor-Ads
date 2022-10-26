@@ -170,7 +170,7 @@
 
 
                           <ul class="list-group" style="padding:2px;font-size:13px;">
-                          <li class="list-group-item listordertaking" style="background:none;border:none;padding:0;padding-top:10px"> <span id="per_booking_cost" style="font-weight:bold;color:#333"> <!-- € --> </span> <span id="id_x" style="font-weight:bold;color:#333"> {{$led->getPrice()}} € </span><span style="font-weight:bold;color:#333" id="multiply_show"></span> <span style="font-weight:bold;color:#333" id="total_days"></span><span id="days_show"></span> <span id="days_id"></span> <span class=" pull-right" id="total_cost">  </span></li>
+                          <li class="list-group-item listordertaking" style="background:none;border:none;padding:0;padding-top:10px"> <span id="per_booking_cost" style="font-weight:bold;color:#333"> <!-- € --> </span> <span id="id_x" style="font-weight:bold;color:#333"> {{$led->price??''}} € </span><span style="font-weight:bold;color:#333" id="multiply_show"></span> <span style="font-weight:bold;color:#333" id="total_days"></span><span id="days_show"></span> <span id="days_id"></span> <span class=" pull-right" id="total_cost">  </span></li>
                           <!--   <li class="list-group-item listordertaking"> 25 &euro; x  <span class="badge pull-right" >12</span></li>
                           --> </ul>
 
@@ -504,7 +504,7 @@
    Difference_In_Days=Difference_In_Days+1;
            document.getElementById("total_days").innerHTML = Difference_In_Days;
            document.getElementById("multiply_show").innerHTML =  'X';
-           document.getElementById("days_show").innerHTML =  ' Tag(s)';
+           document.getElementById("days_show").innerHTML =  ' Tag(e)';
            document.getElementById("total_price").innerHTML =  Difference_In_Days*{{$led->price}};
            
            document.getElementById("no_of_days").value = Difference_In_Days;
@@ -742,8 +742,8 @@
    
    
            document.getElementById("total_days").innerHTML = Difference_In_Days;
-           document.getElementById("multiply_show").innerHTML =  'zum';
-           document.getElementById("days_show").innerHTML =  ' Tag(s)';
+           document.getElementById("multiply_show").innerHTML =  'X';
+           document.getElementById("days_show").innerHTML =  ' Tag(e)';
            document.getElementById("total_price").innerHTML =  Difference_In_Days*{{$led->price}};
            
            document.getElementById("no_of_days").value = Difference_In_Days;
