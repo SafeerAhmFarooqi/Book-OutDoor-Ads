@@ -13,11 +13,68 @@
 @section('content')
 {{-- <livewire:map-led-search-results /> --}}
  
+
+  <div style="text-align: right;padding-right: 15px;"> 
+      <img src="https://freeiconshop.com/wp-content/uploads/edd/list-round-flat.png" class="filterbtn" data-toggle="modal" data-target="#myModal" style="z-index: 1002;
+    position: relative;
+    max-width: 60px;margin-top: -20px;">
+    </div>
+
+
+    <!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog" style="width:100%:margin:0">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div class="modal-body" style="padding:15%">
+        
+        <div class="form-group">
+            <label for="sel1">City</label>
+            <select class="form-control" id="sel1">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+            </select>
+          </div>
+
+
+        <div class="form-group">
+            <label for="sel1">Price</label>
+            <select class="form-control" id="sel1">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+            </select>
+          </div>
+
+          <div style="text-align: center;">
+           <input type="subit" name="" class="btn btn-primary" value="Search">
+          </div>
+
+
+
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<div>
+
+
 <form action="{{route('find.led')}}" method="get">
-    <div class="container-fluid DN-800" id="search-page" style="position: absolute;
-    z-index: 999;
-    padding-top: -3%;
-    margin-left: 10%;">
+    <div class="container-fluid DN-800" id="search-page" >
       
         <div class="sp-backdrop-bg sp-border">
             <div class="flex-stretch">
@@ -33,7 +90,7 @@
                     <p class="font-lufga-18 dis-none">Stadt</p>
                     <div class="flex-st">
                         <div class="dropdown margin-right">
-                            <select aria-labelledby="menu1" name="city" style="padding: 8px 32px 8px 0px;border: none;outline: none;text-align: center;color: #8F90A6!important;">
+                            <select aria-labelledby="menu1" name="city" style="padding: 8px 32px 8px 0px;border: none;outline: none;text-align: left;color: #8F90A6!important;padding-left:10px">
                               <option value="">alle Städte</option>
                               @foreach ($cities as $city)
                               <option value="{{$city->id}}">{{$city->city}}</option>
@@ -50,7 +107,7 @@
                   <p class="font-lufga-18 dis-none">Datum</p>
                   <div class="flex-st">
                       <div class="dropdown margin-right">
-                        <input type="text" class="form-control" name="searchdates" id="searchdates" placeholder="Select Date" />
+                        <input type="text" class="form-control" name="searchdates" id="searchdates" placeholder="Select Date" style="padding: 8px 32px 8px 0px;border: none;outline: none;text-align: center;color: #8F90A6!important;box-shadow: none;" />
                       </div>
                   </div>
               </div>
@@ -62,7 +119,7 @@
                     <p class="font-lufga-18 dis-none">Preisspanne</p>
                     <div class="flex-st">
                         <div class="dropdown margin-right">
-                            <select  name="pricerange" style="padding: 8px 32px 8px 0px;border: none;outline: none;text-align: center;color: #8F90A6!important;">
+                            <select  name="pricerange" style="padding: 8px 32px 8px 0px;border: none;outline: none;text-align: left;color: #8F90A6!important;padding-left:10px">
                               <option value="">
                                  Preisspanne auswählen
                              </option>  
@@ -101,7 +158,7 @@
                 <div class="f-g-2">
                     {{-- <a href=""> <img src="https://1000logos.net/wp-content/uploads/2021/05/Google-Maps-logo.png" class="img-responsive cursor-on"  style="width:90px">
                     </a> --}}
-                    <button type="submit" class="btn btn-primary">Apply</button>
+                    <button type="submit" class="btn btn-danger">Filter anwenden</button>
                </div>
       
       
@@ -130,27 +187,36 @@
           <div class="col-sm-6 responsiveadjust" style="padding-bottom:10px">
          <div class="card h-100">
        
-       
+       <span class="product-new-label btn btn-danger" style="
+    position: absolute;
+    padding: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+">Multimedia</span>
         <a href="{{route('app.led.detail',$coordinate['led']->id??'')}}"><img class="card-img-top" src="{{asset('storage/'.(($coordinate['led']->images->first())->path??''))}}" alt="" style="width:100%;min-height: 200px;;max-height: 200px;"></a>  
        
        
        
         <div class="card-body viewledlistmainpage" >
-            <h2 class="card-title alignleft"  >
-                <a href="#" class="viewledlistmainpageheading">Preis : {{$coordinate['led']->price??''}} € /Tag   </a>
-            </h2>
             <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text viewledlistmainpageheading1"  style="font-size: 16px !important"> {{$coordinate['led']->title??''}}</h2>
+
+
+            <h2 class="card-title alignleft"  >
+                <a href="#" class="viewledlistmainpageheading" style="font-size:16px">Preis : {{$coordinate['led']->price??''}}€ / Tag   </a>
+            </h2>
        
-            <h2 class="card-title viewledlistmainpageheading2"> {{($cities->where('id',$coordinate['led']->city_id)->first())->city}} </h4>
+            <h2 class="card-title viewledlistmainpageheading2"><i class="fa fa-map-marker" style="font-size: 20px;"></i>  {{($cities->where('id',$coordinate['led']->city_id)->first())->city}} </h4>
        
              
             <h2 class="card-title alignright"  >
-                <a href="#"  class="viewledlistmainpageheading3"  > Price : {{$coordinate['led']->price??''}} € / <b  class="viewledlistmainpageheading4"  > Tag   </b> </a>
+                <a href="#"  class="viewledlistmainpageheading3"  > Price : {{$coordinate['led']->price??''}}€ / <b  class="viewledlistmainpageheading4"  > Tag   </b> </a>
             </h2>
             
             <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text" style="text-align:right"> 
                 <a href="{{route('app.led.detail',$coordinate['led']->id??'')}}" >
-                  <img src="{{asset('assets/newtheme2023/images/arrowblue.png')}}"   class="viewledlistmainpageheading6"  > 
+
+                  <i class="fa fa-shopping-cart" style="font-size: 25px;margin-top:10px" ></i>
+                  <!-- <img src="{{asset('assets/newtheme2023/images/arrowblue.png')}}"   class="viewledlistmainpageheading6"  >  -->
                 </a>
             </h2>
         </div>
@@ -316,6 +382,10 @@
     margin-top: -55px !important;
     border: none !important ;
     margin-top: -15% !important ; */
+        margin-top: -55px;
+    width: 117% !important;
+    margin-left: -20px;
+
      } 
     footer{
         display: none;
@@ -742,7 +812,7 @@ $q->where('payment_status',true);
          var markerLabel = "€"+ value.price;
          //alert(value.image);
          var infowindow = new google.maps.InfoWindow({
-          content: "<div style='max-width:220px'><div style='float:left;width:100%'><img src='"+value.image+"' style='max-width:220px;max-height:180px' ></div><div style='float:left; padding: 10px;color:#fff'><b>"+value.title+"</b><br/> <h2>"+value.price +"€</h2> </div> <div style='float:right'><a href='javascript:;' data-toggle='modal' data-target='#exampleModal-"+value.id+"'> <img src='https://www.freeiconspng.com/uploads/calendar-icon-png-4.png' style='width:50px;padding:10px;'></a> </div></div>", 
+          content: "<div style='max-width:170px'><div style='float:left;width:100%'><img src='"+value.image+"' style='max-width:100%;max-height:180px' ></div><div style='float:left;margin-top:7px'><b style='font-weight:bold;font-size:12px'>"+value.title+"</b><br/> <h2 style='font-weight:bold;font-size:12px;color:blue'>"+value.price +"€</h2> </div> <div style='float:right'><a href='javascript:;' data-toggle='modal' data-target='#exampleModal-"+value.id+"' style='border:none'> <img src='https://www.freeiconspng.com/uploads/calendar-icon-png-4.png' style='width:50px;padding:10px;border:none !Important'></a> </div></div>", 
           
        });
        
