@@ -659,7 +659,7 @@ public function handle(Request $request) {
      ->when($location, function($query,$location) {
          return $query->where('location', 'like', '%'.$location.'%');
      })     
-     ->get();
+     ->paginate(4);
 
      $coordinates=[];
      foreach ($leds  as $value) {
@@ -669,6 +669,7 @@ public function handle(Request $request) {
          'cartItems' => $cartItems,
          'cities' => City::all(),
          'coordinates'=>$coordinates,
+         'leds' => $leds,
       ]);       
    }
 
