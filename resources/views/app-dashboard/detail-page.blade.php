@@ -383,12 +383,12 @@
        icon: image,
        title: "{{$led->title}} Pries {{$led->price}} €/Tag",
         //  title: value.title,
-         mouseout: function(e) {
-           this.setIcon('');
-         },
-         mouseover: function(e) {
-          this.setIcon('');
-         }
+        //  mouseout: function(e) {
+        //    this.setIcon('');
+        //  },
+        //  mouseover: function(e) {
+        //   this.setIcon('');
+        //  }
        });
   
        
