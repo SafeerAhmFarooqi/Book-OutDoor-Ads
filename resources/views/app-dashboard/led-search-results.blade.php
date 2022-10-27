@@ -872,7 +872,10 @@ $q->where('payment_status',true);
    
          //alert(value.title+' : '+value.price);
 
-        
+         const markerIcon = {
+    url: "{{asset('assets/led-map-marker/marker1.png')}}",
+    scaledSize: new google.maps.Size(40, 40)
+  };
         
        $.each( locations, function( index, value ){
          
@@ -883,7 +886,7 @@ $q->where('payment_status',true);
           
        });
        
- 
+       
 
          //alert(value.title+' : '+value.price);
            // increment_2++;
@@ -894,6 +897,7 @@ $q->where('payment_status',true);
            lat: value.lat,
          lng: value.long,
              title: value.title+" Pries "+ value.price +"€/Tag",
+             icon: markerIcon,
              click: function(e) {
                infowindow.open(mymap,marker);
                // let url = "{{ route('app.led.detail', ':value.id') }}";
