@@ -374,14 +374,22 @@
     // The anchor for this image is the base of the flagpole at (0, 32).
     anchor: new google.maps.Point(0, 32),
   }
+
+  const markerIcon = {
+    url: "{{asset('assets/led-map-marker/marker1.png')}}",
+    scaledSize: new google.maps.Size(40, 40)
+  };
+
+  var markerLabel = "€"+ coordinates.price;
   
-   mymap.addMarker({
+  var marker = mymap.addMarker({
        //   lat: value.lat,
        //   lng: value.lng,
        lat: coordinates.lat,
        lng: coordinates.long,
-       icon: image,
-       title: "{{$led->title}} Pries {{$led->price}} €/Tag",
+       //title: coordinates.title+" Pries "+ coordinates.price +"€/Tag",
+        icon: markerIcon,
+
         //  title: value.title,
         //  mouseout: function(e) {
         //    this.setIcon('');
@@ -391,7 +399,7 @@
         //  }
        });
   
-       
+       marker.setLabel(markerLabel);
 
 
   //  $.each( locations, function( index, value ){
