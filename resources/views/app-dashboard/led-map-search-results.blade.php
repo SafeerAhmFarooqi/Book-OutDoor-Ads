@@ -714,7 +714,7 @@ $q->where('payment_status',true);
    
          //alert(value.title+' : '+value.price);
          const markerIcon = {
-    url: "{{asset('assets/led-map-marker/marker1.png')}}",
+    url: "{{asset('assets/led-map-marker/marker2.png')}}",
     scaledSize: new google.maps.Size(40, 40)
   };
         
