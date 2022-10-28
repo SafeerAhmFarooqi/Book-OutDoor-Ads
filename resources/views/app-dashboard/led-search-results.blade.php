@@ -449,21 +449,58 @@
     margin-top: -55px !important;
     border: none !important ;
     margin-top: -15% !important ; */
-        margin-top: -55px;
-    width: 117% !important;
+        margin-top: 8%;
+    width: 51% !important;
     margin-left: -20px;
+    position: fixed !important;
 
      } 
     footer{
         display: none;
     }
 
-     
+     #navbar{
+        width: 100%;
+        position: fixed;
+     }
 
+.viewledlistmainpage {
+    border: 1px solid rgba(0,0,0,.02);
+    min-height: 230px;
+    border-radius: 0px 0px 35px 35px;
+    zoom: 0.8;
+}
+.sp-backdrop-bg{
+    position: fixed;
+    margin-top: 5%;
+    z-index: 999;
+    background: #fff;
+    width: 90%;
+    
+}
+.mediaqueryproductslistshow{
+    margin-top: 12%;
+}
 
-    </style>
+.card {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+     border: 1px solid rgba(0,0,0,.02); 
+    border-radius: 0.25rem;
+    zoom: 0.8;
+}
 
-
+</style>
 @endsection
 
 @section('pageScripts')
