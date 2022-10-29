@@ -10,6 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use App\Models\Orders;
 use App\Traits\AdminMustApprove;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -33,6 +34,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'postal_code',
         'profile_pic',
         'email_verified_at',
+        'deleted_at',
     ];
 
     /**
@@ -53,6 +55,8 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected $dates = ['deleted_at'];
 
     public function orders()
     {

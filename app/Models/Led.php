@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Led extends Model
 {
@@ -13,9 +14,9 @@ class Led extends Model
 
     protected $table = 'led';
 
-    protected $dates = ['startDate','endDate'];
+    protected $dates = ['startDate','endDate','deleted_at'];
 
-    protected $fillable = ['user_id','city_id','country_id', 'title','multimedia','multimediaquantity','bookingduration','description', 'location', 'price', 'tax', 'estviews', 'city', 'popular', 'trending'];
+    protected $fillable = ['user_id','city_id','country_id', 'title','multimedia','multimediaquantity','bookingduration','description', 'location', 'price', 'tax', 'estviews', 'city', 'popular', 'trending','deleted_at',];
 
     protected static function booted()
     {
