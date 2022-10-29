@@ -74,14 +74,14 @@
                             </a>
                         </div>
 
-                        <div class="menu-item">
+                        {{-- <div class="menu-item">
                             <a class="menu-link" href="{{route('admin.led.popular')}}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Beliebt Leds Liste</span>
                             </a>
-                        </div>
+                        </div> --}}
 
                         <div class="menu-item">
                             <a class="menu-link" href="{{route('admin.led.trending')}}">

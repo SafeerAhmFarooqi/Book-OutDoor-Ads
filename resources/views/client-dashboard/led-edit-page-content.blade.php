@@ -39,6 +39,28 @@
 
                         <div class="row mb-6">
                             <!--begin::Label-->
+                            <label class="col-lg-4 col-form-label fw-bold fs-6">
+                                <span class="required">Led Type</span>
+                                <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Location of Led"></i>
+                            </label>
+                            <!--end::Label-->
+                            <!--begin::Col-->
+                            <div class="col-lg-8 fv-row">
+                                <select name="multimedia" id="ledtype" aria-label="Select Led Type"  data-placeholder="Select Led Type..." class="form-select form-select-solid form-select-lg fw-bold">
+                                    <option  value="0" {{old('ledtype')==0?'selected' : ($led->multimedia?'' : 'selected')}}>Singlemedia</option>
+                                    <option  value="1" {{old('ledtype')==1?'selected' : ($led->multimedia?'selected' : '')}}>Multimedia</option>                                        
+                                </select>
+                                @error('ledtype')
+                                <div class="alert alert-danger">
+                                        {{$message}}
+                                </div>
+                                @enderror
+                            </div>
+                            <!--end::Col-->
+                        </div>
+
+                        <div class="row mb-6">
+                            <!--begin::Label-->
                             <label class="col-lg-4 col-form-label required fw-bold fs-6">Beschreibung</label>
                             <!--end::Label-->
                             <!--begin::Col-->

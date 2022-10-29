@@ -120,7 +120,7 @@
                             <!--begin::Product=-->
                             <td class="text-start pe-0">
                                 <span class="fw-bolder">{{$subOrder->id}}</span><Br>
-                                <span class="fw-bolder" style="font-size:10px">{{$subOrder->startDate->format('F d, Y')}}</span>
+                                <span class="fw-bolder" style="font-size:10px">{{($subOrder->startDate?$subOrder->startDate->format('F d, Y'): '') }}</span>
                             </td>
                             <td>
                                 <div class="d-flex align-items-center">
@@ -131,7 +131,7 @@
                                     <!--end::Thumbnail-->
                                     <div class="ms-5">
                                         <!--begin::Title-->
-                                        <a href="{{route('app.led.detail',$subOrder->led->id??'')}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name" target="_blank">{{$subOrder->led->title}}</a>
+                                        <a href="{{route('app.led.detail',$subOrder->led->id??'')}}" class="text-gray-800 text-hover-primary fs-5 fw-bolder" data-kt-ecommerce-product-filter="product_name" target="_blank">{{$subOrder->led->title??''}}</a>
                                         <!--end::Title-->
                                     </div>
                                 </div>

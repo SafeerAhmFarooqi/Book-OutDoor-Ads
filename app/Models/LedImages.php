@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class LedImages extends Model
 {
@@ -11,8 +12,9 @@ class LedImages extends Model
 
     protected $table = 'led_images';
     public $timestamps = true;
+    protected $dates = ['deleted_at'];
 
-    protected $fillable = ['led_id', 'name', 'path'];
+    protected $fillable = ['led_id', 'name', 'path','deleted_at',];
 
     // Validation Rules
     protected array $validationRules = [

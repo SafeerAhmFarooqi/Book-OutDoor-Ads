@@ -4,13 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class City extends Model
 {
     use HasFactory;
 
     protected $table = 'city';
-    protected $fillable = ['city','icon'];
+    protected $dates = ['deleted_at'];
+    protected $fillable = ['city','icon','deleted_at'];
 
     public function led()
     {

@@ -4,13 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class BookingDates extends Model
 {
     use HasFactory;
 
     protected $table = 'booking_dates';
-    protected $dates = ['bookdate'];
+    protected $dates = ['bookdate','deleted_at'];
     public $timestamps = true;
 
     protected $fillable = [
@@ -19,6 +20,7 @@ class BookingDates extends Model
         'order_id',
         'suborder_id',
         'bookdate',
+        'deleted_at',
     ];
 
     public function order()
