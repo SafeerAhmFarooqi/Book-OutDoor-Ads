@@ -51,6 +51,21 @@ class UserProfileController extends BaseUserController
     }
     return back()->with('message', 'Profile Updated Successfully' );
    }
+
+   public function userProfilePasswordChange(Request $request)
+   {
+      if(Auth::check())
+      {
+          Auth::guard('web')->logout();
+  
+          $request->session()->invalidate();
+  
+          $request->session()->regenerateToken();
+  
+          return redirect()->route('password.request',$page='password-change');
+      }
+      return back();
+   }
 }
 
 

@@ -13,6 +13,8 @@ use App\Mail\UserAccountActivationEmail;
 use App\Mail\UserAccountDeactivationEmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
 
 class AdminClientController extends BaseAdminController
 {
@@ -72,6 +74,34 @@ class AdminClientController extends BaseAdminController
        'srNo'=>0,
       ]);
 }
+
+public function  changeClientPassword(Request $request)
+ {
+   $request->validate([
+      //Validation Rules
+      'password' => ['required', Rules\Password::defaults()],
+       
+  ],[
+      //Validation Messages
+      'required'=>':attribute Is Required',
+  ],[
+      //Validation Attributes
+      'password' => 'Password',       
+  ]);
+
+     $user=User::find($request->clientId);
+     $user->update([
+      'password' => Hash::make($request->password),
+     ]);
+     if($user)
+     {
+         return back()->with('success', 'Password Changed Successfully' );
+     }
+     else
+     {
+         return back()->with('error', 'Unable to Change Password' );
+     }
+ }
 
 
 

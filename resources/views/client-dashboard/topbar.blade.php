@@ -85,6 +85,11 @@
                         <div class="menu-item px-5">
                             <a href="{{route('client.profile.show')}}" class="menu-link px-5">My Profile</a>
                         </div>
+
+                        <div class="menu-item px-5">
+                            <a href="{{route('client.profile.password.change')}}" class="menu-link px-5">Reset Password</a>
+                        </div>
+
                         <div class="menu-item px-5 my-1">
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
