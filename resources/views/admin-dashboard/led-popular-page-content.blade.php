@@ -177,7 +177,7 @@
 
                                      
                                      
-                                <form action="{{route('admin.led.list.delete')}}" method="post">
+                                <form action="{{route('admin.led.remove.popular')}}" method="post">
                                     @csrf
                                   <button type="submit" class="badge badge-light-danger fs-8 fw-bold my-2"  name="led_id" value="{{$led->id}}" style="border:none">Löschen</button>
                                 </form>

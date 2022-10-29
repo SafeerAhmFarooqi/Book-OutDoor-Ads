@@ -137,16 +137,34 @@
                                     @csrf
                                     @method('delete')
                                     <input type="hidden" name="action" value="disable">
-                                  <button type="submit"   name="country_id" value="{{$country->id}}"  class="badge badge-light-danger fs-8 fw-bold my-2" style="border:none" > disable </button>
+                                  <button type="submit"  title="disable" name="country_id" value="{{$country->id}}"  class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm" style="border:none" >  <span class="svg-icon svg-icon-3"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo13/dist/../src/media/svg/icons/Navigation/Close.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <g transform="translate(12.000000, 12.000000) rotate(-45.000000) translate(-12.000000, -12.000000) translate(4.000000, 4.000000)" fill="#000000">
+                                            <rect x="0" y="7" width="16" height="2" rx="1"/>
+                                            <rect opacity="0.3" transform="translate(8.000000, 8.000000) rotate(-270.000000) translate(-8.000000, -8.000000) " x="0" y="7" width="16" height="2" rx="1"/>
+                                        </g>
+                                    </g>
+                                </svg><!--end::Svg Icon--></span> </button>
                                   
                                 </form>
                                 <form action="{{route('admin.country.destroy',['country' => $country->id])}}" method="post">
                                     @csrf
                                     @method('delete')
                                     <input type="hidden" name="action" value="enable">
-                                  <button type="submit"   name="country_id" value="{{$country->id}}" class="badge badge-light-warning fs-8 fw-bold my-2" style="border:none"  title="Enable Country" > enable </button>
+                                  <button type="submit" title="enable"  name="country_id" value="{{$country->id}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm" style="border:none"  title="Enable Country" > <span class="svg-icon svg-icon-3"><!--begin::Svg Icon | path:/var/www/preview.keenthemes.com/metronic/releases/2021-05-14-112058/theme/html/demo13/dist/../src/media/svg/icons/Navigation/Double-check.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <polygon points="0 0 24 0 24 24 0 24"/>
+                                        <path d="M9.26193932,16.6476484 C8.90425297,17.0684559 8.27315905,17.1196257 7.85235158,16.7619393 C7.43154411,16.404253 7.38037434,15.773159 7.73806068,15.3523516 L16.2380607,5.35235158 C16.6013618,4.92493855 17.2451015,4.87991302 17.6643638,5.25259068 L22.1643638,9.25259068 C22.5771466,9.6195087 22.6143273,10.2515811 22.2474093,10.6643638 C21.8804913,11.0771466 21.2484189,11.1143273 20.8356362,10.7474093 L17.0997854,7.42665306 L9.26193932,16.6476484 Z" fill="#000000" fill-rule="nonzero" opacity="0.3" transform="translate(14.999995, 11.000002) rotate(-180.000000) translate(-14.999995, -11.000002) "/>
+                                        <path d="M4.26193932,17.6476484 C3.90425297,18.0684559 3.27315905,18.1196257 2.85235158,17.7619393 C2.43154411,17.404253 2.38037434,16.773159 2.73806068,16.3523516 L11.2380607,6.35235158 C11.6013618,5.92493855 12.2451015,5.87991302 12.6643638,6.25259068 L17.1643638,10.2525907 C17.5771466,10.6195087 17.6143273,11.2515811 17.2474093,11.6643638 C16.8804913,12.0771466 16.2484189,12.1143273 15.8356362,11.7474093 L12.0997854,8.42665306 L4.26193932,17.6476484 Z" fill="#000000" fill-rule="nonzero" transform="translate(9.999995, 12.000002) rotate(-180.000000) translate(-9.999995, -12.000002) "/>
+                                    </g>
+                                </svg><!--end::Svg Icon--></span> </button>
                                 </form>
-                                <a href="#"   data-bs-toggle="modal" data-bs-target="#kt_modal_update_tax_{{$country->id}}" class="badge badge-light-primary fs-8 fw-bold my-2" style="border:none"   title="Update country Tax" > update </a>
+                                <a href="#" title="update"  data-bs-toggle="modal" data-bs-target="#kt_modal_update_tax_{{$country->id}}" class="btn btn-icon btn-bg-light btn-active-color-primary btn-sm" style="border:none"   title="Update country Tax" >   <span class="svg-icon svg-icon-3">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path opacity="0.3" d="M21.4 8.35303L19.241 10.511L13.485 4.755L15.643 2.59595C16.0248 2.21423 16.5426 1.99988 17.0825 1.99988C17.6224 1.99988 18.1402 2.21423 18.522 2.59595L21.4 5.474C21.7817 5.85581 21.9962 6.37355 21.9962 6.91345C21.9962 7.45335 21.7817 7.97122 21.4 8.35303ZM3.68699 21.932L9.88699 19.865L4.13099 14.109L2.06399 20.309C1.98815 20.5354 1.97703 20.7787 2.03189 21.0111C2.08674 21.2436 2.2054 21.4561 2.37449 21.6248C2.54359 21.7934 2.75641 21.9115 2.989 21.9658C3.22158 22.0201 3.4647 22.0084 3.69099 21.932H3.68699Z" fill="currentColor" />
+                                        <path d="M5.574 21.3L3.692 21.928C3.46591 22.0032 3.22334 22.0141 2.99144 21.9594C2.75954 21.9046 2.54744 21.7864 2.3789 21.6179C2.21036 21.4495 2.09202 21.2375 2.03711 21.0056C1.9822 20.7737 1.99289 20.5312 2.06799 20.3051L2.696 18.422L5.574 21.3ZM4.13499 14.105L9.891 19.861L19.245 10.507L13.489 4.75098L4.13499 14.105Z" fill="currentColor" />
+                                    </svg>
+                                </span></a>
                                 {{-- <button type="submit" class="btn btn-primary" name="client_id" value="{{$country->id}}">Edit</button> --}}
                                 </div>
                                 
