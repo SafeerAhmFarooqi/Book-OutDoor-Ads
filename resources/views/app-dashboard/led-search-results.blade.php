@@ -17,7 +17,7 @@
   <div style="text-align: right;padding-right: 15px;"> 
       <img src="https://freeiconshop.com/wp-content/uploads/edd/list-round-flat.png" class="filterbtn" data-toggle="modal" data-target="#mobile-filter" style="z-index: 1002;
     position: relative;
-    max-width: 60px;margin-top: -20px;">
+    max-width: 60px;margin-top: 100px;">
     </div>
 
 
@@ -33,15 +33,16 @@
       </div>
       <div class="modal-body" style="padding:15%">
         <form action="{{route('find.led')}}" method="get">
-          <div class="f-g-4 col-sm-4" >
+          <div class="f-g-4 col-sm-4" style="border: 1px solid #ccc; border-radius: 10px;">
             <div class="flex-st">
                 <p class="margin-right"> <a href="{{route('find.map.led')}}"><i class="fa fa-map-marker" style="font-size: 25px;"></i></a> </p><input class="cp-input-form"   placeholder="EStandort suchen" style="border:none; outline:none; font-size:16px;" name="location">
             </div>
-        </div>
+        </div><!-- 
         <div class="f-g-1 margin-right">
             <div class="vr-line"></div>
-        </div>
-        <div class="f-g-2">
+        </div> -->
+        <br>
+        <div class="f-g-2" style="border: 1px solid #ccc; border-radius: 10px;">
             <p class="font-lufga-18 dis-none">Stadt</p>
             <div class="flex-st">
                 <div class="dropdown margin-right">
@@ -53,24 +54,26 @@
                     </select>
                 </div>
             </div>
-        </div>
+        </div><br>
+        <!-- 
         <div class="f-g-1 margin-right">
             <div class="vr-line"></div>
-        </div>
-        <div class="f-g-2">
+        </div> -->
+        <div class="f-g-2" style="border: 1px solid #ccc; border-radius: 10px;">
           {{-- <p class="font-lufga-18 dis-none">Datum -{{$selectedStartDate}} - {{$selectedEndDate}}- {{$selectedDateRange}}</p> --}}
           <p class="font-lufga-18 dis-none">Datum</p>
           <div class="flex-st">
               <div class="dropdown margin-right">
-                <input type="text" class="form-control" name="searchdates" id="searchdates" placeholder="Select Date" style="padding: 8px 32px 8px 0px;border: none;outline: none;text-align: center;color: #8F90A6!important;box-shadow: none;" />
+                <input type="text" class="form-control"  inputmode="none" name="searchdates" id="searchdates" placeholder="Select Date" style="padding: 8px 32px 8px 0px;border: none;outline: none;text-align: center;color: #8F90A6!important;box-shadow: none;" />
               </div>
           </div>
       </div>
-        <div class="f-g-1 margin-right">
+      <br>
+      <!--   <div class="f-g-1 margin-right">
             <div class="vr-line"></div>
         </div>
- 
-        <div class="f-g-2">
+  -->
+        <div class="f-g-2" style="border: 1px solid #ccc; border-radius: 10px;">
             <p class="font-lufga-18 dis-none">Preisspanne</p>
             <div class="flex-st">
                 <div class="dropdown margin-right">
@@ -106,9 +109,10 @@
                 </div>
             </div>
         </div>
-        <div class="f-g-1 margin-right">
+        <br>
+        <!-- <div class="f-g-1 margin-right">
             <div class="vr-line"></div>
-        </div>
+        </div> -->
         <div class="f-g-2">
           {{-- <a href=""> <img src="https://1000logos.net/wp-content/uploads/2021/05/Google-Maps-logo.png" class="img-responsive cursor-on"  style="width:90px">
           </a> --}}
@@ -329,7 +333,7 @@
                                   </div>
                                   <form action="{{route('cart.led.add')}}" method="post">
                                     @csrf
-                                  <input type="text" class="form-control" name="book_dates" id="book_dates-{{$coordinate['led']->id}}" placeholder="Select Date" />
+                                  <input type="text" class="form-control" inputmode="none" name="book_dates" id="book_dates-{{$coordinate['led']->id}}" placeholder="Select Date" />
                                   <input type="hidden" name="error" id="error-{{$coordinate['led']->id}}">
                                   <h6 id="alert-{{$coordinate['led']->id}}" style="color: red;"></h6>
                                   <input type="hidden" id="no_of_days-{{$coordinate['led']->id}}" name="no_of_days">
@@ -421,7 +425,20 @@
     
     
     </div>
-    <div class="row w3-padding-56-top">
+<!--     <div class="row w3-padding-56-top" style="    z-index: 9999;
+    background: red;
+    margin-top: 0% !important;
+    color: #fff !important;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;">
+      <h3>
+        {!! $leds->links() !!}
+      </h3>
+    </div> -->
+
+
+        <div class="row w3-padding-56-top" >
       <h3>
         {!! $leds->links() !!}
       </h3>
@@ -438,7 +455,18 @@
 {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet"> --}}
 <style>
  
- 
+.alert {
+        color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    z-index: 99999;
+    position: absolute;
+    width: 90%;
+    padding: 2%;
+    margin-top: 10%;
+}
+
+
     /*
     # Welcome
     --------------------------------*/
@@ -449,8 +477,8 @@
     margin-top: -55px !important;
     border: none !important ;
     margin-top: -15% !important ; */
-        margin-top: 8%;
-    width: 51% !important;
+        margin-top: 10%;
+    width: 51%  !important;
     margin-left: -20px;
     position: fixed !important;
 
@@ -472,7 +500,7 @@
 }
 .sp-backdrop-bg{
     position: fixed;
-    margin-top: 5%;
+    margin-top: 6%;
     z-index: 999;
     background: #fff;
     width: 90%;
@@ -499,6 +527,59 @@
     border-radius: 0.25rem;
     zoom: 0.8;
 }
+
+
+
+ @media (min-width:130px) and (max-width:669px) {
+
+.mediaqueryproductslistshow {
+    margin-top: 80% !important;
+}
+#mymap {
+    height: 500px;
+    width: 100% !important;
+    margin-top: 8%;
+    /* width: 51% !important; */
+    margin-left: -20px;
+    position: fixed !important;
+    zoom: 0.6;
+}
+.navbar-brand{
+    padding-top: 18px !important;
+    font-size: 12px;
+}
+.modal-backdrop{
+    z-index: 9;
+}
+.daterangepicker .drp-calendar.left {
+    padding: 8px 0 8px 8px;
+    zoom: 0.8 !important;
+}
+
+.daterangepicker .drp-calendar.right {
+    padding: 8px 0px 8px 21px;
+    zoom: 0.8 !important;
+}
+
+.w3-padding-56-top { 
+    position: relative;
+    margin-top: -50% !important;
+}
+.filterbtn {
+    display: inline-block;
+}
+
+.classinfobtnbook{
+    border: none !important;
+}
+.classinfobtnbook:active{
+    border: none !important;
+}
+.classinfobtnbook:focus{
+    border: none !important;
+}
+
+}x
 
 </style>
 @endsection
@@ -919,9 +1000,11 @@ $q->where('payment_status',true);
          var markerLabel = "€"+ value.price;
          //alert(value.image);
          var infowindow = new google.maps.InfoWindow({
-          content: "<div style='max-width:170px'><div style='float:left;width:100%'><img src='"+value.image+"' style='max-width:100%;max-height:180px' ></div><div style='float:left;margin-top:7px'><b style='font-weight:bold;font-size:12px'>"+value.title+"</b><br/> <h2 style='font-weight:bold;font-size:12px;color:blue'>"+value.price +"€</h2> </div> <div style='float:right'><a href='javascript:;' data-toggle='modal' data-target='#exampleModal-"+value.id+"' style='border:none'> <img src='https://www.freeiconspng.com/uploads/calendar-icon-png-4.png' style='width:50px;padding:10px;border:none !Important'></a> </div></div>", 
+          content: "<div style='max-width:170px'><div style='float:left;width:100%'><img src='"+value.image+"' style='max-width:100%;max-height:180px' ></div><div style='float:left;margin-top:7px'><b style='font-weight:bold;font-size:12px'>"+value.title+"</b><br/> <h2 style='font-weight:bold;font-size:12px;color:blue'>"+value.price +"€</h2> </div> <div style='float:right'><a href='javascript:;' data-toggle='modal' data-target='#exampleModal-"+value.id+"' style='border:none'> <span class='btn btn-danger classinfobtnbook' style='margin-top:5px'> Buchung </span></a> </div></div>", 
           
        });
+
+         // <img src='https://www.freeiconspng.com/uploads/calendar-icon-png-4.png' style='width:50px;padding:10px;border:none !Important'>
        
        
 
