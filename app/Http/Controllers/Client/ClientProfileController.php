@@ -28,6 +28,21 @@ class ClientProfileController extends BaseClientController
     $user->update($request->all());
     return back()->with('message', 'Profile Updated Successfully' );
    }
+
+   public function clientProfilePasswordChange(Request $request)
+   {
+      if(Auth::check())
+      {
+          Auth::guard('web')->logout();
+  
+          $request->session()->invalidate();
+  
+          $request->session()->regenerateToken();
+  
+          return redirect()->route('password.request',$page='password-change');
+      }
+      return back();
+   }
 }
 
 

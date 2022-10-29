@@ -55,6 +55,7 @@ Route::group(['middleware' => ['role:User','auth','verified','admin.user.approve
     Route::get('/user-profile', [UserProfileController::class,'show'])->name('user.profile.show');
     Route::get('/user-profile-edit', [UserProfileController::class,'edit'])->name('user.profile.edit');
     Route::post('/user-profile-edit', [UserProfileController::class,'update'])->name('user.profile.update');
+    Route::get('/user-profile-password-change', [UserProfileController::class,'userProfilePasswordChange'])->name('user.profile.password.change');
     Route::get('/user-orders-list', [UserOrderController::class,'show'])->name('user.orders.list');
     Route::post('/user-suborders-list', [UserOrderController::class,'subOrdersList'])->name('user.sub-orders.view');
     
@@ -64,6 +65,7 @@ Route::group(['middleware' => ['role:Client','auth','verified','admin.partner.ap
     Route::get('/client-profile', [ClientProfileController::class,'show'])->name('client.profile.show');
     Route::get('/client-profile-edit', [ClientProfileController::class,'edit'])->name('client.profile.edit');
     Route::post('/client-profile-edit', [ClientProfileController::class,'update'])->name('client.profile.update');
+    Route::get('/client-profile-password-change', [ClientProfileController::class,'clientProfilePasswordChange'])->name('client.profile.password.change');
     Route::get('/client-led', [ClientLedController::class,'addLed'])->name('client.led.add');
     Route::post('/client-led-store', [ClientLedController::class,'storeLed'])->name('client.led.store');
     Route::get('/client-led-view', [ClientLedController::class,'viewLed'])->name('client.led.view');
@@ -82,8 +84,10 @@ Route::group(['middleware' => ['role:Admin','auth']], function () {
     Route::post('/admin-users-list-verify', [AdminUsersController::class,'verifyUser'])->name('admin.users.list.verify');
     Route::post('/admin-users-list-disable', [AdminUsersController::class,'disableUser'])->name('admin.users.list.disable');
     Route::post('/admin-users-list-orders', [AdminUsersController::class,'showUserOrders'])->name('admin.users.list.order');
+    Route::post('/admin-users-password-change', [AdminUsersController::class,'changeUserPassword'])->name('admin.users.password.change');
     Route::get('/admin-client-list', [AdminClientController::class,'clientList'])->name('admin.client.list');
     Route::post('/admin-client-list-delete', [AdminClientController::class,'deleteClient'])->name('admin.client.list.delete');
+    Route::post('/admin-client-password-change', [AdminClientController::class,'changeClientPassword'])->name('admin.client.password.change');
     Route::post('/admin-partner-list-enable', [AdminClientController::class,'enablePartner'])->name('admin.partner.list.enable');
     Route::post('/admin-partner-list-verify', [AdminClientController::class,'verifyPartner'])->name('admin.partner.list.verify');
     Route::post('/admin-partner-list-disable', [AdminClientController::class,'disablePartner'])->name('admin.partner.list.disable');

@@ -20,7 +20,7 @@
     </div>
     </div>
 
-                    @include('client-dashboard.footer')
+                    {{-- @include('client-dashboard.footer') --}}
 
     </div>
     </div>

@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Lang;
 use App\Mail\UserAccountActivationEmail;
 use App\Mail\UserAccountDeactivationEmail;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
 
 class AdminUsersController extends BaseAdminController
 {
@@ -74,6 +76,35 @@ class AdminUsersController extends BaseAdminController
         'srNo'=>0,
       ]);
  }   
+
+ public function  changeUserPassword(Request $request)
+ {
+   $request->validate([
+      //Validation Rules
+      'password' => ['required', Rules\Password::defaults()],
+       
+  ],[
+      //Validation Messages
+      'required'=>':attribute Is Required',
+  ],[
+      //Validation Attributes
+      'password' => 'Password',       
+  ]);
+
+     $user=User::find($request->userId);
+     $user->update([
+      'password' => Hash::make($request->password),
+     ]);
+     if($user)
+     {
+         return back()->with('success', 'Password Changed Successfully' );
+     }
+     else
+     {
+         return back()->with('error', 'Unable to Change Password' );
+     }
+ }
+
 }
 
 
