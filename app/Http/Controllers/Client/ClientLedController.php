@@ -133,6 +133,7 @@ class ClientLedController extends BaseClientController
         $request->validate([
             //Validation Rules
             'title' => ['required', 'string', 'max:255'],
+            'multimedia' => ['required'],
             'country_id' => ['required', 'string'],
             'description' => ['required', 'string'],
             'location' => ['required', 'string', 'max:500'],
@@ -146,6 +147,7 @@ class ClientLedController extends BaseClientController
         ],[
             //Validation Attributes
             'title' => 'Title',
+            'multimedia' => 'Led Type',
             'description' => 'Description',
             'country_id' => 'Country',   
             'location' => 'Location',   
