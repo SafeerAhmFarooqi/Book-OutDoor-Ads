@@ -118,6 +118,7 @@ Route::group(['middleware' => ['role:Admin','auth']], function () {
     ]);
 });
 
+//welcome
 require __DIR__.'/auth.php';
 
 
