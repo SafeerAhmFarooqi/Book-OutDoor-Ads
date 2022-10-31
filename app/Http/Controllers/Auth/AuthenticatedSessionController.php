@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Led;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -28,23 +29,45 @@ class AuthenticatedSessionController extends Controller
      */
     public function createClient()
     {
-        
+        $cartItems=[];
+        if (session()->has('cart.items')) {
+           foreach (session()->get('cart.items') as $value) {
+              array_push($cartItems,Led::findOrFail(strtok($value,'*')));
+           }
+        }
         View()->share( 'headTitle', 'Client Login' );
-        return view('auth.client-auth.login');
+        return view('auth.client-auth.login',[
+            'cartItems' => $cartItems,
+        ]);
     }
 
     public function createUser($redirectUrl='')
     {
+        $cartItems=[];
+        if (session()->has('cart.items')) {
+           foreach (session()->get('cart.items') as $value) {
+              array_push($cartItems,Led::findOrFail(strtok($value,'*')));
+           }
+        }
         View()->share( 'headTitle', 'User Login' );
         return view('auth.user-auth.login',[
             'redirectUrl'=>$redirectUrl,
+            'cartItems' => $cartItems,
         ]);
     }
 
     public function createAdmin()
     {
+        $cartItems=[];
+        if (session()->has('cart.items')) {
+           foreach (session()->get('cart.items') as $value) {
+              array_push($cartItems,Led::findOrFail(strtok($value,'*')));
+           }
+        }
         View()->share( 'headTitle', 'Admin Login' );
-        return view('auth.admin-auth.login');
+        return view('auth.admin-auth.login',[
+            'cartItems' => $cartItems,
+        ]);
     }
 
     /**
