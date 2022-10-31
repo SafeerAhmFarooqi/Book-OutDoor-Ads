@@ -1031,6 +1031,7 @@ $q->where('payment_status',true);
       });
    
      </script>
+   
 @endsection
 
 
