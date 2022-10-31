@@ -722,27 +722,67 @@ public function handle(Request $request) {
    }
    public function showImprint()
    {
-      return view('app-dashboard.imprint');        
+      $cartItems=[];
+      if (session()->has('cart.items')) {
+         foreach (session()->get('cart.items') as $value) {
+            array_push($cartItems,Led::findOrFail(strtok($value,'*')));
+         }
+      }
+      return view('app-dashboard.imprint',[
+         'cartItems' => $cartItems,
+      ]);        
    }
 
    public function showContact()
    {
-      return view('app-dashboard.contact');       
+      $cartItems=[];
+      if (session()->has('cart.items')) {
+         foreach (session()->get('cart.items') as $value) {
+            array_push($cartItems,Led::findOrFail(strtok($value,'*')));
+         }
+      }
+      return view('app-dashboard.contact',[
+         'cartItems' => $cartItems,
+      ]);       
    }
 
    public function showAgb()
    {
-      return view('app-dashboard.agb');       
+      $cartItems=[];
+      if (session()->has('cart.items')) {
+         foreach (session()->get('cart.items') as $value) {
+            array_push($cartItems,Led::findOrFail(strtok($value,'*')));
+         }
+      }
+      return view('app-dashboard.agb',[
+         'cartItems' => $cartItems,
+      ]);       
    }
 
    public function showPolicy()
    {
-      return view('app-dashboard.policy');       
+      $cartItems=[];
+      if (session()->has('cart.items')) {
+         foreach (session()->get('cart.items') as $value) {
+            array_push($cartItems,Led::findOrFail(strtok($value,'*')));
+         }
+      }
+      return view('app-dashboard.policy',[
+         'cartItems' => $cartItems,
+      ]);       
    }
 
    public function showAbout()
    {
-      return view('app-dashboard.about');       
+      $cartItems=[];
+      if (session()->has('cart.items')) {
+         foreach (session()->get('cart.items') as $value) {
+            array_push($cartItems,Led::findOrFail(strtok($value,'*')));
+         }
+      }
+      return view('app-dashboard.about',[
+         'cartItems' => $cartItems,
+      ]);       
    }
 
    public function checkOrder($id)
@@ -767,6 +807,12 @@ public function handle(Request $request) {
 
    public function listCitiesLeds($id=false)
    {
+      $cartItems=[];
+      if (session()->has('cart.items')) {
+         foreach (session()->get('cart.items') as $value) {
+            array_push($cartItems,Led::findOrFail(strtok($value,'*')));
+         }
+      }
       if($id)
       {
          $city=City::findOrFail($id);
@@ -774,6 +820,7 @@ public function handle(Request $request) {
       }
       return view('app-dashboard.list-cities-leds',[
          'id'=>$id,
+         'cartItems' => $cartItems,
       ]);       
    }
 }
