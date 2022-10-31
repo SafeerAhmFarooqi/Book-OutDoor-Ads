@@ -428,7 +428,8 @@ $q->where('payment_status',true);
    var disableDays=0;
    var a=0,b=0;
    //alert(date2.getDate());
-   dateRanges.forEach(range => {
+   if (dateRanges.length>0) {
+    dateRanges.forEach(range => {
              startDateObject=new Date(range.startDate);
                    startDate=new Date(startDateObject.getFullYear()+'-'+(startDateObject.getMonth() + 1)+'-'+startDateObject.getDate());
                    endDateObject=new Date(range.endDate);
@@ -450,6 +451,11 @@ $q->where('payment_status',true);
                $('#error-{{$coordinate["led"]->id}}').val('false');
              }
            });
+   } else {
+    document.getElementById("alert-{{$coordinate['led']->id}}").innerHTML =  ''; 
+               $('#error-{{$coordinate["led"]->id}}').val('false');
+   }
+  
    // dateRanges.reduce(function(bool, range) {
    //                 startDateObject=new Date(range.startDate);
    //                 endDateObject=new Date(range.endDate);
