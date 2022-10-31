@@ -1000,7 +1000,7 @@ $q->where('payment_status',true);
          var markerLabel = "€"+ value.price;
          //alert(value.image);
          var infowindow = new google.maps.InfoWindow({
-          content: "<div style='max-width:170px'><div style='float:left;width:100%'><img src='"+value.image+"' style='max-width:100%;max-height:180px' ></div><div style='float:left;margin-top:7px'><b style='font-weight:bold;font-size:12px'>"+value.title+"</b><br/> <h2 style='font-weight:bold;font-size:12px;color:blue'>"+value.price +"€</h2> </div> <div style='float:right'><a href='javascript:;' data-toggle='modal' data-target='#exampleModal-"+value.id+"' style='border:none'> <span class='btn btn-danger classinfobtnbook' style='margin-top:5px'> Buchung </span></a> </div></div>", 
+          content: "<div style='max-width:170px'><div style='float:left;width:100%'><img src='"+value.image+"' style='max-width:100%;max-height:180px' ></div><div style='float:left;margin-top:7px'><b style='font-weight:bold;font-size:12px'><a href='led-detail/"+value.id+"' style='text-decoration: none;outline: none;' title='Information'>"+value.title+"</a></b><br/> <h2 style='font-weight:bold;font-size:12px;color:blue'>"+value.price +"€</h2> </div> <div style='float:right'><a href='javascript:;' data-toggle='modal' data-target='#exampleModal-"+value.id+"' style='border:none'> <span class='btn btn-danger classinfobtnbook' style='margin-top:5px'> Buchung </span></a> </div></div>", 
           
        });
 
