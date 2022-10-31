@@ -181,7 +181,7 @@ public function handle(Request $request) {
      ]);
      // dd($request->book_dates);
       $request->session()->push('cart.items', $request->led_id.'*'.$request->book_dates.'*'.$request->no_of_days);
-      return back()->with('message', 'Artikel erfolgreich in den Einkaufswagen gelegt' );
+      return back()->with('success', 'Artikel erfolgreich in den Einkaufswagen gelegt' );
    }
 
    public function deleteLedFromCart(Request $request)

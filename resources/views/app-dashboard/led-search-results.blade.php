@@ -456,9 +456,9 @@
 <style>
  
 .alert {
-        color: #a94442;
-    background-color: #f2dede;
-    border-color: #ebccd1;
+    
+   
+   
     z-index: 99999;
     position: absolute;
     width: 90%;
@@ -579,7 +579,7 @@
     border: none !important;
 }
 
-}x
+}
 
 </style>
 @endsection
@@ -630,11 +630,9 @@
   });
     });
     </script>
-
-    <script>
-      const minSpan = [];
-    </script>
-
+ <script>
+  const minSpan = [];
+</script>
     @foreach ($coordinates as $coordinate)
     @php
     $disableDates=App\Models\SubOrders::with(['order'])
@@ -703,7 +701,8 @@ $q->where('payment_status',true);
    var disableDays=0;
    var a=0,b=0;
    //alert(date2.getDate());
-   dateRanges.forEach(range => {
+   if (dateRanges.length>0) {
+    dateRanges.forEach(range => {
              startDateObject=new Date(range.startDate);
                    startDate=new Date(startDateObject.getFullYear()+'-'+(startDateObject.getMonth() + 1)+'-'+startDateObject.getDate());
                    endDateObject=new Date(range.endDate);
@@ -725,6 +724,11 @@ $q->where('payment_status',true);
                $('#error-{{$coordinate["led"]->id}}').val('false');
              }
            });
+   } else {
+    document.getElementById("alert-{{$coordinate['led']->id}}").innerHTML =  ''; 
+               $('#error-{{$coordinate["led"]->id}}').val('false');
+   }
+  
    // dateRanges.reduce(function(bool, range) {
    //                 startDateObject=new Date(range.startDate);
    //                 endDateObject=new Date(range.endDate);
@@ -914,7 +918,7 @@ $q->where('payment_status',true);
                document.getElementById("alert-{{$coordinate['led']->id}}").innerHTML =  ''; 
               // $('#error').val('false');
                document.getElementById("error-{{$coordinate['led']->id}}").value = 'false';
-              // alert('1 : '+(minSpan+1));
+
                if (isDecimal(Difference_In_Days/(minSpan['{{$coordinate["led"]->id}}']+1))) {
             document.getElementById("alert-{{$coordinate['led']->id}}").innerHTML =  'Ungültiges Datum Bitte erneut auswählen'; 
                    // $('#book_dates').val('');
@@ -929,7 +933,6 @@ $q->where('payment_status',true);
              }
            });
    } else {
-   // alert('2 : '+(minSpan+1));
     if (isDecimal(Difference_In_Days/(minSpan['{{$coordinate["led"]->id}}']+1))) {
             document.getElementById("alert-{{$coordinate['led']->id}}").innerHTML =  'Ungültiges Datum Bitte erneut auswählen'; 
                    // $('#book_dates').val('');
@@ -989,11 +992,11 @@ $q->where('payment_status',true);
        });
    
          //alert(value.title+' : '+value.price);
-
          const markerIcon = {
     url: "{{asset('assets/led-map-marker/marker2.png')}}",
     scaledSize: new google.maps.Size(40, 40)
   };
+        
         
        $.each( locations, function( index, value ){
          
@@ -1003,10 +1006,8 @@ $q->where('payment_status',true);
           content: "<div style='max-width:170px'><div style='float:left;width:100%'><img src='"+value.image+"' style='max-width:100%;max-height:180px' ></div><div style='float:left;margin-top:7px'><b style='font-weight:bold;font-size:12px'><a href='led-detail/"+value.id+"' style='text-decoration: none;outline: none;' title='Information'>"+value.title+"</a></b><br/> <h2 style='font-weight:bold;font-size:12px;color:blue'>"+value.price +"€</h2> </div> <div style='float:right'><a href='javascript:;' data-toggle='modal' data-target='#exampleModal-"+value.id+"' style='border:none'> <span class='btn btn-danger classinfobtnbook' style='margin-top:5px'> Buchung </span></a> </div></div>", 
           
        });
-
-         // <img src='https://www.freeiconspng.com/uploads/calendar-icon-png-4.png' style='width:50px;padding:10px;border:none !Important'>
        
-       
+ 
 
          //alert(value.title+' : '+value.price);
            // increment_2++;
@@ -1031,7 +1032,6 @@ $q->where('payment_status',true);
       });
    
      </script>
-   
 @endsection
 
 
