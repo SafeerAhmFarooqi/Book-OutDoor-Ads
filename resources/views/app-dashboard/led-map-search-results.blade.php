@@ -715,7 +715,7 @@ $q->where('payment_status',true);
          el: '#mymap',
          lat: locations.length==0?51 :locations[0].lat ,
          lng: locations.length==0?10 :locations[0].long,
-     zoom:15
+     zoom:17
        });
    
          //alert(value.title+' : '+value.price);
