@@ -425,7 +425,7 @@
     
     
     </div>
-<!--     <div class="row w3-padding-56-top" style="    z-index: 9999;
+{{-- <!--     <div class="row w3-padding-56-top" style="    z-index: 9999;
     background: red;
     margin-top: 0% !important;
     color: #fff !important;
@@ -442,7 +442,7 @@
       <h3>
         {!! $leds->links() !!}
       </h3>
-    </div>
+    </div> --}}
 
 
 
