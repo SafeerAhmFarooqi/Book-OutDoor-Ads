@@ -659,7 +659,7 @@ public function handle(Request $request) {
      ->when($location, function($query,$location) {
          return $query->where('location', 'like', '%'.$location.'%');
      })     
-     ->paginate(4);
+     ->get();
 
      $coordinates=[];
      foreach ($leds  as $value) {
