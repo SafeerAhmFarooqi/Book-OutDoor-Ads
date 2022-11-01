@@ -23,11 +23,11 @@
                         <div class="row">    {{$item->tax}}%</div>
                     </div> --}}
                     <div class="col">
-                        <div class="row text-muted">From : {{\Carbon\Carbon::parse($item->startDate)->format('F d, Y') }}</div>
-                        <div class="row text-muted">To : {{\Carbon\Carbon::parse($item->endDate)->format('F d, Y')}}</div>
+                        <div class="row text-muted">aus : {{\Carbon\Carbon::parse($item->startDate)->translatedFormat('F d, Y') }}</div>
+                        <div class="row text-muted">zu : {{\Carbon\Carbon::parse($item->endDate)->translatedFormat('F d, Y')}}</div>
                     </div>
                     <div class="col">
-                        <div class="row"> {{$item->noOfDays}} Tag(s)</div>
+                        <div class="row"> {{$item->noOfDays}} Tag(e)</div>
                     </div>
                     
                     

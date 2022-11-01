@@ -145,7 +145,7 @@
             <div class="flex-stretch">
                 <div class="f-g-4 col-sm-4" >
                     <div class="flex-st">
-                        <p class="margin-right"> <a href="{{route('find.map.led')}}"><i class="fa fa-map-marker" style="font-size: 25px;"></i></a> </p><input class="cp-input-form"   placeholder="EStandort suchen" style="border:none; outline:none; font-size:16px;" name="location">
+                        <p class="margin-right"> <a href="{{route('find.map.led')}}"><i class="fa fa-map-marker" style="font-size: 25px;"></i></a> </p><input class="cp-input-form"   placeholder="Standort suchen" style="border:none; outline:none; font-size:16px;" name="location">
                     </div>
                 </div>
                 <div class="f-g-1 margin-right">
