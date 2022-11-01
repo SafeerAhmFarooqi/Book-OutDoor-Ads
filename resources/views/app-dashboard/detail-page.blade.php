@@ -362,7 +362,7 @@
      el: '#mymap',
      lat: coordinates.lat,
  lng: coordinates.long,
- zoom:12
+ zoom:17
    });
    
    const image = {
