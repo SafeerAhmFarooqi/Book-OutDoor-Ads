@@ -35,7 +35,7 @@
         <form action="{{route('find.led')}}" method="get">
           <div class="f-g-4 col-sm-4" style="border: 1px solid #ccc; border-radius: 10px;">
             <div class="flex-st">
-                <p class="margin-right"> <a href="{{route('find.map.led')}}"><i class="fa fa-map-marker" style="font-size: 25px;"></i></a> </p><input class="cp-input-form"   placeholder="EStandort suchen" style="border:none; outline:none; font-size:16px;" name="location">
+                <p class="margin-right"> <a href="{{route('find.map.led')}}"><i class="fa fa-map-marker" style="font-size: 25px;"></i></a> </p><input class="cp-input-form"   placeholder="Standort suchen" style="border:none; outline:none; font-size:16px;" name="location">
             </div>
         </div><!-- 
         <div class="f-g-1 margin-right">
@@ -1003,7 +1003,7 @@ $q->where('payment_status',true);
          var markerLabel = "€"+ value.price;
          //alert(value.image);
          var infowindow = new google.maps.InfoWindow({
-          content: "<div style='max-width:170px'><div style='float:left;width:100%'><img src='"+value.image+"' style='max-width:100%;max-height:180px' ></div><div style='float:left;margin-top:7px'><b style='font-weight:bold;font-size:12px'><a href='led-detail/"+value.id+"' style='text-decoration: none;outline: none;' title='Information'>"+value.title+"</a></b><br/> <h2 style='font-weight:bold;font-size:12px;color:blue'>"+value.price +"€</h2> </div> <div style='float:right'><a href='javascript:;' data-toggle='modal' data-target='#exampleModal-"+value.id+"' style='border:none'> <span class='btn btn-danger classinfobtnbook' style='margin-top:5px'> Buchung </span></a> </div></div>", 
+          content: "<div style='max-width:170px'><div style='float:left;width:100%'><a style='text-decoration: none;outline: none;' title='Information' href='led-detail/"+value.id+"'><img src='"+value.image+"' style='max-width:100%;max-height:180px' ></a></div><div style='float:left;margin-top:7px'><b style='font-weight:bold;font-size:12px'><a href='led-detail/"+value.id+"' style='text-decoration: none;outline: none;' title='Information'>"+value.title+"</a></b><br/> <h2 style='font-weight:bold;font-size:12px;color:blue'>"+value.price +"€</h2> </div> <div style='float:right'><a href='javascript:;' data-toggle='modal' data-target='#exampleModal-"+value.id+"' style='border:none'> <span class='btn btn-danger classinfobtnbook' style='margin-top:5px'> Buchung </span></a> </div></div>", 
           
        });
        
