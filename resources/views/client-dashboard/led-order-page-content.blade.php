@@ -132,7 +132,7 @@
                             </td>
                            
                             <td class="text-start">
-                                <span class="fw-bolder"> {{($subOrder->price??0*$subOrder->no_of_days??0)+((($subOrder->price??0*$subOrder->no_of_days??0)/100)*$subOrder->led->country->tax->tax??0)}} € </span>
+                                <span class="fw-bolder"> {{($subOrder->price??0*$subOrder->no_of_days??0)+((($subOrder->price??0*$subOrder->no_of_days??0)/100)*($subOrder->led->country->tax->tax??0))}} € </span>
                             </td>
                            
                            
