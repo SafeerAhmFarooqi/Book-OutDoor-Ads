@@ -2,6 +2,25 @@
 @extends('layouts.led-theme')
 
 @section('content')
+<style type="text/css">
+     .newcss{
+          margin-top: -35px ;
+        padding-bottom: 40px  !important;
+        font-size: 20px;
+        text-align: center;
+        }
+
+  @media only screen and (min-width:161px) and (max-width:667px) {
+      .newcss{
+           padding: 10px !important;
+            font-size: 11px;
+            text-align: center !important;
+            font-family: 'lufga semibold' !important;
+            font-weight: bold !important;
+        }
+    }
+
+    ></style>
       <!--header-->
       <div class="container-fluid">
          <div class="bg-header" style="background-image: url('{{asset('assets/newtheme2023/images/bgimagemainpage.png')}}');">
@@ -120,13 +139,16 @@
 
  
     <section id="city">
-        <div class="container-fluid w3-h-padding-top">
-            <h2 class="sub-h2"> Für Sie an verschiedenen Standorten verfügbar
+        <div class="container-fluid w3-h-padding-top" style="padding-top: 50px !important;
+    padding-bottom: 0px !important;">
+            
+<h2 class="sub-h2"> Für Sie an verschiedenen Standorten verfügbar
              </h2>
+             <br><br>
 
-
-            <div class="row w3-padding-56-top">
-              @foreach ($cities as $city)
+            <div class="row w3-padding-56-top" style="padding: 13%;
+    padding-top: 0;padding-bottom: 0;">
+           <!--    @foreach ($cities as $city)
               <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 w3-margin-bottom-30">
                 <div class="w3-display-container">
                     <a href="{{route('list.cities.led',$city->id)}}">
@@ -135,10 +157,16 @@
                     </div><img   class="city-img" src="{{asset('storage/'.$city->icon)}}"></a>
                 </div>
             </div> 
-              @endforeach
-               
-             
-               
+              @endforeach -->
+
+<div style="border: 4px solid #142948;
+    border-radius: 15px;">
+             <a href="https://wir-mieten-ihre-werbeflaeche.de/">
+               <img src="{{asset('assets/newtheme2023/images/ledbanner.png')}}" style="width:100%">
+             </a>
+               <h2 class="newcss" > Passives Einkommen durch Miete für eine Werbeanlage auf <br> Ihrem Grundstück bzw. Ihrer Immobilie!
+             </h2>
+         </div>
 
 
             </div>
