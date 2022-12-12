@@ -14,5 +14,6 @@
     @section('scripts')
          @include('metronic-theme.scripts')
     @show
+    @include('google.google-translate')
 </body>
 </html>

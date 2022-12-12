@@ -16,5 +16,6 @@
 <body>
 @yield('content')
 @yield('pageScripts')
+@include('google.google-translate')  
 </body>
 </html>
