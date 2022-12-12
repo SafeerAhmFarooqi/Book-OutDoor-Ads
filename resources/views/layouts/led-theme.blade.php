@@ -26,6 +26,7 @@
        @include('led-theme.scripts')
      @show
      @livewireScripts
+     @include('google.google-translate')
     </body>
 </html>
     
