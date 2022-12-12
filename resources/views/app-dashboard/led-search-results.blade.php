@@ -246,7 +246,8 @@
      
         @include('common.validation')              
         <div class="col-sm-6 mediaqueryproductslistshow">
-      @foreach ($coordinates as $coordinate)
+          @if (count($coordinates)>0)
+          @foreach ($coordinates as $coordinate)
       
       
           <div class="col-sm-6 responsiveadjust" style="padding-bottom:10px">
@@ -273,9 +274,7 @@
             <h2 class="card-title viewledlistmainpageheading2"><i class="fa fa-map-marker" style="font-size: 20px;"></i>  {{($cities->where('id',$coordinate['led']->city_id)->first())->city??''}} </h4>
        
              
-            <h2 class="card-title alignright"  >
-                <a href="#"  class="viewledlistmainpageheading3"  > Price : {{$coordinate['led']->getPrice()??''}}€ / <b  class="viewledlistmainpageheading4"  > {{$coordinate['led']->bookingduration=='All'?'Tag' : $coordinate['led']->bookingduration}}   </b> </a>
-            </h2>
+            
             
             <h2 class="ff-lagufa-n font-20 font-14-sm font-w-600 w3-theme-text" style="text-align:right"> 
                 <a href="{{route('app.led.detail',$coordinate['led']->id??'')}}" >
@@ -417,6 +416,10 @@
       </div>
     
       @endforeach
+          @else
+              <h5>Try Again No Results Are Found</h5>
+          @endif
+      
     </div>
       <div class="col-sm-6 mapresponsiveclass" style="">
         {{-- <div id="map"  style="width:100%;height:500px;"></div> --}}

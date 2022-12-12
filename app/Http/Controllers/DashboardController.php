@@ -648,7 +648,7 @@ public function handle(Request $request) {
       $maxPriceRange = '';
      }
      $city=$request->city;
-     $location=$request->location;
+     $location=isset($request->googleLocation)?$request->googleLocation : $request->location;
      $leds=Led::
      when($request->pricerange, function($query) use ($minPriceRange,$maxPriceRange) {
          return $query->whereBetween('price', [$minPriceRange, $maxPriceRange]);
@@ -658,7 +658,7 @@ public function handle(Request $request) {
      })
      ->when($location, function($query,$location) {
          return $query->where('location', 'like', '%'.$location.'%');
-     })     
+     })
      ->get();
 
      $coordinates=[];
