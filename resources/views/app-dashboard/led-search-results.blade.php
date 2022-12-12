@@ -270,7 +270,7 @@
                 <a href="#" class="viewledlistmainpageheading" style="font-size:16px">Preis : {{$coordinate['led']->getPrice()??''}}€ / <b  class="viewledlistmainpageheading4"  > {{$coordinate['led']->bookingduration=='All'?'Tag' : $coordinate['led']->bookingduration}}   </b>   </a>
             </h2>
        
-            <h2 class="card-title viewledlistmainpageheading2"><i class="fa fa-map-marker" style="font-size: 20px;"></i>  {{($cities->where('id',$coordinate['led']->city_id)->first())->city}} </h4>
+            <h2 class="card-title viewledlistmainpageheading2"><i class="fa fa-map-marker" style="font-size: 20px;"></i>  {{($cities->where('id',$coordinate['led']->city_id)->first())->city??''}} </h4>
        
              
             <h2 class="card-title alignright"  >
