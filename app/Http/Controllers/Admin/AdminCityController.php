@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Led;
 use App\Models\City;
+use App\Models\Country;
 use App\Models\LedImages;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
@@ -17,6 +18,7 @@ class AdminCityController extends BaseAdminController
  {
     $cities = City::all();
     return view('admin-dashboard.city-list-page',[
+        'countries' => Country::where('status',true)->get(),
         'cities'=>$cities,
         'srNo'=>0,
     ]);
@@ -26,12 +28,14 @@ class AdminCityController extends BaseAdminController
  {
     $request->validate([
         'city' => ['required', 'string', 'max:255'],
+        'country' => ['required'],
         'icon' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
     ]);
 
 
 
     $city = City::create([
+        'country_id' => $request->country,
         'city' => $request->city,
     ]);
     if($request->icon)

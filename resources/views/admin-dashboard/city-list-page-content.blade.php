@@ -248,6 +248,47 @@
                                                 
                                                 <!--end::Input group-->
                                                 <!--begin::Input group-->
+                                                <div>
+                                                    <div class="row mb-6">
+                                                        <!--begin::Label-->
+                                                        <label class="col-lg-4 col-form-label fw-bold fs-6">
+                                                            <span class="required">Country</span>
+                                                            <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Location of Led"></i>
+                                                        </label>
+                                                        <!--end::Label-->
+                                                        <!--begin::Col-->
+                                                        <div class="col-lg-8 fv-row">
+                                                            <select name="country" aria-label="Select a Country" data-control="select2" data-placeholder="Wähle ein Country..." class="form-select form-select-solid form-select-lg fw-bold">
+                                                                <option value="">Wähle ein Country...</option>
+                                                                @foreach ($countries as $country)
+                                                                <option data-kt-flag="flags/afghanistan.svg" value="{{$country->id}}">{{$country->country}}</option>                                        
+                                                                @endforeach
+                            
+                                                                {{-- <option data-kt-flag="flags/aland-islands.svg" value="AX">Aland Islands</option> --}}
+                                                            </select>
+                                                            @error('country')
+                                                            <div class="alert alert-danger">
+                                                                    {{$message}}
+                                                            </div>
+                                                            @enderror
+                                                        </div>
+                                                        <!--end::Col-->
+                                                    </div>
+                                                </div>
+                                                <div class="d-flex flex-column mb-5 fv-row">
+                                                    <!--begin::Label-->
+                                                    <label class="required fs-5 fw-bold mb-2">City Name</label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Input-->
+                                                    <input type="hidden" name="cityId" value="{{$city->id}}">
+                                                    <input class="form-control form-control-solid" placeholder="" name="city" value="{{$city->city}}"/>
+                                                    @error('city')
+                                                    <div class="alert alert-danger" role="alert">
+                                                        {{$message}}
+                                                    </div>
+                                                    @enderror
+                                                    <!--end::Input-->
+                                                </div>
                                                 <div class="d-flex flex-column mb-5 fv-row">
                                                     <!--begin::Label-->
                                                     <label class="required fs-5 fw-bold mb-2">City Name</label>
@@ -395,10 +436,39 @@
                         <!--begin::Input group-->
                         <div class="d-flex flex-column mb-5 fv-row">
                             <!--begin::Label-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label fw-bold fs-6">
+                                    <span class="required">Country</span>
+                                    <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip" title="Location of Led"></i>
+                                </label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                    <select name="country" aria-label="Select a Country" data-control="select2" data-placeholder="Wähle ein Country..." class="form-select form-select-solid form-select-lg fw-bold">
+                                        <option value="">Wähle ein Country...</option>
+                                        @foreach ($countries as $country)
+                                        <option data-kt-flag="flags/afghanistan.svg" value="{{$country->id}}">{{$country->country}}</option>                                        
+                                        @endforeach
+    
+                                        {{-- <option data-kt-flag="flags/aland-islands.svg" value="AX">Aland Islands</option> --}}
+                                    </select>
+                                    @error('country')
+                                    <div class="alert alert-danger">
+                                            {{$message}}
+                                    </div>
+                                    @enderror
+                                </div>
+                                <!--end::Col-->
+                            </div>
+                            <!--end::Input-->
+                        </div>
+                        <div class="d-flex flex-column mb-5 fv-row">
+                            <!--begin::Label-->
                             <label class="required fs-5 fw-bold mb-2">City Name</label>
                             <!--end::Label-->
                             <!--begin::Input-->
-                            <input class="form-control form-control-solid" placeholder="" name="city" />
+                            <input class="form-control form-control-solid" value="{{old('city')}}" placeholder="" name="city" id="city" />
                             @error('city')
                             <div class="alert alert-danger" role="alert">
                                 {{$message}}
@@ -431,6 +501,8 @@
     </div>
 </div>
 
+
+
 @section('pageScripts')
 <script src="{{asset('assets/Metronic-Theme/js/custom/apps/ecommerce/reports/views/views.js')}}"></script>
 @if (count($errors) > 0)
@@ -440,4 +512,29 @@
     });
 </script>
 @endif
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&key=AIzaSyAIeDyz_v1KkoU3ZTRqK5e-9Ax1lNjSIEI"></script>
+<script type="text/javascript">
+    var searchInput = 'city';
+    
+        $(document).ready(function () {
+            var autocomplete;
+            autocomplete = new google.maps.places.Autocomplete((document.getElementById(searchInput)), {
+                types: ['geocode']
+               
+            });
+        
+            google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                var near_place = autocomplete.getPlace();
+            });
+        });
+</script>
+@endsection
+
+@section('Styles')
+    <style>
+       .pac-container {
+    z-index: 10000 !important;
+}       
+    </style>
+
 @endsection
