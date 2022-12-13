@@ -29,15 +29,15 @@ body{top:0!important;}
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({
   	pageLanguage: 'en',
-  	includedLanguages:'de',
+  	includedLanguages:'en',
 	  layout:     google.translate.TranslateElement.InlineLayout.SIMPLE,
 	  autoDisplay:false,
   }, 'google_translate_element');
   setTimeout(function(){
   	var select = document.querySelector('select.goog-te-combo');
-  	select.value    = "de"; 
+  	select.value    = "en"; 
   	select.dispatchEvent(new Event('change'));
-  },2000)
+  },3000)
 }
 </script>
 
