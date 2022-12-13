@@ -4,11 +4,11 @@
 function googleTranslateElementInit() {
   new google.translate.TranslateElement({
   	pageLanguage: 'en',
-  	includedLanguages:'de'
+  	includedLanguages:'en'
   }, 'google_translate_element');
   setTimeout(function(){
   	var select = document.querySelector('select.goog-te-combo');
-  	select.value    = "de"; 
+  	select.value    = "en"; 
   	select.dispatchEvent(new Event('change'));
   },2000)
 }

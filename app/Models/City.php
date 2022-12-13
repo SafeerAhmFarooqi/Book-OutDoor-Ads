@@ -12,7 +12,7 @@ class City extends Model
 
     protected $table = 'city';
     protected $dates = ['deleted_at'];
-    protected $fillable = ['city','icon','deleted_at'];
+    protected $fillable = ['country_id','city','icon','deleted_at'];
 
     public function led()
     {
