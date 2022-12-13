@@ -23,3 +23,4 @@
 <!--end::Global Stylesheets Bundle-->
 
 @yield('Styles')
+@livewireStyles

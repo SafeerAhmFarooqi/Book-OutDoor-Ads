@@ -3,3 +3,5 @@
 <script src="{{ asset('assets/Metronic-Theme/js/scripts.bundle.js') }}"></script>
 <script src="{{ asset('assets/Metronic-Theme/plugins/custom/datatables/datatables.bundle.js') }}"></script>
 @yield('pageScripts')
+@yield('pageScripts2')
+@livewireScripts
