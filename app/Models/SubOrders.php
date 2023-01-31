@@ -30,6 +30,8 @@ class SubOrders extends Model
         'endDate',
         'cancel_status',
         'cancel_detail',
+        'response',
+        'buyer_id',
     ];
 
     
@@ -47,6 +49,11 @@ class SubOrders extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function images()
+    {
+        return $this->hasMany(OrderImage::class, 'sub_order_id');
     }
 
 }

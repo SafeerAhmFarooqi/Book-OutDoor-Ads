@@ -32,8 +32,9 @@ Route::post('/webhooks-mollie', [DashboardController::class,'handle'] )->name('w
 Route::get('/led-detail/{id}', [DashboardController::class,'ledDetail'])->name('app.led.detail');
 Route::post('/cart-led-add', [DashboardController::class,'addLedToCart'])->name('cart.led.add');
 Route::post('/cart-led-delete', [DashboardController::class,'deleteLedFromCart'])->name('cart.led.delete');
-Route::get('/cart-list-items', [DashboardController::class,'listCartItems'])->name('cart.list.items');
+Route::get('/cart-list-items', [DashboardController::class,'listCartItems'])->middleware(['role:User','auth','verified','admin.user.approved'])->name('cart.list.items');
 Route::post('/cart-list-items-delete', [DashboardController::class,'deleteLedFromCartList'])->name('cart.list.led.delete');
+Route::post('/led-order-place', [DashboardController::class,'ledOrderPlace'])->name('led.place.order');
 Route::get('/checkout', [DashboardController::class,'checkout'])->name('led.checkout');
 Route::get('/payment/{id?}', [DashboardController::class,'payment'])->name('led.order.payment');
 Route::get('/search-led', [DashboardController::class,'searchLed'])->name('find.led');
