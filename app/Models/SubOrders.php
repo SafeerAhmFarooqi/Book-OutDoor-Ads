@@ -30,6 +30,9 @@ class SubOrders extends Model
         'endDate',
         'cancel_status',
         'cancel_detail',
+        'response',
+        'buyer_id',
+        'token',
     ];
 
     
@@ -47,6 +50,37 @@ class SubOrders extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function buyer()
+    {
+        return $this->belongsTo(User::class, 'buyer_id');
+    }
+
+    public function images()
+    {
+        return $this->hasMany(OrderImage::class, 'sub_order_id');
+    }
+
+    public function payment()
+    {
+        return $this->hasOne(OrderPayment::class, 'sub_order_id');
+    }
+
+    public function getAndSaveUniqueToken()
+    {
+        while (true) {
+            $token = bin2hex(random_bytes(50));
+            if (self::where('token',$token)->first()) {
+                continue;
+            } else {
+                break;
+            }   
+        }
+
+        $this->update([
+            'token' => $token,
+        ]);
     }
 
 }

@@ -5,7 +5,7 @@
 <script>
     setTimeout(function() { 
         document.getElementById("alert-this-1").style.display = 'none';
-}, 5000); 
+}, 50000); 
    </script>
 @endif
 @if(session()->has('error'))
@@ -15,7 +15,7 @@
 <script>
     setTimeout(function() { 
         document.getElementById("alert-this-2").style.display = 'none';
-}, 5000); 
+}, 50000); 
    </script>
 @endif
 @if(session()->has('status'))
@@ -25,7 +25,7 @@
 <script>
     setTimeout(function() { 
         document.getElementById("alert-this-3").style.display = 'none';
-}, 5000); 
+}, 50000); 
    </script>
 @endif
 
@@ -36,7 +36,7 @@
     <script>
         setTimeout(function() { 
             document.getElementById("alert-this-4").style.display = 'none';
-    }, 5000); 
+    }, 50000); 
        </script>
    @endif
 
@@ -48,7 +48,7 @@
         <script>
             setTimeout(function() { 
                 document.getElementById("alert-loop-{{$loop->iteration}}").style.display = 'none';
-        }, 5000); 
+        }, 50000); 
            </script>
      @endforeach
 @endif

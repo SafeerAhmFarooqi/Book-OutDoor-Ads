@@ -7,9 +7,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Led;
 use App\Models\SubOrders;
+use App\Mail\OrderAcceptedMessage;
 use App\Models\LedImages;
 use Illuminate\Support\Facades\Storage;
 use App\Models\City;
+use Illuminate\Support\Facades\Mail;
 
 class ClientOrderController extends BaseClientController
 {
@@ -30,6 +32,23 @@ class ClientOrderController extends BaseClientController
            'subOrders'=>$subOrders,
           ]);
     }
+
+    public function acceptLedOrder(Request $request){
+            $subOrder = SubOrders::where(['user_id' => Auth::user()->id,'id' => $request->subOrderId])->first();
+            if ($subOrder) {
+                $subOrder->getAndSaveUniqueToken();
+                try {
+                    Mail::to($subOrder->buyer->email)->send(new OrderAcceptedMessage($subOrder->id));
+                } catch (\Throwable $th) {
+                    dd($th->getMessage());
+                    return back()->with('error','Unable to send email'.' : '.$th->getMessage());
+                }   
+            } else {
+                return back();
+            }
+            
+    }
+    
    
    
 }

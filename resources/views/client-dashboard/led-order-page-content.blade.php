@@ -102,8 +102,11 @@
                         <tr class="text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
                             <th class="text-start min-w-100px">  Id</th>
                             <th class="min-w-150px">Led Title</th>
+                            <th class="min-w-150px">{{__('Dates')}}</th>
                             <th class="min-w-150px">Käuferinformationen</th> 
+                            <th class="min-w-150px">{{__('Response')}}</th>
                             <th class="text-start min-w-100px">  Preis</th>  
+                            <th class="min-w-150px">{{__('Actions')}}</th>
                         </tr>
                         <!--end::Table row-->
                     </thead>
@@ -113,7 +116,7 @@
                         <!--begin::Table row-->
                         @foreach ($leds as $led)
                         @foreach ($led->subOrders as $subOrder)
-                        @if ($subOrder->order->payment_status==true)
+                  
                         <tr>
                             <!--begin::Product=-->
                             <td class="text-start pe-0">
@@ -124,48 +127,35 @@
                             <td class="text-start">
                                 <a href="{{route('app.led.detail',$subOrder->led->id??'')}}" target="_blank"><span class="fw-bolder">{{$subOrder->led->title??''}}</span></a>
                             </td>
-
+                            <td>
+                                {{__('Start Date')}} : {{$subOrder->startDate->format('F d,Y')}}<br>
+                                {{__('End Date')}} : {{$subOrder->endDate->format('F d,Y')}}
+                            </td>
                             <td class="text-start pe-0">
                                 <span class="fw-bolder">{{$subOrder->user?($subOrder->user->firstname.' '.$subOrder->user->lastname) : ''}}</span><Br>
                                 <span class="fw-bolder">{{$subOrder->user->email??''}}</span><Br>
                                 <span class="fw-bolder">{{$subOrder->user->phone??''}}</span>
                             </td>
-                           
+                           <td>
+                            {{$subOrder->response === null ?'No Response' : ($subOrder->response?'Accepted' : 'Rejected')}}
+                           </td>
                             <td class="text-start">
                                 <span class="fw-bolder"> {{($subOrder->price??0*$subOrder->no_of_days??0)+((($subOrder->price??0*$subOrder->no_of_days??0)/100)*($subOrder->led->country->tax->tax??0))}} € </span>
                             </td>
-                           
-                           
-                           
-                            
-                            
-                            
-                            
-                            
-                            <!--end::Product=-->
-                            <!--begin::SKU=-->
-                            {{-- <td class="text-end pe-0">
-                                <span class="fw-bolder">{{$led->id}}</span>
-                            </td> --}}
-                            <!--end::SKU=-->
-                            <!--begin::Rating-->
-                            
-                            <!--end::Rating-->
-                            <!--begin::Price=-->
-                            
-                            <!--end::Price=-->
-                            <!--begin::Viewed=-->
-                            
-                            <!--end::Viewed=-->
-                            <!--begin::Percent=-->
-                            
-                            
-                      
+                            <td>
+                                <form action="{{route('client.led.order.accept')}}" method="post">
+                                    @csrf
+                                    <input type="hidden" name="subOrderId" value="{{$subOrder->id}}">
+                                    <button class="btn btn-success">{{('Accept')}}</button>
+                                </form>
+                                <form action="" method="post">
+                                    @csrf
+                                    <button class="btn btn-danger">{{('Reject')}}</button>
+                                </form>
                             </td>
-                            </td>
-                            <!--end::Percent=-->
+                
                         </tr>
-                        @endif  
+                   
                         @endforeach 
                         @endforeach
                         

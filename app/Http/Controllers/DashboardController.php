@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Response;
 use App\Models\Led;
 use App\Models\LedImages;
 use App\Models\City;
+use App\Models\OrderDescription;
+use App\Models\OrderImage;
+use App\Models\OrderPayment;
 use App\Models\Orders;
 use App\Models\SubOrders;
 use App\Models\BookingDates;
@@ -29,35 +32,34 @@ class DashboardController extends AdminController
   return redirect()->route('order.complete',[$id]);
 }
 
-public function payment($id)
+public function payment($id,$token)
    {
-            $order=Orders::findOrFail($id);
-            //return $price;
-            //return $order->total_price; 
-            // $order->payment_status=true;
-            // $order->save();
-            // $request->session()->forget('cart.items');
-            // return view('app-dashboard.order-complete',[
-            //    'order'=>$order,
-            // ]);
-
-            $payment = Mollie::api()->payments->create([
-               "amount" => [
-                   "currency" => "EUR",
-                   "value" => number_format($order->total_price, 2, '.', ''), // You must send the correct number of decimals, thus we enforce the use of strings
-               ],
-               "description" => "Order #".$order->id,
-               "redirectUrl" => route('payment.order.process',$order->id),
-               "webhookUrl" => route('webhooks.mollie'),
-               "metadata" => [
-                   "order_id" => $order->id,
-               ],
-           ]);
-           $order->payment_id=$payment->id;
-           $order->save();
-          // $payment = Mollie::api()->payments()->get($payment->id);
-           // redirect customer to Mollie checkout page
-           return redirect($payment->getCheckoutUrl(), 303);
+            $token = urldecode($token);
+            $suborder = SubOrders::where(['id' => $id,'token' => $token])->first();
+            if ($id && $token && $suborder->token == $token && !$suborder->payment->payment_status) {
+                     $payment = Mollie::api()->payments->create([
+                        "amount" => [
+                           "currency" => "EUR",
+                           "value" => number_format($suborder->price, 2, '.', ''), // You must send the correct number of decimals, thus we enforce the use of strings
+                        ],
+                        "description" => "Sub Order #".$suborder->id,
+                        "redirectUrl" => route('payment.order.process',$suborder->id),
+                        "webhookUrl" => route('webhooks.mollie'),
+                        "metadata" => [
+                           "sub_order_id" => $suborder->id,
+                        ],
+                  ]);
+                  $suborder->payment->update([
+                     'mollie_payment_id' => $payment->id, 
+                  ]);
+                  // $payment = Mollie::api()->payments()->get($payment->id);
+                  // redirect customer to Mollie checkout page
+                  return redirect($payment->getCheckoutUrl(), 303);
+            } else {
+               return "UnAuthorized Action";
+            }
+            
+          
             
    }
 
@@ -463,6 +465,104 @@ public function handle(Request $request) {
       } else {
          return redirect()->route('home');
       } 
+   }
+
+   public function ledOrderPlace(Request $request){
+     //dd($request->all());
+     $cartItems=[];
+      if (session()->has('cart.items')&&session()->get('cart.items')) {
+         foreach (session()->get('cart.items') as $value) {
+            $led=Led::with('images')->where('id',strtok($value,'*'))->first();
+            $led->setStartAndEndDate($value);
+            array_push($cartItems,$led);
+         }
+         $price=0;
+         $totalTax=0;
+         foreach ($cartItems as $key=>$value) {
+            $price+=$value->price*$value->noOfDays;
+            $tax=$value->price*$value->noOfDays;
+            //$key==1?dd($tax) : '';
+           // dd($value);
+            $totalTax+=(($tax/100)*($value->country->tax->tax??0));
+            //$key==1?dd($totalTax) : '';
+         }
+         $totalPrice=$price+$totalTax;
+         $iteration = 1;
+         foreach ($cartItems as $value) {
+                        $request->validate([
+                           //Validation Rules
+                           'description.'.$iteration.'.*' => ['string','nullable', 'max:20000'],
+                           'images.'.$iteration.'.*' => 'image|mimes:jpeg,png,jpg,gif,svg,bmp|max:10000'
+                        
+                     ],[
+                           //Validation Messages
+                           'required'=>':attribute is Required',
+                     ],[
+                           //Validation Attributes
+                  
+                           'Description' => "Description",
+                           'images' => 'Image',
+                           'description.'.$iteration.'.*' => "Description",
+                           'images.'.$iteration.'.*' => 'Image',
+                     ]);
+                     $iteration++;
+         }
+         $order = Orders::create([
+            'total_price' => $totalPrice,
+            'total_tax' => $totalTax,
+        ]);
+        $iteration = 1;
+        foreach ($cartItems as $value) {   
+                     $subOrder=SubOrders::create([
+                        'user_id' => (Led::findOrFail($value->id))->user->id,
+                        'led_id' => $value->id,
+                        'order_id' => $order->id,
+                        'price' => $value->price*$value->noOfDays+(($value->price*$value->noOfDays/100)*($value->country->tax->tax??0)),
+                      // 'price' => $value->price*$value->noOfDays,
+                        'no_of_days' => $value->noOfDays,
+                        'tax' => ($value->country->tax->tax??0)*$value->noOfDays,
+                        'startDate' => $value->startDate,
+                        'endDate' => $value->endDate,
+                        'order_id' => $order->id,
+                        'buyer_id' => Auth::user()->id,
+                     ]);
+                     $totalDays=$subOrder->startDate->diffInDays($subOrder->endDate)+1;
+                     for ($i=0; $i < $totalDays; $i++) { 
+                     BookingDates::create([
+                        'user_id' => (Led::findOrFail($value->id))->user->id,
+                        'led_id' => $value->id,
+                        'order_id' => $order->id,
+                        'suborder_id' => $subOrder->id,
+                        'bookdate' => $subOrder->startDate->addDays($i),
+                     ]);
+                     }
+                     if ($request->description[$iteration][0]) {
+                        OrderDescription::create([
+                           'sub_order_id' => $subOrder->id,
+                           'description' => $request->description[$iteration][0]??'',  
+                        ]);
+                     }  
+                     
+                        if ($request->images && isset($request->images[$iteration]) ) {
+                           foreach($request->images[$iteration] as $image)
+                           {
+                               $image->store('order-images/'.$subOrder->id,'public');
+                               $filePath = 'order-images/'.$subOrder->id. $image->hashName();
+                               $images = new OrderImage(['sub_order_id' => $subOrder->id ,'path' => $filePath]);
+                               $subOrder->images()->save($images);
+                           }
+                        }
+                        OrderPayment::create([
+                           'sub_order_id' => $subOrder->id,
+                        ]);
+                     $iteration++; 
+         }
+         return redirect()->route('home');
+      } else {
+         return redirect()->route('home');
+      } 
+    
+
    }
 
    public function checkout(Request $request)
