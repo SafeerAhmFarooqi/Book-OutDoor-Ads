@@ -32,35 +32,34 @@ class DashboardController extends AdminController
   return redirect()->route('order.complete',[$id]);
 }
 
-public function payment($id)
+public function payment($id,$token)
    {
-            $order=Orders::findOrFail($id);
-            //return $price;
-            //return $order->total_price; 
-            // $order->payment_status=true;
-            // $order->save();
-            // $request->session()->forget('cart.items');
-            // return view('app-dashboard.order-complete',[
-            //    'order'=>$order,
-            // ]);
-
-            $payment = Mollie::api()->payments->create([
-               "amount" => [
-                   "currency" => "EUR",
-                   "value" => number_format($order->total_price, 2, '.', ''), // You must send the correct number of decimals, thus we enforce the use of strings
-               ],
-               "description" => "Order #".$order->id,
-               "redirectUrl" => route('payment.order.process',$order->id),
-               "webhookUrl" => route('webhooks.mollie'),
-               "metadata" => [
-                   "order_id" => $order->id,
-               ],
-           ]);
-           $order->payment_id=$payment->id;
-           $order->save();
-          // $payment = Mollie::api()->payments()->get($payment->id);
-           // redirect customer to Mollie checkout page
-           return redirect($payment->getCheckoutUrl(), 303);
+            $token = urldecode($token);
+            $suborder = SubOrders::where(['id' => $id,'token' => $token])->first();
+            if ($id && $token && $suborder->token == $token && !$suborder->payment->payment_status) {
+                     $payment = Mollie::api()->payments->create([
+                        "amount" => [
+                           "currency" => "EUR",
+                           "value" => number_format($suborder->price, 2, '.', ''), // You must send the correct number of decimals, thus we enforce the use of strings
+                        ],
+                        "description" => "Sub Order #".$suborder->id,
+                        "redirectUrl" => route('payment.order.process',$suborder->id),
+                        "webhookUrl" => route('webhooks.mollie'),
+                        "metadata" => [
+                           "sub_order_id" => $suborder->id,
+                        ],
+                  ]);
+                  $suborder->payment->update([
+                     'mollie_payment_id' => $payment->id, 
+                  ]);
+                  // $payment = Mollie::api()->payments()->get($payment->id);
+                  // redirect customer to Mollie checkout page
+                  return redirect($payment->getCheckoutUrl(), 303);
+            } else {
+               return "UnAuthorized Action";
+            }
+            
+          
             
    }
 
@@ -518,7 +517,8 @@ public function handle(Request $request) {
                         'user_id' => (Led::findOrFail($value->id))->user->id,
                         'led_id' => $value->id,
                         'order_id' => $order->id,
-                        'price' => $value->price*$value->noOfDays,
+                        'price' => $value->price*$value->noOfDays+(($value->price*$value->noOfDays/100)*($value->country->tax->tax??0)),
+                      // 'price' => $value->price*$value->noOfDays,
                         'no_of_days' => $value->noOfDays,
                         'tax' => ($value->country->tax->tax??0)*$value->noOfDays,
                         'startDate' => $value->startDate,
